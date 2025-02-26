@@ -1,0 +1,21 @@
+# .vercelignore
+node_modules
+.git
+.next
+.vercel
+.DS_Store
+.vscode
+.idea
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+data/true_positive_mask_images
+Pictures
+.Trash
+Documents
+Downloads
+Desktop
+Library
+Movies
+Music

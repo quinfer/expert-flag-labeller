@@ -1,0 +1,87 @@
+[
+  {
+    "imageId": "masked_o8Pw_udWFAvvose7BnkVOg_120.jpg",
+    "town": "MAGHERAFELT",
+    "primaryCategory": "National",
+    "displayContext": "Pole-mounted",
+    "specificFlag": "",
+    "confidence": 3,
+    "timestamp": "2025-02-25T10:47:54.731Z",
+    "expertId": "EX001"
+  },
+  {
+    "imageId": "masked_aJ-X0jwY9e7YWaSIvBdYVg_180.jpg",
+    "town": "DONAGHADEE",
+    "primaryCategory": "Fraternal",
+    "displayContext": "Hall-mounted",
+    "specificFlag": "",
+    "confidence": 3,
+    "timestamp": "2025-02-25T10:48:01.960Z",
+    "expertId": "EX001"
+  },
+  {
+    "imageId": "masked_HsJcPLztl0DEfyZ6J8XI_Q_060.jpg",
+    "town": "KILKEEL",
+    "primaryCategory": "National",
+    "displayContext": "Pole-mounted",
+    "specificFlag": "Union Jack",
+    "confidence": 3,
+    "timestamp": "2025-02-25T10:48:20.573Z",
+    "expertId": "EX001"
+  },
+  {
+    "imageId": "masked_DhKisZxDPMO_hBkX5GU-Uw_000.jpg",
+    "town": "ENNISKILLEN",
+    "primaryCategory": "National",
+    "displayContext": "Pole-mounted",
+    "specificFlag": "Union Jack",
+    "confidence": 3,
+    "timestamp": "2025-02-25T10:56:58.139Z",
+    "expertId": "EX001"
+  },
+  {
+    "imageId": "masked_dQ1fgP4a--n5b7Y-xcNtkg_300.jpg",
+    "town": "PORTSTEWART",
+    "primaryCategory": "National",
+    "specificFlag": "Union Jack",
+    "displayContext": "Pole-mounted (in ground)",
+    "userContext": "Political/National Identity",
+    "confidence": 4,
+    "timestamp": "2025-02-25T11:13:43.732Z",
+    "expertId": "EX001"
+  },
+  {
+    "imageId": "masked_HzezWoXi8T8uaItMUby1SQ_300.jpg",
+    "town": "BELFAST_CITY",
+    "primaryCategory": "National",
+    "specificFlag": "Union Jack",
+    "displayContext": "Building-mounted",
+    "userContext": "Political/National Identity",
+    "confidence": 3,
+    "timestamp": "2025-02-25T12:02:04.293Z",
+    "expertId": "EX001"
+  },
+  {
+    "imageId": "masked_-Rzrq3fxHgQXV28dhqaPBQ_120.jpg",
+    "town": "BANBRIDGE",
+    "primaryCategory": "Review",
+    "specificFlag": "Needs Review",
+    "displayContext": "N/A",
+    "reviewReason": "Not a flag",
+    "confidence": 5,
+    "timestamp": "2025-02-25T12:12:53.420Z",
+    "expertId": "EX001",
+    "needsReview": true
+  },
+  {
+    "imageId": "masked_KijH9kNiLYfwTyEUV1SVIQ_000.jpg",
+    "town": "STRABANE",
+    "primaryCategory": "National",
+    "specificFlag": "Union Jack",
+    "displayContext": "",
+    "userContext": "Political/National Identity",
+    "confidence": 3,
+    "timestamp": "2025-02-25T14:25:12.526Z",
+    "expertId": "anonymous"
+  }
+]
