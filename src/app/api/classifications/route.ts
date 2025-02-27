@@ -29,7 +29,8 @@ export async function POST(request) {
         specific_flag: body.classification.specificFlag,
         confidence: body.classification.confidence,
         expert_id: body.classification.expertId || 'anonymous',
-        user_context: body.classification.userContext,
+        // Remove or comment out the user_context field if it doesn't exist in your database
+        // user_context: body.classification.userContext,
         needs_review: body.classification.needsReview || false,
         review_reason: body.classification.reviewReason
       };

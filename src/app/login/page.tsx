@@ -2,9 +2,17 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+
+// Define multiple valid users
+const VALID_USERS = [
+  { username: "Declan", password: "2HVrOj37rYdUivy+", name: "Declan French" },
+  { username: "Dominic", password: "97Z+FIK/gdBC+cLo", name: "Dominic Bryan" },
+  { username: "Barry", password: "5aHt5wjEZ7Bbwnd/", name: "Barry Quinn" },
+  { username: "Brandon", password: "s+tCGH8K4phMwY1T", name: "Brandon Cochrane"}
+];
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -18,11 +26,18 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
 
-    // Simple hardcoded authentication for testing
-    if (username === 'admin' && password === 'password') {
-      // Store authentication in localStorage
+    // Find matching user
+    const user = VALID_USERS.find(
+      user => user.username === username && user.password === password
+    );
+
+    if (user) {
+      // Store authentication in localStorage with the user's name and username
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('user', JSON.stringify({ name: username }));
+      localStorage.setItem('user', JSON.stringify({ 
+        name: user.name,
+        username: user.username 
+      }));
       
       // Redirect to the main application page
       router.push('/');
@@ -36,7 +51,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <h1 className="text-2xl font-bold text-center">Expert Flag Labeler</h1>
+          <h1 className="text-2xl font-bold text-center">Expert Flag Labeller</h1>
           <p className="text-center text-gray-500">Please log in to continue</p>
         </CardHeader>
         <CardContent>
@@ -70,10 +85,9 @@ export default function LoginPage() {
               {loading ? 'Logging in...' : 'Login'}
             </Button>
           </form>
+          
+          {/* Removed the login instructions */}
         </CardContent>
-        <CardFooter className="text-center text-sm text-gray-500">
-          <p>For testing, use: admin / password</p>
-        </CardFooter>
       </Card>
     </div>
   );

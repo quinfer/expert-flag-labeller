@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import Image from 'next/image'
-import { Info } from 'lucide-react'
+import { Info, HelpCircle } from 'lucide-react'
+import { InstructionsModal } from '@/components/InstructionsModal'
 
 interface ImageData {
   town: string;
@@ -99,6 +100,9 @@ export default function ExpertFlagLabeler() {
   // Add state for example modal
   const [showExampleModal, setShowExampleModal] = useState(false)
   const [selectedExample, setSelectedExample] = useState<string | null>(null)
+
+  // Add state for instructions modal
+  const [showInstructions, setShowInstructions] = useState(false)
 
   // Flag reference examples - using the correct paths
   const flagExamples = {
@@ -209,6 +213,15 @@ export default function ExpertFlagLabeler() {
     
     fetchUserStats()
   }, [])
+
+  // Show instructions on first login
+  useEffect(() => {
+    const hasSeenInstructions = localStorage.getItem('hasSeenInstructions')
+    if (!hasSeenInstructions && isAuthenticated) {
+      setShowInstructions(true)
+      localStorage.setItem('hasSeenInstructions', 'true')
+    }
+  }, [isAuthenticated])
 
   const currentImage = images[currentIndex]
   
@@ -325,18 +338,23 @@ export default function ExpertFlagLabeler() {
       return
     }
     
-    // Create classification object with both categorization systems
+    // Get the current user from localStorage
+    const userData = localStorage.getItem('user');
+    const user = userData ? JSON.parse(userData) : null;
+    
+    // Create the classification object with the user's username
     const classification = {
-      imageId: currentImage.filename,
-      town: currentImage.town,
-      primaryCategory, // Academic category
-      specificFlag,    // Specific flag type
+      imageId: images[currentIndex].filename,
+      town: images[currentIndex].town,
+      primaryCategory,
+      specificFlag,
       displayContext: secondaryCategory,
-      userContext: flagCategories[specificFlag].context, // User-friendly context
+      userContext: flagCategories[specificFlag].context,
       confidence,
       timestamp: new Date().toISOString(),
-      expertId: user?.username, // Use the authenticated user's username
-      // ... other fields
+      expertId: user?.username || user?.name || 'anonymous',
+      needsReview: false,
+      reviewReason: ''
     }
 
     try {
@@ -348,26 +366,22 @@ export default function ExpertFlagLabeler() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           action: 'save',
-          classification: {
-            ...classification,
-            timestamp: new Date().toISOString(),
-            expertId: user?.username
-          }
+          classification,
         }),
       })
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("API error response:", errorData);
-        throw new Error(`Failed to save classification: ${errorData.error || response.statusText}`);
+      const result = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to save classification');
       }
       
       // Update local state
       setClassifications({
         ...classifications,
-        [currentImage.filename]: classification
+        [images[currentIndex].filename]: classification
       })
       
       // Update statistics
@@ -385,8 +399,8 @@ export default function ExpertFlagLabeler() {
       setSpecificFlag('')
       setConfidence(3)
     } catch (error) {
-      console.error('Error saving classification:', error)
-      alert(`Failed to save classification. ${error.message}`)
+      console.error('Failed to save classification:', error);
+      setImageError(`Failed to save classification: ${error.message}`);
     }
   }
 
@@ -601,12 +615,23 @@ export default function ExpertFlagLabeler() {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      {/* Update user info display */}
+      {/* Add help button in header */}
       <div className="flex justify-between items-center mb-4">
         <div>Welcome, {user?.name || "Expert"}</div>
-        <Button variant="outline" size="sm" onClick={handleLogout}>
-          Logout
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={() => setShowInstructions(true)}
+            className="flex items-center gap-1"
+          >
+            <HelpCircle size={16} />
+            <span>Help</span>
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleLogout}>
+            Logout
+          </Button>
+        </div>
       </div>
 
       {/* Navigation Controls */}
@@ -991,6 +1016,12 @@ export default function ExpertFlagLabeler() {
           </div>
         </div>
       )}
+
+      {/* Add instructions modal */}
+      <InstructionsModal 
+        isOpen={showInstructions} 
+        onClose={() => setShowInstructions(false)} 
+      />
 
       <div className="text-sm text-gray-500 mb-4">
         Logged in as: <span className="font-medium">{user?.name || 'Unknown'}</span>
