@@ -40,15 +40,81 @@ interface Classification {
   // ... other fields
 }
 
+// Flag reference examples - using the correct paths
+const flagExamples = {
+  'Union Jack': '/FlagExamples/UnionJack/SVrJ9GHs2MNRS4AbrknDpg_300.jpg',
+  'Ulster Banner': '/FlagExamples/Ulsterbanner/rD5NsqK3M-RI9qor-WzriA_300.jpg',
+  'Irish Tricolor': '/FlagExamples/Tricolour/UHmCuSmTD7Omx6X3mqah3A_180.jpg',
+  'Orange Order': '/FlagExamples/Orange Order/nyB_fNQFb8p5dHTry91OFA_300.jpg',
+  'Parachute Regiment': '/FlagExamples/Parachute/JXbrwyqANo11c-ecWdFkbg_000.jpg',
+  'Royal Standard': '/FlagExamples/Royal Standard/5vQ7BsIGqN5gUtgJPCdpjw_000.jpg',
+  'Northern Ireland Football': '/FlagExamples/NIF/4LfB1oH4L4OXBCybpD1pQg_240.jpg',
+  'UVF': '/FlagExamples/UVF/kXdKzHVCLjA9FJMAJWaTYQ_300.jpg',
+  'UDA': '/FlagExamples/UDA/dH80pDtsYDfXRSq0upE3nQ_300.jpg',
+  'UFF': '/FlagExamples/UFF/KuyWw9KQ8hZEvZioxDHVlw_300.jpg',
+  'YCV': '/FlagExamples/YCV/D-PFjWZmllg4ovARHOWPkA_180.jpg',
+  'WW1 Commemorative': '/FlagExamples/WWI/ZP0N_nSRu_DKVHzSH17y9A_120.jpg',
+  'Israeli': '/FlagExamples/Israel/HLIf8zO9MACoRn0kKc8y9A_300.jpg'
+}
+
+// Flag descriptions for additional context
+const flagDescriptions = {
+  'Union Jack': 'The national flag of the United Kingdom, featuring red and white crosses on a blue background.',
+  'Ulster Banner': 'Former flag of Northern Ireland (1953-1972) with the Red Hand of Ulster on a white star and red cross.',
+  'Irish Tricolor': 'The national flag of Ireland with vertical stripes of green, white, and orange.',
+  'Orange Order': 'Orange/purple/blue flag with symbols of the Orange Order fraternal organization.',
+  'Parachute Regiment': 'Flag of the British Armys Parachute Regiment, featuring a parachute and wings.',
+  'Royal Standard': 'The royal banner used by Queen Elizabeth II in her capacity as Sovereign of the United Kingdom.',
+  'Northern Ireland Football': 'Flag representing the Northern Ireland national football team.',
+  'UVF': 'Ulster Volunteer Force flag, a proscribed loyalist paramilitary organization.',
+  'UDA': 'Ulster Defence Association flag, a proscribed loyalist paramilitary organization.',
+  'UFF': 'Ulster Freedom Fighters flag, a cover name used by the UDA.',
+  'YCV': 'Young Citizen Volunteers flag, the youth wing of the UVF.',
+  'WW1 Commemorative': 'Flags commemorating World War I, often featuring poppies or dates 1914-1918.',
+  'Israeli': 'The national flag of Israel, featuring a blue Star of David on a white background with blue stripes.'
+}
+
 export default function ExpertFlagLabeler() {
   const router = useRouter()
   
-  // Replace NextAuth session with simple auth check
+  // All useState hooks
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
   const [authLoading, setAuthLoading] = useState(true)
-  
-  // Check authentication on component mount
+  const [images, setImages] = useState<ImageData[]>([])
+  const [loading, setLoading] = useState(true)
+  const [imageError, setImageError] = useState<string | null>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [primaryCategory, setPrimaryCategory] = useState('')
+  const [secondaryCategory, setSecondaryCategory] = useState('')
+  const [specificFlag, setSpecificFlag] = useState('')
+  const [confidence, setConfidence] = useState(3)
+  const [classifications, setClassifications] = useState<Record<string, any>>({})
+  const [zoom, setZoom] = useState(1)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+  const [needsReview, setNeedsReview] = useState(false)
+  const [reviewReason, setReviewReason] = useState('')
+  const [showReviewDialog, setShowReviewDialog] = useState(false)
+  const [stats, setStats] = useState({
+    labeled: 0,
+    flaggedForReview: 0,
+    avgConfidence: 0
+  })
+  const [showAcademicInfo, setShowAcademicInfo] = useState(false)
+  const [showExampleModal, setShowExampleModal] = useState(false)
+  const [selectedExample, setSelectedExample] = useState<string | null>(null)
+  const [showInstructions, setShowInstructions] = useState(false)
+  const [currentUser, setCurrentUser] = useState<string | null>(null);
+  const [userStats, setUserStats] = useState({
+    expert1: 0,
+    expert2: 0,
+    expert3: 0,
+    expert4: 0
+  });
+
+  // All useEffect hooks
   useEffect(() => {
     const checkAuth = () => {
       const auth = localStorage.getItem('isAuthenticated') === 'true'
@@ -62,90 +128,9 @@ export default function ExpertFlagLabeler() {
       }
       setAuthLoading(false)
     }
-    
     checkAuth()
   }, [router])
-
-  const [images, setImages] = useState<ImageData[]>([])
-  const [loading, setLoading] = useState(true)
-  const [imageError, setImageError] = useState<string | null>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [primaryCategory, setPrimaryCategory] = useState('')
-  const [secondaryCategory, setSecondaryCategory] = useState('')
-  const [specificFlag, setSpecificFlag] = useState('')
-  const [confidence, setConfidence] = useState(3)
-  const [classifications, setClassifications] = useState<Record<string, any>>({})
   
-  // Add zoom state
-  const [zoom, setZoom] = useState(1)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [isDragging, setIsDragging] = useState(false)
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
-  
-  // Add state for review
-  const [needsReview, setNeedsReview] = useState(false)
-  const [reviewReason, setReviewReason] = useState('')
-  const [showReviewDialog, setShowReviewDialog] = useState(false)
-  
-  // Add state to track statistics
-  const [stats, setStats] = useState({
-    labeled: 0,
-    flaggedForReview: 0,
-    avgConfidence: 0
-  })
-  
-  // Add a state to track if we're showing the academic categories explanation
-  const [showAcademicInfo, setShowAcademicInfo] = useState(false)
-
-  // Add state for example modal
-  const [showExampleModal, setShowExampleModal] = useState(false)
-  const [selectedExample, setSelectedExample] = useState<string | null>(null)
-
-  // Add state for instructions modal
-  const [showInstructions, setShowInstructions] = useState(false)
-
-  // Flag reference examples - using the correct paths
-  const flagExamples = {
-    'Union Jack': '/FlagExamples/UnionJack/SVrJ9GHs2MNRS4AbrknDpg_300.jpg',
-    'Ulster Banner': '/FlagExamples/Ulsterbanner/rD5NsqK3M-RI9qor-WzriA_300.jpg',
-    'Irish Tricolor': '/FlagExamples/Tricolour/UHmCuSmTD7Omx6X3mqah3A_180.jpg',
-    'Orange Order': '/FlagExamples/Orange Order/nyB_fNQFb8p5dHTry91OFA_300.jpg',
-    'Parachute Regiment': '/FlagExamples/Parachute/JXbrwyqANo11c-ecWdFkbg_000.jpg',
-    'Royal Standard': '/FlagExamples/Royal Standard/5vQ7BsIGqN5gUtgJPCdpjw_000.jpg',
-    'Northern Ireland Football': '/FlagExamples/NIF/4LfB1oH4L4OXBCybpD1pQg_240.jpg',
-    'UVF': '/FlagExamples/UVF/kXdKzHVCLjA9FJMAJWaTYQ_300.jpg',
-    'UDA': '/FlagExamples/UDA/dH80pDtsYDfXRSq0upE3nQ_300.jpg',
-    'UFF': '/FlagExamples/UFF/KuyWw9KQ8hZEvZioxDHVlw_300.jpg',
-    'YCV': '/FlagExamples/YCV/D-PFjWZmllg4ovARHOWPkA_180.jpg',
-    'WW1 Commemorative': '/FlagExamples/WWI/ZP0N_nSRu_DKVHzSH17y9A_120.jpg',
-    'Israeli': '/FlagExamples/Israel/HLIf8zO9MACoRn0kKc8y9A_300.jpg'
-  }
-  
-  // Flag descriptions for additional context
-  const flagDescriptions = {
-    'Union Jack': 'The national flag of the United Kingdom, featuring red and white crosses on a blue background.',
-    'Ulster Banner': 'Former flag of Northern Ireland (1953-1972) with the Red Hand of Ulster on a white star and red cross.',
-    'Irish Tricolor': 'The national flag of Ireland with vertical stripes of green, white, and orange.',
-    'Orange Order': 'Orange/purple/blue flag with symbols of the Orange Order fraternal organization.',
-    'Parachute Regiment': 'Flag of the British Armys Parachute Regiment, featuring a parachute and wings.',
-    'Royal Standard': 'The royal banner used by Queen Elizabeth II in her capacity as Sovereign of the United Kingdom.',
-    'Northern Ireland Football': 'Flag representing the Northern Ireland national football team.',
-    'UVF': 'Ulster Volunteer Force flag, a proscribed loyalist paramilitary organization.',
-    'UDA': 'Ulster Defence Association flag, a proscribed loyalist paramilitary organization.',
-    'UFF': 'Ulster Freedom Fighters flag, a cover name used by the UDA.',
-    'YCV': 'Young Citizen Volunteers flag, the youth wing of the UVF.',
-    'WW1 Commemorative': 'Flags commemorating World War I, often featuring poppies or dates 1914-1918.',
-    'Israeli': 'The national flag of Israel, featuring a blue Star of David on a white background with blue stripes.'
-  }
-  
-  // Fix the user stats implementation
-  const [userStats, setUserStats] = useState({
-    expert1: 0,
-    expert2: 0,
-    expert3: 0,
-    expert4: 0
-  })
-
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -159,8 +144,10 @@ export default function ExpertFlagLabeler() {
         setLoading(false)
       }
     }
-    fetchImages()
-  }, [])
+    if (isAuthenticated) {
+      fetchImages()
+    }
+  }, [isAuthenticated])
 
   useEffect(() => {
     // Function to get the current user from Basic Auth
@@ -174,8 +161,11 @@ export default function ExpertFlagLabeler() {
       }
     }
     
-    getCurrentUser()
-  }, [])
+    // Only run this if we're authenticated
+    if (isAuthenticated) {
+      getCurrentUser()
+    }
+  }, [isAuthenticated])
 
   // Update this when fetching classifications
   useEffect(() => {
@@ -211,8 +201,11 @@ export default function ExpertFlagLabeler() {
       }
     }
     
-    fetchUserStats()
-  }, [])
+    // Only fetch user stats if we're authenticated
+    if (isAuthenticated) {
+      fetchUserStats()
+    }
+  }, [isAuthenticated])
 
   // Show instructions on first login
   useEffect(() => {
@@ -457,12 +450,16 @@ export default function ExpertFlagLabeler() {
     try {
       console.log("Sending review for image:", currentImage.filename);
       
+      // Get the current user from localStorage to ensure we have the latest value
+      const userData = localStorage.getItem('user');
+      const currentUser = userData ? JSON.parse(userData) : null;
+      
       // Create a simpler payload
       const payload = { 
         action: 'flag',
         imageId: currentImage.filename,
         reason: reviewReason,
-        expertId: user?.username || user?.name || 'anonymous'
+        expertId: currentUser?.username || currentUser?.name || 'anonymous'
       };
       
       console.log("Sending payload:", payload);
@@ -592,17 +589,7 @@ export default function ExpertFlagLabeler() {
     router.push('/login')
   }
 
-  // Show loading state while checking authentication
-  if (authLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading authentication...</div>
-  }
-
-  // Don't render anything if not authenticated
-  if (!isAuthenticated) {
-    return <div className="flex justify-center items-center h-screen">Redirecting to login...</div>
-  }
-
-  // Add this to your page component to test API connectivity
+  // Move this useEffect up here, before any conditional returns
   useEffect(() => {
     const testApi = async () => {
       try {
@@ -616,8 +603,19 @@ export default function ExpertFlagLabeler() {
       }
     };
     
-    testApi();
-  }, []);
+    if (isAuthenticated) {
+      testApi();
+    }
+  }, [isAuthenticated]);
+
+  // Now your conditional returns
+  if (authLoading) {
+    return <div className="flex justify-center items-center h-screen">Loading authentication...</div>
+  }
+
+  if (!isAuthenticated) {
+    return <div className="flex justify-center items-center h-screen">Redirecting to login...</div>
+  }
 
   return (
     <div className="max-w-4xl mx-auto p-4">
