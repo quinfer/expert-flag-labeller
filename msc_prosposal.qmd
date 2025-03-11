@@ -1,0 +1,141 @@
+---
+title: "Automated Analysis of Flag Displays in Northern Ireland: A Computer Vision Approach for Cultural and Political Symbolism Recognition"
+author: "Barry Quinn"
+date: "March 11, 2025"
+format:
+  pdf:
+    number-sections: true
+    colorlinks: true
+bibliography: references.bib
+---
+
+# Introduction
+
+This research proposal outlines a project that applies advanced computer vision and natural language processing techniques to analyse flag displays in Northern Ireland (NI). The study aims to develop and refine zero-shot object detection and classification methodologies to identify, categorise, and analyse flags in public spaces across NI's urban environments. This work builds upon an existing research foundation that has already demonstrated promising results in detecting flag displays using Google Street View imagery. As @bryan2010public have established, flags serve as powerful territorial markers in post-conflict Northern Ireland, making their systematic analysis valuable for understanding cultural and political dynamics.
+
+# Background and Context
+
+Flag displays in Northern Ireland represent significant cultural, political, and community identifiers with substantial implications for understanding social dynamics, territorial marking, and community relations [@jarman2005painting; @bryan2015parades]. Traditional methods of documenting and analysing these displays have been limited by resource constraints, geographical coverage, and temporal inconsistencies. The application of artificial intelligence, specifically computer vision algorithms, offers an innovative approach to systematically capture and analyse these visual symbols at scale.
+
+The project leverages an extensive dataset of approximately two million Google Street View images collected during 2022-2023 across Northern Ireland's 50 largest urban areas. Initial analysis using GroundingDINO [@liu2023grounding], a zero-shot object detection model, has identified approximately 100,000 potential flag instances, with manual verification confirming approximately 70,000 true positives.
+
+# Research Aims and Objectives
+
+This research aims to develop and implement advanced AI methodologies for the automated detection, classification, and analysis of flag displays in Northern Ireland. The specific objectives include:
+
+1. Refine the existing GroundingDINO-based detection system through further training with verified examples to improve precision whilst maintaining zero-shot flexibility
+2. Develop a robust classification framework using vision-language models to categorise detected flags into seven primary categories (National, Fraternal, Sport, Military, Historical, International, and others)
+3. Design and implement a hierarchical prompt tuning methodology informed by recent advancements in fine-grained visual classification [@li2023semantic]
+4. Establish a workflow for the systematic analysis of flag display patterns in relation to geographical, temporal, and socio-economic factors
+5. Create a transferable methodological framework that can be applied to historical imagery and potentially other cultural contexts
+
+# Methodology
+
+## Detection Refinement
+
+The research will build upon the existing implementation of GroundingDINO [@liu2023grounding], which combines a vision transformer architecture with a BERT-based text encoder. This unique architecture enables zero-shot object detection capabilities without requiring specialised training data. However, to enhance detection accuracy for the specific task of flag identification, the model will be refined using the manually verified dataset of true and false positives already collected. This approach aligns with the methodology proposed by @kirillov2023segment for adapting foundational models to specific detection tasks.
+
+## Classification Framework Development
+
+Drawing inspiration from semantic-assisted object clustering techniques [@luo2023soc], this project will implement a hierarchical classification system. The classification framework will incorporate:
+
+1. A structured labelling process involving domain experts to classify 3,000-5,000 strategically sampled images
+2. Implementation of a custom web interface for hierarchical classification with confidence scoring
+3. Adaptation of prompt tuning methods similar to those applied in fine-grained ship classification by @li2023semantic in their seminal work on vision-language models for object classification
+
+The approach builds on Li et al.'s [-@li2023semantic] "Semantic-Assisted Object Clustering for Referring Video Object Segmentation," which demonstrated the effectiveness of integrating semantic information for improved object identification across varied contexts.
+
+### Existing Labelling Infrastructure
+
+A critical component of the proposed methodology has already been implemented, significantly enhancing the project's viability. A Next.js-based labelling application has been developed and deployed (accessible at https://flag-labeller-19wrdqvle-barry-quinns-projects.vercel.app/), providing a specialized interface for domain experts to efficiently categorise flag imagery. This application incorporates:
+
+1. Secure authentication protocols to ensure data integrity
+2. A hierarchical classification system aligned with the project's taxonomic requirements
+3. An intuitive interface designed specifically for domain experts without technical background
+4. Data collection mechanisms that include confidence metrics and inter-annotator reliability measures
+
+Three domain experts have already been identified and committed to completing the labelling of a strategically sampled dataset by summer 2025. This existing infrastructure and confirmed expert participation substantially reduces implementation risks and ensures that the critical training dataset will be available within the proposed timeline.
+
+## Data Processing and Analysis
+
+The methodology will include:
+
+1. Preprocessing of Google Street View imagery for optimal model ingestion
+2. Implementation of batch processing techniques to handle the large-scale dataset
+3. Development of spatial analysis tools to map flag distributions against geographical and administrative boundaries
+4. Integration with socio-economic indicators to enable multidimensional analysis of flag display patterns
+
+This approach draws on methodologies established by @gebru2017using for using computer vision to analyse demographic patterns through Google Street View imagery.
+
+# Technical Implementation
+
+The project will employ state-of-the-art deep learning frameworks including:
+
+1. Vision Transformers for feature extraction from imagery [@dosovitskiy2021image]
+2. Vision-Language Models for semantic understanding and context awareness [@radford2021learning]
+3. Hierarchical classification architectures to capture nuanced flag typologies
+4. Geospatial data processing tools for location-based analysis
+
+The implementation will build upon existing Python-based frameworks for computer vision and will be designed with scalability and reproducibility as core principles, following best practices established by Li and colleagues [-@li2023semantic] in their work on semantic-assisted classification.
+
+# Expected Outcomes and Contributions
+
+This research is expected to deliver:
+
+1. A refined methodology for zero-shot flag detection with improved accuracy metrics
+2. A novel hierarchical classification system for flag typology recognition
+3. A comprehensive dataset of classified flag displays across Northern Ireland
+4. Analytical insights into the spatial and temporal patterns of flag displays
+5. A transferable technical framework for analysis of visual cultural symbols in public spaces
+
+The project will contribute to both computational methods in computer vision and to the empirical understanding of visual political symbolism in divided societies [@bryan2015parades; @komarova2020neutrality].
+
+# Timeline and Resources
+
+The MSc dissertation project will be conducted over a 12-week period, structured as follows:
+
+* Weeks 1-2: Literature review and technical familiarisation
+* Weeks 3-4: Development of classification framework
+* Weeks 5-7: Implementation of hierarchical prompt tuning and model training
+* Weeks 8-9: Evaluation and refinement of classification performance
+* Weeks 10-11: Spatial analysis and integration with socio-economic indicators
+* Week 12: Final analysis, documentation, and thesis preparation
+
+The project will utilise existing computational resources and datasets already collected by the research group.
+
+# Ethical Considerations
+
+The research will adhere to best practices in data ethics, ensuring that:
+
+1. All imagery used is publicly available through Google Street View
+2. No personally identifiable information is processed or stored
+3. Analysis focuses on aggregate patterns rather than specific locations that might identify individual properties
+4. Interpretations of findings remain sensitive to the complex cultural and political context of Northern Ireland
+
+This approach follows ethical guidelines established by @crawford2019excavating for responsible AI research involving public imagery.
+
+# Supervision and Collaboration
+
+The project will be supervised by Dr Shuyan Li from Computer Science, with additional expertise provided by the interdisciplinary research team that includes specialists in computer vision, anthropology, and Northern Ireland studies. The work builds upon an existing PhD project funded through CAST in collaboration with the Department of Communities and Rural Affairs, ensuring alignment with broader research and policy objectives.
+
+## Project Viability Assessment
+
+This proposal represents an exceptionally viable MSc dissertation project due to several factors that mitigate typical implementation risks:
+
+1. **Existing Dataset**: The two million image dataset has already been collected and processed through initial detection, providing a solid foundation for the classification work.
+
+2. **Operational Infrastructure**: A dedicated Next.js labelling application has been fully implemented and deployed, eliminating development time that would otherwise be required for creating data annotation tools.
+
+3. **Expert Resource Commitment**: Three domain experts have formally committed to completing the annotation of 3,000-5,000 training examples by summer 2025, ensuring the availability of high-quality labelled data at the commencement of the project.
+
+4. **Technical Foundation**: The GroundingDINO implementation has been successfully adapted to the flag detection task, allowing the project to focus on classification refinement rather than fundamental detection challenges.
+
+5. **Interdisciplinary Support**: The established collaboration between Computer Science (Dr Li),Anthropology (Prof Bryan), Health Economics (Prof French) and existing PhD researchers provides a robust support structure for addressing both technical and domain-specific challenges.
+
+These elements collectively ensure that the project can realistically achieve its objectives within the 12-week MSc dissertation timeframe, allowing the researcher to focus on the novel aspects of hierarchical classification and prompt tuning rather than preliminary data collection and infrastructure development.
+
+# Conclusion
+
+This MSc dissertation project represents a significant opportunity to advance both computational methods in AI and empirical understanding of visual political symbolism. By combining state-of-the-art computer vision techniques with domain expertise in Northern Ireland's cultural landscape, the research aims to develop innovative approaches to the automated analysis of flag displays with potential applications for both academic research and policy development.
+
+# References

@@ -320,6 +320,7 @@ export default function ExpertFlagLabeler() {
   
   // Handle flag selection - automatically sets the primary category
   const handleFlagSelection = (flag: string) => {
+    console.log("Selected flag:", flag);
     setSpecificFlag(flag)
     setPrimaryCategory(flagCategories[flag].primary)
   }
@@ -333,9 +334,12 @@ export default function ExpertFlagLabeler() {
   }
   
   const handleNext = async () => {
+    console.log("Current specificFlag:", specificFlag);
+    console.log("Button should be disabled:", !specificFlag);
+    
     if (!specificFlag) {
-      alert("Please select a specific flag type")
-      return
+      alert("Please select a specific flag type");
+      return;
     }
     
     // Get the current user from localStorage
@@ -441,31 +445,27 @@ export default function ExpertFlagLabeler() {
   // Handle submitting review
   const handleSubmitReview = async () => {
     if (!reviewReason) {
-      alert("Please select a reason for review")
-      return
+      alert("Please select a reason for review");
+      return;
     }
     
     if (!currentImage) {
-      alert("No image selected")
-      return
-    }
-    
-    // Create classification object with review flag
-    const classification = {
-      imageId: currentImage.filename,
-      town: currentImage.town,
-      primaryCategory: "Review", // Mark as review
-      specificFlag: "Needs Review",
-      displayContext: "N/A",
-      reviewReason: reviewReason, // Include the review reason
-      confidence: 5, // High confidence it needs review
-      timestamp: new Date().toISOString(),
-      expertId: user?.username, // Use the authenticated user's username
-      needsReview: true // Flag to indicate this is a review request
+      alert("No image selected");
+      return;
     }
     
     try {
-      console.log("Sending review classification:", classification);
+      console.log("Sending review for image:", currentImage.filename);
+      
+      // Create a simpler payload
+      const payload = { 
+        action: 'flag',
+        imageId: currentImage.filename,
+        reason: reviewReason,
+        expertId: user?.username || user?.name || 'anonymous'
+      };
+      
+      console.log("Sending payload:", payload);
       
       // Use the same endpoint as regular classifications
       const response = await fetch('/api/classifications', {
@@ -473,57 +473,46 @@ export default function ExpertFlagLabeler() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          action: 'flag',
-          imageId: currentImage.filename,
-          reason: reviewReason,
-          expertId: user?.username
-        }),
-      })
-      
-      let responseData;
-      
-      try {
-        // Try to parse the response as JSON
-        responseData = await response.json();
-      } catch (e) {
-        console.log("Response is not JSON:", await response.text());
-        throw new Error("Invalid response from server");
-      }
+        body: JSON.stringify(payload),
+      });
       
       if (!response.ok) {
-        console.error("API error response:", responseData);
-        throw new Error(`Failed to save review: ${
-          responseData.error || responseData.message || response.statusText || "Unknown error"
-        }`);
+        const errorText = await response.text();
+        console.error("API error response:", errorText);
+        throw new Error(`Server responded with ${response.status}: ${errorText}`);
       }
       
+      const responseData = await response.json();
       console.log("Review saved successfully:", responseData);
       
       // Update local state
       setClassifications({
         ...classifications,
-        [currentImage.filename]: classification
-      })
+        [currentImage.filename]: {
+          imageId: currentImage.filename,
+          needsReview: true,
+          reviewReason: reviewReason
+        }
+      });
       
       // Update statistics
       setStats(prevStats => ({
         ...prevStats,
         flaggedForReview: prevStats.flaggedForReview + 1
-      }))
+      }));
       
       // Reset form and close dialog
-      setReviewReason('')
-      setShowReviewDialog(false)
+      setReviewReason('');
+      setShowReviewDialog(false);
       
       // Move to next image
-      setImageError(null)
-      setCurrentIndex(currentIndex + 1)
+      setImageError(null);
+      setCurrentIndex(currentIndex + 1);
     } catch (error) {
-      console.error('Error flagging for review:', error)
-      alert(`Failed to flag for review. ${error.message || "Unknown error"}`)
+      console.error('Error flagging for review:', error);
+      alert(`Failed to flag for review: ${error.message || "Unknown error"}`);
     }
-  }
+  };
 
   // For flagging images for review
   const flagForReview = async (imageId, reason) => {
@@ -612,6 +601,23 @@ export default function ExpertFlagLabeler() {
   if (!isAuthenticated) {
     return <div className="flex justify-center items-center h-screen">Redirecting to login...</div>
   }
+
+  // Add this to your page component to test API connectivity
+  useEffect(() => {
+    const testApi = async () => {
+      try {
+        const response = await fetch('/api/classifications', {
+          method: 'GET'
+        });
+        const data = await response.json();
+        console.log("API connection test successful:", data);
+      } catch (error) {
+        console.error("API connection test failed:", error);
+      }
+    };
+    
+    testApi();
+  }, []);
 
   return (
     <div className="max-w-4xl mx-auto p-4">
