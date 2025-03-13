@@ -11,7 +11,8 @@ const VALID_USERS = [
   { username: "Declan", password: "2HVrOj37rYdUivy+", name: "Declan French" },
   { username: "Dominic", password: "97Z+FIK/gdBC+cLo", name: "Dominic Bryan" },
   { username: "Barry", password: "5aHt5wjEZ7Bbwnd/", name: "Barry Quinn" },
-  { username: "Brandon", password: "s+tCGH8K4phMwY1T", name: "Brandon Cochrane"}
+  { username: "Brandon", password: "s+tCGH8K4phMwY1T", name: "Brandon Cochrane"},
+  { username: "Byron", password: "jR5vT8yM3pB9kL7+", name: "Byron Graham" }
 ];
 
 export default function LoginPage() {
