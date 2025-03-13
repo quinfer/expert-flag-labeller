@@ -1074,7 +1074,7 @@ export default function ExpertFlagLabeler() {
                   onChange={() => setReviewReason("Not a flag")}
                   className="mr-2"
                 />
-                <label htmlFor="not-flag">Not a flag (e.g., bunting, decoration)</label>
+                <label htmlFor="not-flag">Not a flag (e.g., decoration, poster, object)</label>
               </div>
               
               <div className="flex items-center">
@@ -1103,18 +1103,7 @@ export default function ExpertFlagLabeler() {
                 <label htmlFor="complex">Complex case (needs expert review)</label>
               </div>
               
-              <div className="flex items-center">
-                <input 
-                  type="radio" 
-                  id="bunting-needs-review" 
-                  name="review-reason" 
-                  value="Bunting needs specialized review"
-                  checked={reviewReason === "Bunting needs specialized review"}
-                  onChange={() => setReviewReason("Bunting needs specialized review")}
-                  className="mr-2"
-                />
-                <label htmlFor="bunting-needs-review">Bunting needs specialized review</label>
-              </div>
+              {/* Bunting option removed as it's now being classified directly */}
               
               <div className="flex items-center">
                 <input 
