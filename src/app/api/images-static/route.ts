@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { staticImages } from '@/data/images';
+import fs from 'fs';
+import path from 'path';
 
 // In-memory storage for classifications
 // This will reset when the serverless function cold starts
@@ -25,8 +27,91 @@ try {
   console.error('Error initializing classifications:', error);
 }
 
+// Path to the classification queue JSON file
+const QUEUE_FILE = path.join(process.cwd(), 'data', 'classification_queue.json');
+
 export async function GET() {
-  return NextResponse.json({ images: staticImages, classifications });
+  console.log("[API] GET /api/images-static called");
+  
+  try {
+    // Check if we should include side-by-side composite images
+    let imagesWithComposites = [...staticImages];
+    
+    // Try to read the classification queue to find composite images
+    if (fs.existsSync(QUEUE_FILE)) {
+      console.log("[API] Classification queue file found, checking for composite images");
+      const queueData = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf8'));
+      
+      if (queueData && queueData.images && queueData.images.length > 0) {
+        console.log(`[API] Found ${queueData.images.length} images in classification queue`);
+        
+        // Create a lookup map by filename
+        const queueMap = new Map();
+        queueData.images.forEach(item => {
+          queueMap.set(item.filename, item);
+        });
+        
+        console.log("[API] First few queue items:", queueData.images.slice(0, 2));
+        console.log("[API] First few static images:", staticImages.slice(0, 2));
+        
+        // Enhance staticImages with composite image information
+        imagesWithComposites = imagesWithComposites.map(image => {
+          const queueItem = queueMap.get(image.filename);
+          if (queueItem && queueItem.composite_image) {
+            console.log(`[API] Match found for ${image.filename}, adding composite ${queueItem.composite_image}`);
+            return {
+              ...image,
+              composite_image: queueItem.composite_image,
+              has_composite: true
+            };
+          }
+          return image;
+        });
+        
+        console.log(`[API] Enhanced ${imagesWithComposites.filter(img => img.has_composite).length} images with composite data`);
+        
+        // Log a sample of images with composites
+        const compositeSamples = imagesWithComposites.filter(img => img.has_composite).slice(0, 2);
+        if (compositeSamples.length > 0) {
+          console.log("[API] Sample composite image data:", compositeSamples);
+        } else {
+          console.log("[API] No composite images were found in the enhanced list");
+        }
+      }
+    } else {
+      console.log("[API] Classification queue file not found");
+    }
+    
+    if (!imagesWithComposites || imagesWithComposites.length === 0) {
+      console.error("[API] CRITICAL ERROR: images array is empty in API route!");
+    } else {
+      console.log("[API] First image in response:", imagesWithComposites[0]);
+    }
+    
+    // Return enhanced images with composite information
+    return NextResponse.json({
+      success: true,
+      metadata: { 
+        source: "static-images-with-composites",
+        totalImages: imagesWithComposites.length,
+        compositesCount: imagesWithComposites.filter(img => img.has_composite).length
+      },
+      images: imagesWithComposites || [],
+      classifications: classifications || []
+    });
+  } catch (error) {
+    console.error("[API] Error processing images:", error);
+    
+    // Fallback to returning static images directly
+    return NextResponse.json({
+      success: true,
+      metadata: { 
+        source: "static-images-direct-fallback",
+        error: error.message
+      },
+      images: staticImages || []
+    });
+  }
 }
 
 export async function POST(request) {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+// Import removed to avoid confusion with browser's Image constructor
 import { staticImages } from '../data/images';
 
 interface BoundedFlagImageProps {
@@ -10,10 +10,13 @@ interface BoundedFlagImageProps {
   town?: string;
   showComposite?: boolean;
   setShowComposite?: React.Dispatch<React.SetStateAction<boolean>>;
+  compositeImageSrc?: string;
   imageData?: {
     confidence?: number;
     distance_hint?: string;
     relative_size?: number;
+    has_composite?: boolean;
+    composite_image?: string;
   };
 }
 
@@ -23,11 +26,28 @@ const BoundedFlagImage = ({
   town = "Unknown location",
   showComposite = false,
   setShowComposite = () => {},
+  compositeImageSrc,
   imageData = {}
 }: BoundedFlagImageProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [images, setImages] = useState(staticImages || []);
+  const [displayComposite, setDisplayComposite] = useState(showComposite);
+  
+  // Get the composite image source either from props or from imageData
+  const compositeImage = compositeImageSrc || imageData?.composite_image;
+  const hasComposite = !!compositeImage || !!imageData?.has_composite;
+  
+  // Debug logging
+  useEffect(() => {
+    if (hasComposite) {
+      console.log(`[BoundedFlagImage] Image has composite data:`, {
+        filename: imageData?.filename,
+        composite_image: compositeImage,
+        has_composite: imageData?.has_composite
+      });
+    }
+  }, []);
   
   // Guard against empty src
   if (!src) {
@@ -95,6 +115,55 @@ const BoundedFlagImage = ({
     checkImageExists(firstImage);
   }, []);
   
+  // Function to generate image paths for side-by-side composite image
+  const getCompositePaths = (compositeImagePath) => {
+    // Original path with any leading slash removed
+    const pathWithoutLeadingSlash = compositeImagePath.startsWith('/') ? compositeImagePath.substring(1) : compositeImagePath;
+    
+    // Just the filename part
+    const filename = compositeImagePath.split('/').pop() || '';
+    
+    // Town/filename without public folder
+    const townAndFilename = `images/${town}/${filename}`;
+    
+    // Try all possible paths in sequence
+    return [
+      compositeImagePath,        // Original path
+      pathWithoutLeadingSlash,   // Without leading slash
+      townAndFilename,           // images/TOWN/filename
+      `/images/${town}/${filename}`, // /images/TOWN/filename
+      `/expert-flag-labeler${compositeImagePath}`,  // With repo name prefix
+      filename                   // Just the filename
+    ];
+  };
+  
+  const [compositeAlternatePaths, setCompositeAlternatePaths] = useState([]);
+  const [compositePathIndex, setCompositePathIndex] = useState(0);
+  const [compositeLoading, setCompositeLoading] = useState(true);
+  const [compositeError, setCompositeError] = useState(false);
+  
+  // Initialize composite paths when the component mounts
+  useEffect(() => {
+    if (compositeImage) {
+      console.log(`[BoundedFlagImage] Initializing composite paths for: ${compositeImage}`);
+      const paths = getCompositePaths(compositeImage);
+      console.log(`[BoundedFlagImage] Generated ${paths.length} alternate paths for composite image`, paths);
+      setCompositeAlternatePaths(paths);
+      
+      // Pre-check if the image exists using the HTML Image element (not Next.js Image)
+      const img = new window.Image(); // Use the browser's Image constructor
+      img.onload = () => {
+        console.log(`[BoundedFlagImage] Successfully pre-loaded composite image: ${compositeImage}`);
+      };
+      img.onerror = () => {
+        console.error(`[BoundedFlagImage] Failed to pre-load composite image: ${compositeImage}`);
+      };
+      img.src = compositeImage;
+    }
+  }, [compositeImage]);
+  
+  const currentCompositePath = compositeAlternatePaths[compositePathIndex] || '';
+
   return (
     <div className="bounded-flag-image-container" style={{ position: 'relative', minHeight: '200px' }}>
       {isLoading && (
@@ -114,41 +183,82 @@ const BoundedFlagImage = ({
       
       <div style={{ padding: '8px', backgroundColor: '#f0f0f0', marginBottom: '10px', fontSize: '12px' }}>
         Debug info: Using path {alternatePathIndex + 1}/{alternatePaths.length}: {currentPath}
+        {hasComposite && displayComposite && (
+          <div>Composite path: {compositePathIndex + 1}/{compositeAlternatePaths.length}: {currentCompositePath}</div>
+        )}
       </div>
       
-      <img
-        src={currentPath}
-        alt={alt || `Flag in ${town}`}
-        onLoad={() => {
-          console.log(`[BoundedFlagImage] Successfully loaded image: ${currentPath}`);
-          setIsLoading(false);
-        }}
-        onError={(e) => {
-          console.error(`[BoundedFlagImage] Failed to load image: ${currentPath}`);
-          
-          // Try next alternate path if available
-          if (alternatePathIndex < alternatePaths.length - 1) {
-            setAlternatePathIndex(alternatePathIndex + 1);
-            console.log(`[BoundedFlagImage] Trying alternate path (${alternatePathIndex + 1}/${alternatePaths.length}):`, 
-              alternatePaths[alternatePathIndex + 1]);
-          } else {
-            setHasError(true);
+      {/* Render either the composite image or the regular cropped image */}
+      {hasComposite && displayComposite ? (
+        // Show side-by-side composite image
+        <img
+          src={currentCompositePath}
+          alt={`Side-by-side comparison of flag in ${town}`}
+          onLoad={() => {
+            console.log(`[BoundedFlagImage] Successfully loaded composite image: ${currentCompositePath}`);
+            setCompositeLoading(false);
+          }}
+          onError={(e) => {
+            console.error(`[BoundedFlagImage] Failed to load composite image: ${currentCompositePath}`);
+            
+            // Try next alternate path for composite if available
+            if (compositePathIndex < compositeAlternatePaths.length - 1) {
+              setCompositePathIndex(compositePathIndex + 1);
+              console.log(`[BoundedFlagImage] Trying alternate composite path (${compositePathIndex + 1}/${compositeAlternatePaths.length}):`, 
+                compositeAlternatePaths[compositePathIndex + 1]);
+            } else {
+              setCompositeError(true);
+              setCompositeLoading(false);
+              setDisplayComposite(false); // Fall back to regular image
+              console.error(`[BoundedFlagImage] All paths failed for composite image: ${compositeImage}`);
+            }
+          }}
+          style={{
+            display: compositeError ? 'none' : 'block',
+            width: '100%',
+            height: 'auto',
+            maxHeight: '300px',
+            objectFit: 'contain',
+            opacity: compositeLoading ? 0.5 : 1,
+            transition: 'opacity 0.3s ease'
+          }}
+        />
+      ) : (
+        // Show regular cropped image
+        <img
+          src={currentPath}
+          alt={alt || `Flag in ${town}`}
+          onLoad={() => {
+            console.log(`[BoundedFlagImage] Successfully loaded image: ${currentPath}`);
             setIsLoading(false);
-            console.error(`[BoundedFlagImage] All paths failed for image: ${src}`);
-          }
-        }}
-        style={{
-          display: hasError ? 'none' : 'block',
-          width: '100%',
-          height: 'auto',
-          maxHeight: '300px',
-          objectFit: 'contain',
-          opacity: isLoading ? 0.5 : 1,
-          transition: 'opacity 0.3s ease'
-        }}
-      />
+          }}
+          onError={(e) => {
+            console.error(`[BoundedFlagImage] Failed to load image: ${currentPath}`);
+            
+            // Try next alternate path if available
+            if (alternatePathIndex < alternatePaths.length - 1) {
+              setAlternatePathIndex(alternatePathIndex + 1);
+              console.log(`[BoundedFlagImage] Trying alternate path (${alternatePathIndex + 1}/${alternatePaths.length}):`, 
+                alternatePaths[alternatePathIndex + 1]);
+            } else {
+              setHasError(true);
+              setIsLoading(false);
+              console.error(`[BoundedFlagImage] All paths failed for image: ${src}`);
+            }
+          }}
+          style={{
+            display: hasError ? 'none' : 'block',
+            width: '100%',
+            height: 'auto',
+            maxHeight: '300px',
+            objectFit: 'contain',
+            opacity: isLoading ? 0.5 : 1,
+            transition: 'opacity 0.3s ease'
+          }}
+        />
+      )}
       
-      {hasError && (
+      {hasError && !displayComposite && (
         <div className="error-message" style={{
           padding: '1rem',
           backgroundColor: '#ffeeee',
@@ -169,14 +279,14 @@ const BoundedFlagImage = ({
         </div>
       )}
       
-      {/* Only show toggle if composite is available */}
-      {showComposite && (
+      {/* Toggle button between regular and side-by-side view */}
+      {hasComposite && (
         <button
           type="button"
-          onClick={() => setShowComposite(false)}
+          onClick={() => setDisplayComposite(!displayComposite)}
           className="mt-2 px-3 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded"
         >
-          Show Cropped Only
+          {displayComposite ? "Show Cropped Only" : "Show Side-by-Side View"}
         </button>
       )}
       

@@ -10,6 +10,8 @@ import Image from 'next/image'
 import { Info, HelpCircle } from 'lucide-react'
 import { InstructionsModal } from '@/components/InstructionsModal'
 import FlagClassificationForm from '@/components/FlagClassificationForm'
+import BoundedFlagImage from '@/components/BoundedFlagImage'
+import SimpleCompositeImage from '@/components/SimpleCompositeImage'
 // Import images from static-images.js if it exists, otherwise fall back to regular images
 import { staticImages as originalImages } from '../data/images'
 import { staticImages as staticImagesAlternate } from '../data/static-images'
@@ -194,6 +196,20 @@ export default function ExpertFlagLabeler() {
         
         if (data.success && data.images && data.images.length > 0) {
           console.log("Successfully loaded images from API:", data.images.length);
+          
+          // Check if we got any composite images
+          const compositesCount = data.images.filter(img => img.has_composite || img.composite_image).length;
+          console.log(`API returned ${compositesCount} images with composite data`);
+          
+          // Sample a few images to debug
+          if (data.images.length > 0) {
+            console.log("Sample image data:", data.images[0]);
+            if (compositesCount > 0) {
+              const sampleComposite = data.images.find(img => img.has_composite || img.composite_image);
+              console.log("Sample composite image:", sampleComposite);
+            }
+          }
+          
           setImages(data.images || []);
         } else {
           // Fallback to static images
@@ -785,17 +801,32 @@ export default function ExpertFlagLabeler() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Image Display Card */}
+      {/* Main Content - Single Column Layout */}
+      <div className="grid grid-cols-1 gap-4">
+        {/* Image Display Card - Full Width */}
         <Card>
-          <CardHeader>
-            <h2 className="text-xl font-semibold">Image {currentIndex + 1} of {images.length}</h2>
-            <p className="text-sm text-gray-500">Location: {currentImage?.town}</p>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <h2 className="text-xl font-semibold">Image {currentIndex + 1} of {images.length}</h2>
+              <p className="text-sm text-gray-500">Location: {currentImage?.town}</p>
+            </div>
+            {/* Move side-by-side toggle to the header */}
+            {currentImage && (
+              <Button 
+                size="sm"
+                variant="default"
+                onClick={() => {
+                  const toggleBtn = document.querySelector('.toggle-composite-view');
+                  if (toggleBtn) toggleBtn.click();
+                }}
+              >
+                Toggle Side-by-Side View
+              </Button>
+            )}
           </CardHeader>
           <CardContent>
             {/* Image with zoom controls */}
-            <div className="relative overflow-hidden border rounded-lg h-[400px] mb-4">
+            <div className="relative overflow-hidden border rounded-lg h-[500px] mb-4">
               {!loading && currentImage && (
                 <div 
                   className="relative w-full h-full"
@@ -808,26 +839,20 @@ export default function ExpertFlagLabeler() {
                   onMouseUp={handleDragEnd}
                 >
                   {currentImage ? (
-                    <img
-                      src={currentImage.path}
-                      alt={`Flag in ${currentImage.town}`}
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'contain',
-                        maxWidth: '100%',
-                        maxHeight: '100%'
-                      }}
-                      onError={(e) => {
-                        e.currentTarget.src = '/placeholder';
-                      }}
-                    />
+                    <div>
+                      <SimpleCompositeImage
+                        croppedSrc={currentImage.path}
+                        compositeSrc={currentImage.composite_image}
+                        alt={`Flag in ${currentImage.town}`}
+                        town={currentImage.town}
+                      />
+                    </div>
                   ) : (
                     <div className="text-center p-4">
                       <p className="text-red-500 font-medium">Image not available</p>
                       <p className="text-sm text-gray-500 mt-2">
                         Please ensure you have run:<br/>
-                        1. python scripts/sample_cropped_for_public.py<br/>
+                        1. python scripts/prepare_images_for_classification.py --side-by-side --copy-to-public<br/>
                         2. node scripts/generate-image-list.js
                       </p>
                     </div>
@@ -837,7 +862,7 @@ export default function ExpertFlagLabeler() {
               {imageError && <p className="text-red-500 p-4">{imageError}</p>}
             </div>
             
-            {/* Zoom controls */}
+            {/* Zoom controls in a single row */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2">
                 <Button 
@@ -870,7 +895,7 @@ export default function ExpertFlagLabeler() {
           </CardContent>
         </Card>
         
-        {/* Classification Card */}
+        {/* Classification Card - Full Width */}
         <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
