@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+// No state management needed
 
 interface SimpleCompositeImageProps {
   croppedSrc: string;
