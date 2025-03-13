@@ -57,10 +57,9 @@ export function InstructionsModal({ isOpen, onClose }: InstructionsModalProps) {
               </p>
               
               <ul className="list-disc pl-5 mt-2">
-                <li><strong>Not a flag</strong> - The image shows bunting, decoration, or another non-flag item</li>
+                <li><strong>Not a flag</strong> - The image shows a decoration or other non-flag item (note: bunting should be classified, not flagged)</li>
                 <li><strong>Unclear image</strong> - The image is too blurry, dark, or otherwise difficult to classify</li>
                 <li><strong>Complex case</strong> - The image requires additional expert review</li>
-                <li><strong>Bunting</strong> - The image shows bunting rather than a traditional flag</li>
                 <li><strong>Other reason</strong> - Any other issue not covered by the options above</li>
               </ul>
             </section>
