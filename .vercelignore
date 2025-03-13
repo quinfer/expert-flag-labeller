@@ -10,7 +10,8 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-data/true_positive_mask_images
+
+# Directories
 Pictures
 .Trash
 Documents
@@ -19,9 +20,23 @@ Desktop
 Library
 Movies
 Music
-/data/classification_queue.json
-/data/cropped_images_for_classification
-/data/true_positive_images
+
+# Data directories
+/data/true_positive_mask_images
 /data/true_positive_masked_images
+/data/true_positive_images
+/data/cropped_images_for_classification
+/data/classifications
+data/classification_queue.json
+
+# Image directories (these are large and should be excluded)
+/public/images
+/public/FlagExamples
+/public/static
+
+# Scripts (some are large)
 /scripts/sample_cropped_for_public.py
 /scripts/prepare_images_for_classification.py
+/scripts/__pycache__
+/scripts/create_masked_images.py
+/scripts/image_viewer_app.py
