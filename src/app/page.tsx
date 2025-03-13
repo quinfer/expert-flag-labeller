@@ -177,8 +177,19 @@ export default function ExpertFlagLabeler() {
       const userData = localStorage.getItem('user')
       
       if (auth && userData) {
+        const parsedUser = JSON.parse(userData)
         setIsAuthenticated(true)
-        setUser(JSON.parse(userData))
+        setUser(parsedUser)
+        
+        // Restore user's progress if available
+        if (parsedUser && parsedUser.username) {
+          const savedProgress = localStorage.getItem(`progress_${parsedUser.username}`)
+          if (savedProgress) {
+            const savedIndex = parseInt(savedProgress, 10)
+            console.log(`Restoring progress for ${parsedUser.username}. Saved index: ${savedIndex}`)
+            setCurrentIndex(savedIndex)
+          }
+        }
       } else {
         router.push('/login')
       }
@@ -714,8 +725,15 @@ export default function ExpertFlagLabeler() {
     }
   };
 
-  // Replace signOut with simple logout
+  // Logout function that saves the current progress
   const handleLogout = () => {
+    // Save progress for this user
+    if (user && user.username) {
+      console.log(`Saving progress for ${user.username}. Current index: ${currentIndex}`)
+      localStorage.setItem(`progress_${user.username}`, currentIndex.toString())
+    }
+    
+    // Perform logout
     localStorage.removeItem('isAuthenticated')
     localStorage.removeItem('user')
     router.push('/login')
@@ -753,8 +771,27 @@ export default function ExpertFlagLabeler() {
     <div className="max-w-4xl mx-auto p-4">
       {/* Add help button in header */}
       <div className="flex justify-between items-center mb-4">
-        <div>Welcome, {user?.name || "Expert"}</div>
+        <div>
+          <div>Welcome, {user?.name || "Expert"}</div>
+          <div className="text-xs text-gray-500">
+            Your progress is automatically saved when you logout
+          </div>
+        </div>
         <div className="flex items-center gap-2">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={() => {
+              // Save progress without logging out
+              if (user && user.username) {
+                localStorage.setItem(`progress_${user.username}`, currentIndex.toString())
+                alert(`Progress saved at image ${currentIndex + 1} of ${images.length}`)
+              }
+            }}
+            className="flex items-center gap-1"
+          >
+            Save Progress
+          </Button>
           <Button 
             variant="ghost" 
             size="sm" 
@@ -765,7 +802,7 @@ export default function ExpertFlagLabeler() {
             <span>Help</span>
           </Button>
           <Button variant="outline" size="sm" onClick={handleLogout}>
-            Logout
+            Save & Logout
           </Button>
         </div>
       </div>

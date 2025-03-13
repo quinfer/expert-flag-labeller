@@ -67,7 +67,17 @@ export function InstructionsModal({ isOpen, onClose }: InstructionsModalProps) {
             <section>
               <h3 className="font-semibold text-lg">Navigation</h3>
               <p className="mt-2">
-                Use the "Previous Image" and "Save & Next" buttons to navigate between images. Your progress is automatically saved.
+                Use the "Previous Image" and "Save & Next" buttons to navigate between images.
+              </p>
+            </section>
+            
+            <section>
+              <h3 className="font-semibold text-lg">Saving Your Progress</h3>
+              <p className="mt-2">
+                Your progress is automatically saved when you logout, allowing you to return exactly where you left off when you log back in.
+              </p>
+              <p className="mt-2">
+                You can also use the "Save Progress" button at any time to manually save your current position without logging out. This is useful for marking important points in your classification work.
               </p>
             </section>
             
