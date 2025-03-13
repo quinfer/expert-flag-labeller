@@ -9,6 +9,13 @@ import { Slider } from "@/components/ui/slider"
 import Image from 'next/image'
 import { Info, HelpCircle } from 'lucide-react'
 import { InstructionsModal } from '@/components/InstructionsModal'
+import FlagClassificationForm from '@/components/FlagClassificationForm'
+// Import images from static-images.js if it exists, otherwise fall back to regular images
+import { staticImages as originalImages } from '../data/images'
+import { staticImages as staticImagesAlternate } from '../data/static-images'
+
+// Use the static images if available, otherwise fall back to the original images
+const staticImages = staticImagesAlternate.length > 0 ? staticImagesAlternate : originalImages;
 
 interface ImageData {
   town: string;
@@ -42,23 +49,54 @@ interface Classification {
 
 // Flag reference examples - using the correct paths
 const flagExamples = {
-  'Union Jack': '/FlagExamples/UnionJack/SVrJ9GHs2MNRS4AbrknDpg_300.jpg',
-  'Ulster Banner': '/FlagExamples/Ulsterbanner/rD5NsqK3M-RI9qor-WzriA_300.jpg',
-  'Irish Tricolor': '/FlagExamples/Tricolour/UHmCuSmTD7Omx6X3mqah3A_180.jpg',
-  'Orange Order': '/FlagExamples/Orange Order/nyB_fNQFb8p5dHTry91OFA_300.jpg',
-  'Parachute Regiment': '/FlagExamples/Parachute/JXbrwyqANo11c-ecWdFkbg_000.jpg',
-  'Royal Standard': '/FlagExamples/Royal Standard/5vQ7BsIGqN5gUtgJPCdpjw_000.jpg',
-  'Northern Ireland Football': '/FlagExamples/NIF/4LfB1oH4L4OXBCybpD1pQg_240.jpg',
-  'UVF': '/FlagExamples/UVF/kXdKzHVCLjA9FJMAJWaTYQ_300.jpg',
-  'UDA': '/FlagExamples/UDA/dH80pDtsYDfXRSq0upE3nQ_300.jpg',
-  'UFF': '/FlagExamples/UFF/KuyWw9KQ8hZEvZioxDHVlw_300.jpg',
-  'YCV': '/FlagExamples/YCV/D-PFjWZmllg4ovARHOWPkA_180.jpg',
-  'WW1 Commemorative': '/FlagExamples/WWI/ZP0N_nSRu_DKVHzSH17y9A_120.jpg',
-  'Israeli': '/FlagExamples/Israel/HLIf8zO9MACoRn0kKc8y9A_300.jpg'
+  'European Union' : ['https://quinfer.github.io/flag-examples/eu/example1.jpg'],
+  'Scottish Saltire' : ['https://quinfer.github.io/flag-examples/scottish-saltire/example1.jpg'],
+  'Apprentice Boys': ['https://quinfer.github.io/flag-examples/apprentice-boys/example1.jpg',
+                      'https://quinfer.github.io/flag-examples/apprentice-boys/example2.jpg'
+  ],
+  'Union Jack': ['https://quinfer.github.io/flag-examples/union-jack/example1.jpg'],
+  'Ulster Banner': ['https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg'],
+  'Irish Tricolor': ['https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg'],
+  'Orange Order': ['https://quinfer.github.io/flag-examples/orange-order/example1.jpg',
+                   'https://quinfer.github.io/flag-examples/orange-order/example2.jpg',
+                   'https://quinfer.github.io/flag-examples/orange-order/example3.jpg',
+                   'https://quinfer.github.io/flag-examples/orange-order/example4.jpg'
+  ],
+  'Parachute Regiment': ['https://quinfer.github.io/flag-examples/paras/example1.jpg'],
+  'Royal Standard': ['https://quinfer.github.io/flag-examples/royal-std/example1.jpg'],
+  'Northern Ireland Football': ['https://quinfer.github.io/flag-examples/ni-football/example1.jpg'],
+  'UVF': ['https://quinfer.github.io/flag-examples/uvf/example1.jpg'],
+  'UDA': ['https://quinfer.github.io/flag-examples/uda/example1.jpg'],
+  'UDR': ['https://quinfer.github.io/flag-examples/udr/example1.jpg',
+          'https://quinfer.github.io/flag-examples/udr/example2.jpg',
+          'https://quinfer.github.io/flag-examples/udr/example3.jpg',
+  ],
+  'UFF': ['https://quinfer.github.io/flag-examples/uff/example1.jpg'],
+  'YCV': ['https://quinfer.github.io/flag-examples/ycv/example1.jpg',
+          'https://quinfer.github.io/flag-examples/ycv/example2.jpg',
+          'https://quinfer.github.io/flag-examples/ycv/example3.jpg'
+  ],
+  'WW1 Commemorative': ['https://quinfer.github.io/flag-examples/ww1/example1.jpg',
+                        'https://quinfer.github.io/flag-examples/ww1/example2.jpg',
+                        'https://quinfer.github.io/flag-examples/ww1/example3.jpg',
+                        'https://quinfer.github.io/flag-examples/ww1/example4.jpg'
+],
+  'Israeli': ['https://quinfer.github.io/flag-examples/isreal/example1.jpg'],
+  'Palestinian' : ['https://quinfer.github.io/flag-examples/palestine/example1.jpg'],
+  'GAA' : ['https://quinfer.github.io/flag-examples/gaa/example1.jpg',
+           'https://quinfer.github.io/flag-examples/gaa/example2.jpg',
+           'https://quinfer.github.io/flag-examples/gaa/example3.jpg',
+           'https://quinfer.github.io/flag-examples/gaa/example4.jpg'
+],
+  'Red Hand Defenders' : ['https://quinfer.github.io/flag-examples/red-hand-defenders/example1.jpg'],
+  'Royal Black Institution' : ['https://quinfer.github.io/flag-examples/royal-black-institution/example1.jpg']
 }
 
 // Flag descriptions for additional context
 const flagDescriptions = {
+  'European Union': 'The flag of the European Union, featuring a circle of twelve gold stars on a blue background.',
+  'Scottish Saltire': 'The flag of Scotland, featuring a white diagonal cross (St. Andrew\'s Cross) on a blue background.',
+  'Apprentice Boys': 'Flag associated with the Apprentice Boys of Derry, typically featuring crimson and blue colors with organizational symbols.',
   'Union Jack': 'The national flag of the United Kingdom, featuring red and white crosses on a blue background.',
   'Ulster Banner': 'Former flag of Northern Ireland (1953-1972) with the Red Hand of Ulster on a white star and red cross.',
   'Irish Tricolor': 'The national flag of Ireland with vertical stripes of green, white, and orange.',
@@ -68,10 +106,18 @@ const flagDescriptions = {
   'Northern Ireland Football': 'Flag representing the Northern Ireland national football team.',
   'UVF': 'Ulster Volunteer Force flag, a proscribed loyalist paramilitary organization.',
   'UDA': 'Ulster Defence Association flag, a proscribed loyalist paramilitary organization.',
+  'UDR': 'Ulster Defence Regiment flag, a British Army regiment formed in 1970 to replace the B Specials.',
   'UFF': 'Ulster Freedom Fighters flag, a cover name used by the UDA.',
   'YCV': 'Young Citizen Volunteers flag, the youth wing of the UVF.',
+  'Other Proscribed': 'Flags of other proscribed paramilitary organizations not specifically listed elsewhere.',
   'WW1 Commemorative': 'Flags commemorating World War I, often featuring poppies or dates 1914-1918.',
-  'Israeli': 'The national flag of Israel, featuring a blue Star of David on a white background with blue stripes.'
+  'WW2 Commemorative': 'Flags commemorating World War II, typically featuring dates 1939-1945 and symbols of remembrance.',
+  'Royal Irish Regiment': 'Flag of the British Army regiment formed in 1992, featuring a harp and crown on a dark green background.',
+  'Israeli': 'The national flag of Israel, featuring a blue Star of David on a white background with blue stripes.',
+  'Palestinian': 'The national flag of Palestine, featuring horizontal stripes of black, white, and green with a red triangle on the hoist side.',
+  'GAA': 'Flags representing the Gaelic Athletic Association, typically featuring county colors and GAA emblems.',
+  'Royal Black Institution': 'Flag of the Protestant fraternal organization, often featuring black, purple and religious symbolism.',
+  'Red Hand Defenders': 'Flag of a loyalist paramilitary group, typically featuring the Red Hand of Ulster symbol.'
 }
 
 export default function ExpertFlagLabeler() {
@@ -81,7 +127,7 @@ export default function ExpertFlagLabeler() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
   const [authLoading, setAuthLoading] = useState(true)
-  const [images, setImages] = useState<ImageData[]>([])
+  const [images, setImages] = useState(staticImages || [])
   const [loading, setLoading] = useState(true)
   const [imageError, setImageError] = useState<string | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -113,6 +159,8 @@ export default function ExpertFlagLabeler() {
     expert3: 0,
     expert4: 0
   });
+  const [currentExampleIndex, setCurrentExampleIndex] = useState(0);
+  const [isSaving, setIsSaving] = useState(false);
 
   // All useEffect hooks
   useEffect(() => {
@@ -132,22 +180,32 @@ export default function ExpertFlagLabeler() {
   }, [router])
   
   useEffect(() => {
-    const fetchImages = async () => {
+    async function loadImages() {
       try {
-        setLoading(true)
-        const response = await fetch('/api/images-static')
-        const data = await response.json()
-        setImages(data.images)
+        // Load from the correct API route
+        const response = await fetch('/api/images-static');
+        const data = await response.json();
+        
+        if (data.success && data.images && data.images.length > 0) {
+          console.log("Successfully loaded images from API:", data.images.length);
+          setImages(data.images || []);
+        } else {
+          // Fallback to static images
+          console.log("Falling back to static images, count:", staticImages.length);
+          setImages(staticImages || []);
+        }
       } catch (error) {
-        console.error('Failed to fetch images:', error)
+        console.error("Error loading images:", error);
+        // Fallback to static images if API fails
+        console.log("API error, falling back to static images, count:", staticImages.length);
+        setImages(staticImages || []);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
-    if (isAuthenticated) {
-      fetchImages()
-    }
-  }, [isAuthenticated])
+    
+    loadImages();
+  }, []);
 
   useEffect(() => {
     // Function to get the current user from Basic Auth
@@ -216,7 +274,18 @@ export default function ExpertFlagLabeler() {
     }
   }, [isAuthenticated])
 
-  const currentImage = images[currentIndex]
+  // Initialize images with static images right away
+  useEffect(() => {
+    if (staticImages && staticImages.length > 0) {
+      setImages(staticImages);
+      setLoading(false);
+    }
+  }, []);
+
+  // Get the current image safely
+  const currentImage = images && images.length > 0 && currentIndex < images.length 
+    ? images[currentIndex] 
+    : null;
   
   const handlePrevious = () => {
     if (currentIndex > 0) {
@@ -239,7 +308,6 @@ export default function ExpertFlagLabeler() {
     'Orange Order': { primary: 'Fraternal', context: 'Cultural/Religious' },
     'Royal Black Institution': { primary: 'Fraternal', context: 'Cultural/Religious' },
     'Apprentice Boys': { primary: 'Fraternal', context: 'Cultural/Religious' },
-    'Purple Star': { primary: 'Fraternal', context: 'Cultural/Religious' },
     'Red Hand Defenders': { primary: 'Fraternal', context: 'Paramilitary/Political' },
     
     // Sports
@@ -323,83 +391,98 @@ export default function ExpertFlagLabeler() {
     e.preventDefault()
     e.stopPropagation()
     setSelectedExample(flag)
+    setCurrentExampleIndex(0)
     setShowExampleModal(true)
   }
   
-  const handleNext = async () => {
-    console.log("Current specificFlag:", specificFlag);
-    console.log("Button should be disabled:", !specificFlag);
+  const handleSubmitClassification = async (classificationData) => {
+    console.log("Button clicked, form data:", classificationData); // Debug logging
     
-    if (!specificFlag) {
-      alert("Please select a specific flag type");
+    if (!currentImage) {
+      console.error("No current image to classify");
+      alert("Error: No image selected for classification");
       return;
     }
     
-    // Get the current user from localStorage
-    const userData = localStorage.getItem('user');
-    const user = userData ? JSON.parse(userData) : null;
-    
-    // Create the classification object with the user's username
-    const classification = {
-      imageId: images[currentIndex].filename,
-      town: images[currentIndex].town,
-      primaryCategory,
-      specificFlag,
-      displayContext: secondaryCategory,
-      userContext: flagCategories[specificFlag].context,
-      confidence,
-      timestamp: new Date().toISOString(),
-      expertId: user?.username || user?.name || 'anonymous',
-      needsReview: false,
-      reviewReason: ''
+    if (!classificationData.primaryCategory && !specificFlag) {
+      console.error("No flag category selected");
+      alert("Please select a flag type");
+      return;
     }
-
+    
+    setIsSaving(true);
+    
     try {
-      console.log("Sending classification:", classification);
+      // Get the current user from localStorage
+      const userData = localStorage.getItem('user');
+      const expertId = userData ? JSON.parse(userData).username : 'anonymous';
       
-      // Save classification to API
+      // Construct payload using the form data or component state
+      const payload = {
+        action: 'save',
+        classification: {
+          imageId: currentImage.filename,
+          town: currentImage.town,
+          primaryCategory: specificFlag ? flagCategories[specificFlag].primary : classificationData.primaryCategory,
+          specificFlag: specificFlag || classificationData.specificFlag,
+          displayContext: classificationData.displayContext || secondaryCategory,
+          confidence: classificationData.confidence || confidence,
+          timestamp: new Date().toISOString(),
+          expertId: expertId
+        }
+      };
+      
+      console.log("Sending payload:", payload); // Debug logging
+      
+      // Send the data to the API
       const response = await fetch('/api/classifications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          action: 'save',
-          classification,
-        }),
-      })
+        body: JSON.stringify(payload),
+      });
       
-      const result = await response.json();
-      
-      if (!result.success) {
-        throw new Error(result.error || 'Failed to save classification');
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`);
       }
       
-      // Update local state
-      setClassifications({
-        ...classifications,
-        [images[currentIndex].filename]: classification
-      })
+      const result = await response.json();
+      console.log("API response:", result);
       
       // Update statistics
-      setStats(prevStats => ({
-        ...prevStats,
-        labeled: prevStats.labeled + 1,
-        avgConfidence: (prevStats.avgConfidence * prevStats.labeled + confidence) / (prevStats.labeled + 1)
-      }))
+      setStats(prev => ({
+        ...prev,
+        labeled: prev.labeled + 1,
+        avgConfidence: (prev.avgConfidence * prev.labeled + (classificationData.confidence || confidence)) / (prev.labeled + 1)
+      }));
       
-      // Reset for the next image
-      setImageError(null)
-      setCurrentIndex(currentIndex + 1)
-      setPrimaryCategory('')
-      setSecondaryCategory('')
-      setSpecificFlag('')
-      setConfidence(3)
+      // Move to the next image
+      setCurrentIndex(prev => prev + 1);
+      
+      // Reset form state
+      setPrimaryCategory('');
+      setSecondaryCategory('');
+      setSpecificFlag('');
+      setConfidence(3);
+      
     } catch (error) {
-      console.error('Failed to save classification:', error);
-      setImageError(`Failed to save classification: ${error.message}`);
+      console.error("Error submitting classification:", error);
+      // Extract response text if available
+      let errorMessage = "Failed to save classification";
+      if (error.response) {
+        try {
+          const errorText = await error.response.text();
+          errorMessage += ": " + errorText;
+        } catch (e) {
+          errorMessage += ". See console for details.";
+        }
+      }
+      alert(errorMessage);
+    } finally {
+      setIsSaving(false);
     }
-  }
+  };
 
   // Add zoom handlers
   const handleZoomIn = () => {
@@ -589,17 +672,15 @@ export default function ExpertFlagLabeler() {
     router.push('/login')
   }
 
-  // Move this useEffect up here, before any conditional returns
+  // Test API connection when authenticated
   useEffect(() => {
     const testApi = async () => {
       try {
-        const response = await fetch('/api/classifications', {
+        await fetch('/api/classifications', {
           method: 'GET'
         });
-        const data = await response.json();
-        console.log("API connection test successful:", data);
       } catch (error) {
-        console.error("API connection test failed:", error);
+        // Silently fail
       }
     };
     
@@ -607,6 +688,8 @@ export default function ExpertFlagLabeler() {
       testApi();
     }
   }, [isAuthenticated]);
+
+
 
   // Now your conditional returns
   if (authLoading) {
@@ -656,10 +739,15 @@ export default function ExpertFlagLabeler() {
           </Button>
           <Button 
             className="bg-green-600 hover:bg-green-700"
-            onClick={handleNext}
-            disabled={!specificFlag}
+            onClick={() => handleSubmitClassification({ 
+              primaryCategory: specificFlag ? flagCategories[specificFlag]?.primary : primaryCategory, 
+              specificFlag: specificFlag,
+              displayContext: secondaryCategory, 
+              confidence: confidence 
+            })}
+            disabled={!specificFlag || isSaving}
           >
-            Save & Next
+            {isSaving ? 'Saving...' : 'Save & Next'}
           </Button>
         </div>
       </div>
@@ -675,7 +763,7 @@ export default function ExpertFlagLabeler() {
           <CardContent>
             {/* Image with zoom controls */}
             <div className="relative overflow-hidden border rounded-lg h-[400px] mb-4">
-              {currentImage && (
+              {!loading && currentImage && (
                 <div 
                   className="relative w-full h-full"
                   style={{ 
@@ -686,13 +774,31 @@ export default function ExpertFlagLabeler() {
                   onMouseMove={handleDrag}
                   onMouseUp={handleDragEnd}
                 >
-                  <Image
-                    src={currentImage.path}
-                    alt={`Flag in ${currentImage.town}`}
-                    fill
-                    style={{ objectFit: 'contain' }}
-                    onError={() => setImageError("Failed to load image")}
-                  />
+                  {currentImage ? (
+                    <img
+                      src={currentImage.path}
+                      alt={`Flag in ${currentImage.town}`}
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'contain',
+                        maxWidth: '100%',
+                        maxHeight: '100%'
+                      }}
+                      onError={(e) => {
+                        e.currentTarget.src = '/placeholder';
+                      }}
+                    />
+                  ) : (
+                    <div className="text-center p-4">
+                      <p className="text-red-500 font-medium">Image not available</p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Please ensure you have run:<br/>
+                        1. python scripts/sample_cropped_for_public.py<br/>
+                        2. node scripts/generate-image-list.js
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
               {imageError && <p className="text-red-500 p-4">{imageError}</p>}
@@ -846,10 +952,15 @@ export default function ExpertFlagLabeler() {
                 </Button>
                 <Button 
                   className="bg-green-600 hover:bg-green-700"
-                  onClick={handleNext}
-                  disabled={!specificFlag}
+                  onClick={() => handleSubmitClassification({ 
+                    primaryCategory: specificFlag ? flagCategories[specificFlag]?.primary : primaryCategory, 
+                    specificFlag: specificFlag,
+                    displayContext: secondaryCategory, 
+                    confidence: confidence 
+                  })}
+                  disabled={!specificFlag || isSaving}
                 >
-                  Save & Next
+                  {isSaving ? 'Saving...' : 'Save & Next'}
                 </Button>
               </div>
             </div>
@@ -985,7 +1096,7 @@ export default function ExpertFlagLabeler() {
       {showExampleModal && selectedExample && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg max-w-md w-full relative">
-            {/* Add close button in the top-right corner */}
+            {/* Close button */}
             <button 
               onClick={() => setShowExampleModal(false)}
               className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
@@ -1003,13 +1114,62 @@ export default function ExpertFlagLabeler() {
               <p className="mb-4 text-gray-600">{flagDescriptions[selectedExample]}</p>
             )}
             
-            <div className="mb-4">
-              <img 
-                src={flagExamples[selectedExample]} 
-                alt={`Example of ${selectedExample}`} 
-                className="max-w-full h-auto mx-auto"
-                style={{ maxHeight: '300px' }}
-              />
+            <div className="mb-4 relative">
+              {Array.isArray(flagExamples[selectedExample]) && flagExamples[selectedExample].length > 0 ? (
+                <>
+                  <img 
+                    src={flagExamples[selectedExample][currentExampleIndex]} 
+                    alt={`Example of ${selectedExample}`} 
+                    className="max-w-full h-auto mx-auto"
+                    style={{ maxHeight: '250px' }}
+                  />
+                  
+                  {/* Example counter */}
+                  <div className="text-center mt-2 text-sm text-gray-500">
+                    Example {currentExampleIndex + 1} of {flagExamples[selectedExample].length}
+                  </div>
+                  
+                  {/* Navigation indicators */}
+                  <div className="flex justify-center mt-2 space-x-1">
+                    {flagExamples[selectedExample].map((_, index) => (
+                      <button 
+                        key={index}
+                        onClick={() => setCurrentExampleIndex(index)}
+                        className={`w-2 h-2 rounded-full ${currentExampleIndex === index ? 'bg-blue-600' : 'bg-gray-300'}`}
+                        aria-label={`Go to example ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                  
+                  {/* Navigation buttons - only show if there are multiple examples */}
+                  {flagExamples[selectedExample].length > 1 && (
+                    <>
+                      <button 
+                        onClick={() => setCurrentExampleIndex(prev => (prev === 0 ? flagExamples[selectedExample].length - 1 : prev - 1))}
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow"
+                        aria-label="Previous example"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                      </button>
+                      <button 
+                        onClick={() => setCurrentExampleIndex(prev => (prev === flagExamples[selectedExample].length - 1 ? 0 : prev + 1))}
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow"
+                        aria-label="Next example"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                </>
+              ) : (
+                <div className="text-center p-4 bg-gray-100 rounded">
+                  No example images available
+                </div>
+              )}
             </div>
             
             <div className="flex justify-end">

@@ -24,6 +24,14 @@
 .DS_Store
 *.pem
 
+# image directories
+/public/images/
+/public/static/
+/public/FlagExamples/
+/data/true_positive_images/
+/data/true_positive_masked_images/
+/data/cropped_images_for_classification/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

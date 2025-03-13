@@ -19,3 +19,9 @@ Desktop
 Library
 Movies
 Music
+/data/classification_queue.json
+/data/cropped_images_for_classification
+/data/true_positive_images
+/data/true_positive_masked_images
+/scripts/sample_cropped_for_public.py
+/scripts/prepare_images_for_classification.py
