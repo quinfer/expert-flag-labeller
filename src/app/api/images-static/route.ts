@@ -104,15 +104,15 @@ export async function GET() {
         const filename = pathParts[pathParts.length - 1];
         const town = image.town.toUpperCase().replace(/ /g, '_');
         
-        // Create a static folder path
-        const staticPath = `/static/${town}/${filename}`;
+        // In production, we only have images with composite_ prefix in the static folder
+        // Create paths that reflect this reality
+        const staticPath = `/static/${town}/composite_${filename}`;
         
-        // Try to find composites by looking for files matching the pattern 'composite_*.jpg'
-        const compositeFilename = `composite_${filename}`;
-        const compositePath = `/static/${town}/${compositeFilename}`;
+        // For composite view, we use the same file (all files have composite_ prefix)
+        const compositePath = staticPath;
         
-        // Check for existing composite images - we know these start with "composite_"
-        const hasComposite = compositePath.includes('composite_');
+        // All our files have composites since that's what we copied to the static folder
+        const hasComposite = true;
         
         return {
           ...image,

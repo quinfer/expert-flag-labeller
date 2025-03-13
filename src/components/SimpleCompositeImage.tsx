@@ -52,30 +52,52 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
     // Town part
     const townSegment = town.replace(/ /g, '_').toUpperCase();
     
-    // For the composite image, ensure we're using the composite_ prefix if needed
+    // Handle composite filenames
     let compositeFilename = filename;
-    if (!filename.startsWith('composite_') && originalPath.includes('composite_')) {
-      // Extract the composite filename from the path
-      const parts = originalPath.split('/');
-      compositeFilename = parts[parts.length - 1];
+    let regularFilename = filename;
+    
+    // If this is a composite path, extract the regular filename without 'composite_' prefix
+    if (filename.startsWith('composite_')) {
+      regularFilename = filename.substring('composite_'.length);
+    } else {
+      // If this is a regular path, create a composite filename by adding 'composite_' prefix
+      compositeFilename = `composite_${filename}`;
     }
     
-    // Generate possible paths - prioritizing static folder for production
-    return [
-      originalPath,                                  // Original path exactly as provided
-      pathWithoutLeadingSlash,                       // Without leading slash
-      `/static/${townSegment}/${filename}`,          // Static folder path (for production)
-      `/images/${townSegment}/${filename}`,          // Reconstructed path
-      `../static/${townSegment}/${filename}`,        // Relative static path
-      `../images/${townSegment}/${filename}`,        // Relative path 
-      `/public/static/${townSegment}/${filename}`,   // With public/static
-      `/public/images/${townSegment}/${filename}`,   // With public/images
-      `public/static/${townSegment}/${filename}`,    // With public/static, no leading slash
-      `public/images/${townSegment}/${filename}`,    // With public/images, no leading slash
-      `./public/static/${townSegment}/${filename}`,  // With ./ prefix to static
-      `./public/images/${townSegment}/${filename}`,  // With ./ prefix to images
-      `/expert-flag-labeler${originalPath}`,         // With project name
-    ];
+    // In production, the images are actually stored with composite_ prefix
+    // Generate possible paths - prioritizing static folder with appropriate naming for production
+    
+    // For composite view, prioritize paths with composite prefix
+    if (originalPath.includes('composite_') || originalPath === effectiveCompositeSrc) {
+      return [
+        originalPath,                                       // Original path exactly as provided
+        pathWithoutLeadingSlash,                            // Without leading slash
+        `/static/${townSegment}/composite_${regularFilename}`,  // Static folder path with composite prefix
+        `/static/${townSegment}/${compositeFilename}`,     // Static folder path with explicitly handled name
+        `/images/${townSegment}/composite_${regularFilename}`, // Images folder with composite prefix
+        `../static/${townSegment}/composite_${regularFilename}`, // Relative path with composite prefix
+        `/public/static/${townSegment}/composite_${regularFilename}`, // With public and composite prefix
+        `/public/images/${townSegment}/composite_${regularFilename}`, // With public and composite prefix
+        `static/${townSegment}/composite_${regularFilename}`, // No leading slash, with composite prefix
+        `/expert-flag-labeler${originalPath}`,              // With project name
+      ];
+    } 
+    // For regular view (non-composite), try both with and without composite prefix
+    // since our copy script may have only copied composite versions
+    else {
+      return [
+        originalPath,                                  // Original path exactly as provided
+        pathWithoutLeadingSlash,                       // Without leading slash
+        `/static/${townSegment}/${filename}`,          // Static folder path with original filename
+        `/static/${townSegment}/composite_${filename}`, // Try the composite version in case regular doesn't exist
+        `/images/${townSegment}/${filename}`,          // Reconstructed path
+        `../static/${townSegment}/${filename}`,        // Relative static path
+        `/public/static/${townSegment}/${filename}`,   // With public/static
+        `/public/images/${townSegment}/${filename}`,   // With public/images
+        `static/${townSegment}/${filename}`,           // Static with no leading slash
+        `/expert-flag-labeler${originalPath}`,         // With project name
+      ];
+    }
   };
   
   // For debug purposes
@@ -135,9 +157,15 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
                   const townSegment = town.replace(/ /g, '_').toUpperCase();
                   const filename = effectiveCompositeSrc.split('/').pop() || '';
                   
-                  // Try direct static path
-                  const staticPath = `/static/${townSegment}/${filename}`;
-                  console.log("Trying direct static path:", staticPath);
+                  // Ensure we're using the composite_ prefix for composite view
+                  let filenameToUse = filename;
+                  if (!filenameToUse.startsWith('composite_')) {
+                    filenameToUse = `composite_${filenameToUse}`;
+                  }
+                  
+                  // Try direct static path with composite_ prefix
+                  const staticPath = `/static/${townSegment}/${filenameToUse}`;
+                  console.log("Trying direct static path for composite:", staticPath);
                   e.currentTarget.src = staticPath;
                   return;
                 }
@@ -211,10 +239,24 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
                   const townSegment = town.replace(/ /g, '_').toUpperCase();
                   const filename = croppedSrc.split('/').pop() || '';
                   
-                  // Try direct static path
+                  // First try with original filename
                   const staticPath = `/static/${townSegment}/${filename}`;
                   console.log("Trying direct static path:", staticPath);
-                  e.currentTarget.src = staticPath;
+                  
+                  // Also try with composite_ prefix as a fallback, since that's what we have in static
+                  const staticPathWithComposite = `/static/${townSegment}/composite_${filename}`;
+                  console.log("Will try composite version as fallback:", staticPathWithComposite);
+                  
+                  // Set up a fallback in case the direct path fails
+                  const img = e.currentTarget;
+                  img.onerror = () => {
+                    console.log("Direct path failed, trying with composite_ prefix");
+                    img.onerror = null; // Prevent infinite loop
+                    img.src = staticPathWithComposite;
+                  };
+                  
+                  // Try the direct path first
+                  img.src = staticPath;
                   return;
                 }
                 
