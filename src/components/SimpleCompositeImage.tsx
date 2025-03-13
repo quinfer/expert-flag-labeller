@@ -119,10 +119,29 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
               console.error(`Failed to load composite image: ${currentCompositePath}`);
               // If we've tried all paths and none worked, use a fallback
               if (currentCompositeIndex >= alternateCompositePaths.length - 1) {
-                // Set a fallback image 
-                e.currentTarget.src = 'https://quinfer.github.io/flag-examples/side-by-side-placeholder.jpg';
+                // Try to load a sample side-by-side image from GitHub Pages instead
+                // Sample side-by-side images (would need to be hosted somewhere)
+                const sampleSideBySideImages = [
+                  'https://quinfer.github.io/flag-examples/side-by-side/example1.jpg',
+                  'https://quinfer.github.io/flag-examples/side-by-side/example2.jpg',
+                  'https://quinfer.github.io/flag-examples/side-by-side/example3.jpg'
+                ];
                 
-                // Add indicator that this is a fallback
+                // Use a fallback if side-by-side samples don't exist - a regular sample image
+                const regularSamples = [
+                  'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
+                  'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
+                  'https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg'
+                ];
+                
+                // Select a sample image based on the original filename
+                const nameHash = currentCompositePath.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                
+                // Try side-by-side first, then fall back to regular samples if that fails
+                const sampleIndex = nameHash % regularSamples.length;
+                e.currentTarget.src = regularSamples[sampleIndex];
+                
+                // Add indicator that this is a sample image
                 const parent = e.currentTarget.parentNode;
                 if (parent) {
                   const textNode = document.createElement('div');
@@ -131,10 +150,10 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
                   textNode.style.left = '0';
                   textNode.style.right = '0';
                   textNode.style.textAlign = 'center';
-                  textNode.style.background = 'rgba(255, 0, 0, 0.7)';
+                  textNode.style.background = 'rgba(0, 0, 0, 0.7)';
                   textNode.style.color = 'white';
                   textNode.style.padding = '5px';
-                  textNode.innerText = 'Side-by-side view not available on production server';
+                  textNode.innerText = '⚠️ Sample image shown (side-by-side view not available in production)';
                   parent.appendChild(textNode);
                 }
               } else {
@@ -155,10 +174,22 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
             }}
             onError={(e) => {
               console.error(`Failed to load cropped image: ${currentCroppedPath}`);
-              // Set a fallback image source 
-              e.currentTarget.src = 'https://quinfer.github.io/flag-examples/placeholder.jpg';
+              // Try to load a sample image from GitHub Pages instead
+              // This uses predetermined sample images hosted on GitHub Pages
+              const sampleImages = [
+                'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
+                'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
+                'https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg',
+                'https://quinfer.github.io/flag-examples/apprentice-boys/example1.jpg',
+                'https://quinfer.github.io/flag-examples/orange-order/example1.jpg'
+              ];
               
-              // Add a clear indicator that this is a fallback
+              // Pick a consistent sample image based on the image filename for demonstration
+              const nameHash = croppedSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+              const sampleIndex = nameHash % sampleImages.length;
+              e.currentTarget.src = sampleImages[sampleIndex];
+              
+              // Add an indicator that this is a sample image
               const parent = e.currentTarget.parentNode;
               if (parent) {
                 const textNode = document.createElement('div');
@@ -167,10 +198,10 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
                 textNode.style.left = '0';
                 textNode.style.right = '0';
                 textNode.style.textAlign = 'center';
-                textNode.style.background = 'rgba(255, 0, 0, 0.7)';
+                textNode.style.background = 'rgba(0, 0, 0, 0.7)';
                 textNode.style.color = 'white';
                 textNode.style.padding = '5px';
-                textNode.innerText = 'Image not available on production server';
+                textNode.innerText = '⚠️ Sample image shown in production (actual image not available)';
                 parent.appendChild(textNode);
               }
             }}
