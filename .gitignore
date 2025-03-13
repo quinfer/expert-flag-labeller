@@ -24,13 +24,19 @@
 .DS_Store
 *.pem
 
-# image directories
+# Google Street View Images (licensed content - DO NOT COMMIT)
+# These directories contain images derived from Google Street View 
+# which are under license restrictions and should not be shared publicly
 /public/images/
 /public/static/
 /public/FlagExamples/
 /data/true_positive_images/
 /data/true_positive_masked_images/
 /data/cropped_images_for_classification/
+
+# Large data files
+/data/classification_queue.json
+/data/classifications/
 
 # debug
 npm-debug.log*

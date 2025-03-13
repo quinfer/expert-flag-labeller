@@ -1,6 +1,8 @@
-# Expert Flag Labeller
+# Expert Flag Labeler
 
 A web application for expert classification and labeling of flags in Northern Ireland, designed for academic research purposes.
+
+**IMPORTANT**: This repository contains **only code**, not image data. The images are derived from street-level imagery services with specific licensing restrictions and cannot be shared publicly.
 
 ## Project Overview
 
@@ -9,18 +11,21 @@ This application allows authenticated experts to classify and categorize flags a
 ### Key Features
 
 - Secure expert authentication
+- Side-by-side image viewing that shows both the cropped flag and its original context
 - Image classification interface with zoom capabilities
 - Structured flag categorization system
 - Review flagging for uncertain cases
 - Statistics tracking for labeling progress
 - Reference examples for flag identification
+- Mobile-friendly responsive design
 
 ## Technology Stack
 
-- **Frontend**: Next.js 14 with React
+- **Frontend**: Next.js 15 with React
 - **Styling**: Tailwind CSS with shadcn/ui components
 - **Database**: Supabase
 - **Deployment**: Vercel
+- **Image Processing**: Python with OpenCV and PIL
 
 ## Getting Started
 
@@ -96,12 +101,13 @@ Preprocessing scripts are located in:
 3. **Distant Flag Handling**: Special handling for small boxes that might be distant flags
 4. **Queue Generation**: Creates a JSON file with metadata for the classification app
 5. **Context Preservation**: Adds padding around boxes and highlights the detection area
+6. **Side-by-Side View**: Generates side-by-side composite images showing both the cropped flag and its original context
 
 ### Running the Preprocessing Script
 
 ```bash
-cd /User/quinference/expert-flag-labeller
-python scripts/prepare_images_for_classification.py --stats --auto-threshold
+cd /Users/quinference/expert-flag-labeler
+python scripts/prepare_images_for_classification.py --stats --auto-threshold --side-by-side
 ```
 
 #### Command-line Options
@@ -114,6 +120,7 @@ python scripts/prepare_images_for_classification.py --stats --auto-threshold
 - `--max-per-town INT` - Maximum number of images to process per town
 - `--auto-threshold` - Automatically adjust thresholds based on image analysis
 - `--highlight` - Highlight the bounding box in the cropped image
+- `--side-by-side` - Generate side-by-side composite images showing the flag and its context
 - `--stats` - Show detailed statistics about the dataset
 - `--debug` - Enable debug output
 
@@ -188,6 +195,13 @@ The application is deployed on Vercel and connected to a Supabase project for da
 ## Contributing
 
 ## License
-MIT Licence
+
+Code: MIT License
+
+Images: Not included in this repository. The images used with this application are derived from street-level imagery services and are subject to their respective licensing terms. These images cannot be shared or redistributed.
+
+## Image Licensing Information
+
+**Important**: This repository **DOES NOT** contain any image data. The application is designed to work with image data that must be acquired separately and with appropriate licensing. The `.gitignore` file is configured to prevent images from being committed to the repository.
 
 ## Acknowledgements
