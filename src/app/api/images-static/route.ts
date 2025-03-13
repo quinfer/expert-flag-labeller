@@ -94,21 +94,37 @@ export async function GET() {
       console.log("[API] Classification queue file not found or running in production mode");
     }
     
-    // For production, add a fake composite flag on the first few images for demo purposes
+    // For production, adjust paths to point to static directory and use actual composite files
     if (isProduction) {
-      console.log("[API] Adding mock composite image data for production demo");
-      imagesWithComposites = imagesWithComposites.map((image, index) => {
-        // Add composite flag to first 10 images
-        if (index < 10) {
-          return {
-            ...image,
-            has_composite: true,
-            composite_image: image.path.replace('.jpg', '_composite.jpg'),
-            is_production_mock: true
-          };
-        }
-        return image;
+      console.log("[API] Adjusting image paths for production environment");
+      
+      imagesWithComposites = imagesWithComposites.map(image => {
+        // Extract town and filename from the path
+        const pathParts = image.path.split('/');
+        const filename = pathParts[pathParts.length - 1];
+        const town = image.town.toUpperCase().replace(/ /g, '_');
+        
+        // Create a static folder path
+        const staticPath = `/static/${town}/${filename}`;
+        
+        // Try to find composites by looking for files matching the pattern 'composite_*.jpg'
+        const compositeFilename = `composite_${filename}`;
+        const compositePath = `/static/${town}/${compositeFilename}`;
+        
+        // Check for existing composite images - we know these start with "composite_"
+        const hasComposite = compositePath.includes('composite_');
+        
+        return {
+          ...image,
+          path: staticPath,            // Use the static path for the main image
+          town: town,                  // Ensure town is correctly formatted
+          has_composite: hasComposite, // Flag if we have a composite image
+          composite_image: hasComposite ? compositePath : null  // Set the composite path
+        };
       });
+      
+      console.log("[API] Adjusted paths to use static folder in production");
+      console.log("[API] First few adjusted images:", imagesWithComposites.slice(0, 2));
     }
     
     if (!imagesWithComposites || imagesWithComposites.length === 0) {

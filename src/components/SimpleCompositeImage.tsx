@@ -60,15 +60,20 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
       compositeFilename = parts[parts.length - 1];
     }
     
-    // Generate possible paths
+    // Generate possible paths - prioritizing static folder for production
     return [
       originalPath,                                  // Original path exactly as provided
       pathWithoutLeadingSlash,                       // Without leading slash
+      `/static/${townSegment}/${filename}`,          // Static folder path (for production)
       `/images/${townSegment}/${filename}`,          // Reconstructed path
+      `../static/${townSegment}/${filename}`,        // Relative static path
       `../images/${townSegment}/${filename}`,        // Relative path 
-      `/public/images/${townSegment}/${filename}`,   // With public
-      `public/images/${townSegment}/${filename}`,    // With public, no leading slash
-      `./public/images/${townSegment}/${filename}`,  // With ./ prefix
+      `/public/static/${townSegment}/${filename}`,   // With public/static
+      `/public/images/${townSegment}/${filename}`,   // With public/images
+      `public/static/${townSegment}/${filename}`,    // With public/static, no leading slash
+      `public/images/${townSegment}/${filename}`,    // With public/images, no leading slash
+      `./public/static/${townSegment}/${filename}`,  // With ./ prefix to static
+      `./public/images/${townSegment}/${filename}`,  // With ./ prefix to images
       `/expert-flag-labeler${originalPath}`,         // With project name
     ];
   };
@@ -119,15 +124,33 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
               console.error(`Failed to load composite image: ${currentCompositePath}`);
               // If we've tried all paths and none worked, use a fallback
               if (currentCompositeIndex >= alternateCompositePaths.length - 1) {
-                // Try to load a sample side-by-side image from GitHub Pages instead
-                // Sample side-by-side images (would need to be hosted somewhere)
+                console.log("Tried all paths for composite image, checking if static path was included");
+                
+                // Check if we tried a path with /static/ in it
+                const triedStaticPath = alternateCompositePaths.some(p => p.includes('/static/'));
+                
+                // If we haven't tried a static path explicitly (which might happen if the 
+                // original paths aren't properly formatted), try static paths directly
+                if (!triedStaticPath) {
+                  const townSegment = town.replace(/ /g, '_').toUpperCase();
+                  const filename = effectiveCompositeSrc.split('/').pop() || '';
+                  
+                  // Try direct static path
+                  const staticPath = `/static/${townSegment}/${filename}`;
+                  console.log("Trying direct static path:", staticPath);
+                  e.currentTarget.src = staticPath;
+                  return;
+                }
+                
+                // Only use sample images as a last resort
+                // Sample side-by-side images
                 const sampleSideBySideImages = [
                   'https://quinfer.github.io/flag-examples/side-by-side/example1.jpg',
                   'https://quinfer.github.io/flag-examples/side-by-side/example2.jpg',
                   'https://quinfer.github.io/flag-examples/side-by-side/example3.jpg'
                 ];
                 
-                // Use a fallback if side-by-side samples don't exist - a regular sample image
+                // Regular sample images
                 const regularSamples = [
                   'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
                   'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
@@ -137,7 +160,7 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
                 // Select a sample image based on the original filename
                 const nameHash = currentCompositePath.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 
-                // Try side-by-side first, then fall back to regular samples if that fails
+                // Try side-by-side first, then fall back to regular samples
                 const sampleIndex = nameHash % regularSamples.length;
                 e.currentTarget.src = regularSamples[sampleIndex];
                 
@@ -174,20 +197,45 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
             }}
             onError={(e) => {
               console.error(`Failed to load cropped image: ${currentCroppedPath}`);
-              // Try to load a sample image from GitHub Pages instead
-              // This uses predetermined sample images hosted on GitHub Pages
-              const sampleImages = [
-                'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
-                'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
-                'https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg',
-                'https://quinfer.github.io/flag-examples/apprentice-boys/example1.jpg',
-                'https://quinfer.github.io/flag-examples/orange-order/example1.jpg'
-              ];
               
-              // Pick a consistent sample image based on the image filename for demonstration
-              const nameHash = croppedSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-              const sampleIndex = nameHash % sampleImages.length;
-              e.currentTarget.src = sampleImages[sampleIndex];
+              // If we've tried all paths and none worked
+              if (currentImageIndex >= alternateCroppedPaths.length - 1) {
+                console.log("Tried all paths for cropped image, checking if static path was included");
+                
+                // Check if we tried a path with /static/ in it
+                const triedStaticPath = alternateCroppedPaths.some(p => p.includes('/static/'));
+                
+                // If we haven't tried a static path explicitly (which might happen if the 
+                // original paths aren't properly formatted), try static paths directly
+                if (!triedStaticPath) {
+                  const townSegment = town.replace(/ /g, '_').toUpperCase();
+                  const filename = croppedSrc.split('/').pop() || '';
+                  
+                  // Try direct static path
+                  const staticPath = `/static/${townSegment}/${filename}`;
+                  console.log("Trying direct static path:", staticPath);
+                  e.currentTarget.src = staticPath;
+                  return;
+                }
+                
+                // As a last resort, try to load a sample image from GitHub Pages
+                const sampleImages = [
+                  'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
+                  'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
+                  'https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg',
+                  'https://quinfer.github.io/flag-examples/apprentice-boys/example1.jpg',
+                  'https://quinfer.github.io/flag-examples/orange-order/example1.jpg'
+                ];
+                
+                // Pick a consistent sample image based on the image filename for demonstration
+                const nameHash = croppedSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                const sampleIndex = nameHash % sampleImages.length;
+                e.currentTarget.src = sampleImages[sampleIndex];
+              } else {
+                // Try next path
+                setCurrentImageIndex(prev => prev + 1);
+                return;
+              }
               
               // Add an indicator that this is a sample image
               const parent = e.currentTarget.parentNode;
