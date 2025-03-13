@@ -236,36 +236,37 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
               onError={(e) => {
                 console.error(`Failed to load image for cropped view: ${currentCompositePath}`);
               
-              // Try the same fallback logic we use for composite view
-              const townSegment = town.replace(/ /g, '_').toUpperCase();
-              const filename = croppedSrc.split('/').pop() || '';
-              
-              // Use composite_ prefix since that's all we have in static
-              const staticPathWithComposite = `/static/${townSegment}/composite_${filename}`;
-              console.log("Trying direct composite path for cropped view:", staticPathWithComposite);
-              
-              e.currentTarget.src = staticPathWithComposite;
-              
-              // If we still fail, use a sample image as a last resort
-              e.currentTarget.onerror = () => {
-                console.log("All attempts failed, using sample image");
-                // Clear error handler to prevent infinite loops
-                e.currentTarget.onerror = null;
+                // Try the same fallback logic we use for composite view
+                const townSegment = town.replace(/ /g, '_').toUpperCase();
+                const filename = croppedSrc.split('/').pop() || '';
                 
-                // Use sample images as last resort
-                const sampleImages = [
-                  'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
-                  'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
-                  'https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg',
-                  'https://quinfer.github.io/flag-examples/apprentice-boys/example1.jpg',
-                  'https://quinfer.github.io/flag-examples/orange-order/example1.jpg'
-                ];
+                // Use composite_ prefix since that's all we have in static
+                const staticPathWithComposite = `/static/${townSegment}/composite_${filename}`;
+                console.log("Trying direct composite path for cropped view:", staticPathWithComposite);
                 
-                // Pick a consistent sample image based on the image filename
-                const nameHash = croppedSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-                const sampleIndex = nameHash % sampleImages.length;
-                e.currentTarget.src = sampleImages[sampleIndex];
-              };
+                e.currentTarget.src = staticPathWithComposite;
+                
+                // If we still fail, use a sample image as a last resort
+                e.currentTarget.onerror = () => {
+                  console.log("All attempts failed, using sample image");
+                  // Clear error handler to prevent infinite loops
+                  e.currentTarget.onerror = null;
+                  
+                  // Use sample images as last resort
+                  const sampleImages = [
+                    'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
+                    'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
+                    'https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg',
+                    'https://quinfer.github.io/flag-examples/apprentice-boys/example1.jpg',
+                    'https://quinfer.github.io/flag-examples/orange-order/example1.jpg'
+                  ];
+                  
+                  // Pick a consistent sample image based on the image filename
+                  const nameHash = croppedSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                  const sampleIndex = nameHash % sampleImages.length;
+                  e.currentTarget.src = sampleImages[sampleIndex];
+                };
+              }}
               
               // Add an indicator that this is a sample image
               const parent = e.currentTarget.parentNode;
