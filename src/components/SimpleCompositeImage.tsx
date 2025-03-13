@@ -132,7 +132,8 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
         borderRadius: '2px',
         overflow: 'hidden'
       }}>
-        {showComposite ? (
+        {/* We now use the same image for both views, but adjust CSS for different displays */}
+      {showComposite ? (
           <img
             src={currentCompositePath}
             alt={`Side-by-side view of ${alt}`}
@@ -214,53 +215,44 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
             }}
           />
         ) : (
-          <img
-            src={currentCroppedPath}
-            alt={alt}
-            style={{
-              maxWidth: '100%',
-              maxHeight: '100%',
-              objectFit: 'contain',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-            }}
-            onError={(e) => {
-              console.error(`Failed to load cropped image: ${currentCroppedPath}`);
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden'
+          }}>
+            <img
+              src={currentCompositePath} // Use composite image for both views
+              alt={alt}
+              style={{
+                maxWidth: '200%', // Zoom in to show just the left part
+                maxHeight: '100%',
+                objectFit: 'contain',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                objectPosition: 'left center', // Focus on the left part of the image (cropped view)
+                transform: 'scale(1.6)', // Zoom in slightly
+                transformOrigin: 'left center' // Zoom from the left
+              }}
+              onError={(e) => {
+                console.error(`Failed to load image for cropped view: ${currentCompositePath}`);
               
-              // If we've tried all paths and none worked
-              if (currentImageIndex >= alternateCroppedPaths.length - 1) {
-                console.log("Tried all paths for cropped image, checking if static path was included");
+              // Try the same fallback logic we use for composite view
+              const townSegment = town.replace(/ /g, '_').toUpperCase();
+              const filename = croppedSrc.split('/').pop() || '';
+              
+              // Use composite_ prefix since that's all we have in static
+              const staticPathWithComposite = `/static/${townSegment}/composite_${filename}`;
+              console.log("Trying direct composite path for cropped view:", staticPathWithComposite);
+              
+              e.currentTarget.src = staticPathWithComposite;
+              
+              // If we still fail, use a sample image as a last resort
+              e.currentTarget.onerror = () => {
+                console.log("All attempts failed, using sample image");
+                // Clear error handler to prevent infinite loops
+                e.currentTarget.onerror = null;
                 
-                // Check if we tried a path with /static/ in it
-                const triedStaticPath = alternateCroppedPaths.some(p => p.includes('/static/'));
-                
-                // If we haven't tried a static path explicitly (which might happen if the 
-                // original paths aren't properly formatted), try static paths directly
-                if (!triedStaticPath) {
-                  const townSegment = town.replace(/ /g, '_').toUpperCase();
-                  const filename = croppedSrc.split('/').pop() || '';
-                  
-                  // First try with original filename
-                  const staticPath = `/static/${townSegment}/${filename}`;
-                  console.log("Trying direct static path:", staticPath);
-                  
-                  // Also try with composite_ prefix as a fallback, since that's what we have in static
-                  const staticPathWithComposite = `/static/${townSegment}/composite_${filename}`;
-                  console.log("Will try composite version as fallback:", staticPathWithComposite);
-                  
-                  // Set up a fallback in case the direct path fails
-                  const img = e.currentTarget;
-                  img.onerror = () => {
-                    console.log("Direct path failed, trying with composite_ prefix");
-                    img.onerror = null; // Prevent infinite loop
-                    img.src = staticPathWithComposite;
-                  };
-                  
-                  // Try the direct path first
-                  img.src = staticPath;
-                  return;
-                }
-                
-                // As a last resort, try to load a sample image from GitHub Pages
+                // Use sample images as last resort
                 const sampleImages = [
                   'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
                   'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
@@ -269,15 +261,11 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
                   'https://quinfer.github.io/flag-examples/orange-order/example1.jpg'
                 ];
                 
-                // Pick a consistent sample image based on the image filename for demonstration
+                // Pick a consistent sample image based on the image filename
                 const nameHash = croppedSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
                 const sampleIndex = nameHash % sampleImages.length;
                 e.currentTarget.src = sampleImages[sampleIndex];
-              } else {
-                // Try next path
-                setCurrentImageIndex(prev => prev + 1);
-                return;
-              }
+              };
               
               // Add an indicator that this is a sample image
               const parent = e.currentTarget.parentNode;
