@@ -810,19 +810,7 @@ export default function ExpertFlagLabeler() {
               <h2 className="text-xl font-semibold">Image {currentIndex + 1} of {images.length}</h2>
               <p className="text-sm text-gray-500">Location: {currentImage?.town}</p>
             </div>
-            {/* Move side-by-side toggle to the header */}
-            {currentImage && (
-              <Button 
-                size="sm"
-                variant="default"
-                onClick={() => {
-                  const toggleBtn = document.querySelector('.toggle-composite-view');
-                  if (toggleBtn) toggleBtn.click();
-                }}
-              >
-                Toggle Side-by-Side View
-              </Button>
-            )}
+            {/* Side-by-side view is always shown by default */}
           </CardHeader>
           <CardContent>
             {/* Image with zoom controls */}
