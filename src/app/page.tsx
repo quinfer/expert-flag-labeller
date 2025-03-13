@@ -117,7 +117,13 @@ const flagDescriptions = {
   'Palestinian': 'The national flag of Palestine, featuring horizontal stripes of black, white, and green with a red triangle on the hoist side.',
   'GAA': 'Flags representing the Gaelic Athletic Association, typically featuring county colors and GAA emblems.',
   'Royal Black Institution': 'Flag of the Protestant fraternal organization, often featuring black, purple and religious symbolism.',
-  'Red Hand Defenders': 'Flag of a loyalist paramilitary group, typically featuring the Red Hand of Ulster symbol.'
+  'Red Hand Defenders': 'Flag of a loyalist paramilitary group, typically featuring the Red Hand of Ulster symbol.',
+  'Red/White/Blue Triangular Bunting': 'Decorative triangular cloth pennants in red, white, and blue colors, typically strung along streets or buildings.',
+  'Orange/Purple Triangular Bunting': 'Decorative triangular cloth pennants in orange and purple colors, often associated with Orange Order celebrations.',
+  'Irish Tricolor Bunting': 'Decorative bunting featuring green, white, and orange triangular pennants resembling the Irish flag.',
+  'Union Jack Bunting': 'Decorative bunting featuring Union Jack patterns on triangular pennants.',
+  'Mixed Flags Bunting': 'Decorative bunting featuring various flag designs or symbols on triangular pennants.',
+  'Other Colored Bunting': 'Generic decorative triangular pennants in colors not falling into the other bunting categories.'
 }
 
 export default function ExpertFlagLabeler() {
@@ -294,7 +300,7 @@ export default function ExpertFlagLabeler() {
     }
   }
 
-  // Reorganized category structure - updated with specific proscribed flags
+  // Reorganized category structure - updated with specific proscribed flags and bunting
   const flagCategories: FlagCategories = {
     // National flags
     'Union Jack': { primary: 'National', context: 'Political/National Identity' },
@@ -338,7 +344,15 @@ export default function ExpertFlagLabeler() {
     'UDA': { primary: 'Proscribed', context: 'Paramilitary/Political' },
     'UFF': { primary: 'Proscribed', context: 'Paramilitary/Political' },
     'YCV': { primary: 'Proscribed', context: 'Paramilitary/Political' },
-    'Other Proscribed': { primary: 'Proscribed', context: 'Paramilitary/Political' }
+    'Other Proscribed': { primary: 'Proscribed', context: 'Paramilitary/Political' },
+    
+    // Bunting Types (new category)
+    'Red/White/Blue Triangular Bunting': { primary: 'Bunting', context: 'Decorative' },
+    'Orange/Purple Triangular Bunting': { primary: 'Bunting', context: 'Decorative' },
+    'Irish Tricolor Bunting': { primary: 'Bunting', context: 'Decorative' },
+    'Union Jack Bunting': { primary: 'Bunting', context: 'Decorative' },
+    'Mixed Flags Bunting': { primary: 'Bunting', context: 'Decorative' },
+    'Other Colored Bunting': { primary: 'Bunting', context: 'Decorative' }
   }
   
   // Group flags by user-friendly contexts
@@ -360,6 +374,9 @@ export default function ExpertFlagLabeler() {
     ),
     'Political/Solidarity': Object.keys(flagCategories).filter(flag => 
       flagCategories[flag].context === 'Political/Solidarity'
+    ),
+    'Decorative Bunting': Object.keys(flagCategories).filter(flag => 
+      flagCategories[flag].context === 'Decorative'
     )
   }
   
@@ -376,7 +393,9 @@ export default function ExpertFlagLabeler() {
     'Temporary installation',
     'Memorial/Commemoration',
     'Event-specific',
-    'Street decoration'
+    'Street decoration',
+    'Bunting display', // Added bunting as a display context
+    'Triangular bunting'
   ]
   
   // Handle flag selection - automatically sets the primary category
@@ -384,6 +403,15 @@ export default function ExpertFlagLabeler() {
     console.log("Selected flag:", flag);
     setSpecificFlag(flag)
     setPrimaryCategory(flagCategories[flag].primary)
+    
+    // If bunting is selected, automatically set the display context to the appropriate bunting type
+    if (flagCategories[flag].primary === 'Bunting') {
+      if (flag.includes('Triangular')) {
+        setSecondaryCategory('Triangular bunting');
+      } else {
+        setSecondaryCategory('Bunting display');
+      }
+    }
   }
 
   // Function to show example
@@ -417,6 +445,9 @@ export default function ExpertFlagLabeler() {
       const userData = localStorage.getItem('user');
       const expertId = userData ? JSON.parse(userData).username : 'anonymous';
       
+      // Determine if this is a bunting classification
+      const isBunting = specificFlag && flagCategories[specificFlag].primary === 'Bunting';
+      
       // Construct payload using the form data or component state
       const payload = {
         action: 'save',
@@ -426,6 +457,8 @@ export default function ExpertFlagLabeler() {
           primaryCategory: specificFlag ? flagCategories[specificFlag].primary : classificationData.primaryCategory,
           specificFlag: specificFlag || classificationData.specificFlag,
           displayContext: classificationData.displayContext || secondaryCategory,
+          isBunting: isBunting,
+          buntingType: isBunting ? specificFlag : null, // Store bunting type explicitly
           confidence: classificationData.confidence || confidence,
           timestamp: new Date().toISOString(),
           expertId: expertId
@@ -917,6 +950,19 @@ export default function ExpertFlagLabeler() {
                 ))}
               </select>
             </div>
+            
+            {/* Bunting guidance - only shown when bunting is selected */}
+            {primaryCategory === 'Bunting' && (
+              <div className="mt-4 p-3 bg-blue-50 rounded-md">
+                <h4 className="text-sm font-medium mb-2">Bunting Classification Guidance</h4>
+                <ul className="text-xs space-y-1">
+                  <li>• Triangular bunting consists of small triangular pennants strung together</li>
+                  <li>• Pay attention to colors and patterns to determine the bunting type</li>
+                  <li>• If bunting features distinct flag patterns, select the appropriate bunting type</li>
+                  <li>• If you're unsure, use "Flag for Review" and select "Bunting needs specialized review"</li>
+                </ul>
+              </div>
+            )}
 
             {/* Confidence Slider */}
             <div>
@@ -1047,14 +1093,14 @@ export default function ExpertFlagLabeler() {
               <div className="flex items-center">
                 <input 
                   type="radio" 
-                  id="bunting" 
+                  id="bunting-needs-review" 
                   name="review-reason" 
-                  value="Bunting"
-                  checked={reviewReason === "Bunting"}
-                  onChange={() => setReviewReason("Bunting")}
+                  value="Bunting needs specialized review"
+                  checked={reviewReason === "Bunting needs specialized review"}
+                  onChange={() => setReviewReason("Bunting needs specialized review")}
                   className="mr-2"
                 />
-                <label htmlFor="bunting">Bunting (not a traditional flag)</label>
+                <label htmlFor="bunting-needs-review">Bunting needs specialized review</label>
               </div>
               
               <div className="flex items-center">
