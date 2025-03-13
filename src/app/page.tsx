@@ -180,16 +180,6 @@ export default function ExpertFlagLabeler() {
         const parsedUser = JSON.parse(userData)
         setIsAuthenticated(true)
         setUser(parsedUser)
-        
-        // Restore user's progress if available
-        if (parsedUser && parsedUser.username) {
-          const savedProgress = localStorage.getItem(`progress_${parsedUser.username}`)
-          if (savedProgress) {
-            const savedIndex = parseInt(savedProgress, 10)
-            console.log(`Restoring progress for ${parsedUser.username}. Saved index: ${savedIndex}`)
-            setCurrentIndex(savedIndex)
-          }
-        }
       } else {
         router.push('/login')
       }
@@ -234,6 +224,21 @@ export default function ExpertFlagLabeler() {
         setImages(staticImages || []);
       } finally {
         setLoading(false);
+        
+        // After images are loaded, restore the user's progress if available
+        if (user && user.username) {
+          const savedProgress = localStorage.getItem(`progress_${user.username}`)
+          if (savedProgress) {
+            const savedIndex = parseInt(savedProgress, 10)
+            console.log(`Restoring progress for ${user.username}. Saved index: ${savedIndex}`)
+            // Make sure the saved index is valid
+            if (savedIndex >= 0 && savedIndex < (data?.images?.length || staticImages.length)) {
+              setCurrentIndex(savedIndex)
+            } else {
+              console.log(`Saved index ${savedIndex} is out of range, resetting to 0`)
+            }
+          }
+        }
       }
     }
     
@@ -601,6 +606,7 @@ export default function ExpertFlagLabeler() {
       const payload = { 
         action: 'flag',
         imageId: currentImage.filename,
+        town: currentImage.town || 'Unknown',
         reason: reviewReason,
         expertId: currentUser?.username || currentUser?.name || 'anonymous'
       };
@@ -665,6 +671,7 @@ export default function ExpertFlagLabeler() {
         body: JSON.stringify({ 
           action: 'flag',
           imageId,
+          town: currentImage?.town || 'Unknown',
           reason: reason || 'Needs review',
           expertId: user?.username || 'anonymous'
         }),
