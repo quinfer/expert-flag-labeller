@@ -117,10 +117,26 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
             }}
             onError={(e) => {
               console.error(`Failed to load composite image: ${currentCompositePath}`);
-              // If we've tried all paths and none worked, fall back to cropped view
+              // If we've tried all paths and none worked, use a fallback
               if (currentCompositeIndex >= alternateCompositePaths.length - 1) {
-                setShowComposite(false);
-                setHasError(true);
+                // Set a fallback image 
+                e.currentTarget.src = 'https://quinfer.github.io/flag-examples/side-by-side-placeholder.jpg';
+                
+                // Add indicator that this is a fallback
+                const parent = e.currentTarget.parentNode;
+                if (parent) {
+                  const textNode = document.createElement('div');
+                  textNode.style.position = 'absolute';
+                  textNode.style.bottom = '10px';
+                  textNode.style.left = '0';
+                  textNode.style.right = '0';
+                  textNode.style.textAlign = 'center';
+                  textNode.style.background = 'rgba(255, 0, 0, 0.7)';
+                  textNode.style.color = 'white';
+                  textNode.style.padding = '5px';
+                  textNode.innerText = 'Side-by-side view not available on production server';
+                  parent.appendChild(textNode);
+                }
               } else {
                 // Try next path
                 setCurrentCompositeIndex(prev => prev + 1);
@@ -137,8 +153,26 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
               objectFit: 'contain',
               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
             }}
-            onError={() => {
+            onError={(e) => {
               console.error(`Failed to load cropped image: ${currentCroppedPath}`);
+              // Set a fallback image source 
+              e.currentTarget.src = 'https://quinfer.github.io/flag-examples/placeholder.jpg';
+              
+              // Add a clear indicator that this is a fallback
+              const parent = e.currentTarget.parentNode;
+              if (parent) {
+                const textNode = document.createElement('div');
+                textNode.style.position = 'absolute';
+                textNode.style.bottom = '10px';
+                textNode.style.left = '0';
+                textNode.style.right = '0';
+                textNode.style.textAlign = 'center';
+                textNode.style.background = 'rgba(255, 0, 0, 0.7)';
+                textNode.style.color = 'white';
+                textNode.style.padding = '5px';
+                textNode.innerText = 'Image not available on production server';
+                parent.appendChild(textNode);
+              }
             }}
           />
         )}

@@ -37,49 +37,78 @@ export async function GET() {
     // Check if we should include side-by-side composite images
     let imagesWithComposites = [...staticImages];
     
-    // Try to read the classification queue to find composite images
-    if (fs.existsSync(QUEUE_FILE)) {
+    // Check if we're in production environment (e.g., Vercel)
+    const isProduction = process.env.VERCEL || process.env.NODE_ENV === 'production';
+    console.log(`[API] Running in ${isProduction ? 'production' : 'development'} mode`);
+    
+    // Attempt to read the classification queue to find composite images
+    // This will likely fail in production since the file is excluded from deployment
+    let queueDataLoaded = false;
+    
+    if (!isProduction && fs.existsSync(QUEUE_FILE)) {
       console.log("[API] Classification queue file found, checking for composite images");
-      const queueData = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf8'));
-      
-      if (queueData && queueData.images && queueData.images.length > 0) {
-        console.log(`[API] Found ${queueData.images.length} images in classification queue`);
+      try {
+        const queueData = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf8'));
         
-        // Create a lookup map by filename
-        const queueMap = new Map();
-        queueData.images.forEach(item => {
-          queueMap.set(item.filename, item);
-        });
-        
-        console.log("[API] First few queue items:", queueData.images.slice(0, 2));
-        console.log("[API] First few static images:", staticImages.slice(0, 2));
-        
-        // Enhance staticImages with composite image information
-        imagesWithComposites = imagesWithComposites.map(image => {
-          const queueItem = queueMap.get(image.filename);
-          if (queueItem && queueItem.composite_image) {
-            console.log(`[API] Match found for ${image.filename}, adding composite ${queueItem.composite_image}`);
-            return {
-              ...image,
-              composite_image: queueItem.composite_image,
-              has_composite: true
-            };
+        if (queueData && queueData.images && queueData.images.length > 0) {
+          console.log(`[API] Found ${queueData.images.length} images in classification queue`);
+          queueDataLoaded = true;
+          
+          // Create a lookup map by filename
+          const queueMap = new Map();
+          queueData.images.forEach(item => {
+            queueMap.set(item.filename, item);
+          });
+          
+          console.log("[API] First few queue items:", queueData.images.slice(0, 2));
+          console.log("[API] First few static images:", staticImages.slice(0, 2));
+          
+          // Enhance staticImages with composite image information
+          imagesWithComposites = imagesWithComposites.map(image => {
+            const queueItem = queueMap.get(image.filename);
+            if (queueItem && queueItem.composite_image) {
+              console.log(`[API] Match found for ${image.filename}, adding composite ${queueItem.composite_image}`);
+              return {
+                ...image,
+                composite_image: queueItem.composite_image,
+                has_composite: true
+              };
+            }
+            return image;
+          });
+          
+          console.log(`[API] Enhanced ${imagesWithComposites.filter(img => img.has_composite).length} images with composite data`);
+          
+          // Log a sample of images with composites
+          const compositeSamples = imagesWithComposites.filter(img => img.has_composite).slice(0, 2);
+          if (compositeSamples.length > 0) {
+            console.log("[API] Sample composite image data:", compositeSamples);
+          } else {
+            console.log("[API] No composite images were found in the enhanced list");
           }
-          return image;
-        });
-        
-        console.log(`[API] Enhanced ${imagesWithComposites.filter(img => img.has_composite).length} images with composite data`);
-        
-        // Log a sample of images with composites
-        const compositeSamples = imagesWithComposites.filter(img => img.has_composite).slice(0, 2);
-        if (compositeSamples.length > 0) {
-          console.log("[API] Sample composite image data:", compositeSamples);
-        } else {
-          console.log("[API] No composite images were found in the enhanced list");
         }
+      } catch (error) {
+        console.error("[API] Error reading queue file:", error);
       }
     } else {
-      console.log("[API] Classification queue file not found");
+      console.log("[API] Classification queue file not found or running in production mode");
+    }
+    
+    // For production, add a fake composite flag on the first few images for demo purposes
+    if (isProduction) {
+      console.log("[API] Adding mock composite image data for production demo");
+      imagesWithComposites = imagesWithComposites.map((image, index) => {
+        // Add composite flag to first 10 images
+        if (index < 10) {
+          return {
+            ...image,
+            has_composite: true,
+            composite_image: image.path.replace('.jpg', '_composite.jpg'),
+            is_production_mock: true
+          };
+        }
+        return image;
+      });
     }
     
     if (!imagesWithComposites || imagesWithComposites.length === 0) {
@@ -92,9 +121,11 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       metadata: { 
-        source: "static-images-with-composites",
+        source: queueDataLoaded ? "static-images-with-composites" : "static-images-only",
         totalImages: imagesWithComposites.length,
-        compositesCount: imagesWithComposites.filter(img => img.has_composite).length
+        compositesCount: imagesWithComposites.filter(img => img.has_composite).length,
+        inProduction: isProduction,
+        note: isProduction ? "Running in production. Actual image files are not available." : ""
       },
       images: imagesWithComposites || [],
       classifications: classifications || []
