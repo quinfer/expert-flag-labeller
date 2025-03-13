@@ -29,10 +29,10 @@ Music
 /data/classifications
 data/classification_queue.json
 
-# Image directories (these are large and should be excluded)
+# Image directories (exclude original, but keep static)
 /public/images
 /public/FlagExamples
-/public/static
+# /public/static  # Keep static directory for production deployments
 
 # Scripts (some are large)
 /scripts/sample_cropped_for_public.py

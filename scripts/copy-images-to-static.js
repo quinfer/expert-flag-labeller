@@ -7,6 +7,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, '..');
 
+// Helper function to shuffle an array (Fisher-Yates algorithm)
+function shuffleArray(array) {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+}
+
 // Source and destination paths
 const sourceDir = path.join(projectRoot, 'public', 'images');
 const destDir = path.join(projectRoot, 'public', 'static');
@@ -24,8 +34,20 @@ function copySampleImages() {
     const towns = fs.readdirSync(sourceDir);
     console.log(`Found ${towns.length} towns in ${sourceDir}`);
     
+    // Define max images per town and total max images
+    const MAX_PER_TOWN = 50;  // Maximum images per town
+    const MAX_TOTAL_IMAGES = 3000;  // Maximum total images (for Vercel limits)
+    
     // Track statistics
     let totalCopied = 0;
+    
+    // Calculate base images per town to distribute evenly
+    const baseImagesPerTown = Math.min(
+      MAX_PER_TOWN,
+      Math.floor(MAX_TOTAL_IMAGES / towns.length)
+    );
+    
+    console.log(`Using baseline of ${baseImagesPerTown} images per town (max ${MAX_PER_TOWN})`);
     
     // Process each town
     for (const town of towns) {
@@ -47,19 +69,60 @@ function copySampleImages() {
         file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png')
       );
       
-      // Sample up to 10 images from each town
-      const samplesToTake = Math.min(10, images.length);
-      const sampledImages = images.slice(0, samplesToTake);
+      // Take either all images or the calculated number per town, whichever is smaller
+      // Prioritize composite images if they exist
+      let compositeImages = images.filter(img => img.startsWith('composite_'));
+      let regularImages = images.filter(img => !img.startsWith('composite_'));
       
-      console.log(`Copying ${sampledImages.length} images from ${town}...`);
+      // Shuffle the arrays to randomize selection
+      compositeImages = shuffleArray(compositeImages);
+      regularImages = shuffleArray(regularImages);
+      
+      // If we have composites, prioritize them, otherwise use regular images
+      let imagesToCopy = [];
+      
+      if (compositeImages.length > 0) {
+        // Take as many composites as we can up to the limit
+        imagesToCopy = compositeImages.slice(0, baseImagesPerTown);
+        
+        // If we still have room, add some regular images
+        if (imagesToCopy.length < baseImagesPerTown) {
+          imagesToCopy = imagesToCopy.concat(
+            regularImages.slice(0, baseImagesPerTown - imagesToCopy.length)
+          );
+        }
+      } else {
+        // No composites, just take regular images
+        imagesToCopy = regularImages.slice(0, baseImagesPerTown);
+      }
+      
+      console.log(`Copying ${imagesToCopy.length} images from ${town}...`);
+      
+      // Check if we're approaching the total limit
+      if (totalCopied + imagesToCopy.length > MAX_TOTAL_IMAGES) {
+        // Truncate to stay under the limit
+        imagesToCopy = imagesToCopy.slice(0, MAX_TOTAL_IMAGES - totalCopied);
+        console.log(`  Truncated to ${imagesToCopy.length} to stay under total limit`);
+      }
       
       // Copy each sampled image
-      for (const image of sampledImages) {
+      for (const image of imagesToCopy) {
         const sourcePath = path.join(townSourceDir, image);
         const destPath = path.join(townDestDir, image);
         
         fs.copyFileSync(sourcePath, destPath);
         totalCopied++;
+        
+        // Stop if we've reached the total limit
+        if (totalCopied >= MAX_TOTAL_IMAGES) {
+          console.log(`Reached maximum total of ${MAX_TOTAL_IMAGES} images, stopping copy process`);
+          break;
+        }
+      }
+      
+      // Stop town processing if we've reached the total limit
+      if (totalCopied >= MAX_TOTAL_IMAGES) {
+        break;
       }
     }
     
@@ -119,8 +182,8 @@ function generateTestHtml() {
     <div class="images">
 `;
     
-    // Add images for this town
-    for (const image of images.slice(0, 5)) { // Just show first 5 images
+    // Add images for this town (just show first 5 for the test page)
+    for (const image of images.slice(0, 5)) {
       const imagePath = `/static/${town}/${image}`;
       
       htmlContent += `
