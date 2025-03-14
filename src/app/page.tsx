@@ -189,6 +189,14 @@ export default function ExpertFlagLabeler() {
   }, [router])
   
   useEffect(() => {
+    // Skip loading if user isn't available yet
+    if (!user) {
+      console.log("User data not available yet, skipping loadImages")
+      return
+    }
+    
+    console.log("Loading images with user data:", user)
+    
     async function loadImages() {
       try {
         // Load from the correct API route
@@ -243,7 +251,7 @@ export default function ExpertFlagLabeler() {
     }
     
     loadImages();
-  }, []);
+  }, [user]); // Add user as a dependency so this effect runs when user is set
 
   useEffect(() => {
     // Function to get the current user from Basic Auth
@@ -736,8 +744,14 @@ export default function ExpertFlagLabeler() {
   const handleLogout = () => {
     // Save progress for this user
     if (user && user.username) {
-      console.log(`Saving progress for ${user.username}. Current index: ${currentIndex}`)
+      console.log(`Logout: Saving progress for ${user.username}. Current index: ${currentIndex}`)
       localStorage.setItem(`progress_${user.username}`, currentIndex.toString())
+      
+      // Add verification
+      const savedValue = localStorage.getItem(`progress_${user.username}`)
+      console.log(`Verification - saved value for ${user.username}: ${savedValue}`)
+    } else {
+      console.error("Cannot save progress during logout: user or username is missing", user)
     }
     
     // Perform logout
@@ -791,8 +805,17 @@ export default function ExpertFlagLabeler() {
             onClick={() => {
               // Save progress without logging out
               if (user && user.username) {
+                console.log(`Manual save: Saving progress for ${user.username} at index ${currentIndex}`)
                 localStorage.setItem(`progress_${user.username}`, currentIndex.toString())
+                
+                // Add extra debugging - show what's actually saved
+                const savedValue = localStorage.getItem(`progress_${user.username}`)
+                console.log(`Verification - saved value: ${savedValue}`)
+                
                 alert(`Progress saved at image ${currentIndex + 1} of ${images.length}`)
+              } else {
+                console.error("Cannot save progress: user or username is missing", user)
+                alert("Error: Could not save progress. User data is missing.")
               }
             }}
             className="flex items-center gap-1"
