@@ -328,10 +328,28 @@ export default function ExpertFlagLabeler() {
     }
   }, []);
 
-  // Get the current image safely
+  // Get the current image safely with additional logging
   const currentImage = images && images.length > 0 && currentIndex < images.length 
     ? images[currentIndex] 
     : null;
+    
+  // Add detailed logging for image loading issues
+  useEffect(() => {
+    if (currentIndex >= 2) {
+      console.log(`Loading image at index ${currentIndex}:`, 
+        currentImage ? JSON.stringify(currentImage) : 'No image found');
+      
+      if (currentImage) {
+        console.log(`Image paths:`, {
+          path: currentImage.path,
+          composite_image: currentImage.composite_image,
+          has_composite: currentImage.has_composite
+        });
+      }
+      
+      console.log(`Total images available: ${images.length}`);
+    }
+  }, [currentIndex, currentImage, images.length]);
   
   const handlePrevious = () => {
     if (currentIndex > 0) {
@@ -790,6 +808,48 @@ export default function ExpertFlagLabeler() {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
+      {/* Debug panel for troubleshooting - only visible to Barry */}
+      {user?.username === "Barry" && (
+        <div className="bg-yellow-50 border border-yellow-200 p-4 mb-4 rounded-md">
+          <h3 className="font-bold text-yellow-800">Debug Information</h3>
+          <div className="text-sm mt-2">
+            <p>Current index: {currentIndex}</p>
+            <p>Total images: {images.length}</p>
+            <p>Current image: {currentImage ? `${currentImage.filename} (${currentImage.town})` : 'No image'}</p>
+            <p>User: {JSON.stringify(user)}</p>
+            <div className="mt-2">
+              <button 
+                className="bg-blue-500 text-white px-2 py-1 rounded text-xs mr-2"
+                onClick={() => {
+                  console.log("All images:", images);
+                  console.log("User object:", user);
+                  console.log("Current local storage:", {
+                    progress: localStorage.getItem(`progress_${user?.username}`),
+                    auth: localStorage.getItem('isAuthenticated'),
+                    user: localStorage.getItem('user')
+                  });
+                  alert("Debug info logged to console");
+                }}
+              >
+                Log Details
+              </button>
+              <button 
+                className="bg-red-500 text-white px-2 py-1 rounded text-xs"
+                onClick={() => {
+                  if (confirm("This will reset your progress. Continue?")) {
+                    localStorage.removeItem(`progress_${user?.username}`);
+                    setCurrentIndex(0);
+                    alert("Progress reset");
+                  }
+                }}
+              >
+                Reset Progress
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Add help button in header */}
       <div className="flex justify-between items-center mb-4">
         <div>

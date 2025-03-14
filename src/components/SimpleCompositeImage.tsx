@@ -10,6 +10,8 @@ interface SimpleCompositeImageProps {
 }
 
 export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, town }: SimpleCompositeImageProps) {
+  // Add logging to debug image loading
+  console.log('SimpleCompositeImage props:', { croppedSrc, compositeSrc, alt, town });
   // Function to generate paths with the composite_ prefix
   const getCompositePaths = () => {
     // Get town in consistent format
