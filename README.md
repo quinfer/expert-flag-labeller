@@ -1,23 +1,34 @@
 # Expert Flag Labeler
 
-A web application for expert classification and labeling of flags in Northern Ireland, designed for academic research purposes.
+A web application for expert-based hierarchical classification of flags in Northern Ireland, designed for academic research purposes.
 
-**IMPORTANT**: This repository contains **only code**, not image data. The images are derived from street-level imagery services with specific licensing restrictions and cannot be shared publicly.
+**IMPORTANT**: This repository contains **only code**, not image data. The images are derived from stree
+t-level imagery services with specific licensing restrictions and cannot be shared publicly.
 
 ## Project Overview
 
-This application allows authenticated experts to classify and categorize flags appearing in images from various locations. The data collected is stored in Supabase and will be used for academic research on flag displays and their contexts.
+This application allows authenticated experts to classify and categorize flags appearing in images from various locations across Northern Ireland. The collected data is stored in Supabase and will be used for academic research on flag displays and their contexts.
 
 ### Key Features
 
 - Secure expert authentication
 - Side-by-side image viewing that shows both the cropped flag and its original context
 - Image classification interface with zoom capabilities
-- Structured flag categorization system
+- Hierarchical flag categorization system
 - Review flagging for uncertain cases
-- Statistics tracking for labeling progress
+- Progress tracking for classification work
 - Reference examples for flag identification
 - Mobile-friendly responsive design
+
+## Documentation
+
+All project documentation is organized in the `docs` folder:
+
+- [Image Processing Guide](./docs/image_processing_guide.md) - Complete guide to image preparation, sampling and integration
+- [Deployment Instructions](./docs/deployment_instructions.md) - Steps to deploy the application
+- [Troubleshooting Guide](./docs/troubleshooting_guide.md) - Solutions for common issues
+- [Methodology](./docs/methodology.pdf) - Academic methodology behind the project
+- [Invitation Email](./docs/invitation_email.md) - Template for inviting experts
 
 ## Technology Stack
 
@@ -25,7 +36,7 @@ This application allows authenticated experts to classify and categorize flags a
 - **Styling**: Tailwind CSS with shadcn/ui components
 - **Database**: Supabase
 - **Deployment**: Vercel
-- **Image Processing**: Python with OpenCV and PIL
+- **Image Processing**: Python with PIL for preprocessing
 
 ## Getting Started
 
@@ -33,6 +44,7 @@ This application allows authenticated experts to classify and categorize flags a
 
 - Node.js 18.x or higher
 - npm or yarn
+- Python 3.6+ (for image preprocessing)
 - Supabase account and project
 
 ### Environment Setup
@@ -48,125 +60,58 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/your-username/flag-labeller.git
-   cd flag-labeller
+   git clone https://github.com/your-username/expert-flag-labeler.git
+   cd expert-flag-labeler
    ```
 
 2. Install dependencies
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
 3. Run the development server
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser
 
-5. (Optional) Preprocess images for classification
+## Quick Reference: Image Processing Workflow
+
+The complete workflow for preparing and serving images:
+
+1. **Preprocess images** with the Python script:
    ```bash
-   python scripts/prepare_images_for_classification.py --auto-threshold
+   python scripts/prepare_images_for_classification.py --side-by-side --copy-to-public
    ```
+
+2. **Generate image list** for the app:
+   ```bash
+   node scripts/generate-image-list.js
+   ```
+
+3. **Copy to static directory** for reliable serving:
+   ```bash
+   node scripts/copy-images-to-static.js
+   ```
+
+4. **Verify composite images** if needed:
+   ```bash
+   node scripts/verify-composite-images.js
+   ```
+
+For detailed options and explanations, see the [Image Processing Guide](./docs/image_processing_guide.md).
 
 ## Project Structure
 
-- `/src/app` - Next.js app router pages
-- `/src/components` - Reusable React components
+- `/src/app` - Next.js app router pages and API routes
+- `/src/components` - Reusable React components 
 - `/src/lib` - Utility functions and libraries
-- `/public` - Static assets including flag examples
-- `/scripts` - Python scripts for image preprocessing
-- `/data` - Data directory
+- `/public` - Static assets including processed images
+- `/scripts` - Python and JavaScript scripts for image preprocessing
+- `/data` - Data directory (not committed to repo)
   - `/data/true_positive_images` - Original images with bounding boxes
-  - `/data/cropped_images_for_classification` - Processed single-box images
-
-## Image Preprocessing
-
-The application includes a preprocessing pipeline to prepare multi-box flag images for classification. Since the classification interface is designed to handle one box per image, we use these scripts to intelligently crop and prepare images.
-
-### Scripts Location
-
-Preprocessing scripts are located in:
-- `/scripts/prepare_images_for_classification.py` - Standalone script for image preprocessing
-- `/scripts/image_viewer_app.py` - Optional GUI for viewing and exploring images with multiple bounding boxes
-
-### Preprocessing Workflow
-
-1. **Dataset Analysis**: Analyzes the dataset to gather statistics about box sizes, positions, and confidence scores
-2. **Intelligent Cropping**: Creates individual cropped images centered on each bounding box
-3. **Distant Flag Handling**: Special handling for small boxes that might be distant flags
-4. **Queue Generation**: Creates a JSON file with metadata for the classification app
-5. **Context Preservation**: Adds padding around boxes and highlights the detection area
-6. **Side-by-Side View**: Generates side-by-side composite images showing both the cropped flag and its original context
-
-### Running the Preprocessing Script
-
-```bash
-cd /Users/quinference/expert-flag-labeler
-python scripts/prepare_images_for_classification.py --stats --auto-threshold --side-by-side
-```
-
-#### Command-line Options
-
-- `--min-confidence FLOAT` - Minimum confidence score threshold (default: 0.3)
-- `--min-size FLOAT` - Minimum relative size as percentage of image (default: 0.005)
-- `--output-dir DIR` - Output directory for cropped images
-- `--queue-file FILE` - Output JSON file path
-- `--random-sample INT` - Randomly sample N images from each town
-- `--max-per-town INT` - Maximum number of images to process per town
-- `--auto-threshold` - Automatically adjust thresholds based on image analysis
-- `--highlight` - Highlight the bounding box in the cropped image
-- `--side-by-side` - Generate side-by-side composite images showing the flag and its context
-- `--stats` - Show detailed statistics about the dataset
-- `--debug` - Enable debug output
-
-### Output Files
-
-The preprocessing pipeline generates:
-- A directory of cropped images at `/data/cropped_images_for_classification/`
-- A JSON queue file at `/data/classification_queue.json`
-
-The Next.js app automatically uses this queue for classification.
-
-## Authentication
-
-The application uses a simple username/password authentication system with predefined expert accounts. In production, credentials are securely stored and not exposed in the codebase.
-
-## Data Model
-
-### Classifications
-
-Each classification includes:
-- Image identifier
-- Town/location
-- Primary flag category
-- Specific flag type
-- Display context
-- User context
-- Confidence level (1-5)
-- Expert identifier
-- Timestamp
-
-### Flag Categories
-
-Flags are organized into academic categories:
-- National
-- Fraternal
-- Sport
-- Military
-- Historical
-- International
-- Proscribed
-
-## API Routes
-
-- `/api/images-static` - Retrieves images for classification (now uses the classification queue from preprocessing)
-- `/api/classifications` - Handles saving and retrieving classifications
-- `/api/current-user` - Gets information about the current authenticated user
+  - `/data/cropped_images_for_classification` - Processed images
 
 ## System Architecture
 
@@ -181,27 +126,12 @@ graph TD
     F --> G[Supabase Database]
 ```
 
-## Deployment
-
-The application is deployed on Vercel and connected to a Supabase project for data storage.
-
-### Deployment Checklist
-
-1. Ensure all environment variables are set in Vercel
-2. Verify Supabase project is active (not paused)
-3. Check that authentication is working properly
-4. Confirm data is being saved correctly
-
-## Contributing
-
 ## License
 
 Code: MIT License
 
 Images: Not included in this repository. The images used with this application are derived from street-level imagery services and are subject to their respective licensing terms. These images cannot be shared or redistributed.
 
-## Image Licensing Information
-
-**Important**: This repository **DOES NOT** contain any image data. The application is designed to work with image data that must be acquired separately and with appropriate licensing. The `.gitignore` file is configured to prevent images from being committed to the repository.
-
 ## Acknowledgements
+
+This project is part of academic research on cultural symbols in Northern Ireland.

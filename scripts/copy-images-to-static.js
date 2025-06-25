@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import ProgressBar from 'progress';
 
 // Get current directory in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +20,38 @@ function shuffleArray(array) {
 
 // Source and destination paths
 const sourceDir = path.join(projectRoot, 'public', 'images');
+// Add this snippet to fix inconsistent town naming in paths
+const processSourceDir = (dir) => {
+  try {
+    // Get all town directories and normalize them
+    const towns = fs.readdirSync(dir)
+      .filter(item => fs.statSync(path.join(dir, item)).isDirectory())
+      .map(town => {
+        // Normalize town name: replace spaces with underscores and uppercase
+        return {
+          original: town,
+          normalized: town.replace(/ /g, '_').toUpperCase()
+        };
+      });
+    
+    console.log(`Found ${towns.length} towns in ${dir}`);
+    
+    // Create a map for quick lookups
+    const townMap = new Map();
+    towns.forEach(({ original, normalized }) => {
+      townMap.set(normalized, original);
+    });
+    
+    return townMap;
+  } catch (err) {
+    console.error(`Error processing directory ${dir}:`, err);
+    return new Map();
+  }
+};
+
+// Process the source directory to get a mapping of normalized town names to original ones
+const townMap = processSourceDir(sourceDir);
+console.log(`Town mapping created for ${townMap.size} towns`);
 const destDir = path.join(projectRoot, 'public', 'static');
 
 // Create destination directory if it doesn't exist
@@ -27,6 +60,43 @@ if (!fs.existsSync(destDir)) {
   console.log(`Created destination directory: ${destDir}`);
 }
 
+// Function to clean the destination directory before copying
+function cleanDestinationDirectory() {
+  try {
+    // Check if destination directory exists 
+    if (fs.existsSync(destDir)) {
+      console.log("Cleaning static directory to ensure only composite images remain...");
+      
+      // For each town subdirectory
+      const towns = fs.readdirSync(destDir).filter(item => 
+        fs.statSync(path.join(destDir, item)).isDirectory()
+      );
+      
+      let totalRemoved = 0;
+      
+      for (const town of towns) {
+        const townDir = path.join(destDir, town);
+        const files = fs.readdirSync(townDir);
+        
+        // Remove any non-composite files
+        for (const file of files) {
+          if (!file.startsWith('composite_') && !file.includes('_boxed')) {
+            fs.unlinkSync(path.join(townDir, file));
+            totalRemoved++;
+          }
+        }
+      }
+      
+      console.log(`Removed ${totalRemoved} non-composite images from static directory`);
+    }
+  } catch (error) {
+    console.error("Error cleaning destination directory:", error);
+  }
+}
+
+// Clean destination directory before copying
+cleanDestinationDirectory();
+
 // Function to copy a sample of images from each town
 function copySampleImages() {
   try {
@@ -34,8 +104,16 @@ function copySampleImages() {
     const towns = fs.readdirSync(sourceDir);
     console.log(`Found ${towns.length} towns in ${sourceDir}`);
     
+    // Create a progress bar for town processing
+    const townBar = new ProgressBar('Processing towns [:bar] :current/:total :percent :etas', {
+      complete: '=',
+      incomplete: ' ',
+      width: 30,
+      total: towns.length
+    });
+    
     // Define max images per town and total max images
-    const MAX_PER_TOWN = 50;  // Maximum images per town
+    const MAX_PER_TOWN = 100;  // Increased maximum images per town
     const MAX_TOTAL_IMAGES = 3000;  // Maximum total images (for Vercel limits)
     
     // Track statistics
@@ -51,6 +129,9 @@ function copySampleImages() {
     
     // Process each town
     for (const town of towns) {
+      // Update progress bar
+      townBar.tick({town: town});
+      
       const townSourceDir = path.join(sourceDir, town);
       const townDestDir = path.join(destDir, town);
       
@@ -69,32 +150,110 @@ function copySampleImages() {
         file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png')
       );
       
-      // Take either all images or the calculated number per town, whichever is smaller
-      // Prioritize composite images if they exist
-      let compositeImages = images.filter(img => img.startsWith('composite_'));
-      let regularImages = images.filter(img => !img.startsWith('composite_'));
+      // Group images by their base name (without the composite_ prefix)
+      // This ensures we keep pairs of regular and composite images together
+      const imageGroups = {};
       
-      // Shuffle the arrays to randomize selection
-      compositeImages = shuffleArray(compositeImages);
-      regularImages = shuffleArray(regularImages);
-      
-      // If we have composites, prioritize them, otherwise use regular images
-      let imagesToCopy = [];
-      
-      if (compositeImages.length > 0) {
-        // Take as many composites as we can up to the limit
-        imagesToCopy = compositeImages.slice(0, baseImagesPerTown);
-        
-        // If we still have room, add some regular images
-        if (imagesToCopy.length < baseImagesPerTown) {
-          imagesToCopy = imagesToCopy.concat(
-            regularImages.slice(0, baseImagesPerTown - imagesToCopy.length)
-          );
+      // Process all images and organize them into groups by base name
+      images.forEach(img => {
+        // Extract the base name, removing 'composite_' prefix if present
+        let baseName;
+        if (img.startsWith('composite_')) {
+          baseName = img.substring('composite_'.length);
+        } else {
+          baseName = img;
         }
-      } else {
-        // No composites, just take regular images
-        imagesToCopy = regularImages.slice(0, baseImagesPerTown);
-      }
+        
+        // Create group if it doesn't exist
+        if (!imageGroups[baseName]) {
+          imageGroups[baseName] = {
+            regular: null,
+            composite: null
+          };
+        }
+        
+        // Add to the appropriate slot
+        if (img.startsWith('composite_')) {
+          imageGroups[baseName].composite = img;
+        } else {
+          imageGroups[baseName].regular = img;
+        }
+      });
+      
+      // Convert to array of groups for easier processing
+      const groupsArray = Object.entries(imageGroups).map(([baseName, group]) => ({
+        baseName,
+        ...group
+      }));
+      
+      // Shuffle the groups for random selection
+      const shuffledGroups = shuffleArray(groupsArray);
+      
+      // Select up to baseImagesPerTown groups
+      const selectedGroups = shuffledGroups.slice(0, baseImagesPerTown);
+      
+      // Flatten into image list, keeping both regular and corresponding composite images
+      // This maintains the stratified random sample while ensuring composite images are available
+      let imagesToCopy = [];
+      selectedGroups.forEach(group => {
+        // For cropped images - BOTH multi-box crops AND images with boxes drawn
+        // These have either "_box{number}" OR "_boxed" in their filename
+        const isCroppedImage = group.regular && 
+                              (/_box\d+\.jpg$/.test(group.regular) || 
+                               group.regular.includes('_boxed'));
+                                 
+        if (isCroppedImage) {
+          // If we have a composite, always use that
+          if (group.composite) {
+            imagesToCopy.push(group.composite);
+            // Add original too for reference
+            imagesToCopy.push(group.regular);
+          } 
+          // If no composite but we have the boxed image, try harder to find it
+          else {
+            console.log(`Warning: Missing composite for cropped image ${group.regular} - searching harder`);
+            
+            // Add the regular image regardless
+            imagesToCopy.push(group.regular);
+            
+            // Attempt to create a composite filename and check if it exists elsewhere in the source dir
+            const possibleCompositeFilename = `composite_${group.regular}`;
+            const possibleCompositePath = path.join(townSourceDir, possibleCompositeFilename);
+            
+            if (fs.existsSync(possibleCompositePath)) {
+              console.log(`Found matching composite at ${possibleCompositePath}`);
+              imagesToCopy.push(possibleCompositeFilename);
+            } else {
+              // Try to find the composite in the data/cropped_images_for_classification directory
+              const croppedDir = path.join(projectRoot, 'data', 'cropped_images_for_classification', town);
+              if (fs.existsSync(croppedDir)) {
+                const altCompositePath = path.join(croppedDir, possibleCompositeFilename);
+                if (fs.existsSync(altCompositePath)) {
+                  console.log(`Found composite in cropped_images directory: ${altCompositePath}`);
+                  // Copy to the source dir first
+                  fs.copyFileSync(altCompositePath, possibleCompositePath);
+                  // Then add to images to copy
+                  imagesToCopy.push(possibleCompositeFilename);
+                } else {
+                  console.warn(`Could not find composite for ${group.regular} anywhere - app will fall back to cropped image`);
+                }
+              } else {
+                console.warn(`Could not find composite for ${group.regular} - app will fall back to cropped image`);
+              }
+            }
+          }
+        }
+        // For regular flagged images or boxed images (single flag case)
+        else {
+          // Add both regular and composite if they exist
+          if (group.regular) {
+            imagesToCopy.push(group.regular);
+          }
+          if (group.composite) {
+            imagesToCopy.push(group.composite);
+          }
+        }
+      });
       
       console.log(`Copying ${imagesToCopy.length} images from ${town}...`);
       
@@ -105,6 +264,14 @@ function copySampleImages() {
         console.log(`  Truncated to ${imagesToCopy.length} to stay under total limit`);
       }
       
+      // Create a progress bar for copying images in this town
+      const imageBar = new ProgressBar(`  ${town} [:bar] :current/:total :percent :etas`, {
+        complete: '=',
+        incomplete: ' ',
+        width: 20,
+        total: imagesToCopy.length
+      });
+      
       // Copy each sampled image
       for (const image of imagesToCopy) {
         const sourcePath = path.join(townSourceDir, image);
@@ -112,6 +279,7 @@ function copySampleImages() {
         
         fs.copyFileSync(sourcePath, destPath);
         totalCopied++;
+        imageBar.tick();
         
         // Stop if we've reached the total limit
         if (totalCopied >= MAX_TOTAL_IMAGES) {

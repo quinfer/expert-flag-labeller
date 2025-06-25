@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .test-case { margin-bottom: 30px; border: 1px solid #ddd; padding: 15px; }
+    h2 { margin-top: 0; }
+    .image-container { margin-top: 10px; }
+    .failed { color: red; }
+    .success { color: green; }
+    img { max-width: 300px; max-height: 300px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Flag Image Access Test</h1>
+  <p>This page tests different ways of loading the same image to diagnose path issues.</p>
+  
+  <div class="test-case">
+    <h2>Test 1: Full path from /images</h2>
+    <div>Path: <code>/images/ANTRIM/22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg</code></div>
+    <div class="image-container">
+      <img src="/images/ANTRIM/22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg" 
+           onload="this.parentNode.innerHTML += '<div class=\'success\'>✓ Image loaded successfully</div>'" 
+           onerror="this.parentNode.innerHTML += '<div class=\'failed\'>✗ Failed to load image</div>'">
+    </div>
+  </div>
+  
+  <div class="test-case">
+    <h2>Test 2: Relative path without leading slash</h2>
+    <div>Path: <code>images/ANTRIM/22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg</code></div>
+    <div class="image-container">
+      <img src="images/ANTRIM/22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg" 
+           onload="this.parentNode.innerHTML += '<div class=\'success\'>✓ Image loaded successfully</div>'" 
+           onerror="this.parentNode.innerHTML += '<div class=\'failed\'>✗ Failed to load image</div>'">
+    </div>
+  </div>
+  
+  <div class="test-case">
+    <h2>Test 3: With public in path</h2>
+    <div>Path: <code>/public/images/ANTRIM/22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg</code></div>
+    <div class="image-container">
+      <img src="/public/images/ANTRIM/22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg" 
+           onload="this.parentNode.innerHTML += '<div class=\'success\'>✓ Image loaded successfully</div>'" 
+           onerror="this.parentNode.innerHTML += '<div class=\'failed\'>✗ Failed to load image</div>'">
+    </div>
+  </div>
+  
+  <div class="test-case">
+    <h2>Test 4: Just filename</h2>
+    <div>Path: <code>22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg</code></div>
+    <div class="image-container">
+      <img src="22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg" 
+           onload="this.parentNode.innerHTML += '<div class=\'success\'>✓ Image loaded successfully</div>'" 
+           onerror="this.parentNode.innerHTML += '<div class=\'failed\'>✗ Failed to load image</div>'">
+    </div>
+  </div>
+  
+  <div class="test-case">
+    <h2>Test 5: With repo name</h2>
+    <div>Path: <code>/expert-flag-labeler/images/ANTRIM/22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg</code></div>
+    <div class="image-container">
+      <img src="/expert-flag-labeler/images/ANTRIM/22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg" 
+           onload="this.parentNode.innerHTML += '<div class=\'success\'>✓ Image loaded successfully</div>'" 
+           onerror="this.parentNode.innerHTML += '<div class=\'failed\'>✗ Failed to load image</div>'">
+    </div>
+  </div>
+  
+  <div class="test-case">
+    <h2>Test 6: Composite Image</h2>
+    <div>Path: <code>/images/ANTRIM/composite_22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg</code></div>
+    <div class="image-container">
+      <img src="/images/ANTRIM/composite_22GmnyT9QDWUQQSkBZvBgA_180_box0.jpg" 
+           onload="this.parentNode.innerHTML += '<div class=\'success\'>✓ Image loaded successfully</div>'" 
+           onerror="this.parentNode.innerHTML += '<div class=\'failed\'>✗ Failed to load image</div>'">
+    </div>
+  </div>
+  
+  <script>
+    // Log image load or error events
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('load', () => {
+        console.log(`SUCCESS: Image loaded: ${img.src}`);
+      });
+      img.addEventListener('error', () => {
+        console.error(`FAILED: Image failed to load: ${img.src}`);
+      });
+    });
+  </script>
+</body>
+</html>

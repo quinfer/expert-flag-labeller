@@ -1,32 +1,31 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
-import fs from 'fs';
-import path from 'path';
-
-// Path to the classification queue file
-const QUEUE_FILE = path.join(process.cwd(), 'data', 'classification_queue.json');
 
 export async function GET() {
   try {
-    // Check if queue file exists
-    if (!fs.existsSync(QUEUE_FILE)) {
+    // Fetch images from Supabase instead of filesystem
+    const { data: images, error, count } = await supabase
+      .from('image_metadata')
+      .select('*', { count: 'exact' })
+      .limit(3000);
+      
+    if (error) {
+      console.error("Error fetching images from Supabase:", error.message);
       return NextResponse.json({ 
-        error: 'Image queue file not found',
+        error: error.message,
         images: []
-      }, { status: 404 });
+      }, { status: 500 });
     }
-    
-    // Read and parse the queue file
-    const queueData = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf8'));
     
     // Return the images array
     return NextResponse.json({
-      images: queueData.images || [],
-      metadata: queueData.metadata || {}
+      images: images || [],
+      metadata: {
+        total_images: count || images?.length || 0
+      }
     });
-    
   } catch (error) {
-    console.error('Error loading image queue:', error);
+    console.error('Error loading images:', error);
     return NextResponse.json({ 
       error: error.message || 'Failed to load images',
       images: []
@@ -40,7 +39,7 @@ export async function POST(request) {
     console.log('Received POST body:', JSON.stringify(body, null, 2));
     
     if (body.action === 'save') {
-      // Convert camelCase to snake_case for database
+      // Map to actual column names from Supabase response
       const classification = {
         image_id: body.classification.imageId,
         town: body.classification.town,
@@ -49,11 +48,9 @@ export async function POST(request) {
         specific_flag: body.classification.specificFlag,
         confidence: body.classification.confidence,
         expert_id: body.classification.expertId || 'anonymous',
-        // Match the actual database schema
-        user_content: body.classification.userContent || null,
         needs_review: body.classification.needsReview || false,
         review_reason: body.classification.reviewReason,
-        timestamp: new Date().toISOString()
+        user_content: body.classification.userContent || body.classification.notes
       };
       
       console.log('Saving classification to Supabase:', classification);
@@ -88,7 +85,6 @@ export async function POST(request) {
       let flagResult = null;
       
       try {
-        // Use .single() instead of .maybeSingle() to handle the "multiple rows" issue
         // First get all matching rows
         const { data: allMatches, error: fetchError } = await supabase
           .from('classifications')
@@ -101,7 +97,7 @@ export async function POST(request) {
         
         // Get the most recent record if multiple exist
         const existingData = allMatches && allMatches.length > 0 
-          ? allMatches.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0]
+          ? allMatches.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0]
           : null;
           
         console.log(`Found ${allMatches?.length || 0} matches for image ${body.imageId}`);
@@ -134,8 +130,7 @@ export async function POST(request) {
               review_reason: body.reason || 'Flagged for review',
               expert_id: body.expertId || 'anonymous',
               primary_category: 'Review',
-              town: body.town || 'Unknown', // Add town field
-              timestamp: new Date().toISOString()
+              town: body.town || 'Unknown'
             }])
             .select();
             

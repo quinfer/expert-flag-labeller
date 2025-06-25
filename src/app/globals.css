@@ -80,3 +80,69 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* For BoundedFlagImage component */
+.flag-image-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #666;
+}
+
+.image-metadata {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.distance-hint {
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: #f8f9fa;
+  border-left: 3px solid #6c757d;
+  font-size: 0.875rem;
+}
+
+.image-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.half-width {
+  flex: 1;
+  min-width: 200px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.context-image {
+  position: relative;
+  border: 1px dashed #999;
+}
+
+.context-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+}

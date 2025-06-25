@@ -39,6 +39,7 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 from datetime import datetime
 import shutil
+import tqdm  # Import tqdm for progress bars
 
 # Base directories
 BASE_DIR = "data"
@@ -61,6 +62,8 @@ def parse_arguments():
                         help="Randomly sample N images from each town")
     parser.add_argument("--max-per-town", type=int,
                         help="Maximum number of images to process per town")
+    parser.add_argument("--town", type=str,
+                        help="Process a specific town only")
     parser.add_argument("--auto-threshold", action="store_true",
                         help="Automatically adjust thresholds based on image analysis")
     parser.add_argument("--highlight", action="store_true", default=True,
@@ -317,9 +320,19 @@ def prepare_images_for_classification(args):
     if not args.no_clean:
         clean_output_directory(args.output_dir)
     
-    # Get all towns
-    towns = [d for d in os.listdir(TRUE_POSITIVE_DIR) 
-            if os.path.isdir(os.path.join(TRUE_POSITIVE_DIR, d))]
+    # Get towns to process
+    if args.town:
+        # Process only the specified town if it exists
+        if os.path.isdir(os.path.join(TRUE_POSITIVE_DIR, args.town)):
+            towns = [args.town]
+            print(f"Processing single town: {args.town}")
+        else:
+            print(f"Error: Town '{args.town}' not found in {TRUE_POSITIVE_DIR}")
+            return []
+    else:
+        # Process all towns if no specific town is specified
+        towns = [d for d in os.listdir(TRUE_POSITIVE_DIR) 
+                if os.path.isdir(os.path.join(TRUE_POSITIVE_DIR, d))]
     
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
@@ -345,7 +358,8 @@ def prepare_images_for_classification(args):
     print(f"Processing images with min_confidence={args.min_confidence} and min_size={args.min_size}...")
     
     # Process each town
-    for town in towns:
+    print(f"Processing {len(towns)} towns...")
+    for town in tqdm.tqdm(towns, desc="Processing towns", unit="town"):
         town_dir = os.path.join(TRUE_POSITIVE_DIR, town)
         bbox_file = os.path.join(town_dir, f"true_positive_bboxes_hf_{town}.json")
         
@@ -374,67 +388,29 @@ def prepare_images_for_classification(args):
                     print(f"Adding specific test image to the selection: {specific_test_image}")
                     image_names.insert(0, specific_test_image)
             
+            # Progress bar for images in this town
+            town_progress = tqdm.tqdm(
+                image_names,
+                desc=f"Processing {town} ({len(image_names)} images)",
+                unit="img",
+                leave=False
+            )
+            
             # Process each image
-            for image_name in image_names:
+            for image_name in town_progress:
                 # Check if we've reached the max per town limit
                 if args.max_per_town and processed_counts[town] >= args.max_per_town:
                     break
                 
+                # Update progress bar description with current progress
+                town_progress.set_description(
+                    f"Processing {town} ({processed_counts[town]}/{len(image_names) if not args.max_per_town else min(len(image_names), args.max_per_town)} images)"
+                )
+                
                 detections = bbox_data[image_name]
                 image_path = os.path.join(town_dir, image_name)
                 
-                # For single-box images, draw bounding box on the original image
-                if len(detections) == 1:
-                    try:
-                        # Draw box on the image
-                        boxed_path = draw_boxes_on_image(image_path, detections, args)
-                        
-                        # Copy to public directory if requested
-                        web_path = copy_to_public_dir(boxed_path, town, args)
-                        original_web_path = copy_to_public_dir(image_path, town, args)
-                        
-                        # Add to classification queue
-                        classification_queue.append({
-                            'town': town,
-                            'original_image': original_web_path,
-                            'boxed_image': web_path,
-                            'filename': os.path.basename(boxed_path),
-                            'box_index': 0,
-                            'confidence': detections[0]['confidence'],
-                            'box': detections[0]['box'],
-                            'is_cropped': False,
-                            'has_box_drawn': True,
-                            'distance_hint': 'Single detection'
-                        })
-                        
-                        processed_counts[town] += 1
-                        total_boxes_processed += 1
-                        
-                        if args.debug:
-                            print(f"Added single-box image: {boxed_path}")
-                        
-                    except Exception as e:
-                        print(f"Error processing single-box image {image_path}: {e}")
-                        # Fallback to original approach if processing fails
-                        web_path = copy_to_public_dir(image_path, town, args)
-                        classification_queue.append({
-                            'town': town,
-                            'original_image': web_path,
-                            'filename': image_name,
-                            'box_index': 0,
-                            'confidence': detections[0]['confidence'],
-                            'box': detections[0]['box'],
-                            'is_cropped': False,
-                            'has_box_drawn': False,
-                            'distance_hint': 'Single detection'
-                        })
-                        
-                        processed_counts[town] += 1
-                        total_boxes_processed += 1
-                    
-                    continue
-                
-                # For multi-box images, process each box
+                # Process all images with the same cropping logic (both single-box and multi-box)
                 try:
                     image = Image.open(image_path)
                     img_width, img_height = image.size
@@ -482,10 +458,11 @@ def prepare_images_for_classification(args):
                         if position_factor > 0.7:  # If in top 30% of image
                             min_size_threshold = args.min_size * 0.5  # 50% more lenient
                         
-                        # Skip low confidence or extremely small boxes that aren't high in the image
-                        if confidence < args.min_confidence or adjusted_size < min_size_threshold:
+                        # Less restrictive filtering to ensure we get enough samples
+                        # Skip only very low confidence boxes
+                        if confidence < 0.25:  # Lower threshold from 0.3 to 0.25
                             if args.debug:
-                                print(f"Skipping box {i} in {image_path}: confidence={confidence:.2f}, size={relative_size:.5f}, position={position_factor:.2f}")
+                                print(f"Skipping low confidence box {i} in {image_path}: confidence={confidence:.2f}")
                             continue
                         
                         # Create a cropped image with padding
@@ -591,6 +568,7 @@ def prepare_images_for_classification(args):
                         
                         # Copy to public directory
                         cropped_web_path = copy_to_public_dir(crop_path, town, args)
+                        original_web_path = copy_to_public_dir(image_path, town, args)
                         
                         # Create side-by-side view if requested
                         composite_web_path = None
@@ -604,7 +582,7 @@ def prepare_images_for_classification(args):
                         # Add to classification queue
                         item = {
                             'town': town,
-                            'original_image': cropped_web_path,
+                            'original_image': original_web_path,
                             'cropped_image': cropped_web_path,
                             'filename': crop_filename,
                             'box_index': i,
@@ -614,7 +592,7 @@ def prepare_images_for_classification(args):
                             'box': box,
                             'is_cropped': True,
                             'has_box_drawn': True,
-                            'distance_hint': distance_hint
+                            'distance_hint': distance_hint if len(detections) > 1 else 'Single detection'
                         }
                         
                         # Add the composite image path if it was created
@@ -806,12 +784,27 @@ def create_side_by_side_image(cropped_path, original_path, box, output_path):
         orig_width, orig_height = original_img.size
         
         # Calculate new dimensions
-        # Make the original image the same height as the cropped for side-by-side
-        new_orig_height = crop_height
+        # Determine the best height for the side-by-side display
+        # Use the larger of the two heights to prevent downscaling the original
+        target_height = max(crop_height, min(600, orig_height))
+        
+        # Scale cropped image if needed
+        if crop_height != target_height:
+            new_crop_width = int(crop_width * (target_height / crop_height))
+            cropped_img = cropped_img.resize((new_crop_width, target_height), Image.LANCZOS)
+            crop_width, crop_height = cropped_img.size
+            
+        # Scale original image proportionally, maintaining aspect ratio
+        new_orig_height = target_height
         new_orig_width = int(orig_width * (new_orig_height / orig_height))
         
-        # Resize original image
-        resized_orig = original_img.resize((new_orig_width, new_orig_height), Image.LANCZOS)
+        # Only resize if absolutely necessary (if original is very large)
+        if orig_height > target_height:
+            resized_orig = original_img.resize((new_orig_width, new_orig_height), Image.LANCZOS)
+        else:
+            # Use original image without resizing
+            resized_orig = original_img
+            new_orig_width, new_orig_height = orig_width, orig_height
         
         # Create a new image wide enough for both
         total_width = crop_width + new_orig_width + 20  # 20px padding
@@ -911,4 +904,4 @@ def main():
     print(f"Generated {len(classification_queue)} images for classification")
 
 if __name__ == "__main__":
-    main() 
+    main()

@@ -1,6 +1,7 @@
 'use client';
 
-// No state management needed
+import { getImageUrl } from '@/lib/supabase';
+import { useState } from 'react';
 
 interface SimpleCompositeImageProps {
   croppedSrc: string;
@@ -10,69 +11,125 @@ interface SimpleCompositeImageProps {
 }
 
 export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, town }: SimpleCompositeImageProps) {
-  // Add logging to debug image loading
-  console.log('SimpleCompositeImage props:', { croppedSrc, compositeSrc, alt, town });
-  // Function to generate paths with the composite_ prefix
+  const [imagePath, setImagePath] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [fallbackCount, setFallbackCount] = useState(0);
+  
+  // Generate image paths once on component mount
   const getCompositePaths = () => {
-    // Get town in consistent format
     const townSegment = town.replace(/ /g, '_').toUpperCase();
     
-    // Extract filename from path
+    // Check if we're already using a Supabase URL
+    const isSupabaseUrl = croppedSrc.includes('supabase') && croppedSrc.includes('/storage/');
+    
+    // Extract filename from path (handle both Supabase URLs and local paths)
     const pathParts = croppedSrc.split('/');
     const filename = pathParts[pathParts.length - 1];
     
-    // Ensure we have a composite_ prefix version
-    const compositeFilename = filename.startsWith('composite_') 
-      ? filename 
-      : `composite_${filename}`;
+    // Check if we already have a specific compositeSrc provided
+    if (compositeSrc) {
+      // If we have a direct composite src, use it first
+      return [compositeSrc, croppedSrc]; // Also try the original as fallback
+    }
+    
+    // Detect if this is a cropped image that needs a composite
+    const isBoxed = filename.includes('_boxed');
+    const isBoxCropped = /_box\d+\.jpg$/.test(filename); // Matches _box0.jpg, _box1.jpg etc.
+    
+    // BOTH multi-box crops AND boxed images should show composite views for context
+    const needsComposite = isBoxCropped || isBoxed;
+    
+    if (needsComposite) {
+      // Create the composite filename
+      const compositeFilename = `composite_${filename}`;
       
-    // Return paths in order of priority
-    return [
-      `/static/${townSegment}/${compositeFilename}`,
-      `static/${townSegment}/${compositeFilename}`,
-      `/images/${townSegment}/${compositeFilename}`,
-      compositeSrc || ''
-    ].filter(p => p); // Filter out empty strings
+      // Generate Supabase Storage URL if we're using Supabase
+      if (isSupabaseUrl) {
+        // If the URL is from Supabase, extract the town and filename
+        // and generate a new URL for the composite version
+        return [
+          // Replace the filename portion with the composite filename
+          croppedSrc.replace(filename, compositeFilename)
+        ];
+      }
+      
+      // Otherwise, generate the composite URL from parameters
+      const compositeUrl = getImageUrl(`${townSegment}/${compositeFilename}`);
+      const originalSupabaseUrl = getImageUrl(`${townSegment}/${filename}`);
+      
+      // For local development, prioritize direct paths over Supabase URLs
+      const isDevelopment = !isSupabaseUrl && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      
+      if (isDevelopment) {
+        // In development, use direct paths first
+        return [
+          croppedSrc, // Original path provided by API
+          compositeSrc || `${croppedSrc.replace(filename, `composite_${filename}`)}` // Try to construct composite path
+        ].filter(Boolean);
+      } else {
+        // In production, use Supabase URLs
+        return [
+          compositeUrl,
+          originalSupabaseUrl,
+          croppedSrc // Fallback to original sources
+        ].filter(Boolean);
+      }
+    } else {
+      // For regular images (not from multi-box detections),
+      // prioritize direct paths in development
+      const isDevelopment = !isSupabaseUrl && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      
+      if (isDevelopment) {
+        return [croppedSrc]; // Use the direct path provided
+      } else if (isSupabaseUrl) {
+        return [croppedSrc];
+      } else {
+        const supabaseUrl = getImageUrl(`${townSegment}/${filename}`);
+        return [supabaseUrl, croppedSrc];
+      }
+    }
   };
   
   // Get all possible paths
   const compositePaths = getCompositePaths();
-  const imagePath = compositePaths[0];
+  
+  // Initialize image path
+  if (isLoading && compositePaths.length > 0) {
+    setImagePath(compositePaths[0]);
+    setIsLoading(false);
+  }
   
   // Error handler for image loading
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    const currentSrc = img.src;
-    console.error(`Failed to load image: ${currentSrc}`);
     
-    // Find the next path to try
-    const currentPathIndex = compositePaths.findIndex(p => 
-      currentSrc.includes(p) || p.includes(currentSrc.split('/').pop() || '')
-    );
-    
-    if (currentPathIndex < compositePaths.length - 1) {
-      // Try the next path
-      const nextPath = compositePaths[currentPathIndex + 1];
-      console.log(`Trying next path: ${nextPath}`);
-      img.src = nextPath;
+    // Try next path if available
+    if (fallbackCount < compositePaths.length - 1) {
+      const nextIndex = fallbackCount + 1;
+      const nextPath = compositePaths[nextIndex];
+      setFallbackCount(nextIndex);
+      setImagePath(nextPath);
+      console.log(`Image load error, trying fallback #${nextIndex}: ${nextPath}`);
     } else {
       // We've tried all paths, use a fallback sample image
-      console.log('All paths failed, using sample image');
       const sampleImages = [
         'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
         'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
         'https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg'
       ];
       
-      // Pick a sample based on the filename hash for consistency
-      const nameHash = croppedSrc.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      // Pick a sample based on the town name for consistency
+      const nameHash = town.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
       const sampleIndex = nameHash % sampleImages.length;
-      img.src = sampleImages[sampleIndex];
       
-      // Add an indicator that this is a sample image
-      const parent = img.parentNode;
-      if (parent) {
+      console.log(`All image paths failed, using sample image #${sampleIndex}`);
+      setImagePath(sampleImages[sampleIndex]);
+      
+      // Add an error marker to the image container
+      const parent = img.parentNode as HTMLElement;
+      if (parent && !parent.querySelector('.image-error-indicator')) {
         const textNode = document.createElement('div');
+        textNode.className = 'image-error-indicator';
         textNode.style.position = 'absolute';
         textNode.style.bottom = '10px';
         textNode.style.left = '0';
@@ -104,7 +161,7 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
           position: 'relative'
         }}
       >
-        {/* Always show the composite image at full size */}
+        {/* Show the image */}
         <img
           src={imagePath}
           alt={alt}

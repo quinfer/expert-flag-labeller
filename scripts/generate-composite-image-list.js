@@ -57,20 +57,10 @@ function generateCompositeImageList() {
       fs.mkdirSync(dataDir, { recursive: true });
     }
     
-    // Write to a JSON file
+    // Write to a JSON file only
     fs.writeFileSync(
       path.join(dataDir, 'static-images.json'),
       JSON.stringify(imageList, null, 2)
-    );
-    
-    // Also output as JavaScript code for direct inclusion
-    const jsOutput = `// Auto-generated image list with composite images
-export const staticImages = ${JSON.stringify(imageList, null, 2)};
-`;
-    
-    fs.writeFileSync(
-      path.join(dataDir, 'static-images.js'),
-      jsOutput
     );
     
     const compositesCount = imageList.filter(img => img.has_composite).length;
