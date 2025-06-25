@@ -17,89 +17,32 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
   
   // Generate image paths once on component mount
   const getCompositePaths = () => {
-    const townSegment = town.replace(/ /g, '_').toUpperCase();
+    // PRODUCTION FIX: If we have a compositeSrc, it's likely from production API
+    // Just use it directly without any complex logic
+    if (compositeSrc && (compositeSrc.includes('supabase') || compositeSrc.includes('http'))) {
+      return [compositeSrc, croppedSrc];
+    }
     
-    // Check if we're already using a Supabase URL
-    const isSupabaseUrl = croppedSrc.includes('supabase') || croppedSrc.includes('/storage/v1/object/public/');
+    // If croppedSrc is already a full URL (production), use it directly
+    if (croppedSrc && (croppedSrc.includes('supabase') || croppedSrc.startsWith('http'))) {
+      return [croppedSrc];
+    }
+    
+    const townSegment = town.replace(/ /g, '_').toUpperCase();
     
     // Extract filename from path (handle both Supabase URLs and local paths)
     const pathParts = croppedSrc.split('/');
     const filename = pathParts[pathParts.length - 1];
     
-    // Check if we already have a specific compositeSrc provided
-    if (compositeSrc) {
-      // If we have a direct composite src, use it first
-      return [compositeSrc, croppedSrc]; // Also try the original as fallback
-    }
+    // For local development only
+    const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     
-    // Detect if this is a cropped image that needs a composite
-    const isBoxed = filename.includes('_boxed');
-    const isBoxCropped = /_box\d+\.jpg$/.test(filename); // Matches _box0.jpg, _box1.jpg etc.
-    
-    // BOTH multi-box crops AND boxed images should show composite views for context
-    const needsComposite = isBoxCropped || isBoxed;
-    
-    if (needsComposite) {
-      // Create the composite filename
-      const compositeFilename = `composite_${filename}`;
-      
-      // Generate Supabase Storage URL if we're using Supabase
-      if (isSupabaseUrl) {
-        // If the URL is from Supabase, extract the town and filename
-        // and generate a new URL for the composite version
-        return [
-          // Replace the filename portion with the composite filename
-          croppedSrc.replace(filename, compositeFilename)
-        ];
-      }
-      
-      // Otherwise, generate the composite URL from parameters
-      const compositeUrl = getImageUrl(`${townSegment}/${compositeFilename}`);
-      const originalSupabaseUrl = getImageUrl(`${townSegment}/${filename}`);
-      
-      // If we already have Supabase URLs from production API, use them directly
-      if (isSupabaseUrl) {
-        return [
-          croppedSrc, // This is already a full Supabase URL
-          compositeSrc // If provided, also a Supabase URL
-        ].filter(Boolean);
-      }
-      
-      // For local development with local paths
-      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      
-      if (isDevelopment) {
-        // In development, use direct paths first
-        return [
-          croppedSrc, // Original path provided by API
-          compositeSrc || `${croppedSrc.replace(filename, `composite_${filename}`)}` // Try to construct composite path
-        ].filter(Boolean);
-      } else {
-        // In production but with local paths (shouldn't happen, but fallback)
-        return [
-          compositeUrl,
-          originalSupabaseUrl,
-          croppedSrc // Fallback to original sources
-        ].filter(Boolean);
-      }
+    if (isDevelopment) {
+      // Local development paths
+      return [croppedSrc, compositeSrc].filter(Boolean);
     } else {
-      // For regular images (not from multi-box detections)
-      
-      // If already a Supabase URL, use it directly
-      if (isSupabaseUrl) {
-        return [croppedSrc];
-      }
-      
-      // Check if development
-      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      
-      if (isDevelopment) {
-        return [croppedSrc]; // Use the direct path provided
-      } else {
-        // In production with local paths, generate Supabase URL
-        const supabaseUrl = getImageUrl(`${townSegment}/${filename}`);
-        return [supabaseUrl, croppedSrc];
-      }
+      // This shouldn't happen in production, but as fallback
+      return [croppedSrc];
     }
   };
   
