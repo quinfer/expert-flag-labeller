@@ -54,14 +54,49 @@ Create a `.env.local` file in the root directory with the following variables:
 ```
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_KEY=your_supabase_service_key
+NEXT_PUBLIC_STORAGE_BUCKET=flag-images
 ```
 
-### Installation
+### Development on New Machine
+
+**Recommended approach for setting up development on a new machine:**
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/quinfer/expert-flag-labeller.git
+   cd expert-flag-labeller
+   npm install
+   ```
+
+2. **Add environment variables**
+   Create `.env.local` with your Supabase credentials (see above)
+
+3. **Start development**
+   ```bash
+   npm run dev
+   ```
+
+**What to expect:**
+- ✅ App loads and runs on new machine
+- ✅ Uses external images as fallback during development
+- ✅ Connects to same Supabase database for classifications
+- ✅ No need to transfer local images initially
+
+**Development workflow:**
+- Make and test changes locally
+- Images will load from Supabase Storage in production
+- Deploy to production platform when ready
+- No duplicate image storage required
+
+### Local Installation (Full Setup)
+
+If you need the complete local setup with images:
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/your-username/expert-flag-labeler.git
-   cd expert-flag-labeler
+   git clone https://github.com/quinfer/expert-flag-labeller.git
+   cd expert-flag-labeller
    ```
 
 2. Install dependencies
@@ -69,12 +104,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    npm install
    ```
 
-3. Run the development server
+3. Set up environment variables (see Environment Setup above)
+
+4. Run the development server
    ```bash
    npm run dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser
+5. Open [http://localhost:3000](http://localhost:3000) with your browser
 
 ## Quick Reference: Image Processing Workflow
 
