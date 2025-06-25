@@ -20,7 +20,7 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
     const townSegment = town.replace(/ /g, '_').toUpperCase();
     
     // Check if we're already using a Supabase URL
-    const isSupabaseUrl = croppedSrc.includes('supabase') && croppedSrc.includes('/storage/');
+    const isSupabaseUrl = croppedSrc.includes('supabase') || croppedSrc.includes('/storage/v1/object/public/');
     
     // Extract filename from path (handle both Supabase URLs and local paths)
     const pathParts = croppedSrc.split('/');
@@ -57,8 +57,16 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
       const compositeUrl = getImageUrl(`${townSegment}/${compositeFilename}`);
       const originalSupabaseUrl = getImageUrl(`${townSegment}/${filename}`);
       
-      // For local development, prioritize direct paths over Supabase URLs
-      const isDevelopment = !isSupabaseUrl && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      // If we already have Supabase URLs from production API, use them directly
+      if (isSupabaseUrl) {
+        return [
+          croppedSrc, // This is already a full Supabase URL
+          compositeSrc // If provided, also a Supabase URL
+        ].filter(Boolean);
+      }
+      
+      // For local development with local paths
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       
       if (isDevelopment) {
         // In development, use direct paths first
@@ -67,7 +75,7 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
           compositeSrc || `${croppedSrc.replace(filename, `composite_${filename}`)}` // Try to construct composite path
         ].filter(Boolean);
       } else {
-        // In production, use Supabase URLs
+        // In production but with local paths (shouldn't happen, but fallback)
         return [
           compositeUrl,
           originalSupabaseUrl,
@@ -75,15 +83,20 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
         ].filter(Boolean);
       }
     } else {
-      // For regular images (not from multi-box detections),
-      // prioritize direct paths in development
-      const isDevelopment = !isSupabaseUrl && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      // For regular images (not from multi-box detections)
+      
+      // If already a Supabase URL, use it directly
+      if (isSupabaseUrl) {
+        return [croppedSrc];
+      }
+      
+      // Check if development
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       
       if (isDevelopment) {
         return [croppedSrc]; // Use the direct path provided
-      } else if (isSupabaseUrl) {
-        return [croppedSrc];
       } else {
+        // In production with local paths, generate Supabase URL
         const supabaseUrl = getImageUrl(`${townSegment}/${filename}`);
         return [supabaseUrl, croppedSrc];
       }
