@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SimpleCompositeImageProps {
   croppedSrc: string;
@@ -11,28 +11,27 @@ interface SimpleCompositeImageProps {
 
 export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, town }: SimpleCompositeImageProps) {
   const [hasError, setHasError] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState(compositeSrc || croppedSrc);
+  const [attemptedSrcs, setAttemptedSrcs] = useState<Set<string>>(new Set());
+
+  // Determine which source to use
+  const primarySrc = compositeSrc || croppedSrc;
+
+  // Reset error state when props change
+  useEffect(() => {
+    setHasError(false);
+  }, [croppedSrc, compositeSrc]);
 
   // Debug logging
   console.log('SimpleCompositeImage:', {
     croppedSrc,
     compositeSrc,
-    currentSrc,
+    primarySrc,
     hasError
   });
 
   const handleError = () => {
-    console.log(`Image failed to load: ${currentSrc}`);
-    
-    if (currentSrc === compositeSrc && croppedSrc !== compositeSrc) {
-      // Try the cropped source as fallback
-      console.log(`Trying fallback: ${croppedSrc}`);
-      setCurrentSrc(croppedSrc);
-    } else {
-      // All attempts failed
-      console.log('All image sources failed, showing error state');
-      setHasError(true);
-    }
+    console.log(`Image failed to load: ${primarySrc}`);
+    setHasError(true);
   };
 
   if (hasError) {
@@ -54,7 +53,7 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
         >
           <p className="text-red-500 font-medium">Image could not be loaded</p>
           <p className="text-sm text-gray-500 mt-2">
-            {currentSrc}
+            {primarySrc}
           </p>
         </div>
       </div>
@@ -78,7 +77,7 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
         }}
       >
         <img
-          src={currentSrc}
+          src={primarySrc}
           alt={alt}
           style={{
             maxWidth: '100%',
