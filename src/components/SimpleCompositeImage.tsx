@@ -1,6 +1,5 @@
 'use client';
 
-import { getImageUrl } from '@/lib/supabase';
 import { useState } from 'react';
 
 interface SimpleCompositeImageProps {
@@ -11,98 +10,59 @@ interface SimpleCompositeImageProps {
 }
 
 export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, town }: SimpleCompositeImageProps) {
-  const [imagePath, setImagePath] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(true);
-  const [fallbackCount, setFallbackCount] = useState(0);
-  
-  // Generate image paths once on component mount
-  const getCompositePaths = () => {
-    // PRODUCTION FIX: If we have a compositeSrc, it's likely from production API
-    // Just use it directly without any complex logic
-    if (compositeSrc && (compositeSrc.includes('supabase') || compositeSrc.includes('http'))) {
-      return [compositeSrc, croppedSrc];
-    }
+  const [hasError, setHasError] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(compositeSrc || croppedSrc);
+
+  // Debug logging
+  console.log('SimpleCompositeImage:', {
+    croppedSrc,
+    compositeSrc,
+    currentSrc,
+    hasError
+  });
+
+  const handleError = () => {
+    console.log(`Image failed to load: ${currentSrc}`);
     
-    // If croppedSrc is already a full URL (production), use it directly
-    if (croppedSrc && (croppedSrc.includes('supabase') || croppedSrc.startsWith('http'))) {
-      return [croppedSrc];
-    }
-    
-    const townSegment = town.replace(/ /g, '_').toUpperCase();
-    
-    // Extract filename from path (handle both Supabase URLs and local paths)
-    const pathParts = croppedSrc.split('/');
-    const filename = pathParts[pathParts.length - 1];
-    
-    // For local development only
-    const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    
-    if (isDevelopment) {
-      // Local development paths
-      return [croppedSrc, compositeSrc].filter(Boolean);
+    if (currentSrc === compositeSrc && croppedSrc !== compositeSrc) {
+      // Try the cropped source as fallback
+      console.log(`Trying fallback: ${croppedSrc}`);
+      setCurrentSrc(croppedSrc);
     } else {
-      // This shouldn't happen in production, but as fallback
-      return [croppedSrc];
-    }
-  };
-  
-  // Get all possible paths
-  const compositePaths = getCompositePaths();
-  
-  // Initialize image path
-  if (isLoading && compositePaths.length > 0) {
-    setImagePath(compositePaths[0]);
-    setIsLoading(false);
-  }
-  
-  // Error handler for image loading
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    
-    // Try next path if available
-    if (fallbackCount < compositePaths.length - 1) {
-      const nextIndex = fallbackCount + 1;
-      const nextPath = compositePaths[nextIndex];
-      setFallbackCount(nextIndex);
-      setImagePath(nextPath);
-      console.log(`Image load error, trying fallback #${nextIndex}: ${nextPath}`);
-    } else {
-      // We've tried all paths, use a fallback sample image
-      const sampleImages = [
-        'https://quinfer.github.io/flag-examples/union-jack/example1.jpg',
-        'https://quinfer.github.io/flag-examples/ulster-banner/example1.jpg',
-        'https://quinfer.github.io/flag-examples/irish-tricolour/example1.jpg'
-      ];
-      
-      // Pick a sample based on the town name for consistency
-      const nameHash = town.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-      const sampleIndex = nameHash % sampleImages.length;
-      
-      console.log(`All image paths failed, using sample image #${sampleIndex}`);
-      setImagePath(sampleImages[sampleIndex]);
-      
-      // Add an error marker to the image container
-      const parent = img.parentNode as HTMLElement;
-      if (parent && !parent.querySelector('.image-error-indicator')) {
-        const textNode = document.createElement('div');
-        textNode.className = 'image-error-indicator';
-        textNode.style.position = 'absolute';
-        textNode.style.bottom = '10px';
-        textNode.style.left = '0';
-        textNode.style.right = '0';
-        textNode.style.textAlign = 'center';
-        textNode.style.background = 'rgba(0, 0, 0, 0.7)';
-        textNode.style.color = 'white';
-        textNode.style.padding = '5px';
-        textNode.innerText = '⚠️ Sample image shown (original not available)';
-        parent.appendChild(textNode);
-      }
+      // All attempts failed
+      console.log('All image sources failed, showing error state');
+      setHasError(true);
     }
   };
 
+  if (hasError) {
+    return (
+      <div className="simple-composite-image-container">
+        <div 
+          className="image-container" 
+          style={{ 
+            width: '100%', 
+            height: '450px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#f0f0f0',
+            borderRadius: '2px',
+            position: 'relative',
+            flexDirection: 'column'
+          }}
+        >
+          <p className="text-red-500 font-medium">Image could not be loaded</p>
+          <p className="text-sm text-gray-500 mt-2">
+            {currentSrc}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="simple-composite-image-container">
-      {/* Image container with ample height */}
       <div 
         className="image-container" 
         style={{ 
@@ -117,9 +77,8 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
           position: 'relative'
         }}
       >
-        {/* Show the image */}
         <img
-          src={imagePath}
+          src={currentSrc}
           alt={alt}
           style={{
             maxWidth: '100%',
@@ -127,11 +86,10 @@ export default function SimpleCompositeImage({ croppedSrc, compositeSrc, alt, to
             objectFit: 'contain',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
           }}
-          onError={handleImageError}
+          onError={handleError}
         />
       </div>
       
-      {/* Basic metadata */}
       <div className="image-metadata" style={{
         marginTop: '8px',
         fontSize: '14px',
