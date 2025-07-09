@@ -16,11 +16,23 @@ import SimpleCompositeImage from '@/components/SimpleCompositeImage'
 import originalImagesData from '../data/images.json'
 import staticImagesData from '../data/static-images.json'
 
-// ALWAYS use the static-images.json images from the classification queue
-// In case there's an issue with the alternate images, fall back to original
-const staticImages = staticImagesData && staticImagesData.length > 0 
-  ? staticImagesData 
-  : originalImagesData;
+// Function to safely get images data
+const getImagesData = () => {
+  try {
+    // ALWAYS use the static-images.json images from the classification queue
+    // In case there's an issue with the alternate images, fall back to original
+    if (staticImagesData && Array.isArray(staticImagesData) && staticImagesData.length > 0) {
+      return staticImagesData;
+    }
+    if (originalImagesData && Array.isArray(originalImagesData) && originalImagesData.length > 0) {
+      return originalImagesData;
+    }
+    return [];
+  } catch (error) {
+    console.error('Error loading images data:', error);
+    return [];
+  }
+};
 
 interface ImageData {
   town: string;
@@ -138,7 +150,7 @@ export default function ExpertFlagLabeler() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
   const [authLoading, setAuthLoading] = useState(true)
-  const [images, setImages] = useState(staticImages || [])
+  const [images, setImages] = useState<ImageData[]>([])
   const [loading, setLoading] = useState(true)
   const [imageError, setImageError] = useState<string | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -209,12 +221,12 @@ export default function ExpertFlagLabeler() {
           setImages(data.images || []);
         } else {
           // Fallback to static images
-          setImages(staticImages || []);
+          setImages(getImagesData());
         }
       } catch (error) {
         console.error("Error loading images:", error);
         // Fallback to static images if API fails
-        setImages(staticImages || []);
+        setImages(getImagesData());
       } finally {
         setLoading(false);
         
@@ -349,8 +361,9 @@ export default function ExpertFlagLabeler() {
 
   // Initialize images with static images right away
   useEffect(() => {
-    if (staticImages && staticImages.length > 0) {
-      setImages(staticImages);
+    const initialImages = getImagesData();
+    if (initialImages && initialImages.length > 0) {
+      setImages(initialImages);
       setLoading(false);
     }
   }, []);
