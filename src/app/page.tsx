@@ -312,14 +312,20 @@ export default function ExpertFlagLabeler() {
         const response = await fetch(`/api/classifications?expert_id=${user.username}`);
         if (response.ok) {
           const data = await response.json();
-          if (data.classifications) {
+          if (data.classifications && Array.isArray(data.classifications)) {
             // Convert array to object keyed by image_id
             const classificationMap = {};
             data.classifications.forEach(c => {
               classificationMap[c.image_id] = c;
             });
             setUserClassifications(classificationMap);
+          } else {
+            console.warn('Classifications data is not an array:', data.classifications);
+            setUserClassifications({});
           }
+        } else {
+          console.error('Failed to fetch user classifications:', response.status, response.statusText);
+          setUserClassifications({});
         }
       } catch (error) {
         console.error('Error loading user classifications:', error);
@@ -333,9 +339,11 @@ export default function ExpertFlagLabeler() {
 
   // Check if current image is already classified
   useEffect(() => {
-    if (currentImage && user?.username) {
+    if (currentImage && user?.username && currentImage.filename) {
       const isClassified = userClassifications[currentImage.filename];
       setCurrentImageClassified(!!isClassified);
+    } else {
+      setCurrentImageClassified(false);
     }
   }, [currentImage, user?.username, userClassifications]);
 
