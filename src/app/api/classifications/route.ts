@@ -1,33 +1,61 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    // Fetch images from Supabase instead of filesystem
-    const { data: images, error, count } = await supabase
-      .from('image_metadata')
-      .select('*', { count: 'exact' })
-      .limit(3000);
-      
-    if (error) {
-      console.error("Error fetching images from Supabase:", error.message);
-      return NextResponse.json({ 
-        error: error.message,
-        images: []
-      }, { status: 500 });
-    }
+    const { searchParams } = new URL(request.url);
+    const expertId = searchParams.get('expert_id');
     
-    // Return the images array
-    return NextResponse.json({
-      images: images || [],
-      metadata: {
-        total_images: count || images?.length || 0
+    if (expertId) {
+      // Fetch classifications for specific expert
+      const { data: classifications, error } = await supabase
+        .from('classifications')
+        .select('*')
+        .eq('expert_id', expertId)
+        .order('created_at', { ascending: false });
+        
+      if (error) {
+        console.error("Error fetching classifications from Supabase:", error.message);
+        return NextResponse.json({ 
+          error: error.message,
+          classifications: []
+        }, { status: 500 });
       }
-    });
+      
+      return NextResponse.json({
+        classifications: classifications || [],
+        metadata: {
+          total_classifications: classifications?.length || 0,
+          expert_id: expertId
+        }
+      });
+    } else {
+      // Fetch images from Supabase instead of filesystem
+      const { data: images, error, count } = await supabase
+        .from('image_metadata')
+        .select('*', { count: 'exact' })
+        .limit(3000);
+        
+      if (error) {
+        console.error("Error fetching images from Supabase:", error.message);
+        return NextResponse.json({ 
+          error: error.message,
+          images: []
+        }, { status: 500 });
+      }
+      
+      // Return the images array
+      return NextResponse.json({
+        images: images || [],
+        metadata: {
+          total_images: count || images?.length || 0
+        }
+      });
+    }
   } catch (error) {
-    console.error('Error loading images:', error);
+    console.error('Error loading data:', error);
     return NextResponse.json({ 
-      error: error.message || 'Failed to load images',
+      error: error.message || 'Failed to load data',
       images: []
     }, { status: 500 });
   }
@@ -54,6 +82,28 @@ export async function POST(request) {
       };
       
       console.log('Saving classification to Supabase:', classification);
+      
+      // Check if this user has already classified this image
+      const { data: existingClassifications, error: checkError } = await supabase
+        .from('classifications')
+        .select('*')
+        .eq('expert_id', classification.expert_id)
+        .eq('image_id', classification.image_id);
+      
+      if (checkError) {
+        console.error('Error checking existing classifications:', checkError);
+        throw new Error(`Check error: ${checkError.message}`);
+      }
+      
+      if (existingClassifications && existingClassifications.length > 0) {
+        console.log('User has already classified this image:', existingClassifications[0]);
+        return NextResponse.json({ 
+          success: false, 
+          error: 'You have already classified this image',
+          message: 'You have already classified this image. Use "Re-classify" if you want to update your classification.',
+          existing_classification: existingClassifications[0]
+        }, { status: 409 });
+      }
       
       let responseData = null;
       

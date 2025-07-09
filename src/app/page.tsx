@@ -172,6 +172,8 @@ export default function ExpertFlagLabeler() {
   });
   const [currentExampleIndex, setCurrentExampleIndex] = useState(0);
   const [isSaving, setIsSaving] = useState(false);
+  const [userClassifications, setUserClassifications] = useState<Record<string, any>>({});
+  const [currentImageClassified, setCurrentImageClassified] = useState(false);
 
   // All useEffect hooks
   useEffect(() => {
@@ -300,6 +302,42 @@ export default function ExpertFlagLabeler() {
       localStorage.setItem('hasSeenInstructions', 'true')
     }
   }, [isAuthenticated])
+
+  // Load user's existing classifications
+  useEffect(() => {
+    const loadUserClassifications = async () => {
+      if (!user?.username) return;
+      
+      try {
+        const response = await fetch(`/api/classifications?expert_id=${user.username}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.classifications) {
+            // Convert array to object keyed by image_id
+            const classificationMap = {};
+            data.classifications.forEach(c => {
+              classificationMap[c.image_id] = c;
+            });
+            setUserClassifications(classificationMap);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading user classifications:', error);
+      }
+    };
+
+    if (isAuthenticated && user?.username) {
+      loadUserClassifications();
+    }
+  }, [isAuthenticated, user?.username]);
+
+  // Check if current image is already classified
+  useEffect(() => {
+    if (currentImage && user?.username) {
+      const isClassified = userClassifications[currentImage.filename];
+      setCurrentImageClassified(!!isClassified);
+    }
+  }, [currentImage, user?.username, userClassifications]);
 
   // Initialize images with static images right away
   useEffect(() => {
@@ -843,6 +881,11 @@ export default function ExpertFlagLabeler() {
             <div>
               <h2 className="text-xl font-semibold">Image {currentIndex + 1} of {images.length}</h2>
               <p className="text-sm text-gray-500">Location: {currentImage?.town}</p>
+              {currentImageClassified && (
+                <div className="mt-2 px-3 py-1 bg-green-100 border border-green-300 rounded-md text-green-800 text-sm inline-block">
+                  ✅ Already classified by you
+                </div>
+              )}
             </div>
             {/* Side-by-side view is always shown by default */}
           </CardHeader>
