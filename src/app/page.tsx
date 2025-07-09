@@ -1003,7 +1003,7 @@ export default function ExpertFlagLabeler() {
               <div className="mt-4 p-3 bg-blue-50 rounded-md">
                 <h4 className="text-sm font-medium mb-2">Bunting Classification Guidance</h4>
                 <ul className="text-xs space-y-1">
-                  <li>• Triangular bunting consists of small triangular pennants strung together</li>
+                  <li>• Bunting consists of small triangular or square flags/pennants strung together</li>
                   <li>• Pay attention to colors and patterns to determine the bunting type</li>
                   <li>• If bunting features distinct flag patterns, select the appropriate bunting type</li>
                   <li>• If you're unsure, use "Flag for Review" and select "Bunting needs specialized review"</li>
