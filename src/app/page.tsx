@@ -1039,18 +1039,31 @@ export default function ExpertFlagLabeler() {
                 >
                   Flag for Review
                 </Button>
-                <Button 
-                  className="bg-green-600 hover:bg-green-700"
-                  onClick={() => handleSubmitClassification({ 
-                    primaryCategory: specificFlag ? flagCategories[specificFlag]?.primary : primaryCategory, 
-                    specificFlag: specificFlag,
-                    displayContext: secondaryCategory, 
-                    confidence: confidence 
-                  })}
-                  disabled={!specificFlag || isSaving}
-                >
-                  {isSaving ? 'Saving...' : 'Save & Next'}
-                </Button>
+                {currentImageClassified ? (
+                  <Button 
+                    className="bg-blue-600 hover:bg-blue-700"
+                    onClick={() => {
+                      setImageError(null);
+                      setCurrentIndex(prev => prev + 1);
+                    }}
+                    disabled={currentIndex >= images.length - 1}
+                  >
+                    Next
+                  </Button>
+                ) : (
+                  <Button 
+                    className="bg-green-600 hover:bg-green-700"
+                    onClick={() => handleSubmitClassification({ 
+                      primaryCategory: specificFlag ? flagCategories[specificFlag]?.primary : primaryCategory, 
+                      specificFlag: specificFlag,
+                      displayContext: secondaryCategory, 
+                      confidence: confidence 
+                    })}
+                    disabled={!specificFlag || isSaving}
+                  >
+                    {isSaving ? 'Saving...' : 'Save & Next'}
+                  </Button>
+                )}
               </div>
             </div>
           </CardContent>
