@@ -146,14 +146,17 @@ const flagDescriptions = {
 export default function ExpertFlagLabeler() {
   const router = useRouter()
   
-  // All useState hooks
+  // Core state - initialize all state with safe defaults
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<any>(null)
   const [authLoading, setAuthLoading] = useState(true)
   const [images, setImages] = useState<ImageData[]>([])
   const [loading, setLoading] = useState(true)
-  const [imageError, setImageError] = useState<string | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isInitialized, setIsInitialized] = useState(false)
+  
+  // UI state
+  const [imageError, setImageError] = useState<string | null>(null)
   const [primaryCategory, setPrimaryCategory] = useState('')
   const [secondaryCategory, setSecondaryCategory] = useState('')
   const [specificFlag, setSpecificFlag] = useState('')
@@ -175,204 +178,115 @@ export default function ExpertFlagLabeler() {
   const [showExampleModal, setShowExampleModal] = useState(false)
   const [selectedExample, setSelectedExample] = useState<string | null>(null)
   const [showInstructions, setShowInstructions] = useState(false)
-  const [currentUser, setCurrentUser] = useState<string | null>(null);
+  const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [userStats, setUserStats] = useState({
     expert1: 0,
     expert2: 0,
     expert3: 0,
     expert4: 0
-  });
-  const [currentExampleIndex, setCurrentExampleIndex] = useState(0);
-  const [isSaving, setIsSaving] = useState(false);
-  const [userClassifications, setUserClassifications] = useState<Record<string, any>>({});
-  const [currentImageClassified, setCurrentImageClassified] = useState(false);
+  })
+  const [currentExampleIndex, setCurrentExampleIndex] = useState(0)
+  const [isSaving, setIsSaving] = useState(false)
+  const [userClassifications, setUserClassifications] = useState<Record<string, any>>({})
+  const [currentImageClassified, setCurrentImageClassified] = useState(false)
 
-  // All useEffect hooks
+  // Safe current image calculation - only access when everything is initialized
+  const currentImage = isInitialized && images.length > 0 && currentIndex >= 0 && currentIndex < images.length 
+    ? images[currentIndex] 
+    : null;
+
+  // Single initialization effect
   useEffect(() => {
-    const checkAuth = () => {
-      const auth = localStorage.getItem('isAuthenticated') === 'true'
-      const userData = localStorage.getItem('user')
-      
-      if (auth && userData) {
+    const initializeApp = async () => {
+      try {
+        // Step 1: Check authentication
+        const auth = localStorage.getItem('isAuthenticated') === 'true'
+        const userData = localStorage.getItem('user')
+        
+        if (!auth || !userData) {
+          router.push('/login')
+          return
+        }
+
         const parsedUser = JSON.parse(userData)
         setIsAuthenticated(true)
         setUser(parsedUser)
-      } else {
+        setAuthLoading(false)
+
+        // Step 2: Initialize images safely
+        const initialImages = getImagesData()
+        if (initialImages && initialImages.length > 0) {
+          setImages(initialImages)
+          setLoading(false)
+        }
+
+        // Step 3: Mark as initialized
+        setIsInitialized(true)
+
+      } catch (error) {
+        console.error('Initialization error:', error)
+        setAuthLoading(false)
+        setLoading(false)
         router.push('/login')
       }
-      setAuthLoading(false)
     }
-    checkAuth()
+
+    initializeApp()
   }, [router])
-  
-  useEffect(() => {
-    // Skip loading if user isn't available yet
-    if (!user) {
-      return
-    }
-    
-    async function loadImages() {
-      try {
-        // Load from the correct API route
-        const response = await fetch('/api/images-static');
-        const data = await response.json();
-        
-        if (data.success && data.images && data.images.length > 0) {
-          setImages(data.images || []);
-        } else {
-          // Fallback to static images
-          setImages(getImagesData());
-        }
-      } catch (error) {
-        console.error("Error loading images:", error);
-        // Fallback to static images if API fails
-        setImages(getImagesData());
-      } finally {
-        setLoading(false);
-        
-        // After images are loaded, restore the user's progress if available
-        if (user && user.username) {
-          const savedProgress = localStorage.getItem(`progress_${user.username}`)
-          if (savedProgress) {
-            const savedIndex = parseInt(savedProgress, 10)
-            // Make sure the saved index is valid
-            // Use the images state which will have been updated by now
-            if (savedIndex >= 0 && savedIndex < images.length) {
-              setCurrentIndex(savedIndex)
-            }
-          }
-        }
-      }
-    }
-    
-    loadImages();
-  }, [user]); // Add user as a dependency so this effect runs when user is set
 
+  // After initialization, load additional data
   useEffect(() => {
-    // Function to get the current user from Basic Auth
-    const getCurrentUser = async () => {
-      try {
-        const response = await fetch('/api/current-user')
-        const data = await response.json()
-        setCurrentUser(data.username)
-      } catch (error) {
-        console.error('Failed to get current user:', error)
-      }
-    }
-    
-    // Only run this if we're authenticated
-    if (isAuthenticated) {
-      getCurrentUser()
-    }
-  }, [isAuthenticated])
-
-  // Update this when fetching classifications
-  useEffect(() => {
-    const fetchUserStats = async () => {
-      try {
-        const response = await fetch('/api/images-static')
-        if (!response.ok) {
-          throw new Error('Failed to fetch classifications')
-        }
-        
-        const responseData = await response.json()
-        
-        // Count classifications by user
-        const userCounts = {
-          expert1: 0,
-          expert2: 0,
-          expert3: 0,
-          expert4: 0
-        }
-        
-        // Check if responseData.classifications exists before iterating
-        if (responseData && responseData.classifications) {
-          Object.values(responseData.classifications).forEach((classification: any) => {
-            if (classification.expertId && userCounts[classification.expertId] !== undefined) {
-              userCounts[classification.expertId]++
-            }
-          })
-        }
-        
-        setUserStats(userCounts)
-      } catch (error) {
-        console.error('Error fetching user stats:', error)
-      }
-    }
-    
-    // Only fetch user stats if we're authenticated
-    if (isAuthenticated) {
-      fetchUserStats()
-    }
-  }, [isAuthenticated])
-
-  // Show instructions on first login
-  useEffect(() => {
-    const hasSeenInstructions = localStorage.getItem('hasSeenInstructions')
-    if (!hasSeenInstructions && isAuthenticated) {
-      setShowInstructions(true)
-      localStorage.setItem('hasSeenInstructions', 'true')
-    }
-  }, [isAuthenticated])
-
-  // Load user's existing classifications
-  useEffect(() => {
-    const loadUserClassifications = async () => {
-      if (!user?.username) return;
+    const loadAdditionalData = async () => {
+      if (!isInitialized || !isAuthenticated || !user?.username) return;
       
       try {
+        // Load user classifications
         const response = await fetch(`/api/classifications?expert_id=${user.username}`);
         if (response.ok) {
           const data = await response.json();
           if (data.classifications && Array.isArray(data.classifications)) {
-            // Convert array to object keyed by image_id
-            const classificationMap = {};
-            data.classifications.forEach(c => {
+            const classificationMap: Record<string, any> = {};
+            data.classifications.forEach((c: any) => {
               classificationMap[c.image_id] = c;
             });
             setUserClassifications(classificationMap);
-          } else {
-            console.warn('Classifications data is not an array:', data.classifications);
-            setUserClassifications({});
           }
-        } else {
-          console.error('Failed to fetch user classifications:', response.status, response.statusText);
-          setUserClassifications({});
         }
+
+        // Show instructions on first login
+        const hasSeenInstructions = localStorage.getItem('hasSeenInstructions');
+        if (!hasSeenInstructions) {
+          setShowInstructions(true);
+          localStorage.setItem('hasSeenInstructions', 'true');
+        }
+
+        // Restore user progress
+        const savedProgress = localStorage.getItem(`progress_${user.username}`);
+        if (savedProgress) {
+          const savedIndex = parseInt(savedProgress, 10);
+          if (savedIndex >= 0 && savedIndex < images.length) {
+            setCurrentIndex(savedIndex);
+          }
+        }
+        
       } catch (error) {
-        console.error('Error loading user classifications:', error);
+        console.error('Error loading additional data:', error);
       }
     };
 
-    if (isAuthenticated && user?.username) {
-      loadUserClassifications();
-    }
-  }, [isAuthenticated, user?.username]);
+    loadAdditionalData();
+  }, [isInitialized, isAuthenticated, user?.username, images.length]);
 
-  // Check if current image is already classified
+  // Update current image classification status
   useEffect(() => {
-    if (currentImage && user?.username && currentImage.filename) {
+    if (isInitialized && currentImage && user?.username && currentImage.filename) {
       const isClassified = userClassifications[currentImage.filename];
       setCurrentImageClassified(!!isClassified);
     } else {
       setCurrentImageClassified(false);
     }
-  }, [currentImage, user?.username, userClassifications]);
+  }, [isInitialized, currentImage, user?.username, userClassifications]);
 
-  // Initialize images with static images right away
-  useEffect(() => {
-    const initialImages = getImagesData();
-    if (initialImages && initialImages.length > 0) {
-      setImages(initialImages);
-      setLoading(false);
-    }
-  }, []);
-
-  // Get the current image safely with additional logging
-  const currentImage = images && images.length > 0 && currentIndex < images.length 
-    ? images[currentIndex] 
-    : null;
-    
   // Track current image changes for UI updates
   useEffect(() => {
     // This effect monitors image changes and prepares for display
