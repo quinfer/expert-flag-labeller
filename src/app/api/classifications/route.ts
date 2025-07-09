@@ -53,15 +53,16 @@ export async function GET(request: Request) {
       });
     }
   } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Failed to load data';
     console.error('Error loading data:', error);
     return NextResponse.json({ 
-      error: error.message || 'Failed to load data',
+      error: errorMessage,
       images: []
     }, { status: 500 });
   }
 }
 
-export async function POST(request) {
+export async function POST(request: Request) {
   try {
     const body = await request.json();
     console.log('Received POST body:', JSON.stringify(body, null, 2));
@@ -121,8 +122,9 @@ export async function POST(request) {
         responseData = data;
         console.log('Successfully saved classification:', data);
       } catch (dbError) {
+        const dbErrorMessage = dbError instanceof Error ? dbError.message : 'Unknown database error';
         console.error('Database operation failed:', dbError);
-        throw new Error(`Database error: ${dbError.message}`);
+        throw new Error(`Database error: ${dbErrorMessage}`);
       }
       
       return NextResponse.json({ 
@@ -193,8 +195,9 @@ export async function POST(request) {
         
         console.log('Successfully flagged for review:', flagResult);
       } catch (flagError) {
+        const flagErrorMessage = flagError instanceof Error ? flagError.message : 'Unknown flag error';
         console.error('Error flagging for review:', flagError);
-        throw new Error(`Flag error: ${flagError.message}`);
+        throw new Error(`Flag error: ${flagErrorMessage}`);
       }
       
       return NextResponse.json({ 
@@ -213,17 +216,18 @@ export async function POST(request) {
     console.error('Error processing classification:', error);
     
     // Create a more detailed error message for debugging
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     const errorDetails = {
-      message: error.message,
-      stack: error.stack,
-      name: error.name
+      message: errorMessage,
+      stack: error instanceof Error ? error.stack : undefined,
+      name: error instanceof Error ? error.name : 'Unknown'
     };
     
     console.error('Error details:', errorDetails);
     
     return NextResponse.json({ 
       success: false, 
-      error: error.message,
+      error: errorMessage,
       details: process.env.NODE_ENV === 'development' ? errorDetails : undefined
     }, { status: 500 });
   }
