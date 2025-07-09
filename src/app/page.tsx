@@ -16,20 +16,38 @@ import SimpleCompositeImage from '@/components/SimpleCompositeImage'
 import originalImagesData from '../data/images.json'
 import staticImagesData from '../data/static-images.json'
 
-// Function to safely get images data
-const getImagesData = () => {
+// Function to safely get images data from API
+const getImagesData = async () => {
   try {
-    // ALWAYS use the static-images.json images from the classification queue
-    // In case there's an issue with the alternate images, fall back to original
-    if (staticImagesData && Array.isArray(staticImagesData) && staticImagesData.length > 0) {
-      return staticImagesData;
+    console.log('[getImagesData] Fetching images from API...');
+    const response = await fetch('/api/images-static');
+    
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.status}`);
     }
-    if (originalImagesData && Array.isArray(originalImagesData) && originalImagesData.length > 0) {
-      return originalImagesData;
+    
+    const data = await response.json();
+    
+    if (data.success && Array.isArray(data.images) && data.images.length > 0) {
+      console.log(`[getImagesData] Successfully loaded ${data.images.length} images from API`);
+      return data.images;
+    } else {
+      throw new Error('Invalid API response format');
     }
-    return [];
   } catch (error) {
-    console.error('Error loading images data:', error);
+    console.error('[getImagesData] Error loading images from API:', error);
+    
+    // Fallback to local JSON files only in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[getImagesData] Using local JSON fallback in development');
+      if (staticImagesData && Array.isArray(staticImagesData) && staticImagesData.length > 0) {
+        return staticImagesData;
+      }
+      if (originalImagesData && Array.isArray(originalImagesData) && originalImagesData.length > 0) {
+        return originalImagesData;
+      }
+    }
+    
     return [];
   }
 };
@@ -214,7 +232,7 @@ export default function ExpertFlagLabeler() {
         setAuthLoading(false)
 
         // Step 2: Initialize images safely
-        const initialImages = getImagesData()
+        const initialImages = await getImagesData()
         if (initialImages && initialImages.length > 0) {
           setImages(initialImages)
           setLoading(false)
