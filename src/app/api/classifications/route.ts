@@ -12,7 +12,7 @@ export async function GET(request: Request) {
         .from('classifications')
         .select('*')
         .eq('expert_id', expertId)
-        .order('created_at', { ascending: false });
+        .order('timestamp', { ascending: false });
         
       if (error) {
         console.error("Error fetching classifications from Supabase:", error.message);
@@ -149,7 +149,7 @@ export async function POST(request: Request) {
         
         // Get the most recent record if multiple exist
         const existingData = allMatches && allMatches.length > 0 
-          ? allMatches.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0]
+          ? allMatches.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0]
           : null;
           
         console.log(`Found ${allMatches?.length || 0} matches for image ${body.imageId}`);
