@@ -137,26 +137,27 @@ export async function POST(request: Request) {
       let flagResult = null;
       
       try {
-        // First get all matching rows
-        const { data: allMatches, error: fetchError } = await supabase
+        // Check if THIS EXPERT has already made a decision about this image
+        const { data: existingUserRecords, error: fetchError } = await supabase
           .from('classifications')
           .select('*')
+          .eq('expert_id', body.expertId || 'anonymous')
           .eq('image_id', body.imageId);
           
         if (fetchError) {
           throw new Error(fetchError.message);
         }
         
-        // Get the most recent record if multiple exist
-        const existingData = allMatches && allMatches.length > 0 
-          ? allMatches.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0]
+        // Get the expert's existing record if it exists
+        const existingData = existingUserRecords && existingUserRecords.length > 0 
+          ? existingUserRecords[0]
           : null;
           
-        console.log(`Found ${allMatches?.length || 0} matches for image ${body.imageId}`);
+        console.log(`Found ${existingUserRecords?.length || 0} existing records by this expert for image ${body.imageId}`);
         
         if (existingData) {
-          console.log(`Updating existing record with ID ${existingData.id}`);
-          // Update existing record
+          console.log(`Updating existing record by expert ${body.expertId} with ID ${existingData.id}`);
+          // Update existing record by this expert
           const { data: updateData, error: updateError } = await supabase
             .from('classifications')
             .update({ 
@@ -172,8 +173,8 @@ export async function POST(request: Request) {
           
           flagResult = updateData;
         } else {
-          console.log(`Creating new record for flagged image ${body.imageId}`);
-          // Create new record
+          console.log(`Creating new flagged record for expert ${body.expertId} on image ${body.imageId}`);
+          // Create new flagged record for this expert
           const { data: insertData, error: insertError } = await supabase
             .from('classifications')
             .insert([{

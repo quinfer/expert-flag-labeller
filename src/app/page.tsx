@@ -264,15 +264,23 @@ export default function ExpertFlagLabeler() {
           const data = await response.json();
           if (data.classifications && Array.isArray(data.classifications)) {
             const classificationMap: Record<string, any> = {};
-            data.classifications.forEach((c: any) => {
-              classificationMap[c.image_id] = c;
-            });
+            // Only include classifications/flags made by this specific user
+            data.classifications
+              .filter((c: any) => c.expert_id === user.username)
+              .forEach((c: any) => {
+                classificationMap[c.image_id] = c;
+              });
             setUserClassifications(classificationMap);
             
             // Restore user progress based on classification history
             if (images.length > 0) {
               // Find the first unclassified image for this user
-              const classifiedImageIds = new Set(data.classifications.map((c: any) => c.image_id));
+              // Include both regular classifications AND images flagged for review
+              const classifiedImageIds = new Set(
+                data.classifications
+                  .filter((c: any) => c.expert_id === user.username) // Only this user's decisions
+                  .map((c: any) => c.image_id)
+              );
               
               let nextUnclassifiedIndex = 0;
               for (let i = 0; i < images.length; i++) {
@@ -282,7 +290,7 @@ export default function ExpertFlagLabeler() {
                 }
               }
               
-              console.log(`User has classified ${classifiedImageIds.size} images. Setting index to ${nextUnclassifiedIndex}`);
+              console.log(`User has classified/flagged ${classifiedImageIds.size} images. Setting index to ${nextUnclassifiedIndex}`);
               setCurrentIndex(nextUnclassifiedIndex);
             }
           }
