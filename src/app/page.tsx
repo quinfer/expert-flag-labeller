@@ -255,11 +255,17 @@ export default function ExpertFlagLabeler() {
   // After initialization, load additional data
   useEffect(() => {
     const loadAdditionalData = async () => {
-      if (!isInitialized || !isAuthenticated || !user?.username) return;
+      console.log(`[DEBUG] loadAdditionalData called. isInitialized: ${isInitialized}, isAuthenticated: ${isAuthenticated}, user: ${user?.username}`);
+      if (!isInitialized || !isAuthenticated || !user?.username) {
+        console.log(`[DEBUG] Skipping loadAdditionalData - requirements not met`);
+        return;
+      }
       
       try {
+        console.log(`[DEBUG] Fetching classifications for user: ${user.username}`);
         // Load user classifications
         const response = await fetch(`/api/classifications?expert_id=${user.username}`);
+        console.log(`[DEBUG] API response status: ${response.status}`);
         if (response.ok) {
           const data = await response.json();
           if (data.classifications && Array.isArray(data.classifications)) {
@@ -322,7 +328,8 @@ export default function ExpertFlagLabeler() {
         }
         
       } catch (error) {
-        console.error('Error loading additional data:', error);
+        console.error('[DEBUG] Error loading additional data:', error);
+        console.error('[DEBUG] Error details:', error);
       }
     };
 
