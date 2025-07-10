@@ -279,17 +279,30 @@ export default function ExpertFlagLabeler() {
               const userClassifications = data.classifications.filter((c: any) => c.expert_id === user.username);
               const classifiedImageIds = new Set(userClassifications.map((c: any) => c.image_id));
               
-              console.log(`[DEBUG] User ${user.username} has ${userClassifications.length} classifications/flags:`);
-              console.log(`[DEBUG] Classified image IDs:`, Array.from(classifiedImageIds).slice(0, 10));
-              console.log(`[DEBUG] First 10 image filenames:`, images.slice(0, 10).map(img => img.filename));
+                             console.log(`[DEBUG] User ${user.username} has ${userClassifications.length} classifications/flags:`);
+               console.log(`[DEBUG] Classified image IDs:`, Array.from(classifiedImageIds).slice(0, 10));
+               console.log(`[DEBUG] First 10 image filenames:`, images.slice(0, 10).map(img => img.filename));
+               
+               // Check for the specific problematic image
+               const problematicImage = "Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg";
+               const compositeVersion = "composite_Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg";
+               console.log(`[DEBUG] Looking for ${problematicImage} in classified IDs: ${classifiedImageIds.has(problematicImage)}`);
+               console.log(`[DEBUG] Looking for ${compositeVersion} in classified IDs: ${classifiedImageIds.has(compositeVersion)}`);
+               console.log(`[DEBUG] Sample classified image IDs:`, Array.from(classifiedImageIds).slice(0, 5));
               
-              let nextUnclassifiedIndex = 0;
-              for (let i = 0; i < images.length; i++) {
-                if (!classifiedImageIds.has(images[i].filename)) {
-                  nextUnclassifiedIndex = i;
-                  break;
-                }
-              }
+                             let nextUnclassifiedIndex = 0;
+               for (let i = 0; i < images.length; i++) {
+                 const filename = images[i].filename;
+                 const compositeFilename = `composite_${filename}`;
+                 
+                 // Check if this image has been classified under either filename
+                 const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
+                 
+                 if (!isClassified) {
+                   nextUnclassifiedIndex = i;
+                   break;
+                 }
+               }
               
               console.log(`[DEBUG] User has classified/flagged ${classifiedImageIds.size} images. Setting index to ${nextUnclassifiedIndex}`);
               if (nextUnclassifiedIndex < images.length) {
@@ -319,7 +332,11 @@ export default function ExpertFlagLabeler() {
   // Update current image classification status
   useEffect(() => {
     if (isInitialized && currentImage && user?.username && currentImage.filename) {
-      const isClassified = userClassifications[currentImage.filename];
+      const filename = currentImage.filename;
+      const compositeFilename = `composite_${filename}`;
+      
+      // Check if this image has been classified under either filename
+      const isClassified = userClassifications[filename] || userClassifications[compositeFilename];
       setCurrentImageClassified(!!isClassified);
     } else {
       setCurrentImageClassified(false);
