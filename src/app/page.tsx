@@ -215,30 +215,41 @@ export default function ExpertFlagLabeler() {
 
   // Single initialization effect
   useEffect(() => {
+    console.log('[DEBUG] Initialization useEffect triggered');
+    
     const initializeApp = async () => {
       try {
+        console.log('[DEBUG] initializeApp starting');
+        
         // Step 1: Check authentication
         const auth = localStorage.getItem('isAuthenticated') === 'true'
         const userData = localStorage.getItem('user')
         
+        console.log(`[DEBUG] Auth check: ${auth}, userData: ${!!userData}`);
+        
         if (!auth || !userData) {
+          console.log('[DEBUG] No auth, redirecting to login');
           router.push('/login')
           return
         }
 
         const parsedUser = JSON.parse(userData)
+        console.log(`[DEBUG] Parsed user: ${parsedUser?.username}`);
         setIsAuthenticated(true)
         setUser(parsedUser)
         setAuthLoading(false)
 
         // Step 2: Initialize images safely
+        console.log('[DEBUG] Loading images...');
         const initialImages = await getImagesData()
+        console.log(`[DEBUG] Loaded ${initialImages?.length} images`);
         if (initialImages && initialImages.length > 0) {
           setImages(initialImages)
           setLoading(false)
         }
 
         // Step 3: Mark as initialized
+        console.log('[DEBUG] Setting isInitialized to true');
         setIsInitialized(true)
 
       } catch (error) {
@@ -254,6 +265,8 @@ export default function ExpertFlagLabeler() {
 
   // After initialization, load additional data
   useEffect(() => {
+    console.log(`[DEBUG] useEffect triggered. isInitialized: ${isInitialized}, isAuthenticated: ${isAuthenticated}, user: ${user?.username}, images.length: ${images.length}`);
+    
     const loadAdditionalData = async () => {
       console.log(`[DEBUG] loadAdditionalData called. isInitialized: ${isInitialized}, isAuthenticated: ${isAuthenticated}, user: ${user?.username}`);
       if (!isInitialized || !isAuthenticated || !user?.username) {
