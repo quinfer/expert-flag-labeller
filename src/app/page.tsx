@@ -268,6 +268,23 @@ export default function ExpertFlagLabeler() {
               classificationMap[c.image_id] = c;
             });
             setUserClassifications(classificationMap);
+            
+            // Restore user progress based on classification history
+            if (images.length > 0) {
+              // Find the first unclassified image for this user
+              const classifiedImageIds = new Set(data.classifications.map((c: any) => c.image_id));
+              
+              let nextUnclassifiedIndex = 0;
+              for (let i = 0; i < images.length; i++) {
+                if (!classifiedImageIds.has(images[i].filename)) {
+                  nextUnclassifiedIndex = i;
+                  break;
+                }
+              }
+              
+              console.log(`User has classified ${classifiedImageIds.size} images. Setting index to ${nextUnclassifiedIndex}`);
+              setCurrentIndex(nextUnclassifiedIndex);
+            }
           }
         }
 
@@ -276,15 +293,6 @@ export default function ExpertFlagLabeler() {
         if (!hasSeenInstructions) {
           setShowInstructions(true);
           localStorage.setItem('hasSeenInstructions', 'true');
-        }
-
-        // Restore user progress
-        const savedProgress = localStorage.getItem(`progress_${user.username}`);
-        if (savedProgress) {
-          const savedIndex = parseInt(savedProgress, 10);
-          if (savedIndex >= 0 && savedIndex < images.length) {
-            setCurrentIndex(savedIndex);
-          }
         }
         
       } catch (error) {
@@ -710,12 +718,10 @@ export default function ExpertFlagLabeler() {
     }
   };
 
-  // Logout function that saves the current progress
+  // Logout function - progress is now tracked server-side via classifications
   const handleLogout = () => {
-    // Save progress for this user
-    if (user && user.username) {
-      localStorage.setItem(`progress_${user.username}`, currentIndex.toString())
-    }
+    // Progress is automatically tracked via classification history
+    // No need to save localStorage progress anymore
     
     // Perform logout
     localStorage.removeItem('isAuthenticated')
