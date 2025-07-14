@@ -215,41 +215,30 @@ export default function ExpertFlagLabeler() {
 
   // Single initialization effect
   useEffect(() => {
-    console.log('[DEBUG] Initialization useEffect triggered');
-    
     const initializeApp = async () => {
       try {
-        console.log('[DEBUG] initializeApp starting');
-        
         // Step 1: Check authentication
         const auth = localStorage.getItem('isAuthenticated') === 'true'
         const userData = localStorage.getItem('user')
         
-        console.log(`[DEBUG] Auth check: ${auth}, userData: ${!!userData}`);
-        
         if (!auth || !userData) {
-          console.log('[DEBUG] No auth, redirecting to login');
           router.push('/login')
           return
         }
 
         const parsedUser = JSON.parse(userData)
-        console.log(`[DEBUG] Parsed user: ${parsedUser?.username}`);
         setIsAuthenticated(true)
         setUser(parsedUser)
         setAuthLoading(false)
 
         // Step 2: Initialize images safely
-        console.log('[DEBUG] Loading images...');
         const initialImages = await getImagesData()
-        console.log(`[DEBUG] Loaded ${initialImages?.length} images`);
         if (initialImages && initialImages.length > 0) {
           setImages(initialImages)
           setLoading(false)
         }
 
         // Step 3: Mark as initialized
-        console.log('[DEBUG] Setting isInitialized to true');
         setIsInitialized(true)
 
       } catch (error) {
@@ -265,20 +254,14 @@ export default function ExpertFlagLabeler() {
 
   // After initialization, load additional data
   useEffect(() => {
-    console.log(`[DEBUG] useEffect triggered. isInitialized: ${isInitialized}, isAuthenticated: ${isAuthenticated}, user: ${user?.username}, images.length: ${images.length}`);
-    
     const loadAdditionalData = async () => {
-      console.log(`[DEBUG] loadAdditionalData called. isInitialized: ${isInitialized}, isAuthenticated: ${isAuthenticated}, user: ${user?.username}`);
       if (!isInitialized || !isAuthenticated || !user?.username) {
-        console.log(`[DEBUG] Skipping loadAdditionalData - requirements not met`);
         return;
       }
       
       try {
-        console.log(`[DEBUG] Fetching classifications for user: ${user.username}`);
         // Load user classifications
         const response = await fetch(`/api/classifications?expert_id=${user.username}`);
-        console.log(`[DEBUG] API response status: ${response.status}`);
         if (response.ok) {
           const data = await response.json();
           if (data.classifications && Array.isArray(data.classifications)) {
@@ -298,34 +281,18 @@ export default function ExpertFlagLabeler() {
               const userClassifications = data.classifications.filter((c: any) => c.expert_id === user.username);
               const classifiedImageIds = new Set(userClassifications.map((c: any) => c.image_id));
               
-                             console.log(`[DEBUG] User ${user.username} has ${userClassifications.length} classifications/flags:`);
-               console.log(`[DEBUG] Classified image IDs:`, Array.from(classifiedImageIds).slice(0, 10));
-               console.log(`[DEBUG] First 10 image filenames:`, images.slice(0, 10).map(img => img.filename));
-               
-               // Check for the specific problematic image
-               const problematicImage = "Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg";
-               const compositeVersion = "composite_Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg";
-               console.log(`[DEBUG] Looking for ${problematicImage} in classified IDs: ${classifiedImageIds.has(problematicImage)}`);
-               console.log(`[DEBUG] Looking for ${compositeVersion} in classified IDs: ${classifiedImageIds.has(compositeVersion)}`);
-               console.log(`[DEBUG] Sample classified image IDs:`, Array.from(classifiedImageIds).slice(0, 5));
-              
-                             let nextUnclassifiedIndex = 0;
-               for (let i = 0; i < images.length; i++) {
-                 const filename = images[i].filename;
-                 const compositeFilename = `composite_${filename}`;
-                 
-                 // Check if this image has been classified under either filename
-                 const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
-                 
-                 if (!isClassified) {
-                   nextUnclassifiedIndex = i;
-                   break;
-                 }
-               }
-              
-              console.log(`[DEBUG] User has classified/flagged ${classifiedImageIds.size} images. Setting index to ${nextUnclassifiedIndex}`);
-              if (nextUnclassifiedIndex < images.length) {
-                console.log(`[DEBUG] Next unclassified image: ${images[nextUnclassifiedIndex].filename}`);
+              let nextUnclassifiedIndex = 0;
+              for (let i = 0; i < images.length; i++) {
+                const filename = images[i].filename;
+                const compositeFilename = `composite_${filename}`;
+                
+                // Check if this image has been classified under either filename
+                const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
+                
+                if (!isClassified) {
+                  nextUnclassifiedIndex = i;
+                  break;
+                }
               }
               
               setCurrentIndex(nextUnclassifiedIndex);
@@ -341,8 +308,7 @@ export default function ExpertFlagLabeler() {
         }
         
       } catch (error) {
-        console.error('[DEBUG] Error loading additional data:', error);
-        console.error('[DEBUG] Error details:', error);
+        console.error('Error loading additional data:', error);
       }
     };
 
@@ -551,6 +517,23 @@ export default function ExpertFlagLabeler() {
       }
       
       const result = await response.json();
+      
+      // Update userClassifications state to reflect the new classification
+      setUserClassifications(prev => ({
+        ...prev,
+        [currentImage.filename]: {
+          image_id: currentImage.filename,
+          town: currentImage.town,
+          primary_category: specificFlag ? flagCategories[specificFlag].primary : classificationData.primaryCategory,
+          specific_flag: specificFlag || classificationData.specificFlag,
+          display_context: classificationData.displayContext || secondaryCategory,
+          confidence: classificationData.confidence || confidence,
+          expert_id: expertId,
+          needs_review: false,
+          review_reason: null
+        }
+      }));
+      
       // Update statistics
       setStats(prev => ({
         ...prev,
@@ -676,6 +659,19 @@ export default function ExpertFlagLabeler() {
           reviewReason: reviewReason
         }
       });
+      
+      // Update userClassifications state to reflect the new review flag
+      setUserClassifications(prev => ({
+        ...prev,
+        [currentImage.filename]: {
+          image_id: currentImage.filename,
+          needs_review: true,
+          review_reason: reviewReason,
+          expert_id: currentUser?.username || currentUser?.name || 'anonymous',
+          primary_category: 'Review',
+          town: currentImage.town || 'Unknown'
+        }
+      }));
       
       // Update statistics
       setStats(prevStats => ({
