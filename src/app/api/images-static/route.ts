@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { supabase, getImageUrl } from '@/lib/supabase';
 import staticImagesData from '@/data/static-images.json';
+import expertConfirmedData from '@/data/expert-confirmed-detailed.json';
 
 export async function GET() {
   console.log("[API] GET /api/images-static called");
@@ -50,15 +51,26 @@ export async function GET() {
       
       console.log(`[API] Successfully processed ${processedImages.length} images from Supabase`);
       
-      // Return processed images
+      // Apply expert-confirmed curation instead of false positive filtering
+      const curatedImages = applyExpertConfirmedCuration(processedImages);
+      
+      console.log(`[API] Curated ${curatedImages.length} expert-confirmed images from Supabase`);
+      
+      // Return curated images
       return NextResponse.json({
         success: true,
         metadata: {
           source: 'supabase',
-          total_images: processedImages.length,
-          with_composites: processedImages.filter(img => img.has_composite).length
+          curation: 'expert-confirmed',
+          total_images: curatedImages.length,
+          with_composites: curatedImages.filter(img => img.has_composite).length,
+          curation_stats: {
+            original_count: processedImages.length,
+            curated_count: curatedImages.length,
+            curation_rate: ((curatedImages.length / processedImages.length) * 100).toFixed(1) + '%'
+          }
         },
-        images: processedImages
+        images: curatedImages
       });
     } else {
       // If the table doesn't exist yet or we got an error, fall back to static images
@@ -109,15 +121,26 @@ export async function GET() {
       
       console.log(`[API] Using ${processedImages.length} static images`);
       
+      // Apply expert-confirmed curation instead of false positive filtering
+      const curatedImages = applyExpertConfirmedCuration(processedImages);
+      
+      console.log(`[API] Curated ${curatedImages.length} expert-confirmed images from static data`);
+      
       return NextResponse.json({
         success: true,
         metadata: {
           source: 'static-images',
-          total_images: processedImages.length,
-          with_composites: processedImages.filter(img => img.has_composite).length,
-          isProduction: isProduction
+          curation: 'expert-confirmed',
+          total_images: curatedImages.length,
+          with_composites: curatedImages.filter(img => img.has_composite).length,
+          isProduction: isProduction,
+          curation_stats: {
+            original_count: processedImages.length,
+            curated_count: curatedImages.length,
+            curation_rate: ((curatedImages.length / processedImages.length) * 100).toFixed(1) + '%'
+          }
         },
-        images: processedImages
+        images: curatedImages
       });
     }
   } catch (error) {
@@ -153,7 +176,8 @@ export async function GET() {
         success: true,
         metadata: { 
           source: "emergency-fallback",
-          error: error.message,
+          curation: "sample-images",
+          error: error instanceof Error ? error.message : String(error),
           total_images: sampleImages.length,
         },
         images: sampleImages
@@ -166,5 +190,31 @@ export async function GET() {
         images: []
       });
     }
+  }
+}
+
+/**
+ * Apply expert-confirmed curation to filter images
+ * Only returns images that have been verified by experts as containing flags
+ */
+function applyExpertConfirmedCuration(images: any[]): any[] {
+  try {
+    // Create a set of expert-confirmed image IDs for fast lookup
+    const expertConfirmedSet = new Set(Object.keys(expertConfirmedData));
+    
+    // Filter images to only include expert-confirmed ones
+    const curatedImages = images.filter(image => {
+      // Extract the image ID from the filename (handle _box0 suffix)
+      const imageId = image.filename.replace('_box0.jpg', '.jpg');
+      return expertConfirmedSet.has(imageId);
+    });
+    
+    console.log(`[CURATION] Filtered ${images.length} images to ${curatedImages.length} expert-confirmed images`);
+    
+    return curatedImages;
+  } catch (error) {
+    console.error("[CURATION] Error applying expert-confirmed curation:", error);
+    // If curation fails, return all images as fallback
+    return images;
   }
 }

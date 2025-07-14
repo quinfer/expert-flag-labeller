@@ -6,10 +6,58 @@ import { NextAuthOptions } from "next-auth";
 const users = [
   {
     id: "1",
-    name: "Expert User",
-    email: "expert@example.com",
-    username: "expert",
-    password: "flagexpert2023",
+    name: "Declan French",
+    email: "declan@example.com",
+    username: "Declan",
+    password: "2HVrOj37rYdUivy+",
+    role: "expert"
+  },
+  {
+    id: "2",
+    name: "Dominic Bryan",
+    email: "dominic@example.com",
+    username: "Dominic",
+    password: "97Z+FIK/gdBC+cLo",
+    role: "expert"
+  },
+  {
+    id: "3",
+    name: "Barry Quinn",
+    email: "barry@example.com",
+    username: "Barry",
+    password: "5aHt5wjEZ7Bbwnd/",
+    role: "expert"
+  },
+  {
+    id: "4",
+    name: "Brandon Cochrane",
+    email: "brandon@example.com",
+    username: "Brandon",
+    password: "s+tCGH8K4phMwY1T",
+    role: "expert"
+  },
+  {
+    id: "5",
+    name: "Byron Graham",
+    email: "byron@example.com",
+    username: "Byron",
+    password: "jR5vT8yM3pB9kL7+",
+    role: "expert"
+  },
+  {
+    id: "6",
+    name: "Colm Kelly",
+    email: "colm@example.com",
+    username: "Colm",
+    password: "8nKj2QxP4vL9mR6w",
+    role: "expert"
+  },
+  {
+    id: "7",
+    name: "Pat Quinn",
+    email: "pat@example.com",
+    username: "Pat",
+    password: "3fG7tHj9Ym1sK8pX",
     role: "expert"
   }
 ];
