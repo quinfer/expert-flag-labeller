@@ -59,6 +59,14 @@ const users = [
     username: "Pat",
     password: "3fG7tHj9Ym1sK8pX",
     role: "expert"
+  },
+  {
+    id: "8",
+    name: "May",
+    email: "may@example.com",
+    username: "May",
+    password: "mK9nP2xW7vQ4jL8+",
+    role: "expert"
   }
 ];
 
