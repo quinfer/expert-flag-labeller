@@ -38,7 +38,7 @@ The Expert Flag Labeler web application provides an intuitive interface for clas
 
 ## Accessing the Application
 
-The application is now live at [https://expert-flag-labeler.vercel.app/](https://expert-flag-labeler.vercel.app/)
+The application is now live at [https://expert-flag-labeller-production.up.railway.app](https://expert-flag-labeller-production.up.railway.app)
 
 To log in:
 - **Username**: Your first name

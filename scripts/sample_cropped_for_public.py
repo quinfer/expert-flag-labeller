@@ -469,7 +469,7 @@ def main():
     print("\nNext steps:")
     print("1. Run the generate-image-list.js script to update the image list:")
     print("   node scripts/generate-image-list.js")
-    print("2. Deploy the updated app to Vercel")
+    print("2. Deploy the updated app to Railway")
 
 if __name__ == "__main__":
     main()

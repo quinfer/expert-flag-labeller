@@ -10,7 +10,7 @@ This guide walks through setting up Supabase for the Expert Flag Labeler applica
 
 ## Environment Variables
 
-Add these variables to your `.env.local` file (for local development) and to your Vercel environment variables (for production):
+Add these variables to your `.env.local` file (for local development) and to your Railway environment variables (for production):
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co

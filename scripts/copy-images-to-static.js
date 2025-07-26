@@ -114,7 +114,7 @@ function copySampleImages() {
     
     // Define max images per town and total max images
     const MAX_PER_TOWN = 100;  // Increased maximum images per town
-    const MAX_TOTAL_IMAGES = 3000;  // Maximum total images (for Vercel limits)
+    const MAX_TOTAL_IMAGES = 3000;  // Maximum total images (for deployment limits)
     
     // Track statistics
     let totalCopied = 0;

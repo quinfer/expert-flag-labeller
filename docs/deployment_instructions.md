@@ -18,7 +18,7 @@ Before beginning deployment, ensure you have:
 - Python 3.6+ installed (for image processing)
 - Node.js 14+ installed (for web application)
 - Access to the GitHub repository
-- Vercel account (for hosting)
+- Railway account (for hosting)
 - Supabase account (for database)
 - At least 10GB of disk space for image processing
 
@@ -143,25 +143,25 @@ Visit [http://localhost:3000](http://localhost:3000) and verify:
 - Classification form works
 - Data is saved to Supabase
 
-### 7. Deploy to Vercel
+### 7. Deploy to Railway
 
-Deploy the application to Vercel:
+Deploy the application to Railway:
 
 ```bash
-# Install Vercel CLI if not already installed
-npm install -g vercel
+# Install Railway CLI if not already installed
+npm install -g @railway/cli
 
-# Deploy to Vercel
-vercel deploy
+# Deploy to Railway
+railway deploy
 ```
 
-Follow the prompts to connect to your Vercel account and deploy the application.
+Follow the prompts to connect to your Railway account and deploy the application.
 
 **Important Deployment Considerations:**
 
-1. Configure environment variables in the Vercel dashboard
+1. Configure environment variables in the Railway dashboard
 2. Set appropriate resource limits for the deployment
-3. If image assets are large, consider using Vercel's Large Static Assets support
+3. If image assets are large, consider using Railway's file storage options
 4. Ensure authentication is properly configured for expert access
 
 ### 8. Post-Deployment Verification
@@ -179,7 +179,7 @@ To update the app with new images:
 
 1. Run the preprocessing script with the latest dataset
 2. Run the image list and static copy scripts
-3. Redeploy to Vercel
+3. Redeploy to Railway
 
 The app's code can be updated independently from the image processing pipeline.
 
@@ -189,7 +189,7 @@ The app's code can be updated independently from the image processing pipeline.
 
 #### "Large File Size" Warning During Deployment
 
-If Vercel warns about large static files:
+If Railway warns about large static files:
 
 1. Reduce the sample size of images
 2. Consider using a separate CDN for images

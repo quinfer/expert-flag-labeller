@@ -35,7 +35,7 @@ All project documentation is organized in the `docs` folder:
 - **Frontend**: Next.js 15 with React
 - **Styling**: Tailwind CSS with shadcn/ui components
 - **Database**: Supabase
-- **Deployment**: Vercel
+- **Deployment**: Railway
 - **Image Processing**: Python with PIL for preprocessing
 
 ## Getting Started

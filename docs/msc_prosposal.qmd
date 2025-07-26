@@ -47,7 +47,7 @@ The approach builds on Li et al.'s [-@li2023semantic] "Semantic-Assisted Object 
 
 ### Existing Labelling Infrastructure
 
-A critical component of the proposed methodology has already been implemented, significantly enhancing the project's viability. A Next.js-based labelling application has been developed and deployed (accessible at https://flag-labeller-19wrdqvle-barry-quinns-projects.vercel.app/), providing a specialized interface for domain experts to efficiently categorise flag imagery. This application incorporates:
+A critical component of the proposed methodology has already been implemented, significantly enhancing the project's viability. A Next.js-based labelling application has been developed and deployed (accessible at https://expert-flag-labeller-production.up.railway.app), providing a specialized interface for domain experts to efficiently categorise flag imagery. This application incorporates:
 
 1. Secure authentication protocols to ensure data integrity
 2. A hierarchical classification system aligned with the project's taxonomic requirements
