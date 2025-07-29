@@ -288,6 +288,18 @@ export default function ExpertFlagLabeler() {
               console.log(`- First few classified image IDs:`, Array.from(classifiedImageIds).slice(0, 5));
               console.log(`- First few image filenames:`, images.slice(0, 5).map(img => img.filename));
               
+              // More detailed debugging - show actual values to find pattern
+              console.log(`- Sample classified image ID: "${Array.from(classifiedImageIds)[0]}"`);
+              console.log(`- Sample image filename: "${images[0]?.filename}"`);
+              console.log(`- Sample composite check: "composite_${images[0]?.filename}"`);
+              
+              // Check if any classified IDs contain common patterns
+              const sampleClassifiedIds = Array.from(classifiedImageIds).slice(0, 10);
+              const sampleImageFilenames = images.slice(0, 10).map(img => img.filename);
+              console.log('Detailed comparison:');
+              console.log('Classified IDs:', sampleClassifiedIds);
+              console.log('Image filenames:', sampleImageFilenames);
+              
               let nextUnclassifiedIndex = 0;
               let matchedCount = 0;
               
