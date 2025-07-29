@@ -602,6 +602,150 @@ export default function ExpertFlagLabeler() {
     setIsDragging(false)
   }
 
+  // Handle not a flag directly
+  const handleNotAFlag = async () => {
+    if (!currentImage) {
+      alert("No image selected");
+      return;
+    }
+    
+    try {
+      console.log("Flagging image as not a flag:", currentImage.filename);
+      
+      // Get the current user from localStorage
+      const userData = localStorage.getItem('user');
+      const currentUser = userData ? JSON.parse(userData) : null;
+      
+      // Create payload for not a flag
+      const payload = { 
+        action: 'flag',
+        imageId: currentImage.filename,
+        town: currentImage.town || 'Unknown',
+        reason: 'Not a flag',
+        expertId: currentUser?.username || currentUser?.name || 'anonymous'
+      };
+      
+      console.log("Sending not a flag payload:", payload);
+      
+      // Use the same endpoint as regular classifications
+      const response = await fetch('/api/classifications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("API error response:", errorText);
+        throw new Error(`Server responded with ${response.status}: ${errorText}`);
+      }
+      
+      const responseData = await response.json();
+      console.log("Not a flag flagged successfully:", responseData);
+      
+      // Update userClassifications state
+      setUserClassifications(prev => ({
+        ...prev,
+        [currentImage.filename]: {
+          image_id: currentImage.filename,
+          needs_review: true,
+          review_reason: 'Not a flag',
+          expert_id: currentUser?.username || currentUser?.name || 'anonymous',
+          primary_category: 'Review',
+          town: currentImage.town || 'Unknown'
+        }
+      }));
+      
+      // Update statistics
+      setStats(prevStats => ({
+        ...prevStats,
+        flaggedForReview: prevStats.flaggedForReview + 1
+      }));
+      
+      // Move to next image
+      setImageError(null);
+      setCurrentIndex(prev => prev + 1);
+      
+    } catch (error) {
+      console.error('Error flagging image as not a flag:', error);
+      alert(`Failed to flag as not a flag: ${error.message || "Unknown error"}`);
+    }
+  };
+
+  // Handle unclear image directly
+  const handleUnclearImage = async () => {
+    if (!currentImage) {
+      alert("No image selected");
+      return;
+    }
+    
+    try {
+      console.log("Flagging image as unclear:", currentImage.filename);
+      
+      // Get the current user from localStorage
+      const userData = localStorage.getItem('user');
+      const currentUser = userData ? JSON.parse(userData) : null;
+      
+      // Create payload for unclear image
+      const payload = { 
+        action: 'flag',
+        imageId: currentImage.filename,
+        town: currentImage.town || 'Unknown',
+        reason: 'Unclear image',
+        expertId: currentUser?.username || currentUser?.name || 'anonymous'
+      };
+      
+      console.log("Sending unclear image payload:", payload);
+      
+      // Use the same endpoint as regular classifications
+      const response = await fetch('/api/classifications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("API error response:", errorText);
+        throw new Error(`Server responded with ${response.status}: ${errorText}`);
+      }
+      
+      const responseData = await response.json();
+      console.log("Unclear image flagged successfully:", responseData);
+      
+      // Update userClassifications state
+      setUserClassifications(prev => ({
+        ...prev,
+        [currentImage.filename]: {
+          image_id: currentImage.filename,
+          needs_review: true,
+          review_reason: 'Unclear image',
+          expert_id: currentUser?.username || currentUser?.name || 'anonymous',
+          primary_category: 'Review',
+          town: currentImage.town || 'Unknown'
+        }
+      }));
+      
+      // Update statistics
+      setStats(prevStats => ({
+        ...prevStats,
+        flaggedForReview: prevStats.flaggedForReview + 1
+      }));
+      
+      // Move to next image
+      setImageError(null);
+      setCurrentIndex(prev => prev + 1);
+      
+    } catch (error) {
+      console.error('Error flagging image as unclear:', error);
+      alert(`Failed to flag as unclear: ${error.message || "Unknown error"}`);
+    }
+  };
+
   // Handle submitting review
   const handleSubmitReview = async () => {
     if (!reviewReason) {
@@ -1007,6 +1151,19 @@ export default function ExpertFlagLabeler() {
               </div>
             )}
 
+            {/* Classification Guidance */}
+            <div className="bg-blue-50 p-3 rounded-md text-sm mb-4">
+              <p className="font-medium mb-1">Classification Guidance:</p>
+              <p className="mb-2">Classify actual flags only. Use "Not a Flag" for:</p>
+              <ul className="text-xs space-y-1 ml-4">
+                <li>• Decorative bunting or streamers without flag designs</li>
+                <li>• Posters, stickers, or printed materials</li>
+                <li>• Advertising displays or commercial signage using flag imagery</li>
+                <li>• Shop signs or business logos (even if flag-like)</li>
+                <li>• Clothing, bags, or other objects with flag patterns</li>
+              </ul>
+            </div>
+
             {/* Display Context - Moved to top */}
             <div>
               <Label>Display Context</Label>
@@ -1033,8 +1190,26 @@ export default function ExpertFlagLabeler() {
                 step={1}
                 className="w-full"
               />
-              <div className="text-center mt-2">
-                Current confidence: {confidence}
+              <div className="flex justify-between items-center mt-2">
+                <span className="text-sm">Current confidence: {confidence}</span>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleNotAFlag()}
+                    className="bg-red-50 hover:bg-red-100 border-red-300 text-red-800"
+                  >
+                    Not a Flag
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleUnclearImage()}
+                    className="bg-yellow-50 hover:bg-yellow-100 border-yellow-300 text-yellow-800"
+                  >
+                    Unclear Image
+                  </Button>
+                </div>
               </div>
             </div>
             
@@ -1139,32 +1314,8 @@ export default function ExpertFlagLabeler() {
             <p className="mb-4">Please select a reason for flagging this image for review:</p>
             
             <div className="space-y-2 mb-6">
-              <div className="flex items-center">
-                <input 
-                  type="radio" 
-                  id="not-flag" 
-                  name="review-reason" 
-                  value="Not a flag"
-                  checked={reviewReason === "Not a flag"}
-                  onChange={() => setReviewReason("Not a flag")}
-                  className="mr-2"
-                />
-                <label htmlFor="not-flag">Not a flag (e.g., decoration, poster, object)</label>
-              </div>
-              
-              <div className="flex items-center">
-                <input 
-                  type="radio" 
-                  id="unclear" 
-                  name="review-reason" 
-                  value="Unclear image"
-                  checked={reviewReason === "Unclear image"}
-                  onChange={() => setReviewReason("Unclear image")}
-                  className="mr-2"
-                />
-                <label htmlFor="unclear">Unclear image</label>
-              </div>
-              
+
+
               <div className="flex items-center">
                 <input 
                   type="radio" 
