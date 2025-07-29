@@ -513,7 +513,13 @@ export default function ExpertFlagLabeler() {
       });
       
       if (!response.ok) {
-        throw new Error(`Server responded with ${response.status}`);
+        // Try to get the actual error message from the API response
+        try {
+          const errorResponse = await response.json();
+          throw new Error(errorResponse.message || errorResponse.error || `Server responded with ${response.status}`);
+        } catch (parseError) {
+          throw new Error(`Server responded with ${response.status}`);
+        }
       }
       
       const result = await response.json();
@@ -552,16 +558,14 @@ export default function ExpertFlagLabeler() {
       
     } catch (error) {
       console.error("Error submitting classification:", error);
-      // Extract response text if available
+      // Extract proper error message from fetch response
       let errorMessage = "Failed to save classification";
-      if (error.response) {
-        try {
-          const errorText = await error.response.text();
-          errorMessage += ": " + errorText;
-        } catch (e) {
-          errorMessage += ". See console for details.";
-        }
+      
+      // Handle fetch errors properly (not axios-style error.response)
+      if (error instanceof Error) {
+        errorMessage = error.message;
       }
+      
       alert(errorMessage);
     } finally {
       setIsSaving(false);
