@@ -175,10 +175,10 @@ export default function ExpertFlagLabeler() {
   
   // UI state
   const [imageError, setImageError] = useState<string | null>(null)
-  const [primaryCategory, setPrimaryCategory] = useState('')
-  const [secondaryCategory, setSecondaryCategory] = useState('')
-  const [specificFlag, setSpecificFlag] = useState('')
-  const [confidence, setConfidence] = useState(3)
+  const [primaryCategory, setPrimaryCategory] = useState('National')
+  const [secondaryCategory, setSecondaryCategory] = useState('Lamppost-mounted')
+  const [specificFlag, setSpecificFlag] = useState('Union Jack')
+  const [confidence, setConfidence] = useState(5)
   const [classifications, setClassifications] = useState<Record<string, any>>({})
   const [zoom, setZoom] = useState(1)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -847,36 +847,7 @@ export default function ExpertFlagLabeler() {
         </div>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex justify-between items-center p-4">
-        <Button 
-          variant="outline" 
-          onClick={handlePrevious}
-          disabled={currentIndex === 0}
-        >
-          Previous Image
-        </Button>
-        <div className="flex gap-3">
-          <Button 
-            variant="outline"
-            onClick={() => setShowReviewDialog(true)}
-          >
-            Flag for Review
-          </Button>
-          <Button 
-            className="bg-green-600 hover:bg-green-700"
-            onClick={() => handleSubmitClassification({ 
-              primaryCategory: specificFlag ? flagCategories[specificFlag]?.primary : primaryCategory, 
-              specificFlag: specificFlag,
-              displayContext: secondaryCategory, 
-              confidence: confidence 
-            })}
-            disabled={!specificFlag || isSaving}
-          >
-            {isSaving ? 'Saving...' : 'Save & Next'}
-          </Button>
-        </div>
-      </div>
+
 
       {/* Main Content - Single Column Layout */}
       <div className="grid grid-cols-1 gap-4">
@@ -961,6 +932,54 @@ export default function ExpertFlagLabeler() {
               >
                 Reset View
               </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Navigation Controls - Moved to top after image */}
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex justify-between items-center">
+              <Button 
+                variant="outline" 
+                onClick={handlePrevious}
+                disabled={currentIndex === 0}
+              >
+                Previous Image
+              </Button>
+              <div className="flex gap-3">
+                <Button 
+                  variant="outline"
+                  onClick={() => setShowReviewDialog(true)}
+                >
+                  Flag for Review
+                </Button>
+                {currentImageClassified ? (
+                  <Button 
+                    className="bg-blue-600 hover:bg-blue-700"
+                    onClick={() => {
+                      setImageError(null);
+                      setCurrentIndex(prev => prev + 1);
+                    }}
+                    disabled={currentIndex >= images.length - 1}
+                  >
+                    Next
+                  </Button>
+                ) : (
+                  <Button 
+                    className="bg-green-600 hover:bg-green-700"
+                    onClick={() => handleSubmitClassification({ 
+                      primaryCategory: specificFlag ? flagCategories[specificFlag]?.primary : primaryCategory, 
+                      specificFlag: specificFlag,
+                      displayContext: secondaryCategory, 
+                      confidence: confidence 
+                    })}
+                    disabled={!specificFlag || isSaving}
+                  >
+                    {isSaving ? 'Saving...' : 'Save & Next'}
+                  </Button>
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -1074,50 +1093,7 @@ export default function ExpertFlagLabeler() {
                 Current confidence: {confidence}
               </div>
             </div>
-            
-            {/* Navigation Controls */}
-            <div className="flex justify-between items-center pt-4">
-              <Button 
-                variant="outline" 
-                onClick={handlePrevious}
-                disabled={currentIndex === 0}
-              >
-                Previous Image
-              </Button>
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline"
-                  onClick={() => setShowReviewDialog(true)}
-                >
-                  Flag for Review
-                </Button>
-                {currentImageClassified ? (
-                  <Button 
-                    className="bg-blue-600 hover:bg-blue-700"
-                    onClick={() => {
-                      setImageError(null);
-                      setCurrentIndex(prev => prev + 1);
-                    }}
-                    disabled={currentIndex >= images.length - 1}
-                  >
-                    Next
-                  </Button>
-                ) : (
-                  <Button 
-                    className="bg-green-600 hover:bg-green-700"
-                    onClick={() => handleSubmitClassification({ 
-                      primaryCategory: specificFlag ? flagCategories[specificFlag]?.primary : primaryCategory, 
-                      specificFlag: specificFlag,
-                      displayContext: secondaryCategory, 
-                      confidence: confidence 
-                    })}
-                    disabled={!specificFlag || isSaving}
-                  >
-                    {isSaving ? 'Saving...' : 'Save & Next'}
-                  </Button>
-                )}
-              </div>
-            </div>
+
           </CardContent>
         </Card>
       </div>

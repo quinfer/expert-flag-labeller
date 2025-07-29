@@ -34,8 +34,8 @@ const CONFIDENCE_LEVELS = [
 export default function FlagClassificationForm({ onSubmit, isSubmitting, imageData }) {
   // Initialize form state
   const [formData, setFormData] = useState({
-    primaryCategory: '',
-    displayContext: '',
+    primaryCategory: 'union',
+    displayContext: 'individual', // Note: 'individual' is closest match to lamppost in this form's options
     specificFlag: '',
     confidence: 'high',
     notes: '',
