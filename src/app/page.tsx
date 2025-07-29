@@ -1021,6 +1021,22 @@ export default function ExpertFlagLabeler() {
                 ))}
               </select>
             </div>
+
+            {/* Confidence Slider - Moved to top */}
+            <div>
+              <Label>Confidence Level (1-5)</Label>
+              <Slider
+                value={[confidence]}
+                onValueChange={(value) => setConfidence(value[0])}
+                min={1}
+                max={5}
+                step={1}
+                className="w-full"
+              />
+              <div className="text-center mt-2">
+                Current confidence: {confidence}
+              </div>
+            </div>
             
             {/* Flag Type Selection - Using buttons grouped by context */}
             <div>
@@ -1080,21 +1096,7 @@ export default function ExpertFlagLabeler() {
               </div>
             )}
 
-            {/* Confidence Slider */}
-            <div>
-              <Label>Confidence Level (1-5)</Label>
-              <Slider
-                value={[confidence]}
-                onValueChange={(value) => setConfidence(value[0])}
-                min={1}
-                max={5}
-                step={1}
-                className="w-full"
-              />
-              <div className="text-center mt-2">
-                Current confidence: {confidence}
-              </div>
-            </div>
+
 
           </CardContent>
         </Card>
