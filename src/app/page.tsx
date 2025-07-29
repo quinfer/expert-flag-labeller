@@ -544,11 +544,11 @@ export default function ExpertFlagLabeler() {
       // Move to the next image
       setCurrentIndex(prev => prev + 1);
       
-      // Reset form state
-      setPrimaryCategory('');
-      setSecondaryCategory('');
-      setSpecificFlag('');
-      setConfidence(3);
+      // Reset form state to defaults for next image
+      setPrimaryCategory('National');
+      setSecondaryCategory('Lamppost-mounted');
+      setSpecificFlag('Union Jack');
+      setConfidence(5);
       
     } catch (error) {
       console.error("Error submitting classification:", error);
@@ -1006,6 +1006,21 @@ export default function ExpertFlagLabeler() {
                 <p>This tool uses academic categories to organize flags: National, Fraternal, Sport, Military, Historical, International, and Proscribed. Your selections will automatically be mapped to these categories for research purposes.</p>
               </div>
             )}
+
+            {/* Display Context - Moved to top */}
+            <div>
+              <Label>Display Context</Label>
+              <select
+                className="w-full p-2 border rounded"
+                value={secondaryCategory}
+                onChange={(e) => setSecondaryCategory(e.target.value)}
+              >
+                <option value="">Select display context...</option>
+                {displayContexts.map(context => (
+                  <option key={context} value={context}>{context}</option>
+                ))}
+              </select>
+            </div>
             
             {/* Flag Type Selection - Using buttons grouped by context */}
             <div>
@@ -1050,20 +1065,7 @@ export default function ExpertFlagLabeler() {
               </div>
             </div>
 
-            {/* Display Context - Using dropdown */}
-            <div>
-              <Label>Display Context</Label>
-              <select
-                className="w-full p-2 border rounded"
-                value={secondaryCategory}
-                onChange={(e) => setSecondaryCategory(e.target.value)}
-              >
-                <option value="">Select display context...</option>
-                {displayContexts.map(context => (
-                  <option key={context} value={context}>{context}</option>
-                ))}
-              </select>
-            </div>
+
             
             {/* Bunting guidance - only shown when bunting is selected */}
             {primaryCategory === 'Bunting' && (
