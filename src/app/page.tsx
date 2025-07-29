@@ -281,7 +281,16 @@ export default function ExpertFlagLabeler() {
               const userClassifications = data.classifications.filter((c: any) => c.expert_id === user.username);
               const classifiedImageIds = new Set(userClassifications.map((c: any) => c.image_id));
               
+              // Debug logging for progress restoration
+              console.log(`Progress restoration for ${user.username}:`);
+              console.log(`- Found ${userClassifications.length} classifications`);
+              console.log(`- Total images available: ${images.length}`);
+              console.log(`- First few classified image IDs:`, Array.from(classifiedImageIds).slice(0, 5));
+              console.log(`- First few image filenames:`, images.slice(0, 5).map(img => img.filename));
+              
               let nextUnclassifiedIndex = 0;
+              let matchedCount = 0;
+              
               for (let i = 0; i < images.length; i++) {
                 const filename = images[i].filename;
                 const compositeFilename = `composite_${filename}`;
@@ -289,11 +298,18 @@ export default function ExpertFlagLabeler() {
                 // Check if this image has been classified under either filename
                 const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
                 
+                if (isClassified) {
+                  matchedCount++;
+                }
+                
                 if (!isClassified) {
                   nextUnclassifiedIndex = i;
                   break;
                 }
               }
+              
+              console.log(`- Matched ${matchedCount} images with classifications`);
+              console.log(`- Setting current index to: ${nextUnclassifiedIndex}`);
               
               setCurrentIndex(nextUnclassifiedIndex);
             }
