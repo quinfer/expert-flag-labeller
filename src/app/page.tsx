@@ -281,28 +281,14 @@ export default function ExpertFlagLabeler() {
               const userClassifications = data.classifications.filter((c: any) => c.expert_id === user.username);
               const classifiedImageIds = new Set(userClassifications.map((c: any) => c.image_id));
               
-              // Debug logging for progress restoration
               console.log(`Progress restoration for ${user.username}:`);
               console.log(`- Found ${userClassifications.length} classifications`);
               console.log(`- Total images available: ${images.length}`);
-              console.log(`- First few classified image IDs:`, Array.from(classifiedImageIds).slice(0, 5));
-              console.log(`- First few image filenames:`, images.slice(0, 5).map(img => img.filename));
-              
-              // More detailed debugging - show actual values to find pattern
-              console.log(`- Sample classified image ID: "${Array.from(classifiedImageIds)[0]}"`);
-              console.log(`- Sample image filename: "${images[0]?.filename}"`);
-              console.log(`- Sample composite check: "composite_${images[0]?.filename}"`);
-              
-              // Check if any classified IDs contain common patterns
-              const sampleClassifiedIds = Array.from(classifiedImageIds).slice(0, 10);
-              const sampleImageFilenames = images.slice(0, 10).map(img => img.filename);
-              console.log('Detailed comparison:');
-              console.log('Classified IDs:', sampleClassifiedIds);
-              console.log('Image filenames:', sampleImageFilenames);
               
               let nextUnclassifiedIndex = 0;
               let matchedCount = 0;
               
+              // First pass: try exact filename matching
               for (let i = 0; i < images.length; i++) {
                 const filename = images[i].filename;
                 const compositeFilename = `composite_${filename}`;
@@ -312,16 +298,35 @@ export default function ExpertFlagLabeler() {
                 
                 if (isClassified) {
                   matchedCount++;
+                } else if (matchedCount === 0) {
+                  // If no matches found yet, this is our starting point
+                  nextUnclassifiedIndex = i;
                 }
                 
-                if (!isClassified) {
+                // If we have matches, find first unclassified after the matches
+                if (matchedCount > 0 && !isClassified) {
                   nextUnclassifiedIndex = i;
                   break;
                 }
               }
               
-              console.log(`- Matched ${matchedCount} images with classifications`);
-              console.log(`- Setting current index to: ${nextUnclassifiedIndex}`);
+              // If no exact matches found, calculate proportional progress
+              // This handles cases where the image set has changed due to curation
+              if (matchedCount === 0 && userClassifications.length > 0) {
+                console.log(`- No exact matches found - calculating proportional progress`);
+                console.log(`- User has ${userClassifications.length} classifications from previous image set`);
+                
+                // Estimate progress: assume user worked through images sequentially
+                // Place user at roughly the same percentage through the current set
+                const estimatedProgressPercent = Math.min(userClassifications.length / 5751, 1.0); // 5751 was original total
+                nextUnclassifiedIndex = Math.floor(estimatedProgressPercent * images.length);
+                
+                console.log(`- Estimated progress: ${(estimatedProgressPercent * 100).toFixed(1)}%`);
+                console.log(`- Calculated starting index: ${nextUnclassifiedIndex} of ${images.length}`);
+              } else {
+                console.log(`- Matched ${matchedCount} images with classifications`);
+                console.log(`- Setting current index to: ${nextUnclassifiedIndex}`);
+              }
               
               setCurrentIndex(nextUnclassifiedIndex);
             }
