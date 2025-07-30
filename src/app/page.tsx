@@ -285,6 +285,12 @@ export default function ExpertFlagLabeler() {
               console.log(`- Found ${userClassifications.length} classifications`);
               console.log(`- Total images available: ${images.length}`);
               
+              // Debug: Log image IDs and classification IDs for comparison
+              const sampleClassificationIds = Array.from(classifiedImageIds).slice(0, 10);
+              const sampleImageIds = images.slice(0, 10).map(img => img.filename);
+              console.log(`- Sample classification IDs:`, sampleClassificationIds);
+              console.log(`- Sample image filenames:`, sampleImageIds);
+              
               let nextUnclassifiedIndex = 0;
               let matchedCount = 0;
               
@@ -296,6 +302,11 @@ export default function ExpertFlagLabeler() {
                 // Check if this image has been classified under either filename
                 const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
                 
+                // Debug logging for first 20 images
+                if (i < 20) {
+                  console.log(`Image ${i}: ${filename} -> classified: ${isClassified}`);
+                }
+                
                 if (isClassified) {
                   matchedCount++;
                 } else if (matchedCount === 0) {
@@ -305,6 +316,7 @@ export default function ExpertFlagLabeler() {
                 
                 // If we have matches, find first unclassified after the matches
                 if (matchedCount > 0 && !isClassified) {
+                  console.log(`Found first unclassified after matches at index ${i}: ${filename}`);
                   nextUnclassifiedIndex = i;
                   break;
                 }
@@ -326,7 +338,30 @@ export default function ExpertFlagLabeler() {
               } else {
                 console.log(`- Matched ${matchedCount} images with classifications`);
                 console.log(`- Setting current index to: ${nextUnclassifiedIndex}`);
+                
+                // ROBUSTNESS FIX: Double-check that the selected image isn't already classified
+                // This handles cases where classifications are non-sequential
+                while (nextUnclassifiedIndex < images.length) {
+                  const currentFilename = images[nextUnclassifiedIndex].filename;
+                  const currentCompositeFilename = `composite_${currentFilename}`;
+                  const isCurrentClassified = classifiedImageIds.has(currentFilename) || classifiedImageIds.has(currentCompositeFilename);
+                  
+                  if (!isCurrentClassified) {
+                    console.log(`✅ Confirmed index ${nextUnclassifiedIndex} is unclassified: ${currentFilename}`);
+                    break;
+                  } else {
+                    console.log(`⚠️  Index ${nextUnclassifiedIndex} is already classified: ${currentFilename}, skipping...`);
+                    nextUnclassifiedIndex++;
+                  }
+                }
+                
+                if (nextUnclassifiedIndex >= images.length) {
+                  console.log(`🎉 All images classified! Setting to last image.`);
+                  nextUnclassifiedIndex = images.length - 1;
+                }
               }
+              
+              console.log(`Final: Barry will start at index ${nextUnclassifiedIndex}, image: ${images[nextUnclassifiedIndex]?.filename}`);
               
               setCurrentIndex(nextUnclassifiedIndex);
             }
