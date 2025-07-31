@@ -294,31 +294,34 @@ export default function ExpertFlagLabeler() {
               let nextUnclassifiedIndex = 0;
               let matchedCount = 0;
               
-              // First pass: try exact filename matching
-              for (let i = 0; i < images.length; i++) {
-                const filename = images[i].filename;
-                const compositeFilename = `composite_${filename}`;
-                
-                // Check if this image has been classified under either filename
-                const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
-                
-                // Debug logging for first 20 images
-                if (i < 20) {
-                  console.log(`Image ${i}: ${filename} -> classified: ${isClassified}`);
-                }
-                
-                if (isClassified) {
-                  matchedCount++;
-                } else if (matchedCount === 0) {
-                  // If no matches found yet, this is our starting point
-                  nextUnclassifiedIndex = i;
-                }
-                
-                // If we have matches, find first unclassified after the matches
-                if (matchedCount > 0 && !isClassified) {
-                  console.log(`Found first unclassified after matches at index ${i}: ${filename}`);
-                  nextUnclassifiedIndex = i;
-                  break;
+              // Special case: if user has no classifications, start at beginning
+              if (userClassifications.length === 0) {
+                console.log(`- User has no classifications, starting at image 0`);
+                nextUnclassifiedIndex = 0;
+              } else {
+                // First pass: try exact filename matching
+                for (let i = 0; i < images.length; i++) {
+                  const filename = images[i].filename;
+                  const compositeFilename = `composite_${filename}`;
+                  
+                  // Check if this image has been classified under either filename
+                  const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
+                  
+                  // Debug logging for first 20 images
+                  if (i < 20) {
+                    console.log(`Image ${i}: ${filename} -> classified: ${isClassified}`);
+                  }
+                  
+                  if (isClassified) {
+                    matchedCount++;
+                  }
+                  
+                  // Find first unclassified image after any classified ones
+                  if (matchedCount > 0 && !isClassified) {
+                    console.log(`Found first unclassified after matches at index ${i}: ${filename}`);
+                    nextUnclassifiedIndex = i;
+                    break;
+                  }
                 }
               }
               
@@ -361,7 +364,7 @@ export default function ExpertFlagLabeler() {
                 }
               }
               
-              console.log(`Final: Barry will start at index ${nextUnclassifiedIndex}, image: ${images[nextUnclassifiedIndex]?.filename}`);
+              console.log(`Final: ${user.username} will start at index ${nextUnclassifiedIndex}, image: ${images[nextUnclassifiedIndex]?.filename}`);
               
               setCurrentIndex(nextUnclassifiedIndex);
             }
