@@ -30,16 +30,10 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
 
-    // Debug logging for Pat's login issue
-    console.log('Login attempt:', { username: `"${username}"`, password: `"${password}"` });
-    console.log('Available users:', VALID_USERS.map(u => u.username));
-    
     // Find matching user
     const user = VALID_USERS.find(
       user => user.username === username && user.password === password
     );
-
-    console.log('Found user:', user ? `${user.name} (${user.username})` : 'No match found');
 
     if (user) {
       // Store authentication in localStorage with the user's name and username
@@ -52,8 +46,7 @@ export default function LoginPage() {
       // Redirect to the main application page
       router.push('/');
     } else {
-      console.error('Login failed for:', { username, password: password.substring(0, 4) + '...' });
-      setError('Invalid username or password. Check browser console for debug info.');
+      setError('Invalid username or password');
       setLoading(false);
     }
   };
