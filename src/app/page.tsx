@@ -148,6 +148,7 @@ const flagDescriptions = {
   'WW1 Commemorative': 'Flags commemorating World War I, often featuring poppies or dates 1914-1918.',
   'WW2 Commemorative': 'Flags commemorating World War II, typically featuring dates 1939-1945 and symbols of remembrance.',
   'Royal Irish Regiment': 'Flag of the British Army regiment formed in 1992, featuring a harp and crown on a dark green background.',
+  'Royal British Legion': 'Flag of the Royal British Legion, a British Armed Forces charity supporting serving and ex-serving personnel and their families, often featuring a poppy symbol.',
   'Israeli': 'The national flag of Israel, featuring a blue Star of David on a white background with blue stripes.',
   'Palestinian': 'The national flag of Palestine, featuring horizontal stripes of black, white, and green with a red triangle on the hoist side.',
   'GAA': 'Flags representing the Gaelic Athletic Association, typically featuring county colors and GAA emblems.',
@@ -439,6 +440,7 @@ export default function ExpertFlagLabeler() {
     'Parachute Regiment': { primary: 'Military', context: 'Military/Memorial' },
     'UDR': { primary: 'Military', context: 'Military/Memorial' },
     'Royal Irish Regiment': { primary: 'Military', context: 'Military/Memorial' },
+    'Royal British Legion': { primary: 'Military', context: 'Military/Memorial' },
     'Historical Units': { primary: 'Military', context: 'Military/Memorial' },
     
     // Historical
