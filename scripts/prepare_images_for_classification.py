@@ -90,6 +90,10 @@ def parse_arguments():
                         help="Public directory for web-accessible images (default: public/images)")
     parser.add_argument("--side-by-side", action="store_true",
                         help="Create side-by-side versions of cropped and original images")
+    parser.add_argument("--filter-by-confidence", action="store_true",
+                        help="Filter candidate images to only those containing at least one detection >= --min-confidence")
+    parser.add_argument("--target-boxes-per-town", type=int,
+                        help="Stop processing a town after this many boxes have been added to the queue")
     
     return parser.parse_args()
 
@@ -367,8 +371,17 @@ def prepare_images_for_classification(args):
             with open(bbox_file, 'r') as f:
                 bbox_data = json.load(f)
             
-            # If random sampling is enabled, randomly select images
+            # Build initial candidate image list
             image_names = list(bbox_data.keys())
+
+            # Optionally restrict to images that have at least one detection >= min confidence
+            if args.filter_by_confidence:
+                filtered_names = []
+                for name in image_names:
+                    detections = bbox_data[name]
+                    if any((det.get('confidence', 0.0) if isinstance(det, dict) else 0.0) >= args.min_confidence for det in detections):
+                        filtered_names.append(name)
+                image_names = filtered_names
             
             # TEMPORARY DEBUG: Force include the specific test image
             # Check if the specific problem image exists in this town
@@ -379,6 +392,7 @@ def prepare_images_for_classification(args):
                 if specific_test_image in image_names:
                     image_names.remove(specific_test_image)
                     
+            # Apply optional random sampling over candidate images
             if args.random_sample and args.random_sample < len(image_names):
                 random.shuffle(image_names)
                 image_names = image_names[:args.random_sample]
@@ -396,10 +410,17 @@ def prepare_images_for_classification(args):
                 leave=False
             )
             
+            # Track per-town target box count
+            town_boxes_added = 0
+
             # Process each image
             for image_name in town_progress:
                 # Check if we've reached the max per town limit
                 if args.max_per_town and processed_counts[town] >= args.max_per_town:
+                    break
+
+                # Also stop if we've reached the target boxes for this town
+                if args.target_boxes_per_town and town_boxes_added >= args.target_boxes_per_town:
                     break
                 
                 # Update progress bar description with current progress
@@ -458,11 +479,14 @@ def prepare_images_for_classification(args):
                         if position_factor > 0.7:  # If in top 30% of image
                             min_size_threshold = args.min_size * 0.5  # 50% more lenient
                         
-                        # Less restrictive filtering to ensure we get enough samples
-                        # Skip only very low confidence boxes
-                        if confidence < 0.25:  # Lower threshold from 0.3 to 0.25
+                        # Enforce minimum confidence threshold from CLI (defaults to 0.3)
+                        # Fall back to a very low threshold only if not provided
+                        min_conf_threshold = args.min_confidence if hasattr(args, 'min_confidence') and args.min_confidence is not None else 0.25
+                        if confidence < min_conf_threshold:
                             if args.debug:
-                                print(f"Skipping low confidence box {i} in {image_path}: confidence={confidence:.2f}")
+                                print(
+                                    f"Skipping box {i} in {image_path} due to confidence {confidence:.2f} < min_confidence {min_conf_threshold:.2f}"
+                                )
                             continue
                         
                         # Create a cropped image with padding
@@ -603,13 +627,22 @@ def prepare_images_for_classification(args):
                         classification_queue.append(item)
                         
                         boxes_added += 1
+                        town_boxes_added += 1
                         total_boxes_processed += 1
+
+                        # If we've hit the town target, stop early
+                        if args.target_boxes_per_town and town_boxes_added >= args.target_boxes_per_town:
+                            break
                         
                         if args.debug:
                             print(f"Added box {i} from {image_path}: confidence={confidence:.2f}, size={relative_size:.5f}, position={position_factor:.2f}")
                     
                     if boxes_added > 0:
                         processed_counts[town] += 1
+
+                    # If we've hit the town target, stop early
+                    if args.target_boxes_per_town and town_boxes_added >= args.target_boxes_per_town:
+                        break
                 
                 except Exception as e:
                     print(f"Error processing {image_path}: {e}")

@@ -260,6 +260,15 @@ export default function ExpertFlagLabeler() {
         return;
       }
       
+      // In Pat-only runs, always start at the beginning of this curated set
+      // to avoid jumping ahead due to historical classifications
+      if (process.env.NEXT_PUBLIC_PAT_ONLY === 'true' || user.username === 'Pat') {
+        if (images.length > 0) {
+          setCurrentIndex(0);
+        }
+        return; // Skip progress restoration logic
+      }
+
       try {
         // Load user classifications
         const response = await fetch(`/api/classifications?expert_id=${user.username}`);
@@ -326,19 +335,14 @@ export default function ExpertFlagLabeler() {
                 }
               }
               
-              // If no exact matches found, calculate proportional progress
-              // This handles cases where the image set has changed due to curation
+              // If no exact matches found but user has historical classifications,
+              // default to the very beginning of the current image set.
+              // Rationale: different curated datasets (e.g., Pat-only) may not
+              // overlap with past work; proportional restoration can drop users
+              // into the middle unexpectedly.
               if (matchedCount === 0 && userClassifications.length > 0) {
-                console.log(`- No exact matches found - calculating proportional progress`);
-                console.log(`- User has ${userClassifications.length} classifications from previous image set`);
-                
-                // Estimate progress: assume user worked through images sequentially
-                // Place user at roughly the same percentage through the current set
-                const estimatedProgressPercent = Math.min(userClassifications.length / 5751, 1.0); // 5751 was original total
-                nextUnclassifiedIndex = Math.floor(estimatedProgressPercent * images.length);
-                
-                console.log(`- Estimated progress: ${(estimatedProgressPercent * 100).toFixed(1)}%`);
-                console.log(`- Calculated starting index: ${nextUnclassifiedIndex} of ${images.length}`);
+                console.log(`- No exact matches found - starting at the beginning (index 0)`);
+                nextUnclassifiedIndex = 0;
               } else {
                 console.log(`- Matched ${matchedCount} images with classifications`);
                 console.log(`- Setting current index to: ${nextUnclassifiedIndex}`);
@@ -386,6 +390,15 @@ export default function ExpertFlagLabeler() {
 
     loadAdditionalData();
   }, [isInitialized, isAuthenticated, user?.username, images.length]);
+
+  // Hard override for Pat: always start at index 0 for curated PAT runs
+  useEffect(() => {
+    if (!isInitialized || !user?.username) return;
+    if (user.username === 'Pat') {
+      console.log('[Progress Override] Forcing start at index 0 for Pat');
+      setCurrentIndex(0);
+    }
+  }, [isInitialized, user?.username, images.length]);
 
   // Update current image classification status
   useEffect(() => {
