@@ -1,0 +1,2320 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Review: Disputed Image Classifications</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .summary {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .dispute-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #ff6b6b;
+        }
+        .dispute-header {
+            background: #ffebee;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ffcdd2;
+        }
+        .dispute-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+        .assessment-panel {
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #ddd;
+        }
+        .barry-assessment {
+            background: #e8f5e8;
+            border-color: #4caf50;
+        }
+        .data-assessment {
+            background: #fff3e0;
+            border-color: #ff9800;
+        }
+        .image-container {
+            grid-column: span 2;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 6px;
+        }
+        .dispute-image {
+            max-width: 100%;
+            max-height: 400px;
+            border: 3px solid #ff6b6b;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .decision-area {
+            grid-column: span 2;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f7ff;
+            border: 2px dashed #2196f3;
+            border-radius: 6px;
+        }
+        .decision-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-barry { background: #4caf50; color: white; }
+        .btn-data { background: #ff9800; color: white; }
+        .btn-unclear { background: #9e9e9e; color: white; }
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        .conflict-badge {
+            display: inline-block;
+            background: #ff5722;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid #2196f3;
+        }
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .progress {
+            background: #ddd;
+            height: 8px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            background: #4caf50;
+            height: 100%;
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        @media print {
+            .navigation { display: none; }
+            .dispute-item { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 Expert Review: Disputed Image Classifications</h1>
+        <p>Reconciliation between Barry's assessments and false positive data</p>
+        <p><strong>Generated:</strong> 7/11/2025, 11:42:32 AM</p>
+    </div>
+
+    <div class="instructions">
+        <h3>📋 Review Instructions</h3>
+        <p><strong>Purpose:</strong> Barry flagged these 19 images as "false positives" or "unclear", but the false positive data indicates they contain genuine flags.</p>
+        <p><strong>Your task:</strong> For each image below, determine who is correct:</p>
+        <ul>
+            <li><strong>Barry's Assessment:</strong> Image doesn't contain a classifiable flag (or is unclear)</li>
+            <li><strong>Data Assessment:</strong> Image contains genuine flags worthy of classification</li>
+        </ul>
+        <p><strong>Click the decision buttons</strong> to record your assessment for each image.</p>
+    </div>
+
+    <div class="summary">
+        <h3>📊 Summary</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            <div style="text-align: center; padding: 15px; background: #ffebee; border-radius: 6px;">
+                <div style="font-size: 2em; font-weight: bold; color: #d32f2f;">19</div>
+                <div>Disputed Images</div>
+            </div>
+            <div style="text-align: center; padding: 15px; background: #e8f5e8; border-radius: 6px;">
+                <div style="font-size: 2em; font-weight: bold; color: #388e3c;" id="barry-correct">0</div>
+                <div>Barry Correct</div>
+            </div>
+            <div style="text-align: center; padding: 15px; background: #fff3e0; border-radius: 6px;">
+                <div style="font-size: 2em; font-weight: bold; color: #f57c00;" id="data-correct">0</div>
+                <div>Data Correct</div>
+            </div>
+            <div style="text-align: center; padding: 15px; background: #f3e5f5; border-radius: 6px;">
+                <div style="font-size: 2em; font-weight: bold; color: #7b1fa2;" id="unclear-count">0</div>
+                <div>Unclear/Need Discussion</div>
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+            <span id="progress-text">0 of 19 images reviewed</span>
+        </div>
+    </div>
+
+    <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <h3>📊 False Positive Data Analysis</h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <div>
+                <h4>Dataset Overview</h4>
+                <ul>
+                    <li><strong>Total images processed:</strong> 33,864</li>
+                    <li><strong>CV-positive images:</strong> 1,289 (flags detected, sent for expert review)</li>
+                    <li><strong>CV-negative images:</strong> 32,575 (no flags detected, not reviewed)</li>
+                    <li><strong>True positives:</strong> 793 (expert confirmed flags are genuine)</li>
+                    <li><strong>False positives:</strong> 496 (expert rejected detected flags)</li>
+                    <li><strong>Positive Predictive Value:</strong> 62% (793/1289)</li>
+                    <li><em>Note: True/False negatives cannot be determined as CV-negative images were not expert reviewed</em></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Key Statistics</h4>
+                <p><strong>Original CV Results (flags):</strong></p>
+                <ul>
+                    <li>flags = 0: 32,575 images</li><li>flags = 1: 1,077 images</li><li>flags = 2: 161 images</li><li>flags = 3: 35 images</li><li>flags = 4: 6 images</li><li>flags = 5: 3 images</li><li>flags = 6: 2 images</li><li>flags = 7: 4 images</li><li>flags = 9: 1 images</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <h4>🚨 Disputed Records - These are the exact entries from your false positive data:</h4>
+            <div style="overflow-x: auto; background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 4px solid #ff5722;">
+                <table style="width: 100%; border-collapse: collapse; font-family: monospace; font-size: 0.9em;">
+                    <thead>
+                        <tr style="background: #e3f2fd;">
+                            <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">f</th><th style="border: 1px solid #ddd; padding: 8px; text-align: left;">pano_id</th><th style="border: 1px solid #ddd; padding: 8px; text-align: left;">flags</th><th style="border: 1px solid #ddd; padding: 8px; text-align: left;">indicator</th><th style="border: 1px solid #ddd; padding: 8px; text-align: left;">flags_correct</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    tPVDI_bSrwOEzO7l2phMqg_240
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    tPVDI_bSrwOEzO7l2phMqg
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    Xdkhj2ivRF_-3zcuwy9DNg_120
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    Xdkhj2ivRF_-3zcuwy9DNg
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    XGRAUZTmsPD6VHCK3Ksk-Q_300
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    XGRAUZTmsPD6VHCK3Ksk-Q
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    ECjMwwOBqPh8Gs1rg0x8jA_180
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    ECjMwwOBqPh8Gs1rg0x8jA
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    hHaZXLSlTRgbAtC5sN5BmQ_120
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    hHaZXLSlTRgbAtC5sN5BmQ
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    ZP55Ydb9H8Y1cEWYhYAgzw_240
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    ZP55Ydb9H8Y1cEWYhYAgzw
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    ScH0zbysQKCbisaBWfC9uw_180
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    ScH0zbysQKCbisaBWfC9uw
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    Qi23_GKOLB7-MAIlXqDSEg_120
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    Qi23_GKOLB7-MAIlXqDSEg
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    TJG87O8jBgd8dzwiuPR1KQ_060
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    TJG87O8jBgd8dzwiuPR1KQ
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    nuyOVyoGQSFo_l3h1_LEtg_060
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    nuyOVyoGQSFo_l3h1_LEtg
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    v8wy7PM7Jqqog4R_HtbbQQ_240
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    v8wy7PM7Jqqog4R_HtbbQQ
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    pGAolNdN7sLGI3ZWGyi8Ug_300
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    pGAolNdN7sLGI3ZWGyi8Ug
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    Kl0NZDrCatcCSiQ33GmT-A_240
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    Kl0NZDrCatcCSiQ33GmT-A
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    NREaXVjDT4hgBgfT92v0Iw_180
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    NREaXVjDT4hgBgfT92v0Iw
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    mRv77-0EbxsE5O8MW_SEvA_000
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    mRv77-0EbxsE5O8MW_SEvA
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    uxN0xRE9t4To6LBtKkw2og_120
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    uxN0xRE9t4To6LBtKkw2og
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    GP27ckTW5bwq6AOmCMnCAg_000
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    GP27ckTW5bwq6AOmCMnCAg
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    r8OFBKqHRBGR-LVrfy6FIA_180
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    r8OFBKqHRBGR-LVrfy6FIA
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                            <tr style="background: #ffecec;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    rQT_klvRS88UOGC22DDHmQ_000
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    rQT_klvRS88UOGC22DDHmQ
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1.0
+                                  </td><td style="border: 1px solid #ddd; padding: 8px;">
+                                    1
+                                  </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                <strong>Key:</strong> 
+                <span style="background: #ffecec; padding: 2px 4px; border-radius: 3px;">Red rows</span> = 
+                Marked as "true positive" (indicator = 1.0) in false positive data, but Barry flagged for review
+            </p>
+        </div>
+
+        <details style="background: #f0f7ff; padding: 15px; border-radius: 6px; margin-top: 20px;">
+            <summary style="cursor: pointer; font-weight: bold; color: #1976d2;">
+                📋 Sample of Original Dataset (click to expand)
+            </summary>
+            <div style="overflow-x: auto; margin-top: 15px;">
+                <table style="width: 100%; border-collapse: collapse; font-family: monospace; font-size: 0.8em;">
+                    <thead>
+                        <tr style="background: #e1f5fe;">
+                            <th style="border: 1px solid #ddd; padding: 6px; text-align: left;">f</th><th style="border: 1px solid #ddd; padding: 6px; text-align: left;">pano_id</th><th style="border: 1px solid #ddd; padding: 6px; text-align: left;">flags</th><th style="border: 1px solid #ddd; padding: 6px; text-align: left;">indicator</th><th style="border: 1px solid #ddd; padding: 6px; text-align: left;">flags_correct</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    TOiY5_yczVcdrAtYyJCa5A_120
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    TOiY5_yczVcdrAtYyJCa5A
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    kCgjnEiPIYWc3ZyIfC57Uw_000
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    kCgjnEiPIYWc3ZyIfC57Uw
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    q50T2paE7Y-c5P_Yu1h5kg_240
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    q50T2paE7Y-c5P_Yu1h5kg
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    lna1dEo8ItrJSa5NjNuSDw_180
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    lna1dEo8ItrJSa5NjNuSDw
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    NIUq0wbkzEb_5Sy168q3Vw_240
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    NIUq0wbkzEb_5Sy168q3Vw
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    4GOgE_ZK0oG9V2KoCgdoQg_120
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    4GOgE_ZK0oG9V2KoCgdoQg
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    lhPyutZnZDBjtqiXui7IAA_180
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    lhPyutZnZDBjtqiXui7IAA
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    pYfkAP_dGhc2joV_owfv7A_060
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    pYfkAP_dGhc2joV_owfv7A
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    Qg3U1xKxJJx8Sv8erusdwg_300
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    Qg3U1xKxJJx8Sv8erusdwg
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    DIqYRHYwdgzbP0JtJMPTmQ_120
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    DIqYRHYwdgzbP0JtJMPTmQ
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    aATRoA5VNvYxQaB6fFq5BQ_240
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    aATRoA5VNvYxQaB6fFq5BQ
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    FnhdZ17Vb25Y56SNof-ByQ_000
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    FnhdZ17Vb25Y56SNof-ByQ
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    Ujb5swbViUwTYA1W5HrH6A_060
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    Ujb5swbViUwTYA1W5HrH6A
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    bfKDGedKIozpu6kPpLeE8g_000
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    bfKDGedKIozpu6kPpLeE8g
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    pYfkAP_dGhc2joV_owfv7A_120
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    pYfkAP_dGhc2joV_owfv7A
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    Myx9XJ4IqO1JRSDTGZLYQg_060
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    Myx9XJ4IqO1JRSDTGZLYQg
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    Jy0u0eeW_hnsvicQbR2qoA_120
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    Jy0u0eeW_hnsvicQbR2qoA
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    vnkWSCiK8co-KekayqKD6Q_060
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    vnkWSCiK8co-KekayqKD6Q
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    dA8tkaMsPBPOtXAv6iOIiA_120
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    dA8tkaMsPBPOtXAv6iOIiA
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 6px;">
+                                    Wv9nd9QFNo4xf70wEP7NaQ_240
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    Wv9nd9QFNo4xf70wEP7NaQ
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    <span style="color: #666; font-style: italic;">NaN</span>
+                                  </td><td style="border: 1px solid #ddd; padding: 6px;">
+                                    
+                                  </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+                <p style="margin-top: 10px; font-size: 0.8em; color: #666;">
+                    Showing 20 of 50 sample records from the full dataset.
+                </p>
+            </div>
+        </details>
+    </div>
+
+    
+    <div class="dispute-item" id="dispute-0">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #1: ZP55Ydb9H8Y1cEWYhYAgzw_240_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> ZP55Ydb9H8Y1cEWYhYAgzw_240 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/ZP55Ydb9H8Y1cEWYhYAgzw_240.jpg" alt="Original panoramic image ZP55Ydb9H8Y1cEWYhYAgzw_240.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: ZP55Ydb9H8Y1cEWYhYAgzw_240.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> ZP55Ydb9H8Y1cEWYhYAgzw_240.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/ZP55Ydb9H8Y1cEWYhYAgzw_240_box0.jpg" alt="Cropped flag region ZP55Ydb9H8Y1cEWYhYAgzw_240_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: ZP55Ydb9H8Y1cEWYhYAgzw_240_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> ZP55Ydb9H8Y1cEWYhYAgzw_240_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> ZP55Ydb9H8Y1cEWYhYAgzw_240.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> ZP55Ydb9H8Y1cEWYhYAgzw_240_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(0, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(0, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(0, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-0" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-0" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-1">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #2: TJG87O8jBgd8dzwiuPR1KQ_060_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> TJG87O8jBgd8dzwiuPR1KQ_060 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/TJG87O8jBgd8dzwiuPR1KQ_060.jpg" alt="Original panoramic image TJG87O8jBgd8dzwiuPR1KQ_060.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: TJG87O8jBgd8dzwiuPR1KQ_060.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> TJG87O8jBgd8dzwiuPR1KQ_060.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/TJG87O8jBgd8dzwiuPR1KQ_060_box0.jpg" alt="Cropped flag region TJG87O8jBgd8dzwiuPR1KQ_060_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: TJG87O8jBgd8dzwiuPR1KQ_060_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> TJG87O8jBgd8dzwiuPR1KQ_060_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> TJG87O8jBgd8dzwiuPR1KQ_060.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> TJG87O8jBgd8dzwiuPR1KQ_060_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(1, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(1, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(1, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-1" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-1" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-2">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #3: NREaXVjDT4hgBgfT92v0Iw_180_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> NREaXVjDT4hgBgfT92v0Iw_180 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/NREaXVjDT4hgBgfT92v0Iw_180.jpg" alt="Original panoramic image NREaXVjDT4hgBgfT92v0Iw_180.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: NREaXVjDT4hgBgfT92v0Iw_180.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> NREaXVjDT4hgBgfT92v0Iw_180.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/NREaXVjDT4hgBgfT92v0Iw_180_box0.jpg" alt="Cropped flag region NREaXVjDT4hgBgfT92v0Iw_180_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: NREaXVjDT4hgBgfT92v0Iw_180_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> NREaXVjDT4hgBgfT92v0Iw_180_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> NREaXVjDT4hgBgfT92v0Iw_180.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> NREaXVjDT4hgBgfT92v0Iw_180_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(2, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(2, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(2, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-2" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-2" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-3">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #4: GP27ckTW5bwq6AOmCMnCAg_000_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> GP27ckTW5bwq6AOmCMnCAg_000 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/GP27ckTW5bwq6AOmCMnCAg_000.jpg" alt="Original panoramic image GP27ckTW5bwq6AOmCMnCAg_000.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: GP27ckTW5bwq6AOmCMnCAg_000.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> GP27ckTW5bwq6AOmCMnCAg_000.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/GP27ckTW5bwq6AOmCMnCAg_000_box0.jpg" alt="Cropped flag region GP27ckTW5bwq6AOmCMnCAg_000_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: GP27ckTW5bwq6AOmCMnCAg_000_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> GP27ckTW5bwq6AOmCMnCAg_000_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> GP27ckTW5bwq6AOmCMnCAg_000.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> GP27ckTW5bwq6AOmCMnCAg_000_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(3, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(3, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(3, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-3" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-3" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-4">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #5: uxN0xRE9t4To6LBtKkw2og_120_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> uxN0xRE9t4To6LBtKkw2og_120 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/uxN0xRE9t4To6LBtKkw2og_120.jpg" alt="Original panoramic image uxN0xRE9t4To6LBtKkw2og_120.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: uxN0xRE9t4To6LBtKkw2og_120.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> uxN0xRE9t4To6LBtKkw2og_120.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/uxN0xRE9t4To6LBtKkw2og_120_box0.jpg" alt="Cropped flag region uxN0xRE9t4To6LBtKkw2og_120_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: uxN0xRE9t4To6LBtKkw2og_120_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> uxN0xRE9t4To6LBtKkw2og_120_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> uxN0xRE9t4To6LBtKkw2og_120.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> uxN0xRE9t4To6LBtKkw2og_120_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(4, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(4, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(4, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-4" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-4" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-5">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #6: Xdkhj2ivRF_-3zcuwy9DNg_120_box1.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> Xdkhj2ivRF_-3zcuwy9DNg_120 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/Xdkhj2ivRF_-3zcuwy9DNg_120.jpg" alt="Original panoramic image Xdkhj2ivRF_-3zcuwy9DNg_120.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: Xdkhj2ivRF_-3zcuwy9DNg_120.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> Xdkhj2ivRF_-3zcuwy9DNg_120.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/Xdkhj2ivRF_-3zcuwy9DNg_120_box1.jpg" alt="Cropped flag region Xdkhj2ivRF_-3zcuwy9DNg_120_box1.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: Xdkhj2ivRF_-3zcuwy9DNg_120_box1.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> Xdkhj2ivRF_-3zcuwy9DNg_120_box1.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> Xdkhj2ivRF_-3zcuwy9DNg_120.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> Xdkhj2ivRF_-3zcuwy9DNg_120_box1.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(5, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(5, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(5, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-5" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-5" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-6">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #7: nuyOVyoGQSFo_l3h1_LEtg_060_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> nuyOVyoGQSFo_l3h1_LEtg_060 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/nuyOVyoGQSFo_l3h1_LEtg_060.jpg" alt="Original panoramic image nuyOVyoGQSFo_l3h1_LEtg_060.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: nuyOVyoGQSFo_l3h1_LEtg_060.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> nuyOVyoGQSFo_l3h1_LEtg_060.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/nuyOVyoGQSFo_l3h1_LEtg_060_box0.jpg" alt="Cropped flag region nuyOVyoGQSFo_l3h1_LEtg_060_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: nuyOVyoGQSFo_l3h1_LEtg_060_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> nuyOVyoGQSFo_l3h1_LEtg_060_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> nuyOVyoGQSFo_l3h1_LEtg_060.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> nuyOVyoGQSFo_l3h1_LEtg_060_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(6, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(6, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(6, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-6" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-6" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-7">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #8: pGAolNdN7sLGI3ZWGyi8Ug_300_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> pGAolNdN7sLGI3ZWGyi8Ug_300 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/pGAolNdN7sLGI3ZWGyi8Ug_300.jpg" alt="Original panoramic image pGAolNdN7sLGI3ZWGyi8Ug_300.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: pGAolNdN7sLGI3ZWGyi8Ug_300.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> pGAolNdN7sLGI3ZWGyi8Ug_300.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/pGAolNdN7sLGI3ZWGyi8Ug_300_box0.jpg" alt="Cropped flag region pGAolNdN7sLGI3ZWGyi8Ug_300_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: pGAolNdN7sLGI3ZWGyi8Ug_300_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> pGAolNdN7sLGI3ZWGyi8Ug_300_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> pGAolNdN7sLGI3ZWGyi8Ug_300.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> pGAolNdN7sLGI3ZWGyi8Ug_300_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(7, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(7, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(7, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-7" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-7" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-8">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #9: hHaZXLSlTRgbAtC5sN5BmQ_120_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> hHaZXLSlTRgbAtC5sN5BmQ_120 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Unclear image"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/hHaZXLSlTRgbAtC5sN5BmQ_120.jpg" alt="Original panoramic image hHaZXLSlTRgbAtC5sN5BmQ_120.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: hHaZXLSlTRgbAtC5sN5BmQ_120.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> hHaZXLSlTRgbAtC5sN5BmQ_120.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/hHaZXLSlTRgbAtC5sN5BmQ_120_box0.jpg" alt="Cropped flag region hHaZXLSlTRgbAtC5sN5BmQ_120_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: hHaZXLSlTRgbAtC5sN5BmQ_120_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> hHaZXLSlTRgbAtC5sN5BmQ_120_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> hHaZXLSlTRgbAtC5sN5BmQ_120.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> hHaZXLSlTRgbAtC5sN5BmQ_120_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(8, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(8, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(8, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-8" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-8" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-9">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #10: Kl0NZDrCatcCSiQ33GmT-A_240_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> Kl0NZDrCatcCSiQ33GmT-A_240 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/Kl0NZDrCatcCSiQ33GmT-A_240.jpg" alt="Original panoramic image Kl0NZDrCatcCSiQ33GmT-A_240.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: Kl0NZDrCatcCSiQ33GmT-A_240.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> Kl0NZDrCatcCSiQ33GmT-A_240.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/Kl0NZDrCatcCSiQ33GmT-A_240_box0.jpg" alt="Cropped flag region Kl0NZDrCatcCSiQ33GmT-A_240_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: Kl0NZDrCatcCSiQ33GmT-A_240_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> Kl0NZDrCatcCSiQ33GmT-A_240_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> Kl0NZDrCatcCSiQ33GmT-A_240.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> Kl0NZDrCatcCSiQ33GmT-A_240_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(9, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(9, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(9, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-9" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-9" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-10">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #11: tPVDI_bSrwOEzO7l2phMqg_240_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> tPVDI_bSrwOEzO7l2phMqg_240 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/tPVDI_bSrwOEzO7l2phMqg_240.jpg" alt="Original panoramic image tPVDI_bSrwOEzO7l2phMqg_240.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: tPVDI_bSrwOEzO7l2phMqg_240.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> tPVDI_bSrwOEzO7l2phMqg_240.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/tPVDI_bSrwOEzO7l2phMqg_240_box0.jpg" alt="Cropped flag region tPVDI_bSrwOEzO7l2phMqg_240_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: tPVDI_bSrwOEzO7l2phMqg_240_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> tPVDI_bSrwOEzO7l2phMqg_240_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> tPVDI_bSrwOEzO7l2phMqg_240.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> tPVDI_bSrwOEzO7l2phMqg_240_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(10, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(10, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(10, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-10" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-10" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-11">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #12: rQT_klvRS88UOGC22DDHmQ_000_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> rQT_klvRS88UOGC22DDHmQ_000 | 
+                <strong>Date flagged:</strong> 7/9/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Unclear image"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/rQT_klvRS88UOGC22DDHmQ_000.jpg" alt="Original panoramic image rQT_klvRS88UOGC22DDHmQ_000.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: rQT_klvRS88UOGC22DDHmQ_000.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> rQT_klvRS88UOGC22DDHmQ_000.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/rQT_klvRS88UOGC22DDHmQ_000_box0.jpg" alt="Cropped flag region rQT_klvRS88UOGC22DDHmQ_000_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: rQT_klvRS88UOGC22DDHmQ_000_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> rQT_klvRS88UOGC22DDHmQ_000_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> rQT_klvRS88UOGC22DDHmQ_000.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> rQT_klvRS88UOGC22DDHmQ_000_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(11, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(11, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(11, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-11" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-11" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-12">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #13: Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> Qi23_GKOLB7-MAIlXqDSEg_120 | 
+                <strong>Date flagged:</strong> 7/10/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/Qi23_GKOLB7-MAIlXqDSEg_120.jpg" alt="Original panoramic image Qi23_GKOLB7-MAIlXqDSEg_120.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: Qi23_GKOLB7-MAIlXqDSEg_120.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> Qi23_GKOLB7-MAIlXqDSEg_120.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg" alt="Cropped flag region Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> Qi23_GKOLB7-MAIlXqDSEg_120.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(12, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(12, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(12, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-12" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-12" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-13">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #14: v8wy7PM7Jqqog4R_HtbbQQ_240_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> v8wy7PM7Jqqog4R_HtbbQQ_240 | 
+                <strong>Date flagged:</strong> 7/10/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/v8wy7PM7Jqqog4R_HtbbQQ_240.jpg" alt="Original panoramic image v8wy7PM7Jqqog4R_HtbbQQ_240.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: v8wy7PM7Jqqog4R_HtbbQQ_240.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> v8wy7PM7Jqqog4R_HtbbQQ_240.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/v8wy7PM7Jqqog4R_HtbbQQ_240_box0.jpg" alt="Cropped flag region v8wy7PM7Jqqog4R_HtbbQQ_240_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: v8wy7PM7Jqqog4R_HtbbQQ_240_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> v8wy7PM7Jqqog4R_HtbbQQ_240_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> v8wy7PM7Jqqog4R_HtbbQQ_240.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> v8wy7PM7Jqqog4R_HtbbQQ_240_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(13, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(13, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(13, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-13" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-13" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-14">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #15: ScH0zbysQKCbisaBWfC9uw_180_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> ScH0zbysQKCbisaBWfC9uw_180 | 
+                <strong>Date flagged:</strong> 7/10/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/ScH0zbysQKCbisaBWfC9uw_180.jpg" alt="Original panoramic image ScH0zbysQKCbisaBWfC9uw_180.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: ScH0zbysQKCbisaBWfC9uw_180.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> ScH0zbysQKCbisaBWfC9uw_180.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/ScH0zbysQKCbisaBWfC9uw_180_box0.jpg" alt="Cropped flag region ScH0zbysQKCbisaBWfC9uw_180_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: ScH0zbysQKCbisaBWfC9uw_180_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> ScH0zbysQKCbisaBWfC9uw_180_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> ScH0zbysQKCbisaBWfC9uw_180.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> ScH0zbysQKCbisaBWfC9uw_180_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(14, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(14, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(14, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-14" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-14" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-15">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #16: XGRAUZTmsPD6VHCK3Ksk-Q_300_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> XGRAUZTmsPD6VHCK3Ksk-Q_300 | 
+                <strong>Date flagged:</strong> 7/10/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/XGRAUZTmsPD6VHCK3Ksk-Q_300.jpg" alt="Original panoramic image XGRAUZTmsPD6VHCK3Ksk-Q_300.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: XGRAUZTmsPD6VHCK3Ksk-Q_300.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> XGRAUZTmsPD6VHCK3Ksk-Q_300.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/XGRAUZTmsPD6VHCK3Ksk-Q_300_box0.jpg" alt="Cropped flag region XGRAUZTmsPD6VHCK3Ksk-Q_300_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: XGRAUZTmsPD6VHCK3Ksk-Q_300_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> XGRAUZTmsPD6VHCK3Ksk-Q_300_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> XGRAUZTmsPD6VHCK3Ksk-Q_300.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> XGRAUZTmsPD6VHCK3Ksk-Q_300_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(15, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(15, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(15, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-15" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-15" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-16">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #17: ECjMwwOBqPh8Gs1rg0x8jA_180_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> ECjMwwOBqPh8Gs1rg0x8jA_180 | 
+                <strong>Date flagged:</strong> 7/10/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/ECjMwwOBqPh8Gs1rg0x8jA_180.jpg" alt="Original panoramic image ECjMwwOBqPh8Gs1rg0x8jA_180.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: ECjMwwOBqPh8Gs1rg0x8jA_180.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> ECjMwwOBqPh8Gs1rg0x8jA_180.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/ECjMwwOBqPh8Gs1rg0x8jA_180_box0.jpg" alt="Cropped flag region ECjMwwOBqPh8Gs1rg0x8jA_180_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: ECjMwwOBqPh8Gs1rg0x8jA_180_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> ECjMwwOBqPh8Gs1rg0x8jA_180_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> ECjMwwOBqPh8Gs1rg0x8jA_180.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> ECjMwwOBqPh8Gs1rg0x8jA_180_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(16, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(16, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(16, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-16" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-16" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-17">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #18: mRv77-0EbxsE5O8MW_SEvA_000_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> mRv77-0EbxsE5O8MW_SEvA_000 | 
+                <strong>Date flagged:</strong> 7/10/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/mRv77-0EbxsE5O8MW_SEvA_000.jpg" alt="Original panoramic image mRv77-0EbxsE5O8MW_SEvA_000.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: mRv77-0EbxsE5O8MW_SEvA_000.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> mRv77-0EbxsE5O8MW_SEvA_000.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/mRv77-0EbxsE5O8MW_SEvA_000_box0.jpg" alt="Cropped flag region mRv77-0EbxsE5O8MW_SEvA_000_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: mRv77-0EbxsE5O8MW_SEvA_000_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> mRv77-0EbxsE5O8MW_SEvA_000_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> mRv77-0EbxsE5O8MW_SEvA_000.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> mRv77-0EbxsE5O8MW_SEvA_000_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(17, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(17, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(17, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-17" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-17" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+    <div class="dispute-item" id="dispute-18">
+        <div class="dispute-header">
+            <h3>🚨 Dispute #19: r8OFBKqHRBGR-LVrfy6FIA_180_box0.jpg</h3>
+            <div class="metadata">
+                <strong>Base filename:</strong> r8OFBKqHRBGR-LVrfy6FIA_180 | 
+                <strong>Date flagged:</strong> 7/10/2025 | 
+                <span class="conflict-badge">CONFLICT</span>
+            </div>
+        </div>
+        
+        <div class="dispute-content">
+            <div class="assessment-panel barry-assessment">
+                <h4>🙋‍♂️ Barry's Assessment</h4>
+                <p><strong>Classification:</strong> Review/False Positive</p>
+                <p><strong>Reason:</strong> "Not a flag"</p>
+                <p><strong>Barry's view:</strong> This image should NOT be shown to experts for classification</p>
+            </div>
+            
+            <div class="assessment-panel data-assessment">
+                <h4>📊 False Positive Data Assessment</h4>
+                <p><strong>Classification:</strong> True Positive</p>
+                <p><strong>Status:</strong> Contains genuine flags</p>
+                <p><strong>Data view:</strong> This image SHOULD be shown to experts for classification</p>
+            </div>
+            
+            <div class="image-container">
+                <h4>🖼️ Images for Review</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div>
+                        <h5>📸 Original Panoramic Image</h5>
+                        <img src="../public/images/ENNISKILLEN/r8OFBKqHRBGR-LVrfy6FIA_180.jpg" alt="Original panoramic image r8OFBKqHRBGR-LVrfy6FIA_180.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: r8OFBKqHRBGR-LVrfy6FIA_180.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Full Context:</strong> r8OFBKqHRBGR-LVrfy6FIA_180.jpg
+                        </p>
+                    </div>
+                    <div>
+                        <h5>🎯 Cropped Flag Region (Barry's Classification)</h5>
+                        <img src="../public/images/ENNISKILLEN/r8OFBKqHRBGR-LVrfy6FIA_180_box0.jpg" alt="Cropped flag region r8OFBKqHRBGR-LVrfy6FIA_180_box0.jpg" class="dispute-image" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23f0f0f0%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23666%22>Image not found: r8OFBKqHRBGR-LVrfy6FIA_180_box0.jpg</text></svg>'">
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #666;">
+                            <strong>Barry's Focus:</strong> r8OFBKqHRBGR-LVrfy6FIA_180_box0.jpg
+                        </p>
+                    </div>
+                </div>
+                <div class="metadata">
+                    <p><strong>Original File:</strong> r8OFBKqHRBGR-LVrfy6FIA_180.jpg</p>
+                    <p><strong>Barry's Disputed Cropped File:</strong> r8OFBKqHRBGR-LVrfy6FIA_180_box0.jpg</p>
+                    <p><strong>Location:</strong> public/images/ENNISKILLEN/</p>
+                </div>
+            </div>
+            
+            <div class="decision-area">
+                <h4>✅ Your Decision</h4>
+                <p>After examining the image, who is correct?</p>
+                <div class="decision-buttons">
+                    <button class="btn btn-barry" onclick="makeDecision(18, 'barry')">
+                        Barry is Correct (False Positive)
+                    </button>
+                    <button class="btn btn-data" onclick="makeDecision(18, 'data')">
+                        Data is Correct (True Positive)
+                    </button>
+                    <button class="btn btn-unclear" onclick="makeDecision(18, 'unclear')">
+                        Unclear - Needs Discussion
+                    </button>
+                </div>
+                <div id="decision-18" style="margin-top: 10px; font-weight: bold;"></div>
+                <textarea id="notes-18" placeholder="Notes/reasoning for this decision..." 
+                         style="width: 100%; margin-top: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+        </div>
+    </div>
+      
+
+    <div class="navigation">
+        <h4>📋 Review Summary</h4>
+        <div id="completion-status">
+            <p id="decisions-summary">Review images above to see summary</p>
+        </div>
+        <button onclick="exportDecisions()" style="width: 100%; padding: 10px; background: #2196f3; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">
+            📥 Export Decisions
+        </button>
+        <button onclick="window.print()" style="width: 100%; padding: 10px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 5px;">
+            🖨️ Print Report
+        </button>
+    </div>
+
+    <script>
+        let decisions = {};
+        
+        function makeDecision(index, decision) {
+            decisions[index] = {
+                decision: decision,
+                timestamp: new Date().toISOString(),
+                notes: document.getElementById('notes-' + index).value
+            };
+            
+            const decisionElement = document.getElementById('decision-' + index);
+            const colors = {
+                barry: '#4caf50',
+                data: '#ff9800', 
+                unclear: '#9e9e9e'
+            };
+            const texts = {
+                barry: '✅ Barry Correct - Update false positive data',
+                data: '✅ Data Correct - Provide feedback to Barry',
+                unclear: '❓ Unclear - Schedule discussion'
+            };
+            
+            decisionElement.style.color = colors[decision];
+            decisionElement.textContent = texts[decision];
+            
+            updateSummary();
+            updateProgress();
+        }
+        
+        function updateSummary() {
+            const counts = { barry: 0, data: 0, unclear: 0 };
+            Object.values(decisions).forEach(d => counts[d.decision]++);
+            
+            document.getElementById('barry-correct').textContent = counts.barry;
+            document.getElementById('data-correct').textContent = counts.data;
+            document.getElementById('unclear-count').textContent = counts.unclear;
+        }
+        
+        function updateProgress() {
+            const total = 19;
+            const completed = Object.keys(decisions).length;
+            const percentage = (completed / total) * 100;
+            
+            document.getElementById('progress-bar').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = completed + ' of ' + total + ' images reviewed';
+            
+            if (completed === total) {
+                document.getElementById('completion-status').innerHTML = 
+                    '<p style="color: #4caf50; font-weight: bold;">✅ Review Complete!</p>' +
+                    '<p>All disputes have been reviewed. Export your decisions below.</p>';
+            }
+        }
+        
+        function exportDecisions() {
+            const exportData = {
+                review_metadata: {
+                    reviewer: prompt('Enter your name/ID for the review:') || 'Anonymous',
+                    review_date: new Date().toISOString(),
+                    total_disputes: 19,
+                    decisions_made: Object.keys(decisions).length
+                },
+                disputed_images: [{"index":0,"image_id":"ZP55Ydb9H8Y1cEWYhYAgzw_240_box0.jpg","base_filename":"ZP55Ydb9H8Y1cEWYhYAgzw_240","barry_reason":"Not a flag","timestamp":"2025-07-09T07:47:39.123484+00:00"},{"index":1,"image_id":"TJG87O8jBgd8dzwiuPR1KQ_060_box0.jpg","base_filename":"TJG87O8jBgd8dzwiuPR1KQ_060","barry_reason":"Not a flag","timestamp":"2025-07-09T07:47:48.887474+00:00"},{"index":2,"image_id":"NREaXVjDT4hgBgfT92v0Iw_180_box0.jpg","base_filename":"NREaXVjDT4hgBgfT92v0Iw_180","barry_reason":"Not a flag","timestamp":"2025-07-09T07:49:38.844166+00:00"},{"index":3,"image_id":"GP27ckTW5bwq6AOmCMnCAg_000_box0.jpg","base_filename":"GP27ckTW5bwq6AOmCMnCAg_000","barry_reason":"Not a flag","timestamp":"2025-07-09T07:50:27.530656+00:00"},{"index":4,"image_id":"uxN0xRE9t4To6LBtKkw2og_120_box0.jpg","base_filename":"uxN0xRE9t4To6LBtKkw2og_120","barry_reason":"Not a flag","timestamp":"2025-07-09T07:50:34.939217+00:00"},{"index":5,"image_id":"Xdkhj2ivRF_-3zcuwy9DNg_120_box1.jpg","base_filename":"Xdkhj2ivRF_-3zcuwy9DNg_120","barry_reason":"Not a flag","timestamp":"2025-07-09T07:50:42.786442+00:00"},{"index":6,"image_id":"nuyOVyoGQSFo_l3h1_LEtg_060_box0.jpg","base_filename":"nuyOVyoGQSFo_l3h1_LEtg_060","barry_reason":"Not a flag","timestamp":"2025-07-09T07:51:38.609154+00:00"},{"index":7,"image_id":"pGAolNdN7sLGI3ZWGyi8Ug_300_box0.jpg","base_filename":"pGAolNdN7sLGI3ZWGyi8Ug_300","barry_reason":"Not a flag","timestamp":"2025-07-09T08:26:28.472929+00:00"},{"index":8,"image_id":"hHaZXLSlTRgbAtC5sN5BmQ_120_box0.jpg","base_filename":"hHaZXLSlTRgbAtC5sN5BmQ_120","barry_reason":"Unclear image","timestamp":"2025-07-09T17:05:30.743953+00:00"},{"index":9,"image_id":"Kl0NZDrCatcCSiQ33GmT-A_240_box0.jpg","base_filename":"Kl0NZDrCatcCSiQ33GmT-A_240","barry_reason":"Not a flag","timestamp":"2025-07-09T17:05:42.125297+00:00"},{"index":10,"image_id":"tPVDI_bSrwOEzO7l2phMqg_240_box0.jpg","base_filename":"tPVDI_bSrwOEzO7l2phMqg_240","barry_reason":"Not a flag","timestamp":"2025-07-09T17:06:36.148025+00:00"},{"index":11,"image_id":"rQT_klvRS88UOGC22DDHmQ_000_box0.jpg","base_filename":"rQT_klvRS88UOGC22DDHmQ_000","barry_reason":"Unclear image","timestamp":"2025-07-09T17:06:50.985857+00:00"},{"index":12,"image_id":"Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg","base_filename":"Qi23_GKOLB7-MAIlXqDSEg_120","barry_reason":"Not a flag","timestamp":"2025-07-10T09:56:44.594125+00:00"},{"index":13,"image_id":"v8wy7PM7Jqqog4R_HtbbQQ_240_box0.jpg","base_filename":"v8wy7PM7Jqqog4R_HtbbQQ_240","barry_reason":"Not a flag","timestamp":"2025-07-10T09:57:18.363207+00:00"},{"index":14,"image_id":"ScH0zbysQKCbisaBWfC9uw_180_box0.jpg","base_filename":"ScH0zbysQKCbisaBWfC9uw_180","barry_reason":"Not a flag","timestamp":"2025-07-10T09:57:41.997787+00:00"},{"index":15,"image_id":"XGRAUZTmsPD6VHCK3Ksk-Q_300_box0.jpg","base_filename":"XGRAUZTmsPD6VHCK3Ksk-Q_300","barry_reason":"Not a flag","timestamp":"2025-07-10T09:57:51.151278+00:00"},{"index":16,"image_id":"ECjMwwOBqPh8Gs1rg0x8jA_180_box0.jpg","base_filename":"ECjMwwOBqPh8Gs1rg0x8jA_180","barry_reason":"Not a flag","timestamp":"2025-07-10T10:25:52.193091+00:00"},{"index":17,"image_id":"mRv77-0EbxsE5O8MW_SEvA_000_box0.jpg","base_filename":"mRv77-0EbxsE5O8MW_SEvA_000","barry_reason":"Not a flag","timestamp":"2025-07-10T10:26:13.942033+00:00"},{"index":18,"image_id":"r8OFBKqHRBGR-LVrfy6FIA_180_box0.jpg","base_filename":"r8OFBKqHRBGR-LVrfy6FIA_180","barry_reason":"Not a flag","timestamp":"2025-07-10T10:26:27.785466+00:00"}],
+                expert_decisions: decisions
+            };
+            
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'expert-review-decisions-' + new Date().toISOString().split('T')[0] + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        // Auto-save to localStorage
+        setInterval(() => {
+            localStorage.setItem('expertReviewDecisions', JSON.stringify(decisions));
+        }, 30000);
+        
+        // Load saved decisions on page load
+        window.onload = function() {
+            const saved = localStorage.getItem('expertReviewDecisions');
+            if (saved) {
+                try {
+                    decisions = JSON.parse(saved);
+                    Object.keys(decisions).forEach(index => {
+                        const decision = decisions[index];
+                        document.getElementById('decision-' + index).style.color = 
+                            decision.decision === 'barry' ? '#4caf50' : 
+                            decision.decision === 'data' ? '#ff9800' : '#9e9e9e';
+                        document.getElementById('decision-' + index).textContent = 
+                            decision.decision === 'barry' ? '✅ Barry Correct - Update false positive data' :
+                            decision.decision === 'data' ? '✅ Data Correct - Provide feedback to Barry' :
+                            '❓ Unclear - Schedule discussion';
+                        if (decision.notes) {
+                            document.getElementById('notes-' + index).value = decision.notes;
+                        }
+                    });
+                    updateSummary();
+                    updateProgress();
+                } catch (e) {
+                    console.log('Could not load saved decisions');
+                }
+            }
+        };
+    </script>
+</body>
+</html>
+    

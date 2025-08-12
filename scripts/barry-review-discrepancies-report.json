@@ -1,0 +1,180 @@
+{
+  "analysis_focus": "Barry's 'flag for review' classifications vs false positive data",
+  "summary": {
+    "total_barry_review_classifications": 19,
+    "agreements": 0,
+    "discrepancies": 19,
+    "unknowns": 0,
+    "generated_at": "2025-07-11T08:10:47.948Z"
+  },
+  "discrepancies": [
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "ZP55Ydb9H8Y1cEWYhYAgzw_240_box0.jpg",
+      "baseFilename": "ZP55Ydb9H8Y1cEWYhYAgzw_240",
+      "timestamp": "2025-07-09T07:47:39.123484+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "TJG87O8jBgd8dzwiuPR1KQ_060_box0.jpg",
+      "baseFilename": "TJG87O8jBgd8dzwiuPR1KQ_060",
+      "timestamp": "2025-07-09T07:47:48.887474+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "NREaXVjDT4hgBgfT92v0Iw_180_box0.jpg",
+      "baseFilename": "NREaXVjDT4hgBgfT92v0Iw_180",
+      "timestamp": "2025-07-09T07:49:38.844166+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "GP27ckTW5bwq6AOmCMnCAg_000_box0.jpg",
+      "baseFilename": "GP27ckTW5bwq6AOmCMnCAg_000",
+      "timestamp": "2025-07-09T07:50:27.530656+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "uxN0xRE9t4To6LBtKkw2og_120_box0.jpg",
+      "baseFilename": "uxN0xRE9t4To6LBtKkw2og_120",
+      "timestamp": "2025-07-09T07:50:34.939217+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "Xdkhj2ivRF_-3zcuwy9DNg_120_box1.jpg",
+      "baseFilename": "Xdkhj2ivRF_-3zcuwy9DNg_120",
+      "timestamp": "2025-07-09T07:50:42.786442+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "nuyOVyoGQSFo_l3h1_LEtg_060_box0.jpg",
+      "baseFilename": "nuyOVyoGQSFo_l3h1_LEtg_060",
+      "timestamp": "2025-07-09T07:51:38.609154+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "pGAolNdN7sLGI3ZWGyi8Ug_300_box0.jpg",
+      "baseFilename": "pGAolNdN7sLGI3ZWGyi8Ug_300",
+      "timestamp": "2025-07-09T08:26:28.472929+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "hHaZXLSlTRgbAtC5sN5BmQ_120_box0.jpg",
+      "baseFilename": "hHaZXLSlTRgbAtC5sN5BmQ_120",
+      "timestamp": "2025-07-09T17:05:30.743953+00:00",
+      "review_reason": "Unclear image",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "Kl0NZDrCatcCSiQ33GmT-A_240_box0.jpg",
+      "baseFilename": "Kl0NZDrCatcCSiQ33GmT-A_240",
+      "timestamp": "2025-07-09T17:05:42.125297+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "tPVDI_bSrwOEzO7l2phMqg_240_box0.jpg",
+      "baseFilename": "tPVDI_bSrwOEzO7l2phMqg_240",
+      "timestamp": "2025-07-09T17:06:36.148025+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "rQT_klvRS88UOGC22DDHmQ_000_box0.jpg",
+      "baseFilename": "rQT_klvRS88UOGC22DDHmQ_000",
+      "timestamp": "2025-07-09T17:06:50.985857+00:00",
+      "review_reason": "Unclear image",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "Qi23_GKOLB7-MAIlXqDSEg_120_box0.jpg",
+      "baseFilename": "Qi23_GKOLB7-MAIlXqDSEg_120",
+      "timestamp": "2025-07-10T09:56:44.594125+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "v8wy7PM7Jqqog4R_HtbbQQ_240_box0.jpg",
+      "baseFilename": "v8wy7PM7Jqqog4R_HtbbQQ_240",
+      "timestamp": "2025-07-10T09:57:18.363207+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "ScH0zbysQKCbisaBWfC9uw_180_box0.jpg",
+      "baseFilename": "ScH0zbysQKCbisaBWfC9uw_180",
+      "timestamp": "2025-07-10T09:57:41.997787+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "XGRAUZTmsPD6VHCK3Ksk-Q_300_box0.jpg",
+      "baseFilename": "XGRAUZTmsPD6VHCK3Ksk-Q_300",
+      "timestamp": "2025-07-10T09:57:51.151278+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "ECjMwwOBqPh8Gs1rg0x8jA_180_box0.jpg",
+      "baseFilename": "ECjMwwOBqPh8Gs1rg0x8jA_180",
+      "timestamp": "2025-07-10T10:25:52.193091+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "mRv77-0EbxsE5O8MW_SEvA_000_box0.jpg",
+      "baseFilename": "mRv77-0EbxsE5O8MW_SEvA_000",
+      "timestamp": "2025-07-10T10:26:13.942033+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    },
+    {
+      "type": "BARRY_REVIEW_VS_TRUE_POSITIVE",
+      "image_id": "r8OFBKqHRBGR-LVrfy6FIA_180_box0.jpg",
+      "baseFilename": "r8OFBKqHRBGR-LVrfy6FIA_180",
+      "timestamp": "2025-07-10T10:26:27.785466+00:00",
+      "review_reason": "Not a flag",
+      "issue": "Barry flagged this for review (suspected false positive), but false positive data indicates it contains genuine flags"
+    }
+  ],
+  "agreements": [],
+  "unknowns": [],
+  "critical_actions": [
+    "Manually inspect each discrepancy image listed above",
+    "Determine if flags in discrepancy images are genuinely visible and classifiable",
+    "Compare Barry's visual assessment with original false positive expert analysis",
+    "Update false positive data if Barry's assessments are correct",
+    "Provide training/feedback if false positive data is correct",
+    "Document all decisions for quality control tracking"
+  ],
+  "expert_questions": [
+    "Are the flags in discrepancy images clearly visible to human experts?",
+    "Do the flags meet the classification criteria used in the original analysis?",
+    "Are there image quality issues that might affect flag visibility?",
+    "Should the classification guidelines be clarified based on these cases?"
+  ]
+}
