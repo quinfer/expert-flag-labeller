@@ -1,0 +1,9 @@
+# NIFlags Dataset Configuration V2
+# Expanded dataset with confidence >= 3.0
+# ~5,490 total samples, 3,823 training samples
+# Updated from classifications_0708.csv
+
+DATASET:
+  NAME: "NIFlagsV2"  # Must match the registered dataset class name
+  ROOT: "../data"     # Will look for ni_flags_v2 subdirectory
+  NUM_SHOTS: -1       # Use all data

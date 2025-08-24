@@ -1,0 +1,8 @@
+# NIFlags Super-Consolidated Dataset Configuration
+# Reduced from 16 classes to 8 balanced classes
+# Addresses severe class imbalance issues
+
+DATASET:
+  NAME: "NIFlagsSuperConsolidated"  # Must match the registered dataset class name
+  ROOT: "../data"                   # Will look for ni_flags_super_consolidated subdirectory
+  NUM_SHOTS: -1                     # Use all data

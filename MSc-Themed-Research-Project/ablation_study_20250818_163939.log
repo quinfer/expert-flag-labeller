@@ -1,0 +1,284 @@
+🖥️  Using Apple Silicon MPS
+
+🔬 OVERSAMPLING ABLATION STUDY
+📁 Output directory: flag_classification_adaptation/experiments/oversampling_ablation_20250818_163939_20250818_163941
+🎯 Hypothesis: Oversampling techniques are counterproductive
+⏱️  Expected total time: ~6-8 hours
+📊 NIFlags Super Consolidated Dataset Loaded
+   Root: /Users/quinference/Documents/expert-flag-labeler/MSc-Themed-Research-Project/data/ni_flags_super_consolidated
+   Train: 1830 samples
+   Val: 228 samples
+   Test: 230 samples
+   Classes: 7 super consolidated classes
+================================================================================
+
+📊 Dataset loaded: 2288 samples
+🏗️  Classes: ['Cultural_Community', 'Historical_Memorial', 'International_Other', 'Nationalist_All', 'Paramilitary_All', 'Sport_Community', 'Unionist_All']
+
+📋 ABLATION CONFIGURATIONS:
+1. consolidation_only: Economic consolidation only (baseline)
+2. with_random_oversampling: Economic consolidation + random oversampling
+3. with_class_weights: Economic consolidation + balanced class weights
+4. with_focal_loss: Economic consolidation + focal loss
+5. with_oversampling_and_weights: Economic consolidation + oversampling + class weights
+6. all_techniques_combined: All traditional balancing techniques combined
+
+⏳ Running configuration 1/6
+
+================================================================================
+🔬 RUNNING ABLATION: CONSOLIDATION_ONLY
+================================================================================
+📊 Configuration:
+   oversampling: None
+   class_weights: False
+   focal_loss: False
+   description: Economic consolidation only (baseline)
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+📊 Using Standard Cross-Entropy Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[consolidation_only] Batch 0/229, Loss: 2.0023, Acc: 0.00%
+[consolidation_only] Batch 50/229, Loss: 1.0276, Acc: 83.58%
+[consolidation_only] Batch 100/229, Loss: 0.3586, Acc: 87.13%
+[consolidation_only] Batch 150/229, Loss: 0.5990, Acc: 87.42%
+[consolidation_only] Batch 200/229, Loss: 0.1695, Acc: 88.74%
+
+📅 Epoch 2/15
+[consolidation_only] Batch 0/229, Loss: 0.1117, Acc: 100.00%
+[consolidation_only] Batch 50/229, Loss: 0.1273, Acc: 94.85%
+[consolidation_only] Batch 100/229, Loss: 0.0234, Acc: 93.81%
+[consolidation_only] Batch 150/229, Loss: 0.4612, Acc: 93.54%
+[consolidation_only] Batch 200/229, Loss: 0.4110, Acc: 93.41%
+
+📅 Epoch 3/15
+[consolidation_only] Batch 0/229, Loss: 0.0197, Acc: 100.00%
+[consolidation_only] Batch 50/229, Loss: 0.0217, Acc: 95.83%
+[consolidation_only] Batch 100/229, Loss: 0.0033, Acc: 96.78%
+[consolidation_only] Batch 150/229, Loss: 0.4799, Acc: 97.19%
+[consolidation_only] Batch 200/229, Loss: 0.0289, Acc: 96.27%
+
+📅 Epoch 4/15
+[consolidation_only] Batch 0/229, Loss: 0.0469, Acc: 100.00%
+[consolidation_only] Batch 50/229, Loss: 0.0130, Acc: 97.55%
+[consolidation_only] Batch 100/229, Loss: 0.0096, Acc: 98.51%
+[consolidation_only] Batch 150/229, Loss: 0.0162, Acc: 98.43%
+[consolidation_only] Batch 200/229, Loss: 0.1411, Acc: 98.13%
+
+📅 Epoch 5/15
+[consolidation_only] Batch 0/229, Loss: 0.0121, Acc: 100.00%
+[consolidation_only] Batch 50/229, Loss: 0.0481, Acc: 98.53%
+[consolidation_only] Batch 100/229, Loss: 0.0152, Acc: 98.64%
+[consolidation_only] Batch 150/229, Loss: 0.2605, Acc: 98.10%
+[consolidation_only] Batch 200/229, Loss: 0.3865, Acc: 97.64%
+❌ Error in consolidation_only: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+
+⏳ Running configuration 2/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_RANDOM_OVERSAMPLING
+================================================================================
+📊 Configuration:
+   oversampling: random
+   class_weights: False
+   focal_loss: False
+   description: Economic consolidation + random oversampling
+🔄 Applying random oversampling...
+   Original distribution: Counter({np.int64(6): 1586, np.int64(0): 97, np.int64(3): 63, np.int64(4): 38, np.int64(5): 21, np.int64(2): 20, np.int64(1): 5})
+   Resampled distribution: Counter({np.int64(0): 1586, np.int64(6): 1586, np.int64(3): 1586, np.int64(5): 1586, np.int64(2): 1586, np.int64(4): 1586, np.int64(1): 1586})
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+📊 Using Standard Cross-Entropy Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+❌ Error in with_random_oversampling: Can't pickle local object 'run_single_ablation.<locals>.OversampledDataset'
+
+⏳ Running configuration 3/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_CLASS_WEIGHTS
+================================================================================
+📊 Configuration:
+   oversampling: None
+   class_weights: True
+   focal_loss: False
+   description: Economic consolidation + balanced class weights
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+⚖️  Using Class Weights
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[with_class_weights] Batch 0/229, Loss: 1.9597, Acc: 75.00%
+[with_class_weights] Batch 50/229, Loss: 2.1516, Acc: 71.32%
+[with_class_weights] Batch 100/229, Loss: 1.1699, Acc: 78.96%
+[with_class_weights] Batch 150/229, Loss: 0.5138, Acc: 79.14%
+[with_class_weights] Batch 200/229, Loss: 2.5751, Acc: 80.91%
+
+📅 Epoch 2/15
+[with_class_weights] Batch 0/229, Loss: 0.5137, Acc: 100.00%
+[with_class_weights] Batch 50/229, Loss: 0.1698, Acc: 92.89%
+[with_class_weights] Batch 100/229, Loss: 0.6263, Acc: 88.24%
+[with_class_weights] Batch 150/229, Loss: 2.5320, Acc: 85.76%
+[with_class_weights] Batch 200/229, Loss: 0.4559, Acc: 83.83%
+
+📅 Epoch 3/15
+[with_class_weights] Batch 0/229, Loss: 0.0461, Acc: 100.00%
+[with_class_weights] Batch 50/229, Loss: 0.2442, Acc: 88.97%
+[with_class_weights] Batch 100/229, Loss: 0.0576, Acc: 88.24%
+[with_class_weights] Batch 150/229, Loss: 0.2081, Acc: 89.98%
+[with_class_weights] Batch 200/229, Loss: 0.5135, Acc: 89.49%
+
+📅 Epoch 4/15
+[with_class_weights] Batch 0/229, Loss: 2.7113, Acc: 87.50%
+[with_class_weights] Batch 50/229, Loss: 0.0845, Acc: 90.20%
+[with_class_weights] Batch 100/229, Loss: 0.1027, Acc: 91.58%
+[with_class_weights] Batch 150/229, Loss: 0.0541, Acc: 92.22%
+[with_class_weights] Batch 200/229, Loss: 0.0800, Acc: 93.16%
+
+📅 Epoch 5/15
+[with_class_weights] Batch 0/229, Loss: 0.0912, Acc: 100.00%
+[with_class_weights] Batch 50/229, Loss: 0.0580, Acc: 96.57%
+[with_class_weights] Batch 100/229, Loss: 0.6979, Acc: 96.29%
+[with_class_weights] Batch 150/229, Loss: 0.2072, Acc: 94.29%
+[with_class_weights] Batch 200/229, Loss: 0.0133, Acc: 94.71%
+   Train Loss: 0.3229, Train Acc: 94.59%
+   Test Acc: 89.13%, Macro F1: 43.69%, Classes Learned: 6/7
+
+📅 Epoch 6/15
+[with_class_weights] Batch 0/229, Loss: 0.1372, Acc: 87.50%
+[with_class_weights] Batch 50/229, Loss: 0.0701, Acc: 97.30%
+[with_class_weights] Batch 100/229, Loss: 0.0056, Acc: 97.65%
+[with_class_weights] Batch 150/229, Loss: 0.1859, Acc: 96.77%
+[with_class_weights] Batch 200/229, Loss: 0.0047, Acc: 96.83%
+
+📅 Epoch 7/15
+[with_class_weights] Batch 0/229, Loss: 0.0129, Acc: 100.00%
+[with_class_weights] Batch 50/229, Loss: 0.0036, Acc: 99.26%
+[with_class_weights] Batch 100/229, Loss: 1.6914, Acc: 98.27%
+[with_class_weights] Batch 150/229, Loss: 0.1000, Acc: 97.35%
+[with_class_weights] Batch 200/229, Loss: 0.3234, Acc: 96.70%
+
+📅 Epoch 8/15
+[with_class_weights] Batch 0/229, Loss: 0.0103, Acc: 100.00%
+[with_class_weights] Batch 50/229, Loss: 0.0047, Acc: 98.04%
+[with_class_weights] Batch 100/229, Loss: 0.0015, Acc: 97.77%
+[with_class_weights] Batch 150/229, Loss: 0.0193, Acc: 97.27%
+[with_class_weights] Batch 200/229, Loss: 0.0038, Acc: 96.21%
+
+📅 Epoch 9/15
+[with_class_weights] Batch 0/229, Loss: 0.0099, Acc: 100.00%
+[with_class_weights] Batch 50/229, Loss: 0.1002, Acc: 98.28%
+[with_class_weights] Batch 100/229, Loss: 0.0126, Acc: 98.64%
+[with_class_weights] Batch 150/229, Loss: 0.0155, Acc: 96.61%
+[with_class_weights] Batch 200/229, Loss: 0.0058, Acc: 97.08%
+
+📅 Epoch 10/15
+[with_class_weights] Batch 0/229, Loss: 0.0405, Acc: 100.00%
+[with_class_weights] Batch 50/229, Loss: 0.0016, Acc: 93.87%
+[with_class_weights] Batch 100/229, Loss: 0.0144, Acc: 95.54%
+[with_class_weights] Batch 150/229, Loss: 0.2805, Acc: 96.03%
+[with_class_weights] Batch 200/229, Loss: 0.0068, Acc: 96.64%
+❌ Error in with_class_weights: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+
+⏳ Running configuration 4/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_FOCAL_LOSS
+================================================================================
+📊 Configuration:
+   oversampling: None
+   class_weights: False
+   focal_loss: True
+   description: Economic consolidation + focal loss
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+🎯 Using Focal Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[with_focal_loss] Batch 0/229, Loss: 0.3154, Acc: 25.00%
+[with_focal_loss] Batch 50/229, Loss: 0.0053, Acc: 83.58%
+[with_focal_loss] Batch 100/229, Loss: 0.2157, Acc: 87.00%
+[with_focal_loss] Batch 150/229, Loss: 0.0107, Acc: 87.33%
+[with_focal_loss] Batch 200/229, Loss: 0.0109, Acc: 87.62%
+
+📅 Epoch 2/15
+[with_focal_loss] Batch 0/229, Loss: 0.0305, Acc: 87.50%
+[with_focal_loss] Batch 50/229, Loss: 0.0014, Acc: 93.14%
+[with_focal_loss] Batch 100/229, Loss: 0.0002, Acc: 93.81%
+[with_focal_loss] Batch 150/229, Loss: 0.0011, Acc: 93.63%
+[with_focal_loss] Batch 200/229, Loss: 0.0650, Acc: 92.79%
+
+📅 Epoch 3/15
+[with_focal_loss] Batch 0/229, Loss: 0.0002, Acc: 100.00%
+[with_focal_loss] Batch 50/229, Loss: 0.0051, Acc: 97.55%
+[with_focal_loss] Batch 100/229, Loss: 0.0063, Acc: 96.16%
+[with_focal_loss] Batch 150/229, Loss: 0.0005, Acc: 96.19%
+[with_focal_loss] Batch 200/229, Loss: 0.0007, Acc: 96.08%
+
+📅 Epoch 4/15
+[with_focal_loss] Batch 0/229, Loss: 0.0004, Acc: 100.00%
+[with_focal_loss] Batch 50/229, Loss: 0.0021, Acc: 98.04%
+[with_focal_loss] Batch 100/229, Loss: 0.0068, Acc: 97.90%
+[with_focal_loss] Batch 150/229, Loss: 0.0306, Acc: 97.52%
+[with_focal_loss] Batch 200/229, Loss: 0.0000, Acc: 97.82%
+
+📅 Epoch 5/15
+[with_focal_loss] Batch 0/229, Loss: 0.0001, Acc: 100.00%
+[with_focal_loss] Batch 50/229, Loss: 0.0064, Acc: 98.77%
+[with_focal_loss] Batch 100/229, Loss: 0.0004, Acc: 99.26%
+[with_focal_loss] Batch 150/229, Loss: 0.0001, Acc: 99.25%
+[with_focal_loss] Batch 200/229, Loss: 0.0000, Acc: 99.38%
+❌ Error in with_focal_loss: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+
+⏳ Running configuration 5/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_OVERSAMPLING_AND_WEIGHTS
+================================================================================
+📊 Configuration:
+   oversampling: random
+   class_weights: True
+   focal_loss: False
+   description: Economic consolidation + oversampling + class weights
+🔄 Applying random oversampling...
+   Original distribution: Counter({np.int64(6): 1586, np.int64(0): 97, np.int64(3): 63, np.int64(4): 38, np.int64(5): 21, np.int64(2): 20, np.int64(1): 5})
+   Resampled distribution: Counter({np.int64(0): 1586, np.int64(6): 1586, np.int64(3): 1586, np.int64(5): 1586, np.int64(2): 1586, np.int64(4): 1586, np.int64(1): 1586})
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+⚖️  Using Class Weights
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+❌ Error in with_oversampling_and_weights: Can't pickle local object 'run_single_ablation.<locals>.OversampledDataset'
+
+⏳ Running configuration 6/6
+
+================================================================================
+🔬 RUNNING ABLATION: ALL_TECHNIQUES_COMBINED
+================================================================================
+📊 Configuration:
+   oversampling: random
+   class_weights: True
+   focal_loss: True
+   description: All traditional balancing techniques combined
+🔄 Applying random oversampling...
+   Original distribution: Counter({np.int64(6): 1586, np.int64(0): 97, np.int64(3): 63, np.int64(4): 38, np.int64(5): 21, np.int64(2): 20, np.int64(1): 5})
+   Resampled distribution: Counter({np.int64(0): 1586, np.int64(6): 1586, np.int64(3): 1586, np.int64(5): 1586, np.int64(2): 1586, np.int64(4): 1586, np.int64(1): 1586})
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+🎯 Using Focal Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+❌ Error in all_techniques_combined: Can't pickle local object 'run_single_ablation.<locals>.OversampledDataset'
+❌ No successful results to analyze

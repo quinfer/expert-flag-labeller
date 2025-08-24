@@ -1,0 +1,23 @@
+{
+  "dataset_version": "v2",
+  "source_file": "classifications_0708.csv",
+  "confidence_threshold": 3.0,
+  "total_samples": 5490,
+  "num_classes": 90,
+  "train_samples": 3823,
+  "val_samples": 841,
+  "test_samples": 826,
+  "max_imbalance_ratio": 1901.0,
+  "singleton_classes": 27,
+  "rare_classes_under_5": 50,
+  "categories": {
+    "National": 4931,
+    "Bunting": 226,
+    "Fraternal": 132,
+    "Proscribed": 85,
+    "International": 61,
+    "Sport": 47,
+    "Military": 5,
+    "Historical": 3
+  }
+}

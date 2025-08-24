@@ -1,0 +1,10 @@
+{
+  "total_images": 2288,
+  "total_classes": 70,
+  "avg_confidence": 4.665646853146853,
+  "hierarchical_structure": {
+    "categories": 8,
+    "contexts": 11,
+    "specific_flags": 25
+  }
+}

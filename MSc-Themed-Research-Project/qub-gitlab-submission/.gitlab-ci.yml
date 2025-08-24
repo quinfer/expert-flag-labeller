@@ -1,0 +1,9 @@
+stages: [lint]
+lint:
+  stage: lint
+  image: python:3.10-slim
+  script:
+    - pip install flake8
+    - flake8 data --max-line-length=100 || true
+  only:
+    - main

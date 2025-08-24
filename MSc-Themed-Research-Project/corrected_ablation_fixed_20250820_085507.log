@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/quinference/Documents/expert-flag-labeler/MSc-Themed-Research-Project/flag_classification_adaptation/train_rs5m_oversampling_ablation.py", line 43, in <module>
+    from imblearn.over_sampling import RandomOverSampler, SMOTE
+ModuleNotFoundError: No module named 'imblearn'
