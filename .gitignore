@@ -71,3 +71,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large false-positive data files
+src/data/false-positives-comprehensive.json
+src/data/false-positives-lookup-all.json
