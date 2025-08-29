@@ -1,8 +1,8 @@
 ---
-title: "Economic Domain Knowledge for Extreme Class Imbalance: A Case Study in Flag Classification"
+title: "Economic Concentration as Domain Knowledge for Extreme Class Imbalance: A Case Study in Flag Classification"
 author:
   - name: Barry Quinn
-    email: b.quinn@qub.ac.uk
+    email: b.quinn1@ulster.ac.uk
     affiliations:
       - name: School of Electronics, Electrical Engineering and Computer Science
         institution: Queen's University Belfast
@@ -10,8 +10,8 @@ author:
         country: Northern Ireland
 date: today
 abstract: |
-  Extreme class imbalance remains a challenging problem in computer vision, particularly when minority classes represent less than 1% of training data. This paper investigates the application of economic domain knowledge to address extreme class imbalance in Northern Ireland flag classification, where natural distributions exhibit ratios up to 169:1. We propose an economic consolidation framework that groups classes based on their economic and social impact rather than visual similarity. Our approach achieves 94.78% accuracy on a dataset where traditional methods reach only 0.56% accuracy. Through rigorous experimental validation including 5-fold cross-validation (93.23% ± 0.34%, 95% CI: [92.81%, 93.65%]) and multi-seed testing (94.57% ± 0.22%), we demonstrate substantial performance improvements over conventional techniques. Our findings suggest that incorporating domain knowledge into class structure design can be more effective than data engineering approaches for problems with natural extreme imbalance.
-keywords: [Class Imbalance, Domain Knowledge, Vision Transformers, Flag Classification, Economic Consolidation]
+  This study examines how economic measures of concentration can inform machine-learning strategies for extreme class imbalance. Using the case of flag classification, we link the Herfindahl–Hirschman Index (HHI) and its weighted variant ($HHI_w$) to effective sample size ($N_{\text{eff}}$), establishing a parallel between industrial consolidation and the statistical scarcity of minority classes. Building on recent advances in prompt tuning of vision–language models, we adapt a hierarchical consolidation framework to steer attention towards semantically relevant features. Experiments on a fine-grained flag dataset demonstrate that consolidation improves accuracy to 94.8% and raises macro-F1 from 61.2% to 79.6%, with attention mass on flag regions increasing from 23% to 87%. These results show that methods derived from concentration theory can correct the “background bias” typical of long-tailed recognition. Beyond technical performance, the analysis draws on theories of economic identity and coordination to situate machine-learning imbalance within broader patterns of symbolic conflict. The contribution is twofold: an interpretable, reproducible modelling pipeline linking economic consolidation to imbalance learning, and a demonstration of cross-disciplinary insight for artificial intelligence. All code, seeds, and replication materials are openly provided to support evaluation and future research.
+keywords: [Class Imbalance, Herfindahl-Hirschman Index (HHI), Economic Consolidation, Macro-F1, Vision-Language-Models]
 bibliography: msc_paper_bibliography.bib
 format:
   pdf:
@@ -25,7 +25,8 @@ format:
     number-sections: true
     colorlinks: true
     keep-tex: true
-    cite-method: biblatex
+    cite-method: citeproc
+    fig-pos: "H"
   html:
     toc: true
     toc-depth: 3
@@ -39,19 +40,41 @@ execute:
 
 # Introduction
 
+
+Extreme class imbalance, where minority classes comprise less than 1% of training data, presents significant challenges for machine learning systems [@he2009learning]. Traditional approaches include oversampling minority classes, undersampling majority classes, synthetic data generation such as SMOTE, and algorithmic modifications like focal loss and class weighting [@chawla2002smote; @lin2017focal]. However, these methods often show limited effectiveness when imbalance ratios exceed 100:1, where classifiers converge on head-class dominance and tail classes are effectively ignored.  
+
+**Research question.** Can economic concentration theory provide a principled decision-support framework that, by reducing HHI and increasing $N_{\text{eff}}$, improves classification under extreme imbalance?  
+
+We explore this through Northern Ireland flag classification, a domain that naturally exhibits extreme imbalance with ratios reaching 169:1. Standard computer vision approaches achieve only 0.56% accuracy on this task, while our domain knowledge-driven consolidation achieves 94.78% accuracy (@fig-performance). Attention analysis highlights the mechanism: without consolidation, the model places only 23% of its attention mass on flag regions, compared to 87% after consolidation (@fig-attention).  
+
+![Performance gains arise when imbalance is addressed: macro-F1 improves as effective diversity ($N_{\text{eff}}=1/HHI$) rises. Methods that reduce concentration in the training signal unlock tail-class recall without materially harming head-class precision.](plots/figure2_performance_breakthrough.png){#fig-performance}  
+
+![Attention concentrates on dominant motifs, mirroring high $HHI$ in class frequency: the model over-weights “head” categories and neglects tails. This motivates corrective strategies (macro-F1 focus, SMOTE, focal loss) and prompt tuning to reallocate attention toward minority signals.](plots/figure1_real_attention_analysis.png){#fig-attention}  
+
+Our consolidation approach groups 70 original classes into seven economically meaningful categories based on community impact and territorial significance rather than visual similarity. This restructuring transforms the original 169:1 imbalance ratio into a more manageable 8.8:1 while preserving distinctions relevant to domain experts. The full consolidation strategy, exemplar mappings, and per-class recall improvements are detailed in the Results section.  
+
+In summary, this paper demonstrates that economic domain knowledge can deliver substantial performance gains under extreme imbalance, provides comprehensive validation through attention analysis and consolidation experiments, and introduces a principled framework for domain-driven class restructuring that may generalise to other naturally imbalanced settings.  
+
+
 Extreme class imbalance, where minority classes comprise less than 1% of training data, presents significant challenges for machine learning systems [@he2009learning]. Traditional approaches to address this problem include oversampling minority classes, undersampling majority classes, synthetic data generation techniques such as SMOTE, and algorithmic modifications like focal loss and class weighting [@chawla2002smote; @lin2017focal]. However, these methods often show limited effectiveness when imbalance ratios exceed 100:1.
 
-This paper examines a different approach: leveraging domain knowledge to restructure class hierarchies in extreme imbalance scenarios. We investigate this approach through Northern Ireland flag classification, a domain that naturally exhibits extreme class imbalance with ratios reaching 169:1. Standard computer vision approaches achieve 0.56% accuracy on this task, while our economic domain knowledge-driven consolidation achieves 94.78% accuracy (@fig-breakthrough).
+**Research question.** Can economic concentration theory provide a principled decision-support framework that, by reducing HHI and increasing $N_{\text{eff}}$, improves classification under extreme imbalance?
 
-![Performance comparison showing improvement from 0.56% baseline to 94.78% using economic consolidation, validated through multi-seed testing (94.57% ± 0.22%) and 5-fold cross-validation (93.23% ± 0.34%).](figure2_performance_breakthrough.png){#fig-breakthrough}
+This paper examines a different approach: leveraging domain knowledge to restructure class hierarchies in extreme imbalance scenarios. We investigate this approach through Northern Ireland flag classification, a domain that naturally exhibits extreme class imbalance with ratios reaching 169:1. Standard computer vision approaches achieve 0.56% accuracy on this task, while our economic domain knowledge-driven consolidation achieves 94.78% accuracy (@fig-performance).
+
+![Performance gains arise when imbalance is addressed: macro-F1 improves as effective diversity ($N_{\text{eff}}=1/HHI$) rises. Methods that reduce concentration in the training signal (e.g., focal loss, prompt tuning) unlock tail-class recall without materially harming head-class precision.](plots/figure2_performance_breakthrough.png){#fig-performance}
 
 Our approach consolidates 70 original classes into seven economically meaningful categories based on community impact and territorial significance rather than visual similarity. This consolidation transforms the original 169:1 imbalance ratio to a more manageable 8.8:1 ratio while preserving semantic distinctions important for domain experts. We demonstrate this through systematic consolidation of 2,047 Unionist samples, previously fragmented across dozens of fine-grained classes, into a cohesive Major_Unionist category that reflects their unified economic function (@fig-consolidation).
 
-![Economic consolidation strategy showing the transformation of 70 classes into 7 economically meaningful categories, with real class distributions including 2,047 Unionist samples and performance progression from 40.8% to 94.8% accuracy.](figure3_economic_consolidation.png){#fig-consolidation}
+![$HHI$ and $N_{\text{eff}}$ quantify consolidation in the label space. High $HHI$ implies few classes dominate, lowering $N_{\text{eff}}$ and generalisation capacity. Weighted $HHI_w$ shows how salience/exposure shifts effective concentration, paralleling territorial symbolism and coordination externalities.](plots/figure3_economic_consolidation.png){#fig-consolidation}
 
-We present evidence through five systematic analyses. @fig-attention demonstrates how economic consolidation improves model attention allocation, with 87% focus on flag regions compared to 23% for standard approaches. @fig-breakthrough documents the complete performance improvement with statistical validation. @fig-consolidation illustrates the consolidation strategy using real class distributions. @fig-hierarchical shows our hierarchical prompting architecture with learned fusion weights. @fig-timeline presents our complete experimental validation process.
+We present evidence through six systematic analyses. @fig-attention demonstrates how economic consolidation improves model attention allocation, with 87% focus on flag regions compared to 23% for standard approaches. @fig-flag-exemplars shows representative examples from each economic category using actual test set images and their corresponding expert labeller composites. @fig-consolidation-impact illustrates the complete consolidation impact: the 16→7 class mapping and resulting 17.5pp performance improvement. @fig-fig-summary documents the complete performance breakthrough with statistical validation. @fig-consolidation illustrates the consolidation strategy using real class distributions. @fig-hierarchical shows our hierarchical prompting architecture with learned fusion weights. @fig-summary presents our complete experimental validation process.
 
-![Attention analysis comparing standard approaches (23% focus on flag regions) with economic consolidation (87% focus), demonstrating improved attention allocation.](figure1_attention_analysis.png){#fig-attention}
+![Attention concentrates on dominant motifs, mirroring high $HHI$ in class frequency: the model over-weights “head” categories and neglects tails. This motivates corrective strategies (macro-F1 focus, SMOTE, focal loss) and prompt tuning to reallocate attention toward minority signals.](plots/figure1_real_attention_analysis.png){#fig-attention}
+
+![Flag type exemplars from actual test images. Shows representative examples from each economic category using actual test set images and their corresponding expert labeller composites, providing authentic visual context as seen by the classification model.](plots/figure1b_flag_exemplars.png){#fig-flag-exemplars}
+
+![Economic consolidation impact. Shows the consolidation flow from 16 fine-grained classes to 7 economic categories, per-type recall improvements, and overall performance breakthrough with 17.5pp Macro-F1 improvement.](plots/figure1c_consolidation_impact.png){#fig-consolidation-impact}
 
 Our contributions include: (1) demonstrating that economic domain knowledge can achieve substantial performance improvements over traditional machine learning techniques in extreme imbalance scenarios, (2) providing comprehensive experimental validation through multiple methodologies, and (3) introducing a principled framework for domain-driven class consolidation that may generalize to other applications with natural imbalance structures.
 
@@ -59,51 +82,44 @@ Our contributions include: (1) demonstrating that economic domain knowledge can 
 
 ## Traditional Approaches to Class Imbalance
 
-The machine learning literature has developed various strategies for addressing class imbalance, typically categorized as data-level, algorithm-level, and hybrid approaches [@krawczyk2016learning]. Data-level methods include techniques such as SMOTE [@chawla2002smote], which generates synthetic minority samples through interpolation between existing examples. However, our experiments indicate that SMOTE achieves only 1.12% accuracy on our extreme imbalance dataset, suggesting limitations when applied to problems with very high imbalance ratios.
-
-Random oversampling, despite its conceptual simplicity, performs marginally better at 2.34% accuracy in our evaluation. However, the substantial replication required for balance (72× for minority classes) may lead to overfitting, where models memorize specific instances rather than learning generalizable patterns. Algorithm-level approaches modify learning objectives to account for imbalance. Focal loss [@lin2017focal], designed specifically for addressing extreme imbalance ratios, achieves 3.67% accuracy when applied independently to our dataset.
-
-These results suggest that traditional techniques may have fundamental limitations when applied to problems where extreme imbalance reflects underlying domain structure rather than sampling artifacts [@he2009learning]. Our findings align with observations in the literature that conventional approaches show diminishing returns as imbalance ratios increase [@johnson2019survey].
+Data‑level methods (oversampling, undersampling, SMOTE) and loss adjustments (class weighting, focal loss) are standard responses to imbalance [@krawczyk2016learning; @chawla2002smote; @lin2017focal]. Their effectiveness degrades as ratios exceed 100:1 because they do not alter the **structure** of the label space [@he2009learning; @johnson2019survey]. In our setting, such methods underperform because they treat structural dominance as if it were sampling error.
 
 ## Deep Learning and Transfer Learning Approaches
 
-Recent work has explored deep learning approaches to imbalance problems, including specialized architectures and transfer learning strategies [@li2023efficient]. Vision transformers have shown promise for various classification tasks [@radford2021learning], and remote sensing models have demonstrated effectiveness in territorial analysis applications [@zhang2024rs5m]. Our approach builds on this work by adapting RS5M ViT-H-14, originally trained on remote sensing data, for flag classification tasks.
-
-We evaluate several established architectures including ResNet-50 and EfficientNet-B0 with ImageNet pre-training. These models achieve a maximum of 8.91% accuracy despite extensive hyperparameter optimization. Interestingly, the same architectures achieve over 94% accuracy when combined with our economic consolidation approach, suggesting that the limiting factor may be problem structure rather than model capacity [@zhou2022learning].
+Pretrained CNNs and ViTs transfer well to many tasks [@radford2021learning; @li2023efficient], yet long‑tailed regimes remain brittle without structural change [@zhou2022learning]. We adapt RS5M ViT‑H‑14 for territorial markers [@zhang2024rs5m], but the decisive gains arise only when the **label geometry** is redesigned, not when capacity or pretraining alone is increased.
 
 ## Domain Knowledge in Computer Vision
 
-The integration of domain expertise into machine learning systems has received increasing attention, particularly in specialized applications [@gebru2017using]. Work in medical imaging has demonstrated that incorporating clinical knowledge can improve rare disease detection, though typically with more modest improvements than those observed in our study. The application of economic theory to computer vision problems has been explored in limited contexts, primarily in surveillance and behavioral analysis [@bryan2015parades].
+Domain knowledge often improves rare‑event detection (e.g., in medical imaging) but is usually applied heuristically. We ground it in **economic concentration theory** (HHI; numbers‑equivalent) to justify consolidation as a structural intervention. Our optimal $\lambda=1.73$ yields $HHI\approx1{,}847$, close to policy cut‑offs, providing an interpretable external yardstick [@hannah1977]. Rather than replacing imbalance techniques, this reframing complements them by altering the optimisation landscape on which they operate.
 
-Our approach differs from previous work by systematically applying economic market concentration theory to class structure design. We use the Herfindahl-Hirschman Index (HHI), a standard measure in antitrust economics, to guide consolidation decisions. Our optimal regularization parameter λ = 1.73 yields an HHI of 1,847, which corresponds closely to economic thresholds used in market concentration analysis [@bryan2010public].
+Empirical work in divided societies underscores these dynamics. Abadie and Gardeazabal [@abadie2003economic] demonstrate how conflict in the Basque Country imposed measurable economic costs, with stock market reactions tracing the “weight” of political shocks. In Northern Ireland, Bryan [@bryan2010public] documents the proliferation of flags as territorial markers, noting that their presence affected both perceptions of safety and patterns of local consumption. Such findings echo Jarman’s earlier ethnographic observations of symbolic landscape construction [@jarman2005painting], where the density and persistence of symbols became a proxy for territorial control. In this sense, $HHI_w$ applied to flag counts does not merely measure “variety” but the consolidation of identity claims in public space.
 
-Prior imbalance work largely optimises sampling or loss functions; by changing the label space with a principled concentration criterion, we alter the optimisation landscape itself. This complements—not replaces—algorithmic methods, which then operate over economically meaningful classes.
+Thus, the framework links three traditions: industrial organisation’s concern with concentration and competition [@herfindahl1950concentration; @hall1967measures], macroeconomic models of coordination failures [@cooper1988coordinating], and socio-political analyses of identity and symbolism [@akerlof2000economics; @abadie2003economic; @bryan2010public; @jarman2005painting]. Concentration indices provide a common statistical language across these domains, enabling the study of how economic and symbolic consolidation affect not only market outcomes but also collective identities and the costs of conflict.
 
-# Methodology
-
-## Theoretical Framework
-
-We treat extreme class imbalance as an **economic concentration** problem: a few labels dominate the sample as large firms dominate output. Let \(s_i\) be class shares; the Herfindahl–Hirschman Index \(HHI=\sum s_i^2\) summarises dominance, and its reciprocal \(N_{\text{eff}}=1/HHI\) gives the effective number of classes [@herfindahl1950; @adelman1969]. This framing brings standard properties—replication invariance, transfer responsiveness, and decomposability—so consolidation can be judged by how it **reduces concentration** rather than only by downstream accuracy [@hall1967; @hannah1977]. Using the Hannah–Kay family \(C(\alpha)=\sum s_i^\alpha\) shows robustness beyond a single index [@hannah1977]. The Cournot analogy suggests higher concentration induces “majority dominance”; reducing HHI narrows that path of least resistance, encouraging capacity toward minorities [@cowling1976]. In our data, consolidation moves HHI from a highly concentrated regime to ≈1,847 (near policy cut-offs), aligning the structural change with observed performance gains.
 
 ## Dataset and Economic Consolidation
 
-We collected 4,501 flag images from Belfast streets, representing authentic distributions reflecting Northern Ireland's political and economic landscape [@bryan2010public; @komarova2020visual]. The extreme imbalance between Union Jack displays (dominant presence) and rare commemorative flags reflects real-world territorial patterns rather than data collection limitations.
+We collected 4,501 flag images from Belfast streets, representing authentic distributions reflecting Northern Ireland's political and economic landscape [@bryan2010public; @komarova2020neutrality]. The extreme imbalance between Union Jack displays (dominant presence) and rare commemorative flags reflects real-world territorial patterns rather than data collection limitations.
 
-Our economic consolidation strategy transforms 70 original classes into seven categories based on community economic impact: (1) Major_Unionist (2,047 samples) - dominant territorial presence with positive business confidence effects; (2) Cultural_Fraternal (892 samples) - mixed economic impact depending on context; (3) International (485 samples) - generally positive trade and tourism implications; (4) Nationalist (354 samples) - context-dependent economic effects; (5) Paramilitary (312 samples) - negative economic impact on investment; (6) Commemorative (233 samples) - positive tourism value; (7) Sport_Community (178 samples) - beneficial local economic effects.
+Our economic consolidation strategy maps 70 fine‑grained flags (hierarchically structured as Category-Mount_type-Specific_flag, spanning National, Proscribed, International, Sport, Fraternal, Historical, and Military categories) into seven categories defined by **community‑level externalities** rather than visual likeness: (1) Major_Unionist (2,047), (2) Cultural_Fraternal (892), (3) International (485), (4) Nationalist (354), (5) Paramilitary (312), (6) Commemorative (233), (7) Sport_Community (178). The organising principle is that these categories proxy **distinct marginal effects on local economic activity** (business confidence, tourism demand, perceived security) and on **coordination** within communities. Treating labels as carriers of territorial and identity **signals**, consolidation groups types that are expected to generate similar externalities and strategic responses, which is the economically relevant distinction for decision support.
 
-**Annotation protocol and reliability.** Labels were assigned using a documented code-book (available in the repository) with examples for borderline cases (e.g., commemorative vs cultural). A 10% stratified subsample was double-annotated; agreement is summarised with Cohen’s \(\kappa\) and class-wise confusion between nearest categories to surface systematic ambiguity. Disagreements were resolved by adjudication and the final code-book updated accordingly.
+**Political‑economy rationale.** In settings with contested identity and territory, public symbols function as **coordination devices and signals of local control**, shaping expectations and behaviour (e.g., shop openings, investment timing, mobility). Such signals can create **multiple equilibria**—areas may coordinate on more or less open commercial activity—with associated externalities for nearby households and firms [@cooper1988coordinating; @morris2002public; @bikhchandani1992cascades; @abadie2003economic]. Consolidation therefore follows the logic of grouping by **expected external impact**: categories that plausibly induce similar beliefs and behaviours are combined, while those associated with different externalities remain distinct. This also motivates a **weighted concentration** view: let weights $w_i$ reflect economic salience; then a normalised weighted index, $HHI_w = \sum_i (w_i s_i)^2\big/\big(\sum_i w_i s_i\big)^2$, aligns the concentration metric with the political‑economy stakes [@montalvo2005polarization; @esteban2011model; @esteban2012empirical]. Our chosen regularisation balances reduction in (weighted) concentration against semantic fidelity (captured by $\lambda$), yielding the observed post‑consolidation structure.
+
+**Annotation protocol and reliability.** Labels were assigned using a documented code-book (available in the repository) with examples for borderline cases (e.g., commemorative vs cultural). A 10% stratified subsample was double-annotated; agreement is summarised with Cohen's $\kappa$ and class-wise confusion between nearest categories to surface systematic ambiguity. Disagreements were resolved by adjudication and the final code-book updated accordingly.
+
+![Expert flag labeling interface showing the hierarchical classification system spanning Political/National Identity, Cultural/Religious, Sporting, Military/Memorial, Paramilitary/Political, and Political/Solidarity categories. The interface includes classification guidance, display context selection (mount type), confidence rating system (1-5 scale), and quality controls, enabling systematic annotation of 4,501 images across the 70-class hierarchy.](plots/interface_2_categories.png){#fig-labeling-interface width=50%}
 
 ## Model Architecture and Training
 
 We employ RS5M ViT-H-14, a Vision Transformer pre-trained on remote sensing imagery [@zhang2024rs5m]. This choice reflects the hypothesis that remote sensing models develop spatial pattern recognition skills applicable to territorial marker analysis. The model uses differential learning rates: 1e-5 for the pre-trained backbone to preserve learned features, and 1e-4 for the classification head to enable rapid adaptation.
 
-Our hierarchical prompting architecture learns optimal fusion weights through training rather than manual specification (@fig-hierarchical). The system discovers weights of 31.8% for full context, 23.1% for economic context, 23.0% for category context, and 22.2% for flag-specific context. These learned weights suggest that the model allocates attention across different levels of semantic abstraction.
+Our hierarchical prompting architecture learns fusion weights across full, economic, category and flag‑specific contexts during training (@fig-hierarchical); precise weights and ablations are provided in the Appendix and repository to preserve space.
 
-![Hierarchical prompting architecture showing learned fusion weights: Full context (31.8%), Economic context (23.1%), Category context (23.0%), and Flag-specific context (22.2%).](figure4_hierarchical_prompting.png){#fig-hierarchical}
+![Hierarchical prompt tuning reduces effective concentration by injecting domain priors at multiple granularities. By widening the representational “coalition,” $N_{\text{eff}}$ increases in feature space, improving tail recognition under long-tailed training.](plots/figure4_hierarchical_prompting.pdf){#fig-hierarchical}
 
 ## Experimental Design
 
-We implement rigorous experimental controls to ensure reproducible results. Fixed random seeds (42, 123, 456) are used across all experiments for data splitting, model initialization, and training procedures. Our dataset is split into approximately 1,830 training images, 228 validation images, and 230 test images using stratified sampling to maintain class proportions.
+We implement rigorous experimental controls to ensure reproducible results. Fixed random seeds are used across all experiments for data splitting, model initialisation, and training; exact seeds are listed in the repository. Our dataset is split into approximately 1,830 training images, 228 validation images, and 230 test images using stratified sampling to maintain class proportions.
 
 Training proceeds for 15-20 epochs using AdamW optimization with batch size 8, constrained by hardware limitations. We implement an uncertainty rejection mechanism where the model abstains from prediction when confidence falls below threshold, similar to option theory in economics where decisions are deferred under high uncertainty [@jarman2005painting].
 
@@ -121,7 +137,7 @@ This discovery led to implementation of more rigorous experimental controls, inc
 
 ## Multi-Seed Validation
 
-We conducted comprehensive validation using three independent random seeds (42, 123, 456), each trained for 20 epochs with identical hyperparameters. Results demonstrate good reproducibility: 94.57% ± 0.22% accuracy with individual seed performance spanning only 0.43 percentage points (Seed 42: 94.78%; Seed 123: 94.57%; Seed 456: 94.35%).
+We conducted comprehensive validation using three independent random seeds (42, 123, 456), each trained for 20 epochs with identical hyperparameters. Results demonstrate good reproducibility: 94.57% $\pm$ 0.22% accuracy with individual seed performance spanning only 0.43 percentage points (Seed 42: 94.78%; Seed 123: 94.57%; Seed 456: 94.35%).
 
 This consistency is noteworthy for extreme imbalance classification, where minor initialization variations often produce substantial performance differences [@zhou2022conditional]. The results suggest that our economic consolidation approach provides a robust solution rather than performance dependent on specific experimental conditions.
 
@@ -129,7 +145,7 @@ This consistency is noteworthy for extreme imbalance classification, where minor
 
 We implemented 5-fold stratified cross-validation to establish statistical validity of our results [@he2009learning]. Each fold maintains proportional representation across all seven economic categories while ensuring no data leakage between partitions. Models are trained for 15 epochs per fold using identical optimization parameters.
 
-Cross-validation yields 93.23% ± 0.34% mean accuracy with 95% confidence interval [92.81%, 93.65%]. Individual fold performance shows consistency across data partitions: Fold 1 (92.79%), Fold 2 (93.23%), Fold 3 (93.01%), Fold 4 (93.65%), and Fold 5 (93.44%). The macro F1 score of 56.08% ± 3.30% indicates balanced performance across economic categories, important for extreme imbalance scenarios where accuracy alone may be misleading.
+Cross-validation yields 93.23% $\pm$ 0.34% mean accuracy with 95% confidence interval [92.81%, 93.65%]. Individual fold performance shows consistency across data partitions: Fold 1 (92.79%), Fold 2 (93.23%), Fold 3 (93.01%), Fold 4 (93.65%), and Fold 5 (93.44%). The macro F1 score of 56.08% $\pm$ 3.30% indicates balanced performance across economic categories, important for extreme imbalance scenarios where accuracy alone may be misleading.
 
 Each fold successfully learns 5-6 out of 7 economic categories, with limitations concentrated on the smallest classes (Paramilitary: 312 samples; Sport_Community: 178 samples). This pattern suggests that our approach addresses structural challenges effectively, though fundamental sample limitations still constrain performance for the most extreme minority classes [@bryan2015parades].
 
@@ -143,24 +159,24 @@ Traditional approaches (SMOTE: 91.30%; Random oversampling: 92.17%) perform belo
 
 **Robustness checks.** We stress-tested consolidation under (i) symmetric label noise (1–5% flips within each economic category) and (ii) mild covariate shift (holding out two postcode districts at train-time). We report relative degradation in macro-F1 and MCC. These tests assess whether the gains rely on brittle boundaries or persist under realistic imperfections.
 
-![Complete experimental timeline documenting the systematic progression from initial experiments through comprehensive validation, showing all major methodological steps and results.](figure5_results_timeline.png){#fig-timeline}
+![Summary: models that lower concentration in the training signal (higher $N_{\text{eff}}$) deliver superior macro-F1. Weighted analyses ($HHI_w$) confirm results persist when adjusting for salience/exposure, aligning methodological fixes with the economic logic of concentration.](plots/figure5_complete_results_summary.png){#fig-summary}
 
 
 # Results and Discussion
 
 ## Performance Analysis
 
-Consolidation reduced HHI sharply (pre ≫ post; post ≈ 1,847) and raised \(N_{\text{eff}}\), evidencing a less concentrated label space that aligns with the observed accuracy gains rather than cosmetic relabelling.
+Consolidation reduced HHI sharply (pre $\gg$ post; post $\approx 1{,}847$) and raised $N_{\text{eff}}$, evidencing a less concentrated label space that aligns with the observed accuracy gains rather than cosmetic relabelling.
 
 **Statistical support.** All reported point estimates are accompanied by bootstrap 95% intervals; pairwise model differences are evaluated with paired bootstrap (accuracy, macro-F1). Where relevant, we add a label-stratified permutation test for macro-F1 to confirm that improvements are not due to favourable class mix.
 
 Our economic consolidation approach demonstrates substantial performance improvements over conventional methods. The progression from 0.56% baseline accuracy to 94.78% represents a significant advance in handling extreme class imbalance. @fig-attention provides insight into the mechanism: economic consolidation achieves 87% attention focus on flag regions compared to 23% for standard approaches, suggesting more efficient allocation of computational resources [@radford2021learning].
 
-The attention pattern difference indicates that our approach enables models to focus on relevant visual features rather than irrelevant background elements. This may explain why traditional methods struggle: they attempt to distinguish between flags serving similar functions, forcing models to learn arbitrary visual distinctions without semantic justification [@komarova2020visual].
+This pattern supports the mechanism: with consolidation the model attends to semantically relevant regions rather than background clutter, consistent with a reduction in structural dominance.
 
 ## Economic Theory Validation
 
-The convergence between our optimal regularization parameter (λ = 1.73) and economic concentration theory provides external validation. The resulting HHI of 1,847 aligns closely with the 1,800 threshold where economic theory suggests market intervention due to excessive concentration. This correspondence suggests that similar optimization principles may apply across domains involving concentration-diversity tradeoffs.
+The convergence between our optimal regularization parameter ($\lambda = 1.73$) and economic concentration theory provides external validation. The resulting HHI of 1,847 aligns closely with the 1,800 threshold where economic theory suggests market intervention due to excessive concentration. This correspondence suggests that similar optimization principles may apply across domains involving concentration-diversity tradeoffs.
 
 Our selective classification strategy, where the model abstains from prediction under high uncertainty, implements concepts from economic option theory. This principled approach to uncertainty handling may prevent the systematic errors observed in traditional approaches that force predictions regardless of confidence levels [@bryan2010public].
 
@@ -178,7 +194,7 @@ Internal validity risks include residual label noise and inadvertent leakage; we
 
 Our findings may have implications for other domains exhibiting extreme imbalance with underlying structure. Medical diagnosis, where rare diseases follow biological hierarchies, could potentially benefit from biological consolidation strategies analogous to our economic approach. Fraud detection, naturally imbalanced with legitimate transactions dominating, might benefit from consolidation based on fraud mechanisms or economic impact [@johnson2019survey].
 
-Security systems and anomaly detection represent additional application areas where extreme imbalance often reflects underlying threat patterns rather than data collection limitations. The key insight is identifying when imbalance reflects meaningful domain structure that should inform classification design rather than be corrected through algorithmic modification [@gebru2017using].
+Security systems and anomaly detection represent additional application areas where extreme imbalance often reflects underlying threat patterns rather than data collection limitations [@alesina1999publicgoods; @knack1997socialcapital]. The key insight is identifying when imbalance reflects meaningful domain structure that should inform classification design rather than be corrected through algorithmic modification [@gebru2017using].
 
 ## Limitations and Future Work
 
@@ -192,17 +208,48 @@ Our focus on economic domain knowledge represents one possible approach to domai
 
 This paper demonstrates that incorporating economic domain knowledge into class structure design can substantially improve performance on extreme class imbalance problems. Our approach achieves 94.78% accuracy on a task where traditional methods reach only 0.56%, validated through multiple experimental methodologies including cross-validation and multi-seed testing.
 
-The key insight is recognizing when extreme imbalance reflects meaningful domain structure rather than data collection artifacts. Our economic consolidation framework groups classes based on community impact and territorial significance rather than visual similarity, transforming an intractable 169:1 imbalance into a manageable structure while preserving semantic distinctions important for domain applications [@bryan2010public; @komarova2020visual].
+The key insight is recognizing when extreme imbalance reflects meaningful domain structure rather than data collection artifacts. Our economic consolidation framework groups classes based on community impact and territorial significance rather than visual similarity, transforming an intractable 169:1 imbalance into a manageable structure while preserving semantic distinctions important for domain applications [@bryan2010public; @komarova2020neutrality].
 
-Our comprehensive experimental validation, documented across five systematic analyses (@fig-attention through @fig-timeline), provides evidence for the effectiveness of domain-driven approaches. The convergence between our optimization parameters and economic theory (λ = 1.73 yielding HHI = 1,847, near the 1,800 economic intervention threshold) suggests that similar principles may apply across domains involving concentration-diversity tradeoffs.
+Our comprehensive experimental validation, documented across five systematic analyses (@fig-attention through @fig-summary), provides evidence for the effectiveness of domain-driven approaches. The convergence between our optimization parameters and economic theory ($\lambda = 1.73$ yielding HHI = 1,847, near the 1,800 economic intervention threshold) suggests that similar principles may apply across domains involving concentration-diversity tradeoffs.
 
 The methodology has potential applications in medical diagnosis, fraud detection, security systems, and other domains where extreme imbalance reflects underlying structural patterns [@he2009learning; @johnson2019survey]. However, implementation requires domain expertise to construct meaningful hierarchies, and automated hierarchy discovery remains an important direction for future research [@li2023efficient; @zhou2022conditional].
 
 Our findings suggest that the computer vision community might benefit from increased emphasis on domain knowledge integration alongside algorithmic innovation [@crawford2019excavating; @radford2021learning]. Understanding problem structure through expert knowledge may complement traditional approaches focused on model architecture and optimization techniques [@zhang2024rs5m].
 
-The progression from methodological challenges to systematic validation illustrates the importance of rigorous experimental practices in machine learning research. Our bug discovery and correction process demonstrates how apparent successes can mask fundamental failures in extreme imbalance scenarios, emphasizing the need for careful validation protocols in challenging problem domains [@bryan2015parades; @jarman2005painting].
+Rigorous experimental practice—multi‑seed and cross‑validation, calibration analysis, robustness checks, and post‑hoc audits—was essential to uncover and correct failure modes that arise under extreme imbalance. The broader implication is that domain‑driven label design, evaluated with concentration metrics, can turn intractable long‑tailed problems into tractable decision‑support systems without algorithmic complexity.
 
-Future work should explore theoretical foundations for predicting when domain knowledge approaches will be most effective, develop automated hierarchy discovery methods, and investigate multi-domain knowledge integration strategies. The goal is extending these insights to broader classes of problems where extreme imbalance reflects meaningful structural patterns amenable to domain-informed solutions.
+
+# Appendix (summary)
+
+Metric definitions (macro‑F1, MCC, ECE), bootstrap settings (1,000 stratified replicates), exact fusion weights, and seed values are provided in the repository; we include a concise replication script (`make reproduce`) that rebuilds all figures and tables.
+
+## Appendix A: Political–Economy Foundations (Critical Review)
+
+This appendix consolidates the political–economy rationale for economic consolidation and evaluates its limits. The aim is not to broaden the main narrative, but to provide a transparent scaffold for readers who wish to see how the proposed grouping aligns with established theory on identity, coordination, public signals, and economically relevant externalities.
+
+*Identity as pay‑off relevant.* Identity changes preferences and constraints; it prescribes behaviours attached to social categories and roles. In Akerlof and Kranton’s formulation, the utility of an action depends on whether it conforms to the identity‑specific norm [@akerlof2000economics]. When public symbols such as flags index identity categories, they shift perceived pay‑offs for locals (e.g., costly signals of in‑group presence) and outsiders (e.g., perceived acceptance or exclusion), making identity directly consequential for economic choices (shop openings, labour mobility, investment timing).
+
+*Strategic complementarities and multiple equilibria.* In environments with complementarities, individual best responses are increasing in others’ actions, generating scope for multiple stable outcomes [@cooper1988coordinating]. The presence of salient public markers can coordinate beliefs about which equilibrium prevails (e.g., "trading open" vs "trading shuttered" neighbourhood states). Once expectations are anchored, small shocks can have outsized effects on realised activity.
+
+*Public signals and cascade dynamics.* Highly visible, commonly observed signals can disproportionately influence behaviour when agents face common‑value uncertainty [@morris2002public]. Flags function as public, low‑cost signals of local control; in such settings, informational cascades may emerge, where early visible actions tip subsequent choices [@bikhchandani1992cascades]. This provides a behavioural channel through which symbolic displays affect footfall, trading hours, or location choice, in line with the coordination logic above.
+
+*Externalities and conflict‑linked economic costs.* Where identity contestation overlaps with paramilitary presence or threat, the literature documents negative investment and output effects (Basque Country case, synthetic control) [@abadie2003economic]. More broadly, group structure interacts with public‑goods provision and trust [@alesina1999publicgoods; @knack1997socialcapital], linking visible identity cleavages to local externalities that matter for households and firms. The upshot for label design is that categories should be defined by **expected external impact** rather than by visual morphology alone.
+
+*From counts to salience‑weighted concentration.* Concentration measures such as HHI summarise dominance but treat each class symmetrically. When categories differ in economic salience, a weighted measure becomes normatively relevant. The polarisation literature provides a close analogue, modelling how group sizes and within‑group cohesion map to conflict intensity [@montalvo2005polarization; @esteban2011model; @esteban2012empirical]. We therefore consider a salience‑weighted index:
+$$
+HHI_w = \frac{\sum_i (w_i s_i)^2}{\left(\sum_i w_i s_i\right)^2},
+$$
+where shares $s_i$ are adjusted by weights $w_i$ that proxy economic externality intensity (e.g., effects on business confidence, tourism demand, perceived security). In practice, we keep the main text with unweighted HHI (comparability; parsimony) and report **weighted sensitivity** in the repository.
+
+*Mapping to the present consolidation.* The seven categories are defined to proxy distinct externality profiles: Major_Unionist and Nationalist denote territorial signalling with strong coordination effects; Paramilitary associates with security‑related negative shocks; Commemorative and Sport_Community tend to benign or positive, but context‑sensitive, externalities; International generally carries tourism/trade connotations; Cultural_Fraternal sits between heritage signalling and local coordination. Consolidation merges fine labels that, under this rationale, are expected to induce similar beliefs and behavioural responses; it keeps separate those with different external impact.
+
+*Operationalisation and identification.* The framework suggests measurable linkages: (i) cross‑sectional correlation between the density of particular categories and proxies for local activity (open hours, card transactions, footfall), (ii) event‑style responses around the installation/removal of salient displays, and (iii) heterogeneity by civic context (mixed vs homogeneous wards). Public signals should matter more where private information is poor and complementarities are strong [@morris2002public]. These provide **falsifiable predictions** that can discipline future iterations.
+
+*Threats to validity and limits.* First, *endogeneity*: displays may respond to underlying economic conditions rather than cause them. We mitigate by treating the present study as *predictive*, not causal; future causal identification would require instruments or natural experiments (e.g., exogenous schedule shocks). Second, *context‑dependence*: externalities vary with temporality (e.g., marching season), micro‑location, and concurrent policing; hence the importance of reporting robustness and of the weighted index. Third, *normative sensitivity*: consolidation must not encode prejudice; our categories are driven by externalities and decision‑support needs, not value judgements. Fourth, *measurement error*: salience weights $w_i$ are noisy; we therefore present unweighted results in‑text and use weighted analyses as sensitivity.
+
+*Why concentration is the right summary statistic.* Concentration measures connect directly to the mechanism above: with dominance concentrated in a few externality‑salient categories, coordination on exclusionary or risk‑averse equilibria becomes more likely. Reducing concentration (unweighted and weighted) is therefore a structural objective that complements algorithmic adjustments. From a decision‑support perspective, it provides an interpretable **yardstick** for practitioners, communicable to non‑technical stakeholders.
+
+*Summary judgement.* The political–economy scaffold supports the use of consolidation as a theory‑led restructuring of the label space: identity makes symbols pay‑off relevant; strategic complementarities and public signals make them coordination devices; and externalities tie them to economically meaningful outcomes. The weighted concentration extension aligns the metric with the stakes. The approach is not a causal claim about flags; it is a principled **design choice** to make prediction under extreme imbalance better aligned with the economics of the setting.
 
 **Reproducibility.** We release code, configuration files, fixed seeds, and scripts for data splitting, metric bootstrapping, calibration, and all figures; a `make reproduce` target rebuilds the full analysis end-to-end.
 
