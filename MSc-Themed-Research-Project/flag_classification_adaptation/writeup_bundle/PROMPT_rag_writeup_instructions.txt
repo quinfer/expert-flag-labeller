@@ -1,0 +1,43 @@
+Task
+You are assisting with a progress report for an MSc project on flag image classification using CLIP + CoCoOp. Read the files in this bundle and produce:
+- A concise narrative of what was run, why, and key outcomes
+- A table of experiments with commands and metrics
+- A short interpretation of the confusion matrix and per-class results
+- Notes on environment/config constraints and known issues
+- Next steps and risks
+
+Files in this bundle
+- SUMMARY_experiments_and_commands.md (curated overview and commands)
+- LOG_baseline_niflags_rn50_full.txt (full baseline run)
+- LOG_overfit_easy_baseline.txt (earlier overfit subset run)
+- LOG_overfit_noaug.txt (overfit with no augmentation)
+- LOG_overfit_nctx32_adam.txt (overfit with N_CTX=32, Adam)
+- FIG_confusion_matrix_labeled_train_overfit.png (labeled heatmap for figures)
+- FIG_confusion_matrix_train_overfit.png (unlabeled heatmap)
+- DATA_confusion_matrix_train_overfit.csv (numeric matrix)
+- CONFIG_trainer_cocoop_rn50.yaml; CONFIG_trainer_cocoop_vit_b16.yaml; CONFIG_trainer_cocoop_vit_b32.yaml (trainer configs)
+- CONFIG_dataset_niflags.yaml (dataset config)
+- CODE_train_minimal_mps.py (MPS-aware training/eval harness)
+- CODE_final_data_setup.py (data prep: uncropped originals preferred, decorated excluded, min-side 224 upscaling)
+- CODE_create_overfit_subset.py; CODE_audit_image_sources.py
+- DATA_dataset_stats.json (dataset stats)
+- DATA_overfit_classnames.txt (class labels for confusion matrix)
+- DATA_overfit_split.json (exact overfit split used)
+
+What to extract
+- From all logs: commands used; device/env info; dataset summary (classes, split counts); transform blocks; trainer settings (notably TRAINER.COCOOP.N_CTX, precision); final metrics lines (=> result) and per-class results.
+- From SUMMARY_experiments_and_commands.md: align commands/results with logs.
+- From confusion matrix files + classnames: report the matrix values and map axes to class names; provide a 1–2 sentence interpretation.
+
+Output format
+- Overview: goal and data used for overfit sanity check.
+- Methods: model/trainer; transforms; key configs (N_CTX, optimizer, LR, epochs, precision).
+- Experiments and Results: table with Experiment | Command (short) | N_CTX | Aug | Optim/LR/Epochs | Split | Accuracy | Macro-F1 | Log file.
+- Confusion Matrix: include/reference labeled PNG; summarize CSV values and class mapping; short interpretation.
+- Environment and Constraints: PyTorch/Torchvision/open-clip versions; macOS + MPS; CLIP input size rules; MPS quirks; N_CTX must match at eval.
+- Limitations and Next Steps: prompt-only tuning plateaus (~60–70%) on tiny sets; suggested ablations (N_CTX sweep; ViT-B/32, ViT-B/16); seed sweep; optional linear probe / small finetuned head.
+- Appendix: exact commands and config file pointers.
+
+Notes
+- Prefer values parsed from logs over memory; look for lines starting with "=> result" and any "per-class result".
+- Keep narrative concise; use labeled PNG for figures and CSV for numeric values.

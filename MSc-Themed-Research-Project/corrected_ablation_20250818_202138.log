@@ -1,0 +1,596 @@
+🖥️  Using Apple Silicon MPS
+
+🔬 OVERSAMPLING ABLATION STUDY
+📁 Output directory: flag_classification_adaptation/experiments/corrected_ablation_20250818_202138_20250818_202141
+🎯 Hypothesis: Oversampling techniques are counterproductive
+⏱️  Expected total time: ~6-8 hours
+📊 NIFlags Super Consolidated Dataset Loaded
+   Root: /Users/quinference/Documents/expert-flag-labeler/MSc-Themed-Research-Project/data/ni_flags_super_consolidated
+   Train: 1830 samples
+   Val: 228 samples
+   Test: 230 samples
+   Classes: 7 super consolidated classes
+================================================================================
+
+📊 Dataset loaded: 2288 samples
+🏗️  Classes: ['Cultural_Community', 'Historical_Memorial', 'International_Other', 'Nationalist_All', 'Paramilitary_All', 'Sport_Community', 'Unionist_All']
+
+📋 ABLATION CONFIGURATIONS:
+1. consolidation_only: Economic consolidation only (true baseline)
+2. with_smart_augmentation: Economic consolidation + smart data augmentation (original multi-strategy)
+3. with_random_oversampling: Economic consolidation + traditional random oversampling
+4. with_smote_oversampling: Economic consolidation + SMOTE oversampling
+5. with_class_weights: Economic consolidation + balanced class weights
+6. with_focal_loss: Economic consolidation + focal loss
+
+⏳ Running configuration 1/6
+
+================================================================================
+🔬 RUNNING ABLATION: CONSOLIDATION_ONLY
+================================================================================
+📊 Configuration:
+   smart_augmentation: False
+   oversampling: None
+   class_weights: False
+   focal_loss: False
+   description: Economic consolidation only (true baseline)
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+📊 Using Standard Cross-Entropy Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[consolidation_only] Batch 0/229, Loss: 2.0023, Acc: 0.00%
+[consolidation_only] Batch 50/229, Loss: 1.0276, Acc: 83.58%
+[consolidation_only] Batch 100/229, Loss: 0.3586, Acc: 87.13%
+[consolidation_only] Batch 150/229, Loss: 0.5990, Acc: 87.42%
+[consolidation_only] Batch 200/229, Loss: 0.1695, Acc: 88.74%
+
+📅 Epoch 2/15
+[consolidation_only] Batch 0/229, Loss: 0.1117, Acc: 100.00%
+[consolidation_only] Batch 50/229, Loss: 0.1273, Acc: 94.85%
+[consolidation_only] Batch 100/229, Loss: 0.0234, Acc: 93.81%
+[consolidation_only] Batch 150/229, Loss: 0.4612, Acc: 93.54%
+[consolidation_only] Batch 200/229, Loss: 0.4110, Acc: 93.41%
+
+📅 Epoch 3/15
+[consolidation_only] Batch 0/229, Loss: 0.0197, Acc: 100.00%
+[consolidation_only] Batch 50/229, Loss: 0.0217, Acc: 95.83%
+[consolidation_only] Batch 100/229, Loss: 0.0033, Acc: 96.78%
+[consolidation_only] Batch 150/229, Loss: 0.4799, Acc: 97.19%
+[consolidation_only] Batch 200/229, Loss: 0.0289, Acc: 96.27%
+
+📅 Epoch 4/15
+[consolidation_only] Batch 0/229, Loss: 0.0469, Acc: 100.00%
+[consolidation_only] Batch 50/229, Loss: 0.0130, Acc: 97.55%
+[consolidation_only] Batch 100/229, Loss: 0.0096, Acc: 98.51%
+[consolidation_only] Batch 150/229, Loss: 0.0162, Acc: 98.43%
+[consolidation_only] Batch 200/229, Loss: 0.1411, Acc: 98.13%
+
+📅 Epoch 5/15
+[consolidation_only] Batch 0/229, Loss: 0.0121, Acc: 100.00%
+[consolidation_only] Batch 50/229, Loss: 0.0481, Acc: 98.53%
+[consolidation_only] Batch 100/229, Loss: 0.0152, Acc: 98.64%
+[consolidation_only] Batch 150/229, Loss: 0.2605, Acc: 98.10%
+[consolidation_only] Batch 200/229, Loss: 0.3865, Acc: 97.64%
+❌ Error in consolidation_only: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+
+⏳ Running configuration 2/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_SMART_AUGMENTATION
+================================================================================
+📊 Configuration:
+   smart_augmentation: True
+   oversampling: None
+   class_weights: False
+   focal_loss: False
+   description: Economic consolidation + smart data augmentation (original multi-strategy)
+🎨 Applying smart data augmentation...
+🎨 Smart Augmentation Sampler:
+   Target samples per class: 150
+   Class 0 (Cultural_Community): 97 → 150 samples
+   Class 1 (Historical_Memorial): 5 → 25 samples
+   Class 2 (International_Other): 20 → 100 samples
+   Class 3 (Nationalist_All): 63 → 150 samples
+   Class 4 (Paramilitary_All): 38 → 150 samples
+   Class 5 (Sport_Community): 21 → 105 samples
+   Class 6 (Unionist_All): 1586 → 150 samples
+✅ Created balanced dataset: 1830 → 2266 samples
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+📊 Using Standard Cross-Entropy Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[with_smart_augmentation] Batch 0/284, Loss: 1.8820, Acc: 12.50%
+[with_smart_augmentation] Batch 50/284, Loss: 0.4302, Acc: 71.32%
+[with_smart_augmentation] Batch 100/284, Loss: 0.5761, Acc: 75.12%
+[with_smart_augmentation] Batch 150/284, Loss: 0.1115, Acc: 79.22%
+[with_smart_augmentation] Batch 200/284, Loss: 0.2062, Acc: 81.22%
+[with_smart_augmentation] Batch 250/284, Loss: 0.0196, Acc: 84.01%
+
+📅 Epoch 2/15
+[with_smart_augmentation] Batch 0/284, Loss: 0.4469, Acc: 75.00%
+[with_smart_augmentation] Batch 50/284, Loss: 0.2968, Acc: 95.59%
+[with_smart_augmentation] Batch 100/284, Loss: 0.5900, Acc: 95.17%
+[with_smart_augmentation] Batch 150/284, Loss: 0.0192, Acc: 95.45%
+[with_smart_augmentation] Batch 200/284, Loss: 0.0082, Acc: 95.09%
+[with_smart_augmentation] Batch 250/284, Loss: 0.0127, Acc: 95.12%
+
+📅 Epoch 3/15
+[with_smart_augmentation] Batch 0/284, Loss: 0.1494, Acc: 87.50%
+[with_smart_augmentation] Batch 50/284, Loss: 0.0040, Acc: 97.79%
+[with_smart_augmentation] Batch 100/284, Loss: 0.0259, Acc: 98.02%
+[with_smart_augmentation] Batch 150/284, Loss: 0.0266, Acc: 98.51%
+[with_smart_augmentation] Batch 200/284, Loss: 1.0594, Acc: 98.26%
+[with_smart_augmentation] Batch 250/284, Loss: 0.0121, Acc: 98.16%
+
+📅 Epoch 4/15
+[with_smart_augmentation] Batch 0/284, Loss: 0.0120, Acc: 100.00%
+[with_smart_augmentation] Batch 50/284, Loss: 0.0055, Acc: 98.53%
+[with_smart_augmentation] Batch 100/284, Loss: 0.0292, Acc: 99.01%
+[with_smart_augmentation] Batch 150/284, Loss: 0.0023, Acc: 99.09%
+[with_smart_augmentation] Batch 200/284, Loss: 0.0046, Acc: 99.07%
+[with_smart_augmentation] Batch 250/284, Loss: 0.0047, Acc: 99.10%
+
+📅 Epoch 5/15
+[with_smart_augmentation] Batch 0/284, Loss: 0.0034, Acc: 100.00%
+[with_smart_augmentation] Batch 50/284, Loss: 0.0062, Acc: 98.53%
+[with_smart_augmentation] Batch 100/284, Loss: 0.0249, Acc: 97.03%
+[with_smart_augmentation] Batch 150/284, Loss: 0.0032, Acc: 97.85%
+[with_smart_augmentation] Batch 200/284, Loss: 0.0770, Acc: 98.07%
+[with_smart_augmentation] Batch 250/284, Loss: 0.0043, Acc: 98.26%
+❌ Error in with_smart_augmentation: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+
+⏳ Running configuration 3/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_RANDOM_OVERSAMPLING
+================================================================================
+📊 Configuration:
+   smart_augmentation: False
+   oversampling: random
+   class_weights: False
+   focal_loss: False
+   description: Economic consolidation + traditional random oversampling
+🔄 Applying random oversampling...
+   Original distribution: Counter({np.int64(6): 1586, np.int64(0): 97, np.int64(3): 63, np.int64(4): 38, np.int64(5): 21, np.int64(2): 20, np.int64(1): 5})
+   Resampled distribution: Counter({np.int64(0): 1586, np.int64(6): 1586, np.int64(3): 1586, np.int64(5): 1586, np.int64(2): 1586, np.int64(4): 1586, np.int64(1): 1586})
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+📊 Using Standard Cross-Entropy Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[with_random_oversampling] Batch 0/1388, Loss: 2.1165, Acc: 0.00%
+[with_random_oversampling] Batch 50/1388, Loss: 0.7622, Acc: 50.00%
+[with_random_oversampling] Batch 100/1388, Loss: 0.1010, Acc: 68.19%
+[with_random_oversampling] Batch 150/1388, Loss: 0.0877, Acc: 77.40%
+[with_random_oversampling] Batch 200/1388, Loss: 0.0123, Acc: 81.97%
+[with_random_oversampling] Batch 250/1388, Loss: 0.1357, Acc: 84.26%
+[with_random_oversampling] Batch 300/1388, Loss: 0.0538, Acc: 85.92%
+[with_random_oversampling] Batch 350/1388, Loss: 0.0128, Acc: 87.32%
+[with_random_oversampling] Batch 400/1388, Loss: 0.6510, Acc: 88.40%
+[with_random_oversampling] Batch 450/1388, Loss: 0.0134, Acc: 89.55%
+[with_random_oversampling] Batch 500/1388, Loss: 0.0064, Acc: 90.37%
+[with_random_oversampling] Batch 550/1388, Loss: 0.0065, Acc: 91.11%
+[with_random_oversampling] Batch 600/1388, Loss: 0.0172, Acc: 91.68%
+[with_random_oversampling] Batch 650/1388, Loss: 0.2748, Acc: 92.26%
+[with_random_oversampling] Batch 700/1388, Loss: 0.0546, Acc: 92.55%
+[with_random_oversampling] Batch 750/1388, Loss: 0.0328, Acc: 92.86%
+[with_random_oversampling] Batch 800/1388, Loss: 0.0446, Acc: 93.20%
+[with_random_oversampling] Batch 850/1388, Loss: 0.0127, Acc: 93.54%
+[with_random_oversampling] Batch 900/1388, Loss: 0.0051, Acc: 93.87%
+[with_random_oversampling] Batch 950/1388, Loss: 0.0054, Acc: 94.14%
+[with_random_oversampling] Batch 1000/1388, Loss: 0.0058, Acc: 94.39%
+[with_random_oversampling] Batch 1050/1388, Loss: 0.0067, Acc: 94.65%
+[with_random_oversampling] Batch 1100/1388, Loss: 0.0885, Acc: 94.87%
+[with_random_oversampling] Batch 1150/1388, Loss: 0.0074, Acc: 95.07%
+[with_random_oversampling] Batch 1200/1388, Loss: 0.0080, Acc: 95.23%
+[with_random_oversampling] Batch 1250/1388, Loss: 0.0010, Acc: 95.37%
+[with_random_oversampling] Batch 1300/1388, Loss: 0.0012, Acc: 95.53%
+[with_random_oversampling] Batch 1350/1388, Loss: 0.0011, Acc: 95.70%
+
+📅 Epoch 2/15
+[with_random_oversampling] Batch 0/1388, Loss: 0.3100, Acc: 87.50%
+[with_random_oversampling] Batch 50/1388, Loss: 0.0060, Acc: 97.55%
+[with_random_oversampling] Batch 100/1388, Loss: 0.0033, Acc: 98.39%
+[with_random_oversampling] Batch 150/1388, Loss: 0.0010, Acc: 98.76%
+[with_random_oversampling] Batch 200/1388, Loss: 0.0008, Acc: 99.00%
+[with_random_oversampling] Batch 250/1388, Loss: 0.0008, Acc: 99.15%
+[with_random_oversampling] Batch 300/1388, Loss: 0.0028, Acc: 99.17%
+[with_random_oversampling] Batch 350/1388, Loss: 0.0008, Acc: 99.18%
+[with_random_oversampling] Batch 400/1388, Loss: 0.0037, Acc: 99.03%
+[with_random_oversampling] Batch 450/1388, Loss: 0.0007, Acc: 99.06%
+[with_random_oversampling] Batch 500/1388, Loss: 0.0027, Acc: 99.15%
+[with_random_oversampling] Batch 550/1388, Loss: 0.0068, Acc: 99.12%
+[with_random_oversampling] Batch 600/1388, Loss: 0.9279, Acc: 99.15%
+[with_random_oversampling] Batch 650/1388, Loss: 0.0010, Acc: 99.19%
+[with_random_oversampling] Batch 700/1388, Loss: 0.0003, Acc: 99.25%
+[with_random_oversampling] Batch 750/1388, Loss: 0.0009, Acc: 99.28%
+[with_random_oversampling] Batch 800/1388, Loss: 0.0008, Acc: 99.33%
+[with_random_oversampling] Batch 850/1388, Loss: 0.0004, Acc: 99.37%
+[with_random_oversampling] Batch 900/1388, Loss: 0.0012, Acc: 99.29%
+[with_random_oversampling] Batch 950/1388, Loss: 0.0004, Acc: 99.33%
+[with_random_oversampling] Batch 1000/1388, Loss: 0.0504, Acc: 99.23%
+[with_random_oversampling] Batch 1050/1388, Loss: 0.0434, Acc: 98.98%
+[with_random_oversampling] Batch 1100/1388, Loss: 0.2969, Acc: 98.94%
+[with_random_oversampling] Batch 1150/1388, Loss: 0.1236, Acc: 98.88%
+[with_random_oversampling] Batch 1200/1388, Loss: 0.4047, Acc: 98.89%
+[with_random_oversampling] Batch 1250/1388, Loss: 0.0036, Acc: 98.87%
+[with_random_oversampling] Batch 1300/1388, Loss: 0.0313, Acc: 98.90%
+[with_random_oversampling] Batch 1350/1388, Loss: 0.0145, Acc: 98.94%
+
+📅 Epoch 3/15
+[with_random_oversampling] Batch 0/1388, Loss: 0.0016, Acc: 100.00%
+[with_random_oversampling] Batch 50/1388, Loss: 0.0009, Acc: 100.00%
+[with_random_oversampling] Batch 100/1388, Loss: 0.0005, Acc: 100.00%
+[with_random_oversampling] Batch 150/1388, Loss: 0.0002, Acc: 100.00%
+[with_random_oversampling] Batch 200/1388, Loss: 0.0003, Acc: 100.00%
+[with_random_oversampling] Batch 250/1388, Loss: 0.0004, Acc: 100.00%
+[with_random_oversampling] Batch 300/1388, Loss: 0.0001, Acc: 100.00%
+[with_random_oversampling] Batch 350/1388, Loss: 0.0004, Acc: 100.00%
+[with_random_oversampling] Batch 400/1388, Loss: 0.3963, Acc: 99.78%
+[with_random_oversampling] Batch 450/1388, Loss: 0.1454, Acc: 99.50%
+[with_random_oversampling] Batch 500/1388, Loss: 0.0029, Acc: 99.50%
+[with_random_oversampling] Batch 550/1388, Loss: 0.4244, Acc: 99.43%
+[with_random_oversampling] Batch 600/1388, Loss: 0.0003, Acc: 99.42%
+[with_random_oversampling] Batch 650/1388, Loss: 0.0012, Acc: 99.44%
+[with_random_oversampling] Batch 700/1388, Loss: 0.0006, Acc: 99.45%
+[with_random_oversampling] Batch 750/1388, Loss: 0.0029, Acc: 99.42%
+[with_random_oversampling] Batch 800/1388, Loss: 0.0006, Acc: 99.42%
+[with_random_oversampling] Batch 850/1388, Loss: 0.0003, Acc: 99.46%
+[with_random_oversampling] Batch 900/1388, Loss: 0.0006, Acc: 99.49%
+[with_random_oversampling] Batch 950/1388, Loss: 0.0003, Acc: 99.50%
+[with_random_oversampling] Batch 1000/1388, Loss: 0.0066, Acc: 99.53%
+[with_random_oversampling] Batch 1050/1388, Loss: 0.0002, Acc: 99.55%
+[with_random_oversampling] Batch 1100/1388, Loss: 0.0005, Acc: 99.57%
+[with_random_oversampling] Batch 1150/1388, Loss: 0.0005, Acc: 99.51%
+[with_random_oversampling] Batch 1200/1388, Loss: 0.0004, Acc: 99.51%
+[with_random_oversampling] Batch 1250/1388, Loss: 0.0007, Acc: 99.53%
+[with_random_oversampling] Batch 1300/1388, Loss: 0.0005, Acc: 99.55%
+[with_random_oversampling] Batch 1350/1388, Loss: 0.0228, Acc: 99.52%
+
+📅 Epoch 4/15
+[with_random_oversampling] Batch 0/1388, Loss: 0.1098, Acc: 87.50%
+[with_random_oversampling] Batch 50/1388, Loss: 0.0026, Acc: 98.53%
+[with_random_oversampling] Batch 100/1388, Loss: 0.0004, Acc: 99.01%
+[with_random_oversampling] Batch 150/1388, Loss: 0.0054, Acc: 99.09%
+[with_random_oversampling] Batch 200/1388, Loss: 0.0017, Acc: 99.32%
+[with_random_oversampling] Batch 250/1388, Loss: 0.0015, Acc: 99.30%
+[with_random_oversampling] Batch 300/1388, Loss: 0.0042, Acc: 99.04%
+[with_random_oversampling] Batch 350/1388, Loss: 0.0029, Acc: 98.93%
+[with_random_oversampling] Batch 400/1388, Loss: 0.0031, Acc: 99.06%
+[with_random_oversampling] Batch 450/1388, Loss: 0.0009, Acc: 99.17%
+[with_random_oversampling] Batch 500/1388, Loss: 0.0042, Acc: 99.25%
+[with_random_oversampling] Batch 550/1388, Loss: 0.0002, Acc: 99.32%
+[with_random_oversampling] Batch 600/1388, Loss: 0.0002, Acc: 99.38%
+[with_random_oversampling] Batch 650/1388, Loss: 0.0006, Acc: 99.42%
+[with_random_oversampling] Batch 700/1388, Loss: 0.0014, Acc: 99.47%
+[with_random_oversampling] Batch 750/1388, Loss: 0.0002, Acc: 99.50%
+[with_random_oversampling] Batch 800/1388, Loss: 0.0130, Acc: 99.53%
+[with_random_oversampling] Batch 850/1388, Loss: 0.0001, Acc: 99.56%
+[with_random_oversampling] Batch 900/1388, Loss: 0.0001, Acc: 99.56%
+[with_random_oversampling] Batch 950/1388, Loss: 0.0002, Acc: 99.58%
+[with_random_oversampling] Batch 1000/1388, Loss: 0.0002, Acc: 99.60%
+[with_random_oversampling] Batch 1050/1388, Loss: 0.0002, Acc: 99.62%
+[with_random_oversampling] Batch 1100/1388, Loss: 0.0001, Acc: 99.64%
+[with_random_oversampling] Batch 1150/1388, Loss: 0.0001, Acc: 99.65%
+[with_random_oversampling] Batch 1200/1388, Loss: 0.0001, Acc: 99.67%
+[with_random_oversampling] Batch 1250/1388, Loss: 0.0001, Acc: 99.68%
+[with_random_oversampling] Batch 1300/1388, Loss: 0.0002, Acc: 99.69%
+[with_random_oversampling] Batch 1350/1388, Loss: 0.0001, Acc: 99.70%
+
+📅 Epoch 5/15
+[with_random_oversampling] Batch 0/1388, Loss: 0.0004, Acc: 100.00%
+[with_random_oversampling] Batch 50/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 100/1388, Loss: 0.0001, Acc: 100.00%
+[with_random_oversampling] Batch 150/1388, Loss: 0.0001, Acc: 100.00%
+[with_random_oversampling] Batch 200/1388, Loss: 0.0002, Acc: 100.00%
+[with_random_oversampling] Batch 250/1388, Loss: 0.0001, Acc: 100.00%
+[with_random_oversampling] Batch 300/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 350/1388, Loss: 0.0001, Acc: 100.00%
+[with_random_oversampling] Batch 400/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 450/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 500/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 550/1388, Loss: 0.0001, Acc: 100.00%
+[with_random_oversampling] Batch 600/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 650/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 700/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 750/1388, Loss: 0.0000, Acc: 100.00%
+[with_random_oversampling] Batch 800/1388, Loss: 0.0031, Acc: 99.86%
+[with_random_oversampling] Batch 850/1388, Loss: 0.0089, Acc: 99.63%
+[with_random_oversampling] Batch 900/1388, Loss: 0.0002, Acc: 99.60%
+[with_random_oversampling] Batch 950/1388, Loss: 0.0432, Acc: 99.40%
+[with_random_oversampling] Batch 1000/1388, Loss: 0.0620, Acc: 99.31%
+[with_random_oversampling] Batch 1050/1388, Loss: 0.0004, Acc: 99.35%
+[with_random_oversampling] Batch 1100/1388, Loss: 0.0006, Acc: 99.38%
+[with_random_oversampling] Batch 1150/1388, Loss: 0.0003, Acc: 99.38%
+[with_random_oversampling] Batch 1200/1388, Loss: 0.0004, Acc: 99.35%
+[with_random_oversampling] Batch 1250/1388, Loss: 0.0024, Acc: 99.32%
+[with_random_oversampling] Batch 1300/1388, Loss: 0.0016, Acc: 99.32%
+[with_random_oversampling] Batch 1350/1388, Loss: 0.0077, Acc: 99.32%
+❌ Error in with_random_oversampling: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+
+⏳ Running configuration 4/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_SMOTE_OVERSAMPLING
+================================================================================
+📊 Configuration:
+   smart_augmentation: False
+   oversampling: smote
+   class_weights: False
+   focal_loss: False
+   description: Economic consolidation + SMOTE oversampling
+🔄 Applying smote oversampling...
+   Original distribution: Counter({np.int64(6): 1586, np.int64(0): 97, np.int64(3): 63, np.int64(4): 38, np.int64(5): 21, np.int64(2): 20, np.int64(1): 5})
+   SMOTE oversampling skipped for image data - using random instead
+   Resampled distribution: Counter({np.int64(0): 1586, np.int64(6): 1586, np.int64(3): 1586, np.int64(5): 1586, np.int64(2): 1586, np.int64(4): 1586, np.int64(1): 1586})
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+📊 Using Standard Cross-Entropy Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[with_smote_oversampling] Batch 0/1388, Loss: 2.0772, Acc: 12.50%
+[with_smote_oversampling] Batch 50/1388, Loss: 0.5373, Acc: 53.43%
+[with_smote_oversampling] Batch 100/1388, Loss: 0.1730, Acc: 70.05%
+[with_smote_oversampling] Batch 150/1388, Loss: 0.4014, Acc: 75.91%
+[with_smote_oversampling] Batch 200/1388, Loss: 0.1503, Acc: 80.41%
+[with_smote_oversampling] Batch 250/1388, Loss: 0.0867, Acc: 83.27%
+[with_smote_oversampling] Batch 300/1388, Loss: 0.2902, Acc: 85.47%
+[with_smote_oversampling] Batch 350/1388, Loss: 0.0190, Acc: 87.14%
+[with_smote_oversampling] Batch 400/1388, Loss: 0.0145, Acc: 88.37%
+[with_smote_oversampling] Batch 450/1388, Loss: 0.0055, Acc: 89.16%
+[with_smote_oversampling] Batch 500/1388, Loss: 0.0564, Acc: 90.14%
+[with_smote_oversampling] Batch 550/1388, Loss: 0.0041, Acc: 90.93%
+[with_smote_oversampling] Batch 600/1388, Loss: 0.0044, Acc: 91.60%
+[with_smote_oversampling] Batch 650/1388, Loss: 0.3169, Acc: 91.94%
+[with_smote_oversampling] Batch 700/1388, Loss: 0.0056, Acc: 92.14%
+[with_smote_oversampling] Batch 750/1388, Loss: 0.0048, Acc: 92.63%
+[with_smote_oversampling] Batch 800/1388, Loss: 0.2357, Acc: 93.01%
+[with_smote_oversampling] Batch 850/1388, Loss: 0.0047, Acc: 93.26%
+[with_smote_oversampling] Batch 900/1388, Loss: 0.2115, Acc: 93.27%
+[with_smote_oversampling] Batch 950/1388, Loss: 0.0028, Acc: 93.52%
+[with_smote_oversampling] Batch 1000/1388, Loss: 0.0098, Acc: 93.83%
+[with_smote_oversampling] Batch 1050/1388, Loss: 0.0110, Acc: 93.98%
+[with_smote_oversampling] Batch 1100/1388, Loss: 0.0015, Acc: 94.21%
+[with_smote_oversampling] Batch 1150/1388, Loss: 0.0034, Acc: 94.44%
+[with_smote_oversampling] Batch 1200/1388, Loss: 0.0021, Acc: 94.66%
+[with_smote_oversampling] Batch 1250/1388, Loss: 0.0017, Acc: 94.83%
+[with_smote_oversampling] Batch 1300/1388, Loss: 0.0262, Acc: 94.98%
+[with_smote_oversampling] Batch 1350/1388, Loss: 1.0725, Acc: 95.11%
+
+📅 Epoch 2/15
+[with_smote_oversampling] Batch 0/1388, Loss: 0.0017, Acc: 100.00%
+[with_smote_oversampling] Batch 50/1388, Loss: 0.0043, Acc: 99.75%
+[with_smote_oversampling] Batch 100/1388, Loss: 0.0024, Acc: 99.50%
+[with_smote_oversampling] Batch 150/1388, Loss: 0.0059, Acc: 99.50%
+[with_smote_oversampling] Batch 200/1388, Loss: 0.0012, Acc: 99.56%
+[with_smote_oversampling] Batch 250/1388, Loss: 0.0012, Acc: 99.55%
+[with_smote_oversampling] Batch 300/1388, Loss: 0.0565, Acc: 99.42%
+[with_smote_oversampling] Batch 350/1388, Loss: 0.0018, Acc: 99.07%
+[with_smote_oversampling] Batch 400/1388, Loss: 0.0062, Acc: 99.03%
+[with_smote_oversampling] Batch 450/1388, Loss: 0.0028, Acc: 98.92%
+[with_smote_oversampling] Batch 500/1388, Loss: 0.2270, Acc: 98.83%
+[with_smote_oversampling] Batch 550/1388, Loss: 0.0025, Acc: 98.89%
+[with_smote_oversampling] Batch 600/1388, Loss: 0.0020, Acc: 98.96%
+[with_smote_oversampling] Batch 650/1388, Loss: 0.0108, Acc: 99.00%
+[with_smote_oversampling] Batch 700/1388, Loss: 0.0011, Acc: 99.04%
+[with_smote_oversampling] Batch 750/1388, Loss: 0.0009, Acc: 99.10%
+[with_smote_oversampling] Batch 800/1388, Loss: 0.0009, Acc: 99.13%
+[with_smote_oversampling] Batch 850/1388, Loss: 0.0013, Acc: 99.15%
+[with_smote_oversampling] Batch 900/1388, Loss: 0.0062, Acc: 99.18%
+[with_smote_oversampling] Batch 950/1388, Loss: 0.0003, Acc: 99.22%
+[with_smote_oversampling] Batch 1000/1388, Loss: 0.0003, Acc: 99.26%
+[with_smote_oversampling] Batch 1050/1388, Loss: 0.0007, Acc: 99.27%
+[with_smote_oversampling] Batch 1100/1388, Loss: 0.0066, Acc: 99.30%
+[with_smote_oversampling] Batch 1150/1388, Loss: 0.0002, Acc: 99.33%
+[with_smote_oversampling] Batch 1200/1388, Loss: 0.0007, Acc: 99.35%
+[with_smote_oversampling] Batch 1250/1388, Loss: 0.0002, Acc: 99.31%
+[with_smote_oversampling] Batch 1300/1388, Loss: 0.0042, Acc: 99.24%
+[with_smote_oversampling] Batch 1350/1388, Loss: 0.0040, Acc: 99.11%
+
+📅 Epoch 3/15
+[with_smote_oversampling] Batch 0/1388, Loss: 0.0031, Acc: 100.00%
+[with_smote_oversampling] Batch 50/1388, Loss: 0.0030, Acc: 100.00%
+[with_smote_oversampling] Batch 100/1388, Loss: 0.0004, Acc: 100.00%
+[with_smote_oversampling] Batch 150/1388, Loss: 0.0009, Acc: 99.83%
+[with_smote_oversampling] Batch 200/1388, Loss: 0.0015, Acc: 99.88%
+[with_smote_oversampling] Batch 250/1388, Loss: 0.0003, Acc: 99.80%
+[with_smote_oversampling] Batch 300/1388, Loss: 0.0007, Acc: 99.83%
+[with_smote_oversampling] Batch 350/1388, Loss: 0.0009, Acc: 99.64%
+[with_smote_oversampling] Batch 400/1388, Loss: 0.1034, Acc: 99.44%
+[with_smote_oversampling] Batch 450/1388, Loss: 0.0123, Acc: 99.36%
+[with_smote_oversampling] Batch 500/1388, Loss: 0.0040, Acc: 99.33%
+[with_smote_oversampling] Batch 550/1388, Loss: 0.0933, Acc: 99.36%
+[with_smote_oversampling] Batch 600/1388, Loss: 0.0019, Acc: 99.42%
+[with_smote_oversampling] Batch 650/1388, Loss: 0.0036, Acc: 99.42%
+[with_smote_oversampling] Batch 700/1388, Loss: 0.0003, Acc: 99.41%
+[with_smote_oversampling] Batch 750/1388, Loss: 0.0005, Acc: 99.43%
+[with_smote_oversampling] Batch 800/1388, Loss: 0.0013, Acc: 99.45%
+[with_smote_oversampling] Batch 850/1388, Loss: 0.0002, Acc: 99.49%
+[with_smote_oversampling] Batch 900/1388, Loss: 0.0004, Acc: 99.51%
+[with_smote_oversampling] Batch 950/1388, Loss: 0.3003, Acc: 99.51%
+[with_smote_oversampling] Batch 1000/1388, Loss: 0.0047, Acc: 99.49%
+[with_smote_oversampling] Batch 1050/1388, Loss: 0.0018, Acc: 99.49%
+[with_smote_oversampling] Batch 1100/1388, Loss: 0.0003, Acc: 99.51%
+[with_smote_oversampling] Batch 1150/1388, Loss: 0.0008, Acc: 99.52%
+[with_smote_oversampling] Batch 1200/1388, Loss: 0.0006, Acc: 99.54%
+[with_smote_oversampling] Batch 1250/1388, Loss: 0.0005, Acc: 99.56%
+[with_smote_oversampling] Batch 1300/1388, Loss: 0.0003, Acc: 99.58%
+[with_smote_oversampling] Batch 1350/1388, Loss: 0.0003, Acc: 99.59%
+
+📅 Epoch 4/15
+[with_smote_oversampling] Batch 0/1388, Loss: 0.0011, Acc: 100.00%
+[with_smote_oversampling] Batch 50/1388, Loss: 0.0003, Acc: 98.53%
+[with_smote_oversampling] Batch 100/1388, Loss: 0.0043, Acc: 97.52%
+[with_smote_oversampling] Batch 150/1388, Loss: 0.0019, Acc: 97.60%
+[with_smote_oversampling] Batch 200/1388, Loss: 0.0025, Acc: 98.20%
+[with_smote_oversampling] Batch 250/1388, Loss: 0.0008, Acc: 98.46%
+[with_smote_oversampling] Batch 300/1388, Loss: 0.0016, Acc: 98.50%
+[with_smote_oversampling] Batch 350/1388, Loss: 0.0010, Acc: 98.65%
+[with_smote_oversampling] Batch 400/1388, Loss: 0.0738, Acc: 98.60%
+[with_smote_oversampling] Batch 450/1388, Loss: 0.0004, Acc: 98.67%
+[with_smote_oversampling] Batch 500/1388, Loss: 0.0025, Acc: 98.70%
+[with_smote_oversampling] Batch 550/1388, Loss: 0.0020, Acc: 98.62%
+[with_smote_oversampling] Batch 600/1388, Loss: 0.0006, Acc: 98.73%
+[with_smote_oversampling] Batch 650/1388, Loss: 0.0012, Acc: 98.77%
+[with_smote_oversampling] Batch 700/1388, Loss: 0.0006, Acc: 98.70%
+[with_smote_oversampling] Batch 750/1388, Loss: 0.0014, Acc: 98.69%
+[with_smote_oversampling] Batch 800/1388, Loss: 0.0009, Acc: 98.77%
+[with_smote_oversampling] Batch 850/1388, Loss: 0.0005, Acc: 98.84%
+[with_smote_oversampling] Batch 900/1388, Loss: 0.0002, Acc: 98.90%
+[with_smote_oversampling] Batch 950/1388, Loss: 0.0010, Acc: 98.95%
+[with_smote_oversampling] Batch 1000/1388, Loss: 0.0006, Acc: 98.96%
+[with_smote_oversampling] Batch 1050/1388, Loss: 0.0013, Acc: 98.87%
+[with_smote_oversampling] Batch 1100/1388, Loss: 0.0013, Acc: 98.88%
+[with_smote_oversampling] Batch 1150/1388, Loss: 0.0020, Acc: 98.92%
+[with_smote_oversampling] Batch 1200/1388, Loss: 0.0003, Acc: 98.96%
+[with_smote_oversampling] Batch 1250/1388, Loss: 0.0054, Acc: 98.99%
+[with_smote_oversampling] Batch 1300/1388, Loss: 0.0006, Acc: 99.03%
+[with_smote_oversampling] Batch 1350/1388, Loss: 0.0003, Acc: 99.07%
+
+📅 Epoch 5/15
+[with_smote_oversampling] Batch 0/1388, Loss: 0.0006, Acc: 100.00%
+[with_smote_oversampling] Batch 50/1388, Loss: 0.0002, Acc: 100.00%
+[with_smote_oversampling] Batch 100/1388, Loss: 0.0002, Acc: 100.00%
+[with_smote_oversampling] Batch 150/1388, Loss: 0.0003, Acc: 99.83%
+[with_smote_oversampling] Batch 200/1388, Loss: 0.0002, Acc: 99.88%
+[with_smote_oversampling] Batch 250/1388, Loss: 0.0009, Acc: 99.90%
+[with_smote_oversampling] Batch 300/1388, Loss: 0.0002, Acc: 99.92%
+[with_smote_oversampling] Batch 350/1388, Loss: 0.0007, Acc: 99.93%
+[with_smote_oversampling] Batch 400/1388, Loss: 0.0001, Acc: 99.94%
+[with_smote_oversampling] Batch 450/1388, Loss: 0.0002, Acc: 99.94%
+[with_smote_oversampling] Batch 500/1388, Loss: 0.0001, Acc: 99.95%
+[with_smote_oversampling] Batch 550/1388, Loss: 0.0001, Acc: 99.95%
+[with_smote_oversampling] Batch 600/1388, Loss: 0.0004, Acc: 99.81%
+[with_smote_oversampling] Batch 650/1388, Loss: 0.0677, Acc: 99.73%
+[with_smote_oversampling] Batch 700/1388, Loss: 0.0006, Acc: 99.68%
+[with_smote_oversampling] Batch 750/1388, Loss: 0.0004, Acc: 99.65%
+[with_smote_oversampling] Batch 800/1388, Loss: 0.0025, Acc: 99.64%
+[with_smote_oversampling] Batch 850/1388, Loss: 0.0004, Acc: 99.65%
+[with_smote_oversampling] Batch 900/1388, Loss: 0.0006, Acc: 99.64%
+[with_smote_oversampling] Batch 950/1388, Loss: 0.0008, Acc: 99.65%
+[with_smote_oversampling] Batch 1000/1388, Loss: 0.0002, Acc: 99.66%
+[with_smote_oversampling] Batch 1050/1388, Loss: 0.0001, Acc: 99.68%
+[with_smote_oversampling] Batch 1100/1388, Loss: 0.0001, Acc: 99.69%
+[with_smote_oversampling] Batch 1150/1388, Loss: 0.0002, Acc: 99.71%
+[with_smote_oversampling] Batch 1200/1388, Loss: 0.0001, Acc: 99.72%
+[with_smote_oversampling] Batch 1250/1388, Loss: 0.0002, Acc: 99.73%
+[with_smote_oversampling] Batch 1300/1388, Loss: 0.0001, Acc: 99.74%
+[with_smote_oversampling] Batch 1350/1388, Loss: 0.0002, Acc: 99.75%
+❌ Error in with_smote_oversampling: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+
+⏳ Running configuration 5/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_CLASS_WEIGHTS
+================================================================================
+📊 Configuration:
+   smart_augmentation: False
+   oversampling: None
+   class_weights: True
+   focal_loss: False
+   description: Economic consolidation + balanced class weights
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+⚖️  Using Class Weights
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[with_class_weights] Batch 0/229, Loss: 1.9436, Acc: 12.50%
+[with_class_weights] Batch 50/229, Loss: 2.0770, Acc: 82.11%
+[with_class_weights] Batch 100/229, Loss: 3.0309, Acc: 84.78%
+[with_class_weights] Batch 150/229, Loss: 1.3654, Acc: 85.26%
+[with_class_weights] Batch 200/229, Loss: 0.8480, Acc: 83.02%
+
+📅 Epoch 2/15
+[with_class_weights] Batch 0/229, Loss: 1.1740, Acc: 75.00%
+[with_class_weights] Batch 50/229, Loss: 1.1574, Acc: 82.84%
+[with_class_weights] Batch 100/229, Loss: 2.0012, Acc: 84.90%
+[with_class_weights] Batch 150/229, Loss: 0.1255, Acc: 86.51%
+[with_class_weights] Batch 200/229, Loss: 0.7766, Acc: 86.19%
+
+📅 Epoch 3/15
+[with_class_weights] Batch 0/229, Loss: 0.4013, Acc: 87.50%
+[with_class_weights] Batch 50/229, Loss: 0.0684, Acc: 89.46%
+[with_class_weights] Batch 100/229, Loss: 0.0426, Acc: 90.10%
+[with_class_weights] Batch 150/229, Loss: 0.0556, Acc: 90.89%
+[with_class_weights] Batch 200/229, Loss: 0.6366, Acc: 89.61%
+
+📅 Epoch 4/15
+[with_class_weights] Batch 0/229, Loss: 0.0375, Acc: 100.00%
+[with_class_weights] Batch 50/229, Loss: 0.0799, Acc: 96.08%
+[with_class_weights] Batch 100/229, Loss: 0.0272, Acc: 94.06%
+[with_class_weights] Batch 150/229, Loss: 0.1090, Acc: 94.29%
+[with_class_weights] Batch 200/229, Loss: 0.9025, Acc: 93.22%
+
+📅 Epoch 5/15
+[with_class_weights] Batch 0/229, Loss: 0.3572, Acc: 87.50%
+[with_class_weights] Batch 50/229, Loss: 0.0098, Acc: 94.85%
+[with_class_weights] Batch 100/229, Loss: 0.0143, Acc: 96.41%
+[with_class_weights] Batch 150/229, Loss: 0.3631, Acc: 95.94%
+[with_class_weights] Batch 200/229, Loss: 0.0046, Acc: 96.27%
+❌ Error in with_class_weights: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+
+⏳ Running configuration 6/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_FOCAL_LOSS
+================================================================================
+📊 Configuration:
+   smart_augmentation: False
+   oversampling: None
+   class_weights: False
+   focal_loss: True
+   description: Economic consolidation + focal loss
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+🎯 Using Focal Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+[with_focal_loss] Batch 0/229, Loss: 0.2900, Acc: 37.50%
+[with_focal_loss] Batch 50/229, Loss: 0.0072, Acc: 85.54%
+[with_focal_loss] Batch 100/229, Loss: 0.0828, Acc: 87.50%
+[with_focal_loss] Batch 150/229, Loss: 0.0300, Acc: 88.08%
+[with_focal_loss] Batch 200/229, Loss: 0.0448, Acc: 88.87%
+
+📅 Epoch 2/15
+[with_focal_loss] Batch 0/229, Loss: 0.0069, Acc: 100.00%
+[with_focal_loss] Batch 50/229, Loss: 0.0126, Acc: 91.42%
+[with_focal_loss] Batch 100/229, Loss: 0.0501, Acc: 91.83%
+[with_focal_loss] Batch 150/229, Loss: 0.0224, Acc: 92.47%
+[with_focal_loss] Batch 200/229, Loss: 0.0005, Acc: 92.72%
+
+📅 Epoch 3/15
+[with_focal_loss] Batch 0/229, Loss: 0.0041, Acc: 100.00%
+[with_focal_loss] Batch 50/229, Loss: 0.0241, Acc: 96.57%
+[with_focal_loss] Batch 100/229, Loss: 0.1274, Acc: 96.16%
+[with_focal_loss] Batch 150/229, Loss: 0.0001, Acc: 96.61%
+[with_focal_loss] Batch 200/229, Loss: 0.0001, Acc: 96.46%
+
+📅 Epoch 4/15
+[with_focal_loss] Batch 0/229, Loss: 0.0009, Acc: 100.00%
+[with_focal_loss] Batch 50/229, Loss: 0.0009, Acc: 96.08%
+[with_focal_loss] Batch 100/229, Loss: 0.0000, Acc: 97.28%
+[with_focal_loss] Batch 150/229, Loss: 0.0065, Acc: 96.61%
+[with_focal_loss] Batch 200/229, Loss: 0.0083, Acc: 96.89%
+
+📅 Epoch 5/15
+[with_focal_loss] Batch 0/229, Loss: 0.0003, Acc: 100.00%
+[with_focal_loss] Batch 50/229, Loss: 0.0242, Acc: 97.55%
+[with_focal_loss] Batch 100/229, Loss: 0.0030, Acc: 98.02%
+[with_focal_loss] Batch 150/229, Loss: 0.0054, Acc: 98.26%
+[with_focal_loss] Batch 200/229, Loss: 0.0001, Acc: 98.38%
+❌ Error in with_focal_loss: Number of classes, 6, does not match size of target_names, 7. Try specifying the labels parameter
+❌ No successful results to analyze

@@ -148,6 +148,7 @@ const flagDescriptions = {
   'WW1 Commemorative': 'Flags commemorating World War I, often featuring poppies or dates 1914-1918.',
   'WW2 Commemorative': 'Flags commemorating World War II, typically featuring dates 1939-1945 and symbols of remembrance.',
   'Royal Irish Regiment': 'Flag of the British Army regiment formed in 1992, featuring a harp and crown on a dark green background.',
+  'Royal British Legion': 'Flag of the Royal British Legion, a British Armed Forces charity supporting serving and ex-serving personnel and their families, often featuring a poppy symbol.',
   'Israeli': 'The national flag of Israel, featuring a blue Star of David on a white background with blue stripes.',
   'Palestinian': 'The national flag of Palestine, featuring horizontal stripes of black, white, and green with a red triangle on the hoist side.',
   'GAA': 'Flags representing the Gaelic Athletic Association, typically featuring county colors and GAA emblems.',
@@ -259,6 +260,15 @@ export default function ExpertFlagLabeler() {
         return;
       }
       
+      // In Pat-only runs, always start at the beginning of this curated set
+      // to avoid jumping ahead due to historical classifications
+      if (process.env.NEXT_PUBLIC_PAT_ONLY === 'true' || user.username === 'Pat') {
+        if (images.length > 0) {
+          setCurrentIndex(0);
+        }
+        return; // Skip progress restoration logic
+      }
+
       try {
         // Load user classifications
         const response = await fetch(`/api/classifications?expert_id=${user.username}`);
@@ -285,48 +295,81 @@ export default function ExpertFlagLabeler() {
               console.log(`- Found ${userClassifications.length} classifications`);
               console.log(`- Total images available: ${images.length}`);
               
+              // Debug: Log image IDs and classification IDs for comparison
+              const sampleClassificationIds = Array.from(classifiedImageIds).slice(0, 10);
+              const sampleImageIds = images.slice(0, 10).map(img => img.filename);
+              console.log(`- Sample classification IDs:`, sampleClassificationIds);
+              console.log(`- Sample image filenames:`, sampleImageIds);
+              
               let nextUnclassifiedIndex = 0;
               let matchedCount = 0;
               
-              // First pass: try exact filename matching
-              for (let i = 0; i < images.length; i++) {
-                const filename = images[i].filename;
-                const compositeFilename = `composite_${filename}`;
-                
-                // Check if this image has been classified under either filename
-                const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
-                
-                if (isClassified) {
-                  matchedCount++;
-                } else if (matchedCount === 0) {
-                  // If no matches found yet, this is our starting point
-                  nextUnclassifiedIndex = i;
-                }
-                
-                // If we have matches, find first unclassified after the matches
-                if (matchedCount > 0 && !isClassified) {
-                  nextUnclassifiedIndex = i;
-                  break;
+              // Special case: if user has no classifications, start at beginning
+              if (userClassifications.length === 0) {
+                console.log(`- User has no classifications, starting at image 0`);
+                nextUnclassifiedIndex = 0;
+              } else {
+                // First pass: try exact filename matching
+                for (let i = 0; i < images.length; i++) {
+                  const filename = images[i].filename;
+                  const compositeFilename = `composite_${filename}`;
+                  
+                  // Check if this image has been classified under either filename
+                  const isClassified = classifiedImageIds.has(filename) || classifiedImageIds.has(compositeFilename);
+                  
+                  // Debug logging for first 20 images
+                  if (i < 20) {
+                    console.log(`Image ${i}: ${filename} -> classified: ${isClassified}`);
+                  }
+                  
+                  if (isClassified) {
+                    matchedCount++;
+                  }
+                  
+                  // Find first unclassified image after any classified ones
+                  if (matchedCount > 0 && !isClassified) {
+                    console.log(`Found first unclassified after matches at index ${i}: ${filename}`);
+                    nextUnclassifiedIndex = i;
+                    break;
+                  }
                 }
               }
               
-              // If no exact matches found, calculate proportional progress
-              // This handles cases where the image set has changed due to curation
+              // If no exact matches found but user has historical classifications,
+              // default to the very beginning of the current image set.
+              // Rationale: different curated datasets (e.g., Pat-only) may not
+              // overlap with past work; proportional restoration can drop users
+              // into the middle unexpectedly.
               if (matchedCount === 0 && userClassifications.length > 0) {
-                console.log(`- No exact matches found - calculating proportional progress`);
-                console.log(`- User has ${userClassifications.length} classifications from previous image set`);
-                
-                // Estimate progress: assume user worked through images sequentially
-                // Place user at roughly the same percentage through the current set
-                const estimatedProgressPercent = Math.min(userClassifications.length / 5751, 1.0); // 5751 was original total
-                nextUnclassifiedIndex = Math.floor(estimatedProgressPercent * images.length);
-                
-                console.log(`- Estimated progress: ${(estimatedProgressPercent * 100).toFixed(1)}%`);
-                console.log(`- Calculated starting index: ${nextUnclassifiedIndex} of ${images.length}`);
+                console.log(`- No exact matches found - starting at the beginning (index 0)`);
+                nextUnclassifiedIndex = 0;
               } else {
                 console.log(`- Matched ${matchedCount} images with classifications`);
                 console.log(`- Setting current index to: ${nextUnclassifiedIndex}`);
+                
+                // ROBUSTNESS FIX: Double-check that the selected image isn't already classified
+                // This handles cases where classifications are non-sequential
+                while (nextUnclassifiedIndex < images.length) {
+                  const currentFilename = images[nextUnclassifiedIndex].filename;
+                  const currentCompositeFilename = `composite_${currentFilename}`;
+                  const isCurrentClassified = classifiedImageIds.has(currentFilename) || classifiedImageIds.has(currentCompositeFilename);
+                  
+                  if (!isCurrentClassified) {
+                    console.log(`✅ Confirmed index ${nextUnclassifiedIndex} is unclassified: ${currentFilename}`);
+                    break;
+                  } else {
+                    console.log(`⚠️  Index ${nextUnclassifiedIndex} is already classified: ${currentFilename}, skipping...`);
+                    nextUnclassifiedIndex++;
+                  }
+                }
+                
+                if (nextUnclassifiedIndex >= images.length) {
+                  console.log(`🎉 All images classified! Setting to last image.`);
+                  nextUnclassifiedIndex = images.length - 1;
+                }
               }
+              
+              console.log(`Final: ${user.username} will start at index ${nextUnclassifiedIndex}, image: ${images[nextUnclassifiedIndex]?.filename}`);
               
               setCurrentIndex(nextUnclassifiedIndex);
             }
@@ -347,6 +390,15 @@ export default function ExpertFlagLabeler() {
 
     loadAdditionalData();
   }, [isInitialized, isAuthenticated, user?.username, images.length]);
+
+  // Hard override for Pat: always start at index 0 for curated PAT runs
+  useEffect(() => {
+    if (!isInitialized || !user?.username) return;
+    if (user.username === 'Pat') {
+      console.log('[Progress Override] Forcing start at index 0 for Pat');
+      setCurrentIndex(0);
+    }
+  }, [isInitialized, user?.username, images.length]);
 
   // Update current image classification status
   useEffect(() => {
@@ -401,6 +453,7 @@ export default function ExpertFlagLabeler() {
     'Parachute Regiment': { primary: 'Military', context: 'Military/Memorial' },
     'UDR': { primary: 'Military', context: 'Military/Memorial' },
     'Royal Irish Regiment': { primary: 'Military', context: 'Military/Memorial' },
+    'Royal British Legion': { primary: 'Military', context: 'Military/Memorial' },
     'Historical Units': { primary: 'Military', context: 'Military/Memorial' },
     
     // Historical

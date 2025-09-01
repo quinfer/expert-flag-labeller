@@ -1,0 +1,144 @@
+🖥️  Using Apple Silicon MPS
+
+🔬 OVERSAMPLING ABLATION STUDY
+📁 Output directory: flag_classification_adaptation/experiments/oversampling_ablation_20250818_163647_20250818_163648
+🎯 Hypothesis: Oversampling techniques are counterproductive
+⏱️  Expected total time: ~6-8 hours
+📊 NIFlags Super Consolidated Dataset Loaded
+   Root: /Users/quinference/Documents/expert-flag-labeler/MSc-Themed-Research-Project/data/ni_flags_super_consolidated
+   Train: 1830 samples
+   Val: 228 samples
+   Test: 230 samples
+   Classes: 7 super consolidated classes
+================================================================================
+🏗️  Economic super-classes: ['Commemorative', 'Cultural_Fraternal', 'International', 'Major_Unionist', 'Nationalist', 'Paramilitary', 'Sport_Community']
+
+📊 Dataset loaded: 2288 samples
+🏗️  Classes: ['Commemorative', 'Cultural_Fraternal', 'International', 'Major_Unionist', 'Nationalist', 'Paramilitary', 'Sport_Community']
+
+📋 ABLATION CONFIGURATIONS:
+1. consolidation_only: Economic consolidation only (baseline)
+2. with_random_oversampling: Economic consolidation + random oversampling
+3. with_class_weights: Economic consolidation + balanced class weights
+4. with_focal_loss: Economic consolidation + focal loss
+5. with_oversampling_and_weights: Economic consolidation + oversampling + class weights
+6. all_techniques_combined: All traditional balancing techniques combined
+
+⏳ Running configuration 1/6
+
+================================================================================
+🔬 RUNNING ABLATION: CONSOLIDATION_ONLY
+================================================================================
+📊 Configuration:
+   oversampling: None
+   class_weights: False
+   focal_loss: False
+   description: Economic consolidation only (baseline)
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+📊 Using Standard Cross-Entropy Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+❌ Error in consolidation_only: Caught KeyError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/flag_classification/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 349, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/flag_classification/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/flag_classification/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/Users/quinference/Documents/expert-flag-labeler/MSc-Themed-Research-Project/flag_classification_adaptation/train_rs5m_oversampling_ablation.py", line 223, in __getitem__
+    label = self.consolidator.consolidate_label(item.classname)
+  File "/Users/quinference/Documents/expert-flag-labeler/MSc-Themed-Research-Project/flag_classification_adaptation/train_rs5m_oversampling_ablation.py", line 113, in consolidate_label
+    return self.class_to_idx[super_class]
+KeyError: 'Unionist_All'
+
+
+⏳ Running configuration 2/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_RANDOM_OVERSAMPLING
+================================================================================
+📊 Configuration:
+   oversampling: random
+   class_weights: False
+   focal_loss: False
+   description: Economic consolidation + random oversampling
+🔄 Applying random oversampling...
+❌ Error in with_random_oversampling: 'Cultural_Community'
+
+⏳ Running configuration 3/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_CLASS_WEIGHTS
+================================================================================
+📊 Configuration:
+   oversampling: None
+   class_weights: True
+   focal_loss: False
+   description: Economic consolidation + balanced class weights
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+⚖️  Using Class Weights
+❌ Error in with_class_weights: 'Cultural_Community'
+
+⏳ Running configuration 4/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_FOCAL_LOSS
+================================================================================
+📊 Configuration:
+   oversampling: None
+   class_weights: False
+   focal_loss: True
+   description: Economic consolidation + focal loss
+📥 Loading RS5M checkpoint from final_code/checkpoints/RS5M_ViT-H-14.pt
+✅ Loaded RS5M visual weights: 392 parameters
+🎯 Using Focal Loss
+
+🚀 Starting training for 15 epochs...
+
+📅 Epoch 1/15
+❌ Error in with_focal_loss: Caught KeyError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/flag_classification/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 349, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/flag_classification/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/flag_classification/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/Users/quinference/Documents/expert-flag-labeler/MSc-Themed-Research-Project/flag_classification_adaptation/train_rs5m_oversampling_ablation.py", line 223, in __getitem__
+    label = self.consolidator.consolidate_label(item.classname)
+  File "/Users/quinference/Documents/expert-flag-labeler/MSc-Themed-Research-Project/flag_classification_adaptation/train_rs5m_oversampling_ablation.py", line 113, in consolidate_label
+    return self.class_to_idx[super_class]
+KeyError: 'Unionist_All'
+
+
+⏳ Running configuration 5/6
+
+================================================================================
+🔬 RUNNING ABLATION: WITH_OVERSAMPLING_AND_WEIGHTS
+================================================================================
+📊 Configuration:
+   oversampling: random
+   class_weights: True
+   focal_loss: False
+   description: Economic consolidation + oversampling + class weights
+🔄 Applying random oversampling...
+❌ Error in with_oversampling_and_weights: 'Cultural_Community'
+
+⏳ Running configuration 6/6
+
+================================================================================
+🔬 RUNNING ABLATION: ALL_TECHNIQUES_COMBINED
+================================================================================
+📊 Configuration:
+   oversampling: random
+   class_weights: True
+   focal_loss: True
+   description: All traditional balancing techniques combined
+🔄 Applying random oversampling...
+❌ Error in all_techniques_combined: 'Cultural_Community'
+❌ No successful results to analyze

@@ -1,0 +1,13 @@
+{
+  "false_positives": [],
+  "count": 0,
+  "metadata": {
+    "logic": "flags!=0 AND indicator==\"1.0\" AND flags_correct==0",
+    "town": "ENNISKILLEN",
+    "total_images": 33864,
+    "total_flagged": 793,
+    "true_positives": 646,
+    "false_positive_rate": 0.0,
+    "improvement_vs_wrong_logic": "No false positives found"
+  }
+}

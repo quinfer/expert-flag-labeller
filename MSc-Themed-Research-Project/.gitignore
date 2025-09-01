@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Large assets
+*.pt
+*.tar
+
+# Data-heavy folders
+/data/images/
+/data/processed/
+/data/output/
+/data/archive/
+/data/annotations/
+/data/ni_flags*/
+
+# Docs
+/docs/papers/

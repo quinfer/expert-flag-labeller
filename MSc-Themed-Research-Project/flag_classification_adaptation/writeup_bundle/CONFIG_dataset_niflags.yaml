@@ -1,0 +1,7 @@
+# NIFlags Dataset Configuration
+# 2288 images, 70 hierarchical classes
+
+DATASET:
+  NAME: "NIFlags"
+  ROOT: "../data"
+  NUM_SHOTS: -1  # Use all data initially

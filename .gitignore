@@ -38,6 +38,24 @@
 /data/classification_queue.json
 /data/classifications/
 
+# Private academic research materials - SELECTIVE INCLUSION
+# Include documentation but exclude large model files and experiments
+/MSc-Themed-Research-Project/flag_classification_adaptation/experiments/
+/MSc-Themed-Research-Project/flag_classification_adaptation/output/
+/MSc-Themed-Research-Project/final_code/checkpoints/
+/MSc-Themed-Research-Project/data/ni_flags*/images/
+/MSc-Themed-Research-Project/data/processed/
+/MSc-Themed-Research-Project/archive/
+/MSc-Themed-Research-Project/qub-gitlab-submission/data/
+
+# Exclude specific large files
+*.pt
+*.pth
+*.pth.tar*
+**/model*.pth*
+**/best_model*
+**/checkpoints/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
