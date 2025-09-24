@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabase, getImageUrl } from '@/lib/supabase';
+import { supabase, getImageUrl, getTownImagePath } from '@/lib/supabase';
 import staticImagesData from '@/data/static-images.json';
 import expertConfirmedData from '@/data/expert-confirmed-detailed.json';
 // Optional user-specific curated sets
@@ -36,15 +36,51 @@ export async function GET(request: Request) {
         const module = await import('@/data/static-images-may.json');
         const mayImagesData: any[] = (module as any).default || (module as any);
         if (Array.isArray(mayImagesData) && mayImagesData.length > 0) {
+          // Map curated items to Supabase public URLs for robustness
+          const transformed = mayImagesData.map((img: any) => {
+            const town = (img.town || '').toString();
+            const filename = (img.filename || '').toString();
+            const townPath = getTownImagePath(town, filename);
+            const pathUrl = getImageUrl(townPath);
+
+            let compositeUrl: string | null = null;
+            // Prefer the provided composite filename if present; otherwise infer
+            if (img.has_composite) {
+              try {
+                let compFilename: string | null = null;
+                if (img.composite_image && typeof img.composite_image === 'string') {
+                  const parts = img.composite_image.split('/');
+                  compFilename = parts[parts.length - 1] || null;
+                } else if (filename) {
+                  compFilename = `composite_${filename}`;
+                }
+                if (compFilename) {
+                  const compTownPath = getTownImagePath(town, compFilename);
+                  compositeUrl = getImageUrl(compTownPath);
+                }
+              } catch {
+                compositeUrl = null;
+              }
+            }
+
+            return {
+              town,
+              path: pathUrl,
+              filename,
+              composite_image: compositeUrl,
+              has_composite: Boolean(compositeUrl)
+            };
+          });
+
           return NextResponse.json({
             success: true,
             metadata: {
-              source: 'static-images-may',
-              total_images: mayImagesData.length,
-              with_composites: mayImagesData.filter((img: any) => img.has_composite).length,
+              source: 'supabase-may',
+              total_images: transformed.length,
+              with_composites: transformed.filter((img: any) => img.has_composite).length,
               user: userParam
             },
-            images: mayImagesData
+            images: transformed
           });
         }
       } catch (e) {
