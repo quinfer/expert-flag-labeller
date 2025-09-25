@@ -30,6 +30,33 @@ All project documentation is organized in the `docs` folder:
 - [Methodology](./docs/methodology.pdf) - Academic methodology behind the project
 - [Invitation Email](./docs/invitation_email.md) - Template for inviting experts
 
+## Submission / Write-up
+
+- Thesis paper (PDF): `docs/thesis_paper.pdf`
+- Paper source (Quarto): `MSc-Themed-Research-Project/write-up/complete_quarto_paper.qmd`
+- Demo slides (Quarto reveal.js): `MSc-Themed-Research-Project/write-up/thesis_demo_slides.qmd`
+- Render helper: `MSc-Themed-Research-Project/write-up/render_and_publish.sh`
+
+Render commands:
+
+```bash
+# Paper (PDF)
+cd MSc-Themed-Research-Project/write-up
+./render_and_publish.sh
+
+# Slides (HTML)
+quarto render thesis_demo_slides.qmd
+```
+
+GitLab mirror for assessment (optional):
+
+```bash
+# Add GitLab remote and push all branches/tags
+git remote add gitlab git@gitlab.com:<namespace>/<repo>.git
+git push gitlab --all
+git push gitlab --tags
+```
+
 ## Technology Stack
 
 - **Frontend**: Next.js 15 with React

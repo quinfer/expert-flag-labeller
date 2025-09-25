@@ -1,0 +1,410 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:46.551623",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 19,
+    "total_boxes": 19
+  },
+  "images": [
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/gmnsC0oJwraiioXqSfcqXA_000.jpg",
+      "cropped_image": "/images/COOKSTOWN/gmnsC0oJwraiioXqSfcqXA_000_box0.jpg",
+      "filename": "gmnsC0oJwraiioXqSfcqXA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9291877746582031,
+      "relative_size": 0.03359547858112023,
+      "position_factor": 0.5755541086196899,
+      "box": [
+        224.6062469482422,
+        228.8243408203125,
+        385.2832336425781,
+        314.4664001464844
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_gmnsC0oJwraiioXqSfcqXA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/lXeRwdSkgvA8XwHhstUj4A_120.jpg",
+      "cropped_image": "/images/COOKSTOWN/lXeRwdSkgvA8XwHhstUj4A_120_box0.jpg",
+      "filename": "lXeRwdSkgvA8XwHhstUj4A_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9171276688575745,
+      "relative_size": 0.025934756306032796,
+      "position_factor": 0.2599039077758789,
+      "box": [
+        558.3158569335938,
+        387.40887451171875,
+        619.8958740234375,
+        559.9141235351562
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_lXeRwdSkgvA8XwHhstUj4A_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/HMzi1t0_4gfltzxqMssuQg_120.jpg",
+      "cropped_image": "/images/COOKSTOWN/HMzi1t0_4gfltzxqMssuQg_120_box0.jpg",
+      "filename": "HMzi1t0_4gfltzxqMssuQg_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9552965760231018,
+      "relative_size": 0.021568329536025884,
+      "position_factor": 0.5656482577323914,
+      "box": [
+        446.4666748046875,
+        226.5586700439453,
+        532.360107421875,
+        329.41156005859375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_HMzi1t0_4gfltzxqMssuQg_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/4Wi1ao143T8L18MGTLPdsA_180.jpg",
+      "cropped_image": "/images/COOKSTOWN/4Wi1ao143T8L18MGTLPdsA_180_box0.jpg",
+      "filename": "4Wi1ao143T8L18MGTLPdsA_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9412112236022949,
+      "relative_size": 0.019670718782720087,
+      "position_factor": 0.6534693717956543,
+      "box": [
+        122.41279602050781,
+        177.02420043945312,
+        212.42568969726562,
+        266.5350036621094
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_4Wi1ao143T8L18MGTLPdsA_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/xfCljhxuuFhocFrKQ_sdkA_300.jpg",
+      "cropped_image": "/images/COOKSTOWN/xfCljhxuuFhocFrKQ_sdkA_300_box0.jpg",
+      "filename": "xfCljhxuuFhocFrKQ_sdkA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9131934642791748,
+      "relative_size": 0.014422514805421543,
+      "position_factor": 0.8137372195720672,
+      "box": [
+        538.052490234375,
+        67.26184844970703,
+        594.9136962890625,
+        171.15451049804688
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_xfCljhxuuFhocFrKQ_sdkA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/PzkxjxrIhhIKCCNSQoyTEQ_240.jpg",
+      "cropped_image": "/images/COOKSTOWN/PzkxjxrIhhIKCCNSQoyTEQ_240_box0.jpg",
+      "filename": "PzkxjxrIhhIKCCNSQoyTEQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9113450646400452,
+      "relative_size": 0.013297103398190301,
+      "position_factor": 0.2632599830627441,
+      "box": [
+        285.6048889160156,
+        387.1610107421875,
+        317.88897705078125,
+        555.8662109375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_PzkxjxrIhhIKCCNSQoyTEQ_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/-w0f6oMruooeqfVKlL9uRg_240.jpg",
+      "cropped_image": "/images/COOKSTOWN/-w0f6oMruooeqfVKlL9uRg_240_box0.jpg",
+      "filename": "-w0f6oMruooeqfVKlL9uRg_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.922529399394989,
+      "relative_size": 0.011187418630325397,
+      "position_factor": 0.8184945732355118,
+      "box": [
+        184.26556396484375,
+        57.59017562866211,
+        223.382080078125,
+        174.7367706298828
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_-w0f6oMruooeqfVKlL9uRg_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/ybxWBBKtvvQcf_rwyLXsEQ_300.jpg",
+      "cropped_image": "/images/COOKSTOWN/ybxWBBKtvvQcf_rwyLXsEQ_300_box0.jpg",
+      "filename": "ybxWBBKtvvQcf_rwyLXsEQ_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.944355309009552,
+      "relative_size": 0.01042084038218718,
+      "position_factor": 0.5331102728843689,
+      "box": [
+        344.39263916015625,
+        251.11488342285156,
+        389.1396484375,
+        346.50396728515625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_ybxWBBKtvvQcf_rwyLXsEQ_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/wg_ytb3OasPleL3e5ezZEw_240.jpg",
+      "cropped_image": "/images/COOKSTOWN/wg_ytb3OasPleL3e5ezZEw_240_box0.jpg",
+      "filename": "wg_ytb3OasPleL3e5ezZEw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9077905416488647,
+      "relative_size": 0.010904327101229683,
+      "position_factor": 0.7218793153762817,
+      "box": [
+        492.6689453125,
+        138.23992919921875,
+        548.8399047851562,
+        217.75454711914062
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_wg_ytb3OasPleL3e5ezZEw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/qvS1LYUrMJilxJOMcCXmuw_180.jpg",
+      "cropped_image": "/images/COOKSTOWN/qvS1LYUrMJilxJOMcCXmuw_180_box0.jpg",
+      "filename": "qvS1LYUrMJilxJOMcCXmuw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9146518707275391,
+      "relative_size": 0.010342242700553471,
+      "position_factor": 0.8301314115524292,
+      "box": [
+        582.8612060546875,
+        71.27560424804688,
+        639.4337158203125,
+        146.15618896484375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_qvS1LYUrMJilxJOMcCXmuw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/EaXT7rKRTiGMLRXI-vc5Zg_000.jpg",
+      "cropped_image": "/images/COOKSTOWN/EaXT7rKRTiGMLRXI-vc5Zg_000_box0.jpg",
+      "filename": "EaXT7rKRTiGMLRXI-vc5Zg_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.901063859462738,
+      "relative_size": 0.009182497445840454,
+      "position_factor": 0.6595874071121216,
+      "box": [
+        204.29278564453125,
+        182.6389923095703,
+        257.6802062988281,
+        253.08912658691406
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_EaXT7rKRTiGMLRXI-vc5Zg_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/uiU4kCangHFW6Crj3732Ng_120.jpg",
+      "cropped_image": "/images/COOKSTOWN/uiU4kCangHFW6Crj3732Ng_120_box0.jpg",
+      "filename": "uiU4kCangHFW6Crj3732Ng_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.903721809387207,
+      "relative_size": 0.008344488417108664,
+      "position_factor": 0.6898491024971009,
+      "box": [
+        85.56282806396484,
+        155.64291381835938,
+        125.44159698486328,
+        241.35023498535156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_uiU4kCangHFW6Crj3732Ng_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/0o9KlSBOaaP9yYQi0Brr6Q_060.jpg",
+      "cropped_image": "/images/COOKSTOWN/0o9KlSBOaaP9yYQi0Brr6Q_060_box0.jpg",
+      "filename": "0o9KlSBOaaP9yYQi0Brr6Q_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9312479496002197,
+      "relative_size": 0.006577705446616165,
+      "position_factor": 0.5415700912475586,
+      "box": [
+        367.4049072265625,
+        266.3643798828125,
+        417.2412414550781,
+        320.4259033203125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_0o9KlSBOaaP9yYQi0Brr6Q_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/lTyNapdory-SnG03hSqhBg_240.jpg",
+      "cropped_image": "/images/COOKSTOWN/lTyNapdory-SnG03hSqhBg_240_box0.jpg",
+      "filename": "lTyNapdory-SnG03hSqhBg_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9045333862304688,
+      "relative_size": 0.007010409809195721,
+      "position_factor": 0.8290044665336609,
+      "box": [
+        227.89808654785156,
+        83.86128234863281,
+        284.0343017578125,
+        135.01300048828125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_lTyNapdory-SnG03hSqhBg_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/TuEHg0bO28Qpe56TqkBVbw_180.jpg",
+      "cropped_image": "/images/COOKSTOWN/TuEHg0bO28Qpe56TqkBVbw_180_box0.jpg",
+      "filename": "TuEHg0bO28Qpe56TqkBVbw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9145359992980957,
+      "relative_size": 0.006145517901904896,
+      "position_factor": 0.6342623710632325,
+      "box": [
+        255.47854614257812,
+        204.32913208007812,
+        297.7945251464844,
+        263.8150329589844
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_TuEHg0bO28Qpe56TqkBVbw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/H_XrZn1qZdkoQfXh2e6ogA_300.jpg",
+      "cropped_image": "/images/COOKSTOWN/H_XrZn1qZdkoQfXh2e6ogA_300_box0.jpg",
+      "filename": "H_XrZn1qZdkoQfXh2e6ogA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.916847288608551,
+      "relative_size": 0.003899314683276316,
+      "position_factor": 0.4695932865142822,
+      "box": [
+        532.9049072265625,
+        317.1535949707031,
+        568.7048950195312,
+        361.7669982910156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_H_XrZn1qZdkoQfXh2e6ogA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/ZPgHMYe4FEABpUzqC0sNkw_000.jpg",
+      "cropped_image": "/images/COOKSTOWN/ZPgHMYe4FEABpUzqC0sNkw_000_box0.jpg",
+      "filename": "ZPgHMYe4FEABpUzqC0sNkw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9032484889030457,
+      "relative_size": 0.003594332155472557,
+      "position_factor": 0.5751121640205383,
+      "box": [
+        305.0937194824219,
+        248.1720733642578,
+        336.0802001953125,
+        295.6843566894531
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_ZPgHMYe4FEABpUzqC0sNkw_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/0PzD3DjIOG8paN6SguoxvA_000.jpg",
+      "cropped_image": "/images/COOKSTOWN/0PzD3DjIOG8paN6SguoxvA_000_box0.jpg",
+      "filename": "0PzD3DjIOG8paN6SguoxvA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9005001187324524,
+      "relative_size": 0.003264159271261633,
+      "position_factor": 0.521598219871521,
+      "box": [
+        579.8035888671875,
+        277.9754943847656,
+        603.5078735351562,
+        334.3787841796875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_0PzD3DjIOG8paN6SguoxvA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COOKSTOWN",
+      "original_image": "/images/COOKSTOWN/d8S-amHFKi1lzEzaHM5F6Q_300.jpg",
+      "cropped_image": "/images/COOKSTOWN/d8S-amHFKi1lzEzaHM5F6Q_300_box0.jpg",
+      "filename": "d8S-amHFKi1lzEzaHM5F6Q_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9077396392822266,
+      "relative_size": 0.002988632627602783,
+      "position_factor": 0.5179901123046875,
+      "box": [
+        184.89076232910156,
+        284.0755615234375,
+        209.96461486816406,
+        332.8970947265625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COOKSTOWN/composite_d8S-amHFKi1lzEzaHM5F6Q_300_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:52.374189",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 3,
+    "total_boxes": 3
+  },
+  "images": [
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images/PORTSTEWART/KFB3LdHxJg7Pc4IJCG5TQQ_060.jpg",
+      "cropped_image": "/images/PORTSTEWART/KFB3LdHxJg7Pc4IJCG5TQQ_060_box0.jpg",
+      "filename": "KFB3LdHxJg7Pc4IJCG5TQQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9186605215072632,
+      "relative_size": 0.01498341945707125,
+      "position_factor": 0.3557393074035644,
+      "box": [
+        145.84173583984375,
+        321.8155517578125,
+        179.74473571777344,
+        502.838134765625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/PORTSTEWART/composite_KFB3LdHxJg7Pc4IJCG5TQQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images/PORTSTEWART/_Hc7APjh6CG5RkKrUgRF6g_240.jpg",
+      "cropped_image": "/images/PORTSTEWART/_Hc7APjh6CG5RkKrUgRF6g_240_box0.jpg",
+      "filename": "_Hc7APjh6CG5RkKrUgRF6g_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9314854741096497,
+      "relative_size": 0.007352402608887587,
+      "position_factor": 0.5799148797988891,
+      "box": [
+        408.789794921875,
+        240.56521606445312,
+        462.0174865722656,
+        297.14373779296875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/PORTSTEWART/composite__Hc7APjh6CG5RkKrUgRF6g_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images/PORTSTEWART/qcGWxBytk1kgk7lKrIGI7Q_180.jpg",
+      "cropped_image": "/images/PORTSTEWART/qcGWxBytk1kgk7lKrIGI7Q_180_box0.jpg",
+      "filename": "qcGWxBytk1kgk7lKrIGI7Q_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9164977669715881,
+      "relative_size": 0.006208865005451116,
+      "position_factor": 0.5942631483078002,
+      "box": [
+        497.28363037109375,
+        227.13607788085938,
+        536.3663330078125,
+        292.20709228515625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/PORTSTEWART/composite_qcGWxBytk1kgk7lKrIGI7Q_180_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

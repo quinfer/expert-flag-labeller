@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:52.929930",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 2,
+    "total_boxes": 2
+  },
+  "images": [
+    {
+      "town": "DOWNPATRICK",
+      "original_image": "/images/DOWNPATRICK/eqS9H-5hKaCkuHnels7R3w_060.jpg",
+      "cropped_image": "/images/DOWNPATRICK/eqS9H-5hKaCkuHnels7R3w_060_box0.jpg",
+      "filename": "eqS9H-5hKaCkuHnels7R3w_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9056131839752197,
+      "relative_size": 0.005356241586014221,
+      "position_factor": 0.48178153038024907,
+      "box": [
+        398.81695556640625,
+        308.3886413574219,
+        445.95501708984375,
+        354.9309997558594
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DOWNPATRICK/composite_eqS9H-5hKaCkuHnels7R3w_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DOWNPATRICK",
+      "original_image": "/images/DOWNPATRICK/2icaFDIh0AlGhd8wOFImWw_000.jpg",
+      "cropped_image": "/images/DOWNPATRICK/2icaFDIh0AlGhd8wOFImWw_000_box0.jpg",
+      "filename": "2icaFDIh0AlGhd8wOFImWw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9096128344535828,
+      "relative_size": 0.003684062876147891,
+      "position_factor": 0.5586363077163696,
+      "box": [
+        203.36672973632812,
+        254.07437133789062,
+        229.93499755859375,
+        310.87115478515625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DOWNPATRICK/composite_2icaFDIh0AlGhd8wOFImWw_000_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

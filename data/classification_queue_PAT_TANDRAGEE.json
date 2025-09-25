@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:51.336490",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 4,
+    "total_boxes": 4
+  },
+  "images": [
+    {
+      "town": "TANDRAGEE",
+      "original_image": "/images/TANDRAGEE/vkYscVB9ZcHm8vKOQXmv2Q_240.jpg",
+      "cropped_image": "/images/TANDRAGEE/vkYscVB9ZcHm8vKOQXmv2Q_240_box0.jpg",
+      "filename": "vkYscVB9ZcHm8vKOQXmv2Q_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9029969573020935,
+      "relative_size": 0.040204737082845554,
+      "position_factor": 0.9301931709051132,
+      "box": [
+        76.4287109375,
+        0.029811859130859375,
+        260.85345458984375,
+        89.32292938232422
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/TANDRAGEE/composite_vkYscVB9ZcHm8vKOQXmv2Q_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "TANDRAGEE",
+      "original_image": "/images/TANDRAGEE/3RgCvT-896uTvRO8q_PatA_120.jpg",
+      "cropped_image": "/images/TANDRAGEE/3RgCvT-896uTvRO8q_PatA_120_box0.jpg",
+      "filename": "3RgCvT-896uTvRO8q_PatA_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9624685049057007,
+      "relative_size": 0.01227939527331273,
+      "position_factor": 0.5574383020401001,
+      "box": [
+        325.90972900390625,
+        242.38479614257812,
+        387.4649658203125,
+        324.09417724609375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/TANDRAGEE/composite_3RgCvT-896uTvRO8q_PatA_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "TANDRAGEE",
+      "original_image": "/images/TANDRAGEE/zB0eOtRNb75oZFNkl6E6ow_240.jpg",
+      "cropped_image": "/images/TANDRAGEE/zB0eOtRNb75oZFNkl6E6ow_240_box0.jpg",
+      "filename": "zB0eOtRNb75oZFNkl6E6ow_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9036353826522827,
+      "relative_size": 0.0029034162405224607,
+      "position_factor": 0.6007511019706726,
+      "box": [
+        105.39515686035156,
+        225.2543487548828,
+        125.04229736328125,
+        285.78424072265625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/TANDRAGEE/composite_zB0eOtRNb75oZFNkl6E6ow_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "TANDRAGEE",
+      "original_image": "/images/TANDRAGEE/DTBf-3vvW32F6_dvFddHJA_240.jpg",
+      "cropped_image": "/images/TANDRAGEE/DTBf-3vvW32F6_dvFddHJA_240_box0.jpg",
+      "filename": "DTBf-3vvW32F6_dvFddHJA_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9003235697746277,
+      "relative_size": 0.002689578371330299,
+      "position_factor": 0.5699031114578247,
+      "box": [
+        258.3136291503906,
+        256.0394592285156,
+        286.96881103515625,
+        294.48455810546875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/TANDRAGEE/composite_DTBf-3vvW32F6_dvFddHJA_240_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

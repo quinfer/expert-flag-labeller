@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:48.249086",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 12,
+    "total_boxes": 12
+  },
+  "images": [
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/MMeYpRUOuw3lTUpnVjoOgg_060.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/MMeYpRUOuw3lTUpnVjoOgg_060_box0.jpg",
+      "filename": "MMeYpRUOuw3lTUpnVjoOgg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9335442185401917,
+      "relative_size": 0.03486080428505147,
+      "position_factor": 0.6593188524246216,
+      "box": [
+        87.93840026855469,
+        158.69091796875,
+        208.2432403564453,
+        277.3809509277344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_MMeYpRUOuw3lTUpnVjoOgg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/LWnIeWGP5y1H_3gHpf-ufg_300.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/LWnIeWGP5y1H_3gHpf-ufg_300_box0.jpg",
+      "filename": "LWnIeWGP5y1H_3gHpf-ufg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9314407110214233,
+      "relative_size": 0.019916747618043473,
+      "position_factor": 0.3891906023025513,
+      "box": [
+        211.3656768798828,
+        354.6365051269531,
+        323.79071044921875,
+        427.19952392578125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_LWnIeWGP5y1H_3gHpf-ufg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/hQ50DVVFye1zEhbFQRa6_w_180.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/hQ50DVVFye1zEhbFQRa6_w_180_box0.jpg",
+      "filename": "hQ50DVVFye1zEhbFQRa6_w_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9257264137268066,
+      "relative_size": 0.019903866678437795,
+      "position_factor": 0.887312039732933,
+      "box": [
+        498.01568603515625,
+        25.000720977783203,
+        584.525634765625,
+        119.2398681640625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_hQ50DVVFye1zEhbFQRa6_w_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/LMpKHPskZgHsWzLl7gWmuw_180.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/LMpKHPskZgHsWzLl7gWmuw_180_box0.jpg",
+      "filename": "LMpKHPskZgHsWzLl7gWmuw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9230380058288574,
+      "relative_size": 0.017735113890839784,
+      "position_factor": 0.7955909013748169,
+      "box": [
+        564.0526733398438,
+        82.54780578613281,
+        639.29296875,
+        179.09584045410156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_LMpKHPskZgHsWzLl7gWmuw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/MbKpz--YV-QW2t9Kxu4RLA_240.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/MbKpz--YV-QW2t9Kxu4RLA_240_box0.jpg",
+      "filename": "MbKpz--YV-QW2t9Kxu4RLA_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9169607162475586,
+      "relative_size": 0.016650089989630034,
+      "position_factor": 0.5258968114852905,
+      "box": [
+        406.12139892578125,
+        272.7975769042969,
+        517.4537353515625,
+        334.05450439453125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_MbKpz--YV-QW2t9Kxu4RLA_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/eVpyesdpT2i8Dv99LSvHIA_060.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/eVpyesdpT2i8Dv99LSvHIA_060_box0.jpg",
+      "filename": "eVpyesdpT2i8Dv99LSvHIA_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9117024540901184,
+      "relative_size": 0.015211208294658718,
+      "position_factor": 0.42039160728454594,
+      "box": [
+        420.58526611328125,
+        335.79156494140625,
+        509.19305419921875,
+        406.107177734375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_eVpyesdpT2i8Dv99LSvHIA_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/bEQnTBnkhPoWZN81reGALQ_120.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/bEQnTBnkhPoWZN81reGALQ_120_box0.jpg",
+      "filename": "bEQnTBnkhPoWZN81reGALQ_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9056510329246521,
+      "relative_size": 0.014890467768791637,
+      "position_factor": 0.9296470567584038,
+      "box": [
+        148.65216064453125,
+        0.11502265930175781,
+        216.55484008789062,
+        89.9367446899414
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_bEQnTBnkhPoWZN81reGALQ_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/J900fndSujwjR6fvb9A5zw_240.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/J900fndSujwjR6fvb9A5zw_240_box0.jpg",
+      "filename": "J900fndSujwjR6fvb9A5zw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9067355990409851,
+      "relative_size": 0.009337863685902902,
+      "position_factor": 0.5952502846717834,
+      "box": [
+        467.89129638671875,
+        228.1808624267578,
+        529.8634033203125,
+        289.8987731933594
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_J900fndSujwjR6fvb9A5zw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/emAi2XudR10SF82Ss-ILsA_120.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/emAi2XudR10SF82Ss-ILsA_120_box0.jpg",
+      "filename": "emAi2XudR10SF82Ss-ILsA_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.931184709072113,
+      "relative_size": 0.006126484257021047,
+      "position_factor": 0.6061851620674134,
+      "box": [
+        477.8477783203125,
+        200.70945739746094,
+        502.2906799316406,
+        303.37353515625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_emAi2XudR10SF82Ss-ILsA_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/yDBeYuWdyulxmJeB0nmxcQ_180.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/yDBeYuWdyulxmJeB0nmxcQ_180_box0.jpg",
+      "filename": "yDBeYuWdyulxmJeB0nmxcQ_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9065996408462524,
+      "relative_size": 0.006241364936988703,
+      "position_factor": 0.6491962671279907,
+      "box": [
+        150.89407348632812,
+        180.07138061523438,
+        179.65521240234375,
+        268.9573974609375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_yDBeYuWdyulxmJeB0nmxcQ_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/O-0HbK94K6tyNJoVJl7bDA_180.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/O-0HbK94K6tyNJoVJl7bDA_180_box0.jpg",
+      "filename": "O-0HbK94K6tyNJoVJl7bDA_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.910860002040863,
+      "relative_size": 0.004932495492048474,
+      "position_factor": 0.44578058719635005,
+      "box": [
+        329.38140869140625,
+        334.36895751953125,
+        379.06671142578125,
+        375.0318908691406
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_O-0HbK94K6tyNJoVJl7bDA_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWTOWNARDS",
+      "original_image": "/images/NEWTOWNARDS/IHuR_zjPV4AddKYg4jMXpQ_060.jpg",
+      "cropped_image": "/images/NEWTOWNARDS/IHuR_zjPV4AddKYg4jMXpQ_060_box0.jpg",
+      "filename": "IHuR_zjPV4AddKYg4jMXpQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9093611240386963,
+      "relative_size": 0.003185372806747182,
+      "position_factor": 0.5448204278945923,
+      "box": [
+        545.0975341796875,
+        268.31005859375,
+        573.4552001953125,
+        314.3197937011719
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWTOWNARDS/composite_IHuR_zjPV4AddKYg4jMXpQ_060_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

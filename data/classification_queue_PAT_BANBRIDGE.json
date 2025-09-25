@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:52.218082",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 3,
+    "total_boxes": 3
+  },
+  "images": [
+    {
+      "town": "BANBRIDGE",
+      "original_image": "/images/BANBRIDGE/RACPLCBK1nG8okop9qDD1A_000.jpg",
+      "cropped_image": "/images/BANBRIDGE/RACPLCBK1nG8okop9qDD1A_000_box0.jpg",
+      "filename": "RACPLCBK1nG8okop9qDD1A_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9219938516616821,
+      "relative_size": 0.01332567428481184,
+      "position_factor": 0.6944520235061645,
+      "box": [
+        190.67335510253906,
+        159.14712524414062,
+        265.6412048339844,
+        231.95428466796875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANBRIDGE/composite_RACPLCBK1nG8okop9qDD1A_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANBRIDGE",
+      "original_image": "/images/BANBRIDGE/sySq9y2waciw-nMypKBtOw_300.jpg",
+      "cropped_image": "/images/BANBRIDGE/sySq9y2waciw-nMypKBtOw_300_box0.jpg",
+      "filename": "sySq9y2waciw-nMypKBtOw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9035660624504089,
+      "relative_size": 0.009275841707694781,
+      "position_factor": 0.7555605888366699,
+      "box": [
+        428.64599609375,
+        122.80374145507812,
+        485.1214599609375,
+        190.07870483398438
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANBRIDGE/composite_sySq9y2waciw-nMypKBtOw_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANBRIDGE",
+      "original_image": "/images/BANBRIDGE/z_NJe6e-eNS3BsdvkPDtmg_000.jpg",
+      "cropped_image": "/images/BANBRIDGE/z_NJe6e-eNS3BsdvkPDtmg_000_box0.jpg",
+      "filename": "z_NJe6e-eNS3BsdvkPDtmg_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9010730385780334,
+      "relative_size": 0.005842565305651987,
+      "position_factor": 0.7634794473648071,
+      "box": [
+        462.3404541015625,
+        126.44351196289062,
+        510.33782958984375,
+        176.30279541015625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANBRIDGE/composite_z_NJe6e-eNS3BsdvkPDtmg_000_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

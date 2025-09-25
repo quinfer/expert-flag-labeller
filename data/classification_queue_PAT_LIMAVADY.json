@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:50.547181",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 6,
+    "total_boxes": 6
+  },
+  "images": [
+    {
+      "town": "LIMAVADY",
+      "original_image": "/images/LIMAVADY/R5DSzW15zjqL-pVPWnYztA_180.jpg",
+      "cropped_image": "/images/LIMAVADY/R5DSzW15zjqL-pVPWnYztA_180_box0.jpg",
+      "filename": "R5DSzW15zjqL-pVPWnYztA_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9124660491943359,
+      "relative_size": 0.03134634798087177,
+      "position_factor": 0.7504309773445129,
+      "box": [
+        398.377197265625,
+        95.40132141113281,
+        498.1820373535156,
+        224.04702758789062
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/LIMAVADY/composite_R5DSzW15zjqL-pVPWnYztA_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "LIMAVADY",
+      "original_image": "/images/LIMAVADY/0s2aiszIrxw5ut4Txqb5KA_300.jpg",
+      "cropped_image": "/images/LIMAVADY/0s2aiszIrxw5ut4Txqb5KA_300_box0.jpg",
+      "filename": "0s2aiszIrxw5ut4Txqb5KA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9139792919158936,
+      "relative_size": 0.015325513444141165,
+      "position_factor": 0.8685021191835404,
+      "box": [
+        442.60595703125,
+        28.23934555053711,
+        498.73443603515625,
+        140.07794189453125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/LIMAVADY/composite_0s2aiszIrxw5ut4Txqb5KA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "LIMAVADY",
+      "original_image": "/images/LIMAVADY/PZLbNIK38bOmw76TDhTLFw_240.jpg",
+      "cropped_image": "/images/LIMAVADY/PZLbNIK38bOmw76TDhTLFw_240_box0.jpg",
+      "filename": "PZLbNIK38bOmw76TDhTLFw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9066877365112305,
+      "relative_size": 0.012083009630609353,
+      "position_factor": 0.850418895483017,
+      "box": [
+        419.1691589355469,
+        65.25347900390625,
+        500.36102294921875,
+        126.21033477783203
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/LIMAVADY/composite_PZLbNIK38bOmw76TDhTLFw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "LIMAVADY",
+      "original_image": "/images/LIMAVADY/Iagq8kVSkxPD0kHGQ41-ng_180.jpg",
+      "cropped_image": "/images/LIMAVADY/Iagq8kVSkxPD0kHGQ41-ng_180_box0.jpg",
+      "filename": "Iagq8kVSkxPD0kHGQ41-ng_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9045760631561279,
+      "relative_size": 0.010145586907565302,
+      "position_factor": 0.7038671374320984,
+      "box": [
+        568.0601196289062,
+        160.2217254638672,
+        638.9673461914062,
+        218.82833862304688
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/LIMAVADY/composite_Iagq8kVSkxPD0kHGQ41-ng_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "LIMAVADY",
+      "original_image": "/images/LIMAVADY/WF3TpjaTIV6_5Cz58GcGng_060.jpg",
+      "cropped_image": "/images/LIMAVADY/WF3TpjaTIV6_5Cz58GcGng_060_box0.jpg",
+      "filename": "WF3TpjaTIV6_5Cz58GcGng_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9007634520530701,
+      "relative_size": 0.009341720881677703,
+      "position_factor": 0.7006593585014343,
+      "box": [
+        450.70404052734375,
+        163.24424743652344,
+        518.2271728515625,
+        219.91177368164062
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/LIMAVADY/composite_WF3TpjaTIV6_5Cz58GcGng_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "LIMAVADY",
+      "original_image": "/images/LIMAVADY/jo-b5cGSuLxFXK01LScROQ_240.jpg",
+      "cropped_image": "/images/LIMAVADY/jo-b5cGSuLxFXK01LScROQ_240_box0.jpg",
+      "filename": "jo-b5cGSuLxFXK01LScROQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9164677262306213,
+      "relative_size": 0.004392981940211485,
+      "position_factor": 0.5020055055618287,
+      "box": [
+        364.3896179199219,
+        286.714111328125,
+        392.50262451171875,
+        350.7188415527344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/LIMAVADY/composite_jo-b5cGSuLxFXK01LScROQ_240_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

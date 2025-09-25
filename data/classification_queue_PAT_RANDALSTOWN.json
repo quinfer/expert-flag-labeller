@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:51.879244",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 4,
+    "total_boxes": 4
+  },
+  "images": [
+    {
+      "town": "RANDALSTOWN",
+      "original_image": "/images/RANDALSTOWN/cdhwNV4u9SLMRc7_w2vqRg_060.jpg",
+      "cropped_image": "/images/RANDALSTOWN/cdhwNV4u9SLMRc7_w2vqRg_060_box0.jpg",
+      "filename": "cdhwNV4u9SLMRc7_w2vqRg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9336356520652771,
+      "relative_size": 0.019985347565962,
+      "position_factor": 0.835305142402649,
+      "box": [
+        215.34182739257812,
+        64.13127136230469,
+        314.50970458984375,
+        146.6781463623047
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/RANDALSTOWN/composite_cdhwNV4u9SLMRc7_w2vqRg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "RANDALSTOWN",
+      "original_image": "/images/RANDALSTOWN/hFmzzDzCmOAxHwOgMF41Lw_000.jpg",
+      "cropped_image": "/images/RANDALSTOWN/hFmzzDzCmOAxHwOgMF41Lw_000_box0.jpg",
+      "filename": "hFmzzDzCmOAxHwOgMF41Lw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9175653457641602,
+      "relative_size": 0.006798264051326441,
+      "position_factor": 0.6562751770019531,
+      "box": [
+        351.4040832519531,
+        185.37100219726562,
+        391.6285400390625,
+        254.59677124023438
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/RANDALSTOWN/composite_hFmzzDzCmOAxHwOgMF41Lw_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "RANDALSTOWN",
+      "original_image": "/images/RANDALSTOWN/wLClW6lG7wp0SB3kvHAOcg_000.jpg",
+      "cropped_image": "/images/RANDALSTOWN/wLClW6lG7wp0SB3kvHAOcg_000_box0.jpg",
+      "filename": "wLClW6lG7wp0SB3kvHAOcg_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9173030257225037,
+      "relative_size": 0.0034846520134965433,
+      "position_factor": 0.6009962797164917,
+      "box": [
+        281.17242431640625,
+        231.01535034179688,
+        310.4842834472656,
+        279.70941162109375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/RANDALSTOWN/composite_wLClW6lG7wp0SB3kvHAOcg_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "RANDALSTOWN",
+      "original_image": "/images/RANDALSTOWN/F3fRKfc1CpKrMZwoUYoU6w_000.jpg",
+      "cropped_image": "/images/RANDALSTOWN/F3fRKfc1CpKrMZwoUYoU6w_000_box0.jpg",
+      "filename": "F3fRKfc1CpKrMZwoUYoU6w_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9114640355110168,
+      "relative_size": 0.00361791000135554,
+      "position_factor": 0.6079489946365356,
+      "box": [
+        100.75102233886719,
+        223.52117919921875,
+        127.80134582519531,
+        278.3041076660156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/RANDALSTOWN/composite_F3fRKfc1CpKrMZwoUYoU6w_000_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

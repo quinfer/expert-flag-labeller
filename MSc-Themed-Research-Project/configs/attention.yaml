@@ -1,0 +1,15 @@
+seeds: [0, 1, 2]
+global_vmin: 0.0
+global_vmax: 0.95
+n_images_per_type: 8
+weighted_exposure: false
+index_csv: MSc-Themed-Research-Project/data/index_test.csv
+preds_before_glob: "outputs/before/*/preds.parquet"
+preds_after_glob:  "outputs/after/*/preds.parquet"
+checkpoints_before:
+  - MSc-Themed-Research-Project/flag_classification_adaptation/experiments/rs5m_16class_consolidation_seed42_20250814_201544/best_model.pt
+checkpoints_after:
+  - MSc-Themed-Research-Project/flag_classification_adaptation/experiments/rs5m_ablation_consolidation_only_20250814_141925/best_model.pt
+  - MSc-Themed-Research-Project/flag_classification_adaptation/experiments/rs5m_ablation_consolidation_only_seed123_20250814_162946/best_model.pt
+  - MSc-Themed-Research-Project/flag_classification_adaptation/experiments/rs5m_ablation_consolidation_only_seed456_20250814_181814/best_model.pt
+backbone_checkpoint: MSc-Themed-Research-Project/final_code/checkpoints/RS5M_ViT-H-14.pt

@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:50.744993",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 5,
+    "total_boxes": 5
+  },
+  "images": [
+    {
+      "town": "WARINGSTOWN",
+      "original_image": "/images/WARINGSTOWN/vrKa0_T9nXKeXw21vBkTDw_120.jpg",
+      "cropped_image": "/images/WARINGSTOWN/vrKa0_T9nXKeXw21vBkTDw_120_box0.jpg",
+      "filename": "vrKa0_T9nXKeXw21vBkTDw_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9308657050132751,
+      "relative_size": 0.04239413464171662,
+      "position_factor": 0.7438105940818787,
+      "box": [
+        434.4255065917969,
+        92.94837951660156,
+        556.6895751953125,
+        234.97406005859375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WARINGSTOWN/composite_vrKa0_T9nXKeXw21vBkTDw_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WARINGSTOWN",
+      "original_image": "/images/WARINGSTOWN/ESxiB9a8MUBz819cChjrrQ_180.jpg",
+      "cropped_image": "/images/WARINGSTOWN/ESxiB9a8MUBz819cChjrrQ_180_box0.jpg",
+      "filename": "ESxiB9a8MUBz819cChjrrQ_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9379868507385254,
+      "relative_size": 0.013139257120765252,
+      "position_factor": 0.6255095720291137,
+      "box": [
+        396.3817138671875,
+        203.84637451171875,
+        471.4893798828125,
+        275.5013732910156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WARINGSTOWN/composite_ESxiB9a8MUBz819cChjrrQ_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WARINGSTOWN",
+      "original_image": "/images/WARINGSTOWN/JGDGUaBm1TnQmF7DeL5sTg_060.jpg",
+      "cropped_image": "/images/WARINGSTOWN/JGDGUaBm1TnQmF7DeL5sTg_060_box0.jpg",
+      "filename": "JGDGUaBm1TnQmF7DeL5sTg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9054272770881653,
+      "relative_size": 0.01254508058030865,
+      "position_factor": 0.7227970719337463,
+      "box": [
+        279.8658752441406,
+        110.66963195800781,
+        318.36187744140625,
+        244.15011596679688
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Normal sized detection",
+      "composite_image": "/images/WARINGSTOWN/composite_JGDGUaBm1TnQmF7DeL5sTg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WARINGSTOWN",
+      "original_image": "/images/WARINGSTOWN/IsHDKayWM1NqB_xKpD7d6Q_000.jpg",
+      "cropped_image": "/images/WARINGSTOWN/IsHDKayWM1NqB_xKpD7d6Q_000_box0.jpg",
+      "filename": "IsHDKayWM1NqB_xKpD7d6Q_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9427316188812256,
+      "relative_size": 0.008249521685388572,
+      "position_factor": 0.6830839872360229,
+      "box": [
+        302.8433837890625,
+        169.99520874023438,
+        354.30389404296875,
+        235.65728759765625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WARINGSTOWN/composite_IsHDKayWM1NqB_xKpD7d6Q_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WARINGSTOWN",
+      "original_image": "/images/WARINGSTOWN/4-K8hULcgHQRebD7-J6RZA_000.jpg",
+      "cropped_image": "/images/WARINGSTOWN/4-K8hULcgHQRebD7-J6RZA_000_box0.jpg",
+      "filename": "4-K8hULcgHQRebD7-J6RZA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9381012916564941,
+      "relative_size": 0.006524879765356673,
+      "position_factor": 0.38824205398559575,
+      "box": [
+        444.1944580078125,
+        336.6946105957031,
+        468.56585693359375,
+        446.3555603027344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WARINGSTOWN/composite_4-K8hULcgHQRebD7-J6RZA_000_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

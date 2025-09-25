@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:52.515970",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 2,
+    "total_boxes": 2
+  },
+  "images": [
+    {
+      "town": "KILKEEL",
+      "original_image": "/images/KILKEEL/LgMNqF5ffOvJ0Eq86oA7nA_060.jpg",
+      "cropped_image": "/images/KILKEEL/LgMNqF5ffOvJ0Eq86oA7nA_060_box0.jpg",
+      "filename": "LgMNqF5ffOvJ0Eq86oA7nA_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9025878310203552,
+      "relative_size": 0.011701232761854499,
+      "position_factor": 0.9155498579144478,
+      "box": [
+        464.96270751953125,
+        9.369916915893555,
+        518.5999145507812,
+        98.72626495361328
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/KILKEEL/composite_LgMNqF5ffOvJ0Eq86oA7nA_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "KILKEEL",
+      "original_image": "/images/KILKEEL/RigOG3Z62bzmTlz2Em8qOg_000.jpg",
+      "cropped_image": "/images/KILKEEL/RigOG3Z62bzmTlz2Em8qOg_000_box0.jpg",
+      "filename": "RigOG3Z62bzmTlz2Em8qOg_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9055123925209045,
+      "relative_size": 0.011384839518288708,
+      "position_factor": 0.9558721151202917,
+      "box": [
+        407.6114196777344,
+        0.08351564407348633,
+        490.4151611328125,
+        56.400177001953125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/KILKEEL/composite_RigOG3Z62bzmTlz2Em8qOg_000_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

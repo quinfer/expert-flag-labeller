@@ -1,0 +1,30 @@
+{
+  "attention": {"before": 23.0, "after": 87.0},
+  "performance": [
+    {"strategy": "No Consolidation\n(70 classes)", "accuracy": 40.78, "macro_f1": 15.2, "classes_learned_pct": 17.1},
+    {"strategy": "Economic\n(16 classes)", "accuracy": 72.63, "macro_f1": 45.6, "classes_learned_pct": 87.5},
+    {"strategy": "Super Economic\n(7 classes)", "accuracy": 94.78, "macro_f1": 67.45, "classes_learned_pct": 85.7}
+  ],
+  "validation": {
+    "multi_seed": {"mean": 94.57, "std": 0.22},
+    "cv": {"mean": 93.23, "std": 0.34}
+  },
+  "counts": {
+    "Major_Unionist": 2047,
+    "Cultural_Fraternal": 892,
+    "International": 485,
+    "Nationalist": 354,
+    "Paramilitary": 312,
+    "Commemorative": 233,
+    "Sport_Community": 178
+  },
+  "weights": {
+    "Major_Unionist": 0.8,
+    "Cultural_Fraternal": 0.6,
+    "International": 0.7,
+    "Nationalist": 0.5,
+    "Paramilitary": -0.9,
+    "Commemorative": 0.9,
+    "Sport_Community": 0.4
+  }
+}

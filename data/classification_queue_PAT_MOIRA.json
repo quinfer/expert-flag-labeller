@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:50.319375",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 7,
+    "total_boxes": 7
+  },
+  "images": [
+    {
+      "town": "MOIRA",
+      "original_image": "/images/MOIRA/UxHLdYGUMMXHbIYE_0o36Q_300.jpg",
+      "cropped_image": "/images/MOIRA/UxHLdYGUMMXHbIYE_0o36Q_300_box0.jpg",
+      "filename": "UxHLdYGUMMXHbIYE_0o36Q_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9088396430015564,
+      "relative_size": 0.021467971902109185,
+      "position_factor": 0.777001827955246,
+      "box": [
+        479.8349609375,
+        99.73575592041016,
+        582.1226806640625,
+        185.701904296875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MOIRA/composite_UxHLdYGUMMXHbIYE_0o36Q_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MOIRA",
+      "original_image": "/images/MOIRA/l11iRfl8hoV0wDay-4QTCw_180.jpg",
+      "cropped_image": "/images/MOIRA/l11iRfl8hoV0wDay-4QTCw_180_box0.jpg",
+      "filename": "l11iRfl8hoV0wDay-4QTCw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.914648175239563,
+      "relative_size": 0.020209581459182502,
+      "position_factor": 0.8651156038045883,
+      "box": [
+        114.82372283935547,
+        43.413578033447266,
+        211.27413940429688,
+        129.2384490966797
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MOIRA/composite_l11iRfl8hoV0wDay-4QTCw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MOIRA",
+      "original_image": "/images/MOIRA/zwdzIX8SjW6D27TumrxqeQ_180.jpg",
+      "cropped_image": "/images/MOIRA/zwdzIX8SjW6D27TumrxqeQ_180_box0.jpg",
+      "filename": "zwdzIX8SjW6D27TumrxqeQ_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9078831672668457,
+      "relative_size": 0.018221688242496724,
+      "position_factor": 0.8817652791738511,
+      "box": [
+        241.85360717773438,
+        35.83926010131836,
+        335.5445861816406,
+        115.50118255615234
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MOIRA/composite_zwdzIX8SjW6D27TumrxqeQ_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MOIRA",
+      "original_image": "/images/MOIRA/Nz1i6aegOgvIefZSyUEu0Q_120.jpg",
+      "cropped_image": "/images/MOIRA/Nz1i6aegOgvIefZSyUEu0Q_120_box0.jpg",
+      "filename": "Nz1i6aegOgvIefZSyUEu0Q_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.901995062828064,
+      "relative_size": 0.012473804584477222,
+      "position_factor": 0.7356553852558136,
+      "box": [
+        11.653099060058594,
+        125.18975067138672,
+        69.72512817382812,
+        213.17135620117188
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MOIRA/composite_Nz1i6aegOgvIefZSyUEu0Q_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MOIRA",
+      "original_image": "/images/MOIRA/FUKmfZP517UR15TpnxkjtA_300.jpg",
+      "cropped_image": "/images/MOIRA/FUKmfZP517UR15TpnxkjtA_300_box0.jpg",
+      "filename": "FUKmfZP517UR15TpnxkjtA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.90607750415802,
+      "relative_size": 0.011516101372214926,
+      "position_factor": 0.9629480537027121,
+      "box": [
+        447.2904968261719,
+        0.0461125373840332,
+        546.943359375,
+        47.38037872314453
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MOIRA/composite_FUKmfZP517UR15TpnxkjtA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MOIRA",
+      "original_image": "/images/MOIRA/eIXRcCris7uSOuymMP0eHA_060.jpg",
+      "cropped_image": "/images/MOIRA/eIXRcCris7uSOuymMP0eHA_060_box0.jpg",
+      "filename": "eIXRcCris7uSOuymMP0eHA_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9112016558647156,
+      "relative_size": 0.005171071631934865,
+      "position_factor": 0.6309011459350586,
+      "box": [
+        164.15574645996094,
+        213.11978149414062,
+        209.99452209472656,
+        259.3267517089844
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MOIRA/composite_eIXRcCris7uSOuymMP0eHA_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MOIRA",
+      "original_image": "/images/MOIRA/n2er0MUABfJcbOZ4rBTaLw_300.jpg",
+      "cropped_image": "/images/MOIRA/n2er0MUABfJcbOZ4rBTaLw_300_box0.jpg",
+      "filename": "n2er0MUABfJcbOZ4rBTaLw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9001608490943909,
+      "relative_size": 0.004293091901327841,
+      "position_factor": 0.6714158654212952,
+      "box": [
+        66.8306655883789,
+        191.8160400390625,
+        114.41343688964844,
+        228.7716522216797
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MOIRA/composite_n2er0MUABfJcbOZ4rBTaLw_300_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

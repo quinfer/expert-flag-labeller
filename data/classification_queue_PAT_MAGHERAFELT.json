@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:48.968590",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 11,
+    "total_boxes": 11
+  },
+  "images": [
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/XKT7ZWpJXQx1jo8JBcU_ow_180.jpg",
+      "cropped_image": "/images/MAGHERAFELT/XKT7ZWpJXQx1jo8JBcU_ow_180_box0.jpg",
+      "filename": "XKT7ZWpJXQx1jo8JBcU_ow_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9445016980171204,
+      "relative_size": 0.02379251811653944,
+      "position_factor": 0.8721190333366394,
+      "box": [
+        162.56761169433594,
+        26.479263305664062,
+        250.5789337158203,
+        137.2083740234375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_XKT7ZWpJXQx1jo8JBcU_ow_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/MSzXJrfJNEZ8FUMM-bAM_g_060.jpg",
+      "cropped_image": "/images/MAGHERAFELT/MSzXJrfJNEZ8FUMM-bAM_g_060_box0.jpg",
+      "filename": "MSzXJrfJNEZ8FUMM-bAM_g_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9038737416267395,
+      "relative_size": 0.017665921496927695,
+      "position_factor": 0.7297846674919128,
+      "box": [
+        393.066162109375,
+        115.22483825683594,
+        455.75537109375,
+        230.65078735351562
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_MSzXJrfJNEZ8FUMM-bAM_g_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/zvAUsy21KAm4ZnH8Af3Eag_000.jpg",
+      "cropped_image": "/images/MAGHERAFELT/zvAUsy21KAm4ZnH8Af3Eag_000_box0.jpg",
+      "filename": "zvAUsy21KAm4ZnH8Af3Eag_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.904285192489624,
+      "relative_size": 0.014490540392730225,
+      "position_factor": 0.887983401119709,
+      "box": [
+        109.52023315429688,
+        10.758352279663086,
+        158.22451782226562,
+        132.62289428710938
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_zvAUsy21KAm4ZnH8Af3Eag_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/I86vkimO6h60dTOGYOVc8Q_000.jpg",
+      "cropped_image": "/images/MAGHERAFELT/I86vkimO6h60dTOGYOVc8Q_000_box0.jpg",
+      "filename": "I86vkimO6h60dTOGYOVc8Q_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9277341961860657,
+      "relative_size": 0.011124741467990624,
+      "position_factor": 0.9323445402085782,
+      "box": [
+        240.09132385253906,
+        0.28847217559814453,
+        293.06256103515625,
+        86.31051635742188
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_I86vkimO6h60dTOGYOVc8Q_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/LRnFs8fX-ITNBqKPjDtxXA_120.jpg",
+      "cropped_image": "/images/MAGHERAFELT/LRnFs8fX-ITNBqKPjDtxXA_120_box0.jpg",
+      "filename": "LRnFs8fX-ITNBqKPjDtxXA_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9113441705703735,
+      "relative_size": 0.010301819318500627,
+      "position_factor": 0.8810897119343281,
+      "box": [
+        200.4653778076172,
+        7.008147239685059,
+        231.00057983398438,
+        145.197021484375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_LRnFs8fX-ITNBqKPjDtxXA_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/VWld53DILbXF5tV1uvcrtg_060.jpg",
+      "cropped_image": "/images/MAGHERAFELT/VWld53DILbXF5tV1uvcrtg_060_box0.jpg",
+      "filename": "VWld53DILbXF5tV1uvcrtg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9286251664161682,
+      "relative_size": 0.007374154278994638,
+      "position_factor": 0.6339438796043396,
+      "box": [
+        36.106658935546875,
+        185.10023498535156,
+        66.8175048828125,
+        283.45159912109375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_VWld53DILbXF5tV1uvcrtg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/EehFai27YseJAPoqao0E3A_060.jpg",
+      "cropped_image": "/images/MAGHERAFELT/EehFai27YseJAPoqao0E3A_060_box0.jpg",
+      "filename": "EehFai27YseJAPoqao0E3A_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9262356758117676,
+      "relative_size": 0.0033977098132993433,
+      "position_factor": 0.5918287634849548,
+      "box": [
+        435.6530456542969,
+        234.19981384277344,
+        461.39691162109375,
+        288.2593688964844
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_EehFai27YseJAPoqao0E3A_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/zJd-batWlBie_yUqXWMiVA_240.jpg",
+      "cropped_image": "/images/MAGHERAFELT/zJd-batWlBie_yUqXWMiVA_240_box0.jpg",
+      "filename": "zJd-batWlBie_yUqXWMiVA_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9174924492835999,
+      "relative_size": 0.002639917680403414,
+      "position_factor": 0.6134813308715821,
+      "box": [
+        163.0302276611328,
+        211.28164672851562,
+        178.01084899902344,
+        283.4622497558594
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_zJd-batWlBie_yUqXWMiVA_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/NkAFg7_TU4XZE4Ozs4PWeA_240.jpg",
+      "cropped_image": "/images/MAGHERAFELT/NkAFg7_TU4XZE4Ozs4PWeA_240_box0.jpg",
+      "filename": "NkAFg7_TU4XZE4Ozs4PWeA_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9057542681694031,
+      "relative_size": 0.0026264454213560384,
+      "position_factor": 0.5309531688690186,
+      "box": [
+        172.65133666992188,
+        277.98846435546875,
+        196.87924194335938,
+        322.3914794921875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_NkAFg7_TU4XZE4Ozs4PWeA_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/KT0ZLHW4dojUdbP2uwUeMg_300.jpg",
+      "cropped_image": "/images/MAGHERAFELT/KT0ZLHW4dojUdbP2uwUeMg_300_box0.jpg",
+      "filename": "KT0ZLHW4dojUdbP2uwUeMg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9064866900444031,
+      "relative_size": 0.0025566618066773118,
+      "position_factor": 0.6162082552909851,
+      "box": [
+        304.78216552734375,
+        214.6107635498047,
+        321.6639404296875,
+        276.6426696777344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_KT0ZLHW4dojUdbP2uwUeMg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERAFELT",
+      "original_image": "/images/MAGHERAFELT/MSzXJrfJNEZ8FUMM-bAM_g_180.jpg",
+      "cropped_image": "/images/MAGHERAFELT/MSzXJrfJNEZ8FUMM-bAM_g_180_box0.jpg",
+      "filename": "MSzXJrfJNEZ8FUMM-bAM_g_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.908494234085083,
+      "relative_size": 0.0021277264669674876,
+      "position_factor": 0.5708272218704223,
+      "box": [
+        276.9554443359375,
+        255.63690185546875,
+        299.8495178222656,
+        293.7042541503906
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERAFELT/composite_MSzXJrfJNEZ8FUMM-bAM_g_180_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

@@ -16,13 +16,18 @@ dotenv.config({ path: path.join(projectRoot, '.env.local') });
 
 // Configuration
 const BUCKET_NAME = process.env.NEXT_PUBLIC_STORAGE_BUCKET || 'flag-images';
-const STATIC_DIR = path.join(projectRoot, 'public', 'static');
+// Allow overriding the source directory via CLI: --source-dir <path>
+let SOURCE_DIR = path.join(projectRoot, 'public', 'static');
+const argIdx = process.argv.indexOf('--source-dir');
+if (argIdx !== -1 && process.argv[argIdx + 1]) {
+  SOURCE_DIR = path.resolve(process.cwd(), process.argv[argIdx + 1]);
+}
 const IMAGE_BATCH_SIZE = 10; // Upload 10 images at a time
 
 async function uploadImages() {
   console.log('Starting image upload to Supabase...');
   console.log(`Using bucket: ${BUCKET_NAME}`);
-  console.log(`Source directory: ${STATIC_DIR}`);
+  console.log(`Source directory: ${SOURCE_DIR}`);
   
   try {
     // Check if the bucket exists
@@ -37,8 +42,8 @@ async function uploadImages() {
     }
     
     // Get list of all town directories
-    const townDirs = fs.readdirSync(STATIC_DIR).filter(
-      dir => fs.statSync(path.join(STATIC_DIR, dir)).isDirectory()
+    const townDirs = fs.readdirSync(SOURCE_DIR).filter(
+      dir => fs.statSync(path.join(SOURCE_DIR, dir)).isDirectory()
     );
     
     console.log(`Found ${townDirs.length} towns to process`);
@@ -52,7 +57,7 @@ async function uploadImages() {
       console.log(`Processing town: ${town}`);
       
       // Get all image paths for this town
-      const imagePaths = glob.sync(path.join(STATIC_DIR, town, '*.jpg'));
+      const imagePaths = glob.sync(path.join(SOURCE_DIR, town, '*.jpg'));
       totalImages += imagePaths.length;
       
       console.log(`Found ${imagePaths.length} images in ${town}`);

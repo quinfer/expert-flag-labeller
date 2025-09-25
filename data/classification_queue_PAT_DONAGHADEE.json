@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:50.943163",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 5,
+    "total_boxes": 5
+  },
+  "images": [
+    {
+      "town": "DONAGHADEE",
+      "original_image": "/images/DONAGHADEE/2_n2uEcXAkpcZxQOL8Kl8g_240.jpg",
+      "cropped_image": "/images/DONAGHADEE/2_n2uEcXAkpcZxQOL8Kl8g_240_box0.jpg",
+      "filename": "2_n2uEcXAkpcZxQOL8Kl8g_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.906330406665802,
+      "relative_size": 0.005163633498610807,
+      "position_factor": 0.6031786918640136,
+      "box": [
+        0.031495094299316406,
+        217.73345947265625,
+        29.21859359741211,
+        290.19781494140625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DONAGHADEE/composite_2_n2uEcXAkpcZxQOL8Kl8g_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DONAGHADEE",
+      "original_image": "/images/DONAGHADEE/SVrJ9GHs2MNRS4AbrknDpg_300.jpg",
+      "cropped_image": "/images/DONAGHADEE/SVrJ9GHs2MNRS4AbrknDpg_300_box0.jpg",
+      "filename": "SVrJ9GHs2MNRS4AbrknDpg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9297444224357605,
+      "relative_size": 0.004505123256183197,
+      "position_factor": 0.6002997040748597,
+      "box": [
+        390.8665466308594,
+        224.40635681152344,
+        420.2485656738281,
+        287.21002197265625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DONAGHADEE/composite_SVrJ9GHs2MNRS4AbrknDpg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DONAGHADEE",
+      "original_image": "/images/DONAGHADEE/0OTTKUcllhNzVVXh4ulZFQ_060.jpg",
+      "cropped_image": "/images/DONAGHADEE/0OTTKUcllhNzVVXh4ulZFQ_060_box0.jpg",
+      "filename": "0OTTKUcllhNzVVXh4ulZFQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9318134784698486,
+      "relative_size": 0.0029884662180575104,
+      "position_factor": 0.6270034432411193,
+      "box": [
+        310.561279296875,
+        218.99095153808594,
+        341.5869140625,
+        258.44464111328125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DONAGHADEE/composite_0OTTKUcllhNzVVXh4ulZFQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DONAGHADEE",
+      "original_image": "/images/DONAGHADEE/vTCUbbojeey38xPIYmWADQ_000.jpg",
+      "cropped_image": "/images/DONAGHADEE/vTCUbbojeey38xPIYmWADQ_000_box0.jpg",
+      "filename": "vTCUbbojeey38xPIYmWADQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.90534907579422,
+      "relative_size": 0.003596823026441598,
+      "position_factor": 0.6676989436149597,
+      "box": [
+        120.50936889648438,
+        196.0476531982422,
+        164.81784057617188,
+        229.29769897460938
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DONAGHADEE/composite_vTCUbbojeey38xPIYmWADQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DONAGHADEE",
+      "original_image": "/images/DONAGHADEE/vTCUbbojeey38xPIYmWADQ_300.jpg",
+      "cropped_image": "/images/DONAGHADEE/vTCUbbojeey38xPIYmWADQ_300_box0.jpg",
+      "filename": "vTCUbbojeey38xPIYmWADQ_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.91603022813797,
+      "relative_size": 0.002818445361854174,
+      "position_factor": 0.6541475057601929,
+      "box": [
+        494.4401550292969,
+        203.9549102783203,
+        527.63134765625,
+        238.7362823486328
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DONAGHADEE/composite_vTCUbbojeey38xPIYmWADQ_300_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

@@ -17,10 +17,11 @@ import originalImagesData from '../data/images.json'
 import staticImagesData from '../data/static-images.json'
 
 // Function to safely get images data from API
-const getImagesData = async () => {
+const getImagesData = async (username?: string) => {
   try {
     console.log('[getImagesData] Fetching images from API...');
-    const response = await fetch('/api/images-static');
+    const qs = username ? `?user=${encodeURIComponent(username)}` : '';
+    const response = await fetch(`/api/images-static${qs}`);
     
     if (!response.ok) {
       throw new Error(`API request failed: ${response.status}`);
@@ -233,7 +234,7 @@ export default function ExpertFlagLabeler() {
         setAuthLoading(false)
 
         // Step 2: Initialize images safely
-        const initialImages = await getImagesData()
+        const initialImages = await getImagesData(parsedUser?.username)
         if (initialImages && initialImages.length > 0) {
           setImages(initialImages)
           setLoading(false)

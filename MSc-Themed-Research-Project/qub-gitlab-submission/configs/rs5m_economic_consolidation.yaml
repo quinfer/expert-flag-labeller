@@ -1,0 +1,37 @@
+# RS5M Economic Consolidation Configuration
+# Based on paper: "Economic Concentration as Domain Knowledge for Extreme Class Imbalance"
+
+DATALOADER:
+  TRAIN_X:
+    BATCH_SIZE: 8
+    N_DOMAIN: 0
+    N_INS: 1
+  TEST:
+    BATCH_SIZE: 8
+    N_DOMAIN: 0
+    N_INS: 1
+
+DATASET:
+  NAME: "NIFlagsV2"
+  ROOT: "datasets"
+  NUM_SHOTS: -1
+
+MODEL:
+  NAME: "RS5M_ViT-H-14"
+  BACKBONE:
+    NAME: "RS5M_ViT-H-14"
+
+OPTIM:
+  NAME: "adamw"
+  LR: 1.0e-4
+  WEIGHT_DECAY: 5e-4
+  MAX_EPOCH: 30
+  LR_SCHEDULER: "cosine"
+  WARMUP_EPOCH: 1
+
+TRAIN:
+  CHECKPOINT_FREQ: 5
+  PRINT_FREQ: 20
+  COUNT_ITER: "train_x"
+
+SEED: 42

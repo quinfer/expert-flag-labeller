@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "generated_at": "2025-07-11T11:17:55.912Z",
+    "total_disputed_images": 19,
+    "total_pickle_records": 19,
+    "analysis_focus": "Original pickle file data for disputed images",
+    "csv_columns": [
+      "f",
+      "pano_id",
+      "flags",
+      "indicator",
+      "flags_correct"
+    ],
+    "expert_confirmed_count": 19
+  },
+  "disputed_images": [
+    "ZP55Ydb9H8Y1cEWYhYAgzw_240",
+    "TJG87O8jBgd8dzwiuPR1KQ_060",
+    "NREaXVjDT4hgBgfT92v0Iw_180",
+    "GP27ckTW5bwq6AOmCMnCAg_000",
+    "uxN0xRE9t4To6LBtKkw2og_120",
+    "Xdkhj2ivRF_-3zcuwy9DNg_120",
+    "nuyOVyoGQSFo_l3h1_LEtg_060",
+    "pGAolNdN7sLGI3ZWGyi8Ug_300",
+    "hHaZXLSlTRgbAtC5sN5BmQ_120",
+    "Kl0NZDrCatcCSiQ33GmT-A_240",
+    "tPVDI_bSrwOEzO7l2phMqg_240",
+    "rQT_klvRS88UOGC22DDHmQ_000",
+    "Qi23_GKOLB7-MAIlXqDSEg_120",
+    "v8wy7PM7Jqqog4R_HtbbQQ_240",
+    "ScH0zbysQKCbisaBWfC9uw_180",
+    "XGRAUZTmsPD6VHCK3Ksk-Q_300",
+    "ECjMwwOBqPh8Gs1rg0x8jA_180",
+    "mRv77-0EbxsE5O8MW_SEvA_000",
+    "r8OFBKqHRBGR-LVrfy6FIA_180"
+  ],
+  "dataset_context": {
+    "total_images_processed": 33864,
+    "expert_confirmed_images": 793,
+    "pickle_file_columns": [
+      "f",
+      "pano_id",
+      "flags",
+      "indicator",
+      "flags_correct"
+    ]
+  },
+  "files_included": {
+    "csv_file": "disputed_images_pickle_data.csv",
+    "images_folder": "images/",
+    "total_images_copied": 57
+  }
+}

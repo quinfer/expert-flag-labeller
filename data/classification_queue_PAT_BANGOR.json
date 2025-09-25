@@ -1,0 +1,473 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:45.519531",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 22,
+    "total_boxes": 22
+  },
+  "images": [
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/4L3z0MRekBlvfyfrh6pkOA_000.jpg",
+      "cropped_image": "/images/BANGOR/4L3z0MRekBlvfyfrh6pkOA_000_box0.jpg",
+      "filename": "4L3z0MRekBlvfyfrh6pkOA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9112457633018494,
+      "relative_size": 0.05499117646007097,
+      "position_factor": 0.6034701466560364,
+      "box": [
+        0.15273571014404297,
+        134.4654998779297,
+        94.54425811767578,
+        373.09271240234375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_4L3z0MRekBlvfyfrh6pkOA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/j5PKM5zrYtipjg72uFmjIw_240.jpg",
+      "cropped_image": "/images/BANGOR/j5PKM5zrYtipjg72uFmjIw_240_box0.jpg",
+      "filename": "j5PKM5zrYtipjg72uFmjIw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9486392140388489,
+      "relative_size": 0.041675168947382414,
+      "position_factor": 0.8080266773700714,
+      "box": [
+        351.80401611328125,
+        69.25780487060547,
+        511.0252685546875,
+        176.46804809570312
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_j5PKM5zrYtipjg72uFmjIw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/FQ9TX0WUsQsahpFiNCGlew_180.jpg",
+      "cropped_image": "/images/BANGOR/FQ9TX0WUsQsahpFiNCGlew_180_box0.jpg",
+      "filename": "FQ9TX0WUsQsahpFiNCGlew_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9241077303886414,
+      "relative_size": 0.028141253064114836,
+      "position_factor": 0.8495799720287323,
+      "box": [
+        225.4036865234375,
+        0.8129501342773438,
+        285.78057861328125,
+        191.7246856689453
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_FQ9TX0WUsQsahpFiNCGlew_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/LjAF1JPXIaDdJ7M0tZZ6bQ_060.jpg",
+      "cropped_image": "/images/BANGOR/LjAF1JPXIaDdJ7M0tZZ6bQ_060_box0.jpg",
+      "filename": "LjAF1JPXIaDdJ7M0tZZ6bQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9001597166061401,
+      "relative_size": 0.01888962319819413,
+      "position_factor": 0.8362804964184761,
+      "box": [
+        256.6593933105469,
+        22.05824851989746,
+        303.42547607421875,
+        187.50271606445312
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_LjAF1JPXIaDdJ7M0tZZ6bQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/w2n-h8VCoJ8DVGVxsqBuNQ_000.jpg",
+      "cropped_image": "/images/BANGOR/w2n-h8VCoJ8DVGVxsqBuNQ_000_box0.jpg",
+      "filename": "w2n-h8VCoJ8DVGVxsqBuNQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9359965324401855,
+      "relative_size": 0.017748619707003855,
+      "position_factor": 0.6745607614517212,
+      "box": [
+        323.023193359375,
+        159.18850708007812,
+        397.06524658203125,
+        257.37371826171875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_w2n-h8VCoJ8DVGVxsqBuNQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/fSl__Eq_IybmVur__YRMXA_120.jpg",
+      "cropped_image": "/images/BANGOR/fSl__Eq_IybmVur__YRMXA_120_box0.jpg",
+      "filename": "fSl__Eq_IybmVur__YRMXA_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9146034121513367,
+      "relative_size": 0.016568550726060848,
+      "position_factor": 0.8972954787313938,
+      "box": [
+        282.9434509277344,
+        0.938715934753418,
+        335.3145751953125,
+        130.5230712890625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_fSl__Eq_IybmVur__YRMXA_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/gvBB71ATpnQW06R2FS5SIg_300.jpg",
+      "cropped_image": "/images/BANGOR/gvBB71ATpnQW06R2FS5SIg_300_box0.jpg",
+      "filename": "gvBB71ATpnQW06R2FS5SIg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9181830883026123,
+      "relative_size": 0.014792395889476211,
+      "position_factor": 0.6313799619674683,
+      "box": [
+        568.5555419921875,
+        192.39895629882812,
+        638.1702270507812,
+        279.4346923828125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_gvBB71ATpnQW06R2FS5SIg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/4w4jEFghuBFEnwfjd4QXQQ_240.jpg",
+      "cropped_image": "/images/BANGOR/4w4jEFghuBFEnwfjd4QXQQ_240_box0.jpg",
+      "filename": "4w4jEFghuBFEnwfjd4QXQQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.915034294128418,
+      "relative_size": 0.011973433759905276,
+      "position_factor": 0.6614581942558289,
+      "box": [
+        119.02916717529297,
+        139.7047882080078,
+        150.89112854003906,
+        293.62872314453125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_4w4jEFghuBFEnwfjd4QXQQ_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/cFisiCPp2S2ApKdk9VzioQ_300.jpg",
+      "cropped_image": "/images/BANGOR/cFisiCPp2S2ApKdk9VzioQ_300_box0.jpg",
+      "filename": "cFisiCPp2S2ApKdk9VzioQ_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.923865556716919,
+      "relative_size": 0.009844744013889795,
+      "position_factor": 0.6703059673309326,
+      "box": [
+        383.5557861328125,
+        183.0530548095703,
+        455.68896484375,
+        238.95530700683594
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_cFisiCPp2S2ApKdk9VzioQ_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/Cheo2zhbGJnJv3sZm0ilSg_180.jpg",
+      "cropped_image": "/images/BANGOR/Cheo2zhbGJnJv3sZm0ilSg_180_box0.jpg",
+      "filename": "Cheo2zhbGJnJv3sZm0ilSg_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9104811549186707,
+      "relative_size": 0.010014815765808293,
+      "position_factor": 0.8138729006052017,
+      "box": [
+        328.2099609375,
+        40.673885345458984,
+        354.35528564453125,
+        197.5688018798828
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_Cheo2zhbGJnJv3sZm0ilSg_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/jPVk5hxpOjDonRox-nZD0A_240.jpg",
+      "cropped_image": "/images/BANGOR/jPVk5hxpOjDonRox-nZD0A_240_box0.jpg",
+      "filename": "jPVk5hxpOjDonRox-nZD0A_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.900402307510376,
+      "relative_size": 0.008431415198171522,
+      "position_factor": 0.8306986391544342,
+      "box": [
+        301.385986328125,
+        55.89655303955078,
+        334.3039245605469,
+        160.80918884277344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_jPVk5hxpOjDonRox-nZD0A_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/XOzlYa7hjJteTDTbtDLbZA_060.jpg",
+      "cropped_image": "/images/BANGOR/XOzlYa7hjJteTDTbtDLbZA_060_box0.jpg",
+      "filename": "XOzlYa7hjJteTDTbtDLbZA_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9141989350318909,
+      "relative_size": 0.0057750536307139555,
+      "position_factor": 0.6051959037780762,
+      "box": [
+        409.1075439453125,
+        230.32904052734375,
+        462.03662109375,
+        275.02020263671875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_XOzlYa7hjJteTDTbtDLbZA_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/nEgfucLQmSodjUiB2sHeFw_000.jpg",
+      "cropped_image": "/images/BANGOR/nEgfucLQmSodjUiB2sHeFw_000_box0.jpg",
+      "filename": "nEgfucLQmSodjUiB2sHeFw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9414450526237488,
+      "relative_size": 0.0046791172834673486,
+      "position_factor": 0.5421275615692138,
+      "box": [
+        236.18856811523438,
+        262.39520263671875,
+        267.4609069824219,
+        323.6815185546875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_nEgfucLQmSodjUiB2sHeFw_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/U1CKB_LntblW_T6uRm-1AQ_120.jpg",
+      "cropped_image": "/images/BANGOR/U1CKB_LntblW_T6uRm-1AQ_120_box0.jpg",
+      "filename": "U1CKB_LntblW_T6uRm-1AQ_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9100577235221863,
+      "relative_size": 0.004829389001224626,
+      "position_factor": 0.5845073461532593,
+      "box": [
+        444.344482421875,
+        233.4515380859375,
+        474.81103515625,
+        298.3790588378906
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_U1CKB_LntblW_T6uRm-1AQ_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/vZVgqQZrLPidwUZ6ynajXg_120.jpg",
+      "cropped_image": "/images/BANGOR/vZVgqQZrLPidwUZ6ynajXg_120_box0.jpg",
+      "filename": "vZVgqQZrLPidwUZ6ynajXg_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9043997526168823,
+      "relative_size": 0.004790932518443469,
+      "position_factor": 0.6604940056800842,
+      "box": [
+        450.9400939941406,
+        182.83633422851562,
+        479.42352294921875,
+        251.73133850097656
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_vZVgqQZrLPidwUZ6ynajXg_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/JAOZw8Zp0eRqJe6g7mIUpQ_120.jpg",
+      "cropped_image": "/images/BANGOR/JAOZw8Zp0eRqJe6g7mIUpQ_120_box0.jpg",
+      "filename": "JAOZw8Zp0eRqJe6g7mIUpQ_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9017021059989929,
+      "relative_size": 0.004731813848681732,
+      "position_factor": 0.9595599584281445,
+      "box": [
+        135.5332794189453,
+        0.07954120635986328,
+        173.09130859375,
+        51.683712005615234
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_JAOZw8Zp0eRqJe6g7mIUpQ_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/lfaZrQguKRD0doSu-qYq0g_060.jpg",
+      "cropped_image": "/images/BANGOR/lfaZrQguKRD0doSu-qYq0g_060_box0.jpg",
+      "filename": "lfaZrQguKRD0doSu-qYq0g_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9044178128242493,
+      "relative_size": 0.004539636921813326,
+      "position_factor": 0.559427011013031,
+      "box": [
+        113.08621215820312,
+        252.71766662597656,
+        144.87246704101562,
+        311.21575927734375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_lfaZrQguKRD0doSu-qYq0g_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/NCIBpl9JWE66CPx4LCfNJQ_120.jpg",
+      "cropped_image": "/images/BANGOR/NCIBpl9JWE66CPx4LCfNJQ_120_box0.jpg",
+      "filename": "NCIBpl9JWE66CPx4LCfNJQ_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9056374430656433,
+      "relative_size": 0.004399719067498609,
+      "position_factor": 0.6802934050559998,
+      "box": [
+        255.26702880859375,
+        158.40895080566406,
+        274.7691650390625,
+        250.81549072265625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_NCIBpl9JWE66CPx4LCfNJQ_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/MZq-GPkQ-iI9KN3gHK0Usw_240.jpg",
+      "cropped_image": "/images/BANGOR/MZq-GPkQ-iI9KN3gHK0Usw_240_box0.jpg",
+      "filename": "MZq-GPkQ-iI9KN3gHK0Usw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9056475162506104,
+      "relative_size": 0.0036880463857494306,
+      "position_factor": 0.652670395374298,
+      "box": [
+        280.1074523925781,
+        183.83714294433594,
+        299.74951171875,
+        260.7447509765625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_MZq-GPkQ-iI9KN3gHK0Usw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/Tb2wFW54lfQi9j4z706Hyg_240.jpg",
+      "cropped_image": "/images/BANGOR/Tb2wFW54lfQi9j4z706Hyg_240_box0.jpg",
+      "filename": "Tb2wFW54lfQi9j4z706Hyg_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.910539984703064,
+      "relative_size": 0.0032697248692147695,
+      "position_factor": 0.7316817879676819,
+      "box": [
+        304.2092590332031,
+        149.37632751464844,
+        334.1743469238281,
+        194.07098388671875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_Tb2wFW54lfQi9j4z706Hyg_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/k3dWSachG3trgcxLAf0QLg_000.jpg",
+      "cropped_image": "/images/BANGOR/k3dWSachG3trgcxLAf0QLg_000_box0.jpg",
+      "filename": "k3dWSachG3trgcxLAf0QLg_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9166695475578308,
+      "relative_size": 0.002455138400226815,
+      "position_factor": 0.5340435266494751,
+      "box": [
+        35.66997528076172,
+        274.4400634765625,
+        56.82135772705078,
+        321.9842224121094
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_k3dWSachG3trgcxLAf0QLg_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BANGOR",
+      "original_image": "/images/BANGOR/7sqze4PjT96qA_APsaVrtA_180.jpg",
+      "cropped_image": "/images/BANGOR/7sqze4PjT96qA_APsaVrtA_180_box0.jpg",
+      "filename": "7sqze4PjT96qA_APsaVrtA_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9076856970787048,
+      "relative_size": 0.0011525442171546273,
+      "position_factor": 0.5297636747360229,
+      "box": [
+        279.62298583984375,
+        283.6944274902344,
+        293.3011169433594,
+        318.20806884765625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BANGOR/composite_7sqze4PjT96qA_APsaVrtA_180_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

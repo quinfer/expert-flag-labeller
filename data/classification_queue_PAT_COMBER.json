@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:49.536683",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 9,
+    "total_boxes": 9
+  },
+  "images": [
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/HYs-xvwjJh3bUN7O6C6Kuw_240.jpg",
+      "cropped_image": "/images/COMBER/HYs-xvwjJh3bUN7O6C6Kuw_240_box0.jpg",
+      "filename": "HYs-xvwjJh3bUN7O6C6Kuw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9265260100364685,
+      "relative_size": 0.0446636116726353,
+      "position_factor": 0.8626262560486794,
+      "box": [
+        0.16250133514404297,
+        0.3666210174560547,
+        104.63809967041016,
+        175.47177124023438
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_HYs-xvwjJh3bUN7O6C6Kuw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/npOqdSFKg1tl9DsoD65oIw_180.jpg",
+      "cropped_image": "/images/COMBER/npOqdSFKg1tl9DsoD65oIw_180_box0.jpg",
+      "filename": "npOqdSFKg1tl9DsoD65oIw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9020257592201233,
+      "relative_size": 0.016483032962906066,
+      "position_factor": 0.7713458776473999,
+      "box": [
+        21.901309967041016,
+        95.74264526367188,
+        88.62052917480469,
+        196.93463134765625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_npOqdSFKg1tl9DsoD65oIw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/3o7TUZI9QiPQ62U6slHzSA_000.jpg",
+      "cropped_image": "/images/COMBER/3o7TUZI9QiPQ62U6slHzSA_000_box0.jpg",
+      "filename": "3o7TUZI9QiPQ62U6slHzSA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9124754071235657,
+      "relative_size": 0.015380124455674604,
+      "position_factor": 0.7691371202468872,
+      "box": [
+        145.21401977539062,
+        112.42547607421875,
+        234.3772735595703,
+        183.07901000976562
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_3o7TUZI9QiPQ62U6slHzSA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/QT7K4fZq868hq0Q1L1eWlg_300.jpg",
+      "cropped_image": "/images/COMBER/QT7K4fZq868hq0Q1L1eWlg_300_box0.jpg",
+      "filename": "QT7K4fZq868hq0Q1L1eWlg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9103975892066956,
+      "relative_size": 0.01396592047176494,
+      "position_factor": 0.6525771617889404,
+      "box": [
+        3.9678776264190674,
+        139.3271484375,
+        38.41862487792969,
+        305.37408447265625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_QT7K4fZq868hq0Q1L1eWlg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/zX9Ql2ACLTnO5EfOKKg55g_060.jpg",
+      "cropped_image": "/images/COMBER/zX9Ql2ACLTnO5EfOKKg55g_060_box0.jpg",
+      "filename": "zX9Ql2ACLTnO5EfOKKg55g_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9124341011047363,
+      "relative_size": 0.01314442884259961,
+      "position_factor": 0.8281977593898773,
+      "box": [
+        351.1651306152344,
+        65.64022064208984,
+        411.9140319824219,
+        154.2666473388672
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_zX9Ql2ACLTnO5EfOKKg55g_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/vNaL74NmMsj0hexVJ4FS8w_300.jpg",
+      "cropped_image": "/images/COMBER/vNaL74NmMsj0hexVJ4FS8w_300_box0.jpg",
+      "filename": "vNaL74NmMsj0hexVJ4FS8w_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9004690051078796,
+      "relative_size": 0.010638077580852041,
+      "position_factor": 0.882934033870697,
+      "box": [
+        402.13372802734375,
+        46.167137145996094,
+        477.90045166015625,
+        103.67729949951172
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_vNaL74NmMsj0hexVJ4FS8w_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/Ua7Y_W32C09C93JSAF_UmA_060.jpg",
+      "cropped_image": "/images/COMBER/Ua7Y_W32C09C93JSAF_UmA_060_box0.jpg",
+      "filename": "Ua7Y_W32C09C93JSAF_UmA_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9160234332084656,
+      "relative_size": 0.006686218962129544,
+      "position_factor": 0.8677653998136521,
+      "box": [
+        405.55401611328125,
+        34.08481216430664,
+        432.6452941894531,
+        135.17547607421875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_Ua7Y_W32C09C93JSAF_UmA_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/24oWiqyplniLi37y-T9mTg_240.jpg",
+      "cropped_image": "/images/COMBER/24oWiqyplniLi37y-T9mTg_240_box0.jpg",
+      "filename": "24oWiqyplniLi37y-T9mTg_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9002934098243713,
+      "relative_size": 0.006713021333140148,
+      "position_factor": 0.7709704995155334,
+      "box": [
+        99.34253692626953,
+        101.63465881347656,
+        129.93215942382812,
+        191.52310180664062
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_24oWiqyplniLi37y-T9mTg_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "COMBER",
+      "original_image": "/images/COMBER/5eaPwW52Uw0_8TocQeBQwQ_240.jpg",
+      "cropped_image": "/images/COMBER/5eaPwW52Uw0_8TocQeBQwQ_240_box0.jpg",
+      "filename": "5eaPwW52Uw0_8TocQeBQwQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.905143141746521,
+      "relative_size": 0.0023721906134142046,
+      "position_factor": 0.41343116760253906,
+      "box": [
+        74.27227783203125,
+        349.990234375,
+        93.38883209228516,
+        400.81787109375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/COMBER/composite_5eaPwW52Uw0_8TocQeBQwQ_240_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

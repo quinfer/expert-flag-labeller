@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:49.824100",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 9,
+    "total_boxes": 9
+  },
+  "images": [
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/ASUOACfT5iNX0kKBYFqJ7w_300.jpg",
+      "cropped_image": "/images/HOLYWOOD/ASUOACfT5iNX0kKBYFqJ7w_300_box0.jpg",
+      "filename": "ASUOACfT5iNX0kKBYFqJ7w_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9408692717552185,
+      "relative_size": 0.047150254262484544,
+      "position_factor": 0.8742681205272674,
+      "box": [
+        1.1322641372680664,
+        1.6174697875976562,
+        123.59590148925781,
+        159.3193359375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HOLYWOOD/composite_ASUOACfT5iNX0kKBYFqJ7w_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/TpjOwdDc_UBXgRQzlAaRmg_300.jpg",
+      "cropped_image": "/images/HOLYWOOD/TpjOwdDc_UBXgRQzlAaRmg_300_box0.jpg",
+      "filename": "TpjOwdDc_UBXgRQzlAaRmg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9028722643852234,
+      "relative_size": 0.027204584192561186,
+      "position_factor": 0.926789578795433,
+      "box": [
+        273.6213073730469,
+        0.10370254516601562,
+        392.7952880859375,
+        93.60563659667969
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HOLYWOOD/composite_TpjOwdDc_UBXgRQzlAaRmg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/Pcr0Hkl-7mnp7wDIsvPx1Q_300.jpg",
+      "cropped_image": "/images/HOLYWOOD/Pcr0Hkl-7mnp7wDIsvPx1Q_300_box0.jpg",
+      "filename": "Pcr0Hkl-7mnp7wDIsvPx1Q_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9130538105964661,
+      "relative_size": 0.01859509991194727,
+      "position_factor": 0.8467736601829529,
+      "box": [
+        526.3560791015625,
+        57.98811340332031,
+        621.3806762695312,
+        138.1416015625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HOLYWOOD/composite_Pcr0Hkl-7mnp7wDIsvPx1Q_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/JHLohPby8RgEbIaTLw59cg_180.jpg",
+      "cropped_image": "/images/HOLYWOOD/JHLohPby8RgEbIaTLw59cg_180_box0.jpg",
+      "filename": "JHLohPby8RgEbIaTLw59cg_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9153721928596497,
+      "relative_size": 0.01211837852173403,
+      "position_factor": 0.693865978717804,
+      "box": [
+        74.85502624511719,
+        160.1096954345703,
+        144.14915466308594,
+        231.74185180664062
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HOLYWOOD/composite_JHLohPby8RgEbIaTLw59cg_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/5w7-hGe9BjXz-ol7Bf2bSw_000.jpg",
+      "cropped_image": "/images/HOLYWOOD/5w7-hGe9BjXz-ol7Bf2bSw_000_box0.jpg",
+      "filename": "5w7-hGe9BjXz-ol7Bf2bSw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9085673689842224,
+      "relative_size": 0.008033445097421463,
+      "position_factor": 0.8804010868072509,
+      "box": [
+        454.8946533203125,
+        31.753334045410156,
+        491.627197265625,
+        121.3332748413086
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HOLYWOOD/composite_5w7-hGe9BjXz-ol7Bf2bSw_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/ueINPMUk4ykgGUsNluEEhA_120.jpg",
+      "cropped_image": "/images/HOLYWOOD/ueINPMUk4ykgGUsNluEEhA_120_box0.jpg",
+      "filename": "ueINPMUk4ykgGUsNluEEhA_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.943418562412262,
+      "relative_size": 0.006546334056547493,
+      "position_factor": 0.5417486190795898,
+      "box": [
+        266.0158996582031,
+        263.2843017578125,
+        310.71063232421875,
+        323.2774658203125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HOLYWOOD/composite_ueINPMUk4ykgGUsNluEEhA_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/jKIFonheba4ZcDicgJy96Q_300.jpg",
+      "cropped_image": "/images/HOLYWOOD/jKIFonheba4ZcDicgJy96Q_300_box0.jpg",
+      "filename": "jKIFonheba4ZcDicgJy96Q_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9126476049423218,
+      "relative_size": 0.005588264735328608,
+      "position_factor": 0.5797230124473571,
+      "box": [
+        137.2039031982422,
+        231.8604278564453,
+        168.038330078125,
+        306.0941162109375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Small detection - possibly distant flag",
+      "composite_image": "/images/HOLYWOOD/composite_jKIFonheba4ZcDicgJy96Q_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/i-Iao3LF21FrnYk2GUCE7A_120.jpg",
+      "cropped_image": "/images/HOLYWOOD/i-Iao3LF21FrnYk2GUCE7A_120_box0.jpg",
+      "filename": "i-Iao3LF21FrnYk2GUCE7A_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9102933406829834,
+      "relative_size": 0.005089079198303353,
+      "position_factor": 0.6273866772651673,
+      "box": [
+        551.4232788085938,
+        204.12596130371094,
+        581.7681884765625,
+        272.819091796875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HOLYWOOD/composite_i-Iao3LF21FrnYk2GUCE7A_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HOLYWOOD",
+      "original_image": "/images/HOLYWOOD/SxwcBWFwJC6lK9A1okA5hQ_000.jpg",
+      "cropped_image": "/images/HOLYWOOD/SxwcBWFwJC6lK9A1okA5hQ_000_box0.jpg",
+      "filename": "SxwcBWFwJC6lK9A1okA5hQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9151031970977783,
+      "relative_size": 0.001646470825758115,
+      "position_factor": 0.6326358318328857,
+      "box": [
+        230.59188842773438,
+        219.6003875732422,
+        252.32876586914062,
+        250.62574768066406
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HOLYWOOD/composite_SxwcBWFwJC6lK9A1okA5hQ_000_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

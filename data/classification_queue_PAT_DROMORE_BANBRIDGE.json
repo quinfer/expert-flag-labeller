@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:50.067869",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 7,
+    "total_boxes": 7
+  },
+  "images": [
+    {
+      "town": "DROMORE_BANBRIDGE",
+      "original_image": "/images/DROMORE_BANBRIDGE/LYW7Zw8Y8Wb8-KV28CSo8g_000.jpg",
+      "cropped_image": "/images/DROMORE_BANBRIDGE/LYW7Zw8Y8Wb8-KV28CSo8g_000_box0.jpg",
+      "filename": "LYW7Zw8Y8Wb8-KV28CSo8g_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9067946672439575,
+      "relative_size": 0.020726766236213834,
+      "position_factor": 0.8973641484975815,
+      "box": [
+        115.03856658935547,
+        30.761417388916016,
+        236.578369140625,
+        100.61247253417969
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DROMORE_BANBRIDGE/composite_LYW7Zw8Y8Wb8-KV28CSo8g_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DROMORE_BANBRIDGE",
+      "original_image": "/images/DROMORE_BANBRIDGE/B7XxRImHSn8t--_McgaHKg_180.jpg",
+      "cropped_image": "/images/DROMORE_BANBRIDGE/B7XxRImHSn8t--_McgaHKg_180_box0.jpg",
+      "filename": "B7XxRImHSn8t--_McgaHKg_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9198150038719177,
+      "relative_size": 0.01376920791997378,
+      "position_factor": 0.8198452174663544,
+      "box": [
+        186.63223266601562,
+        64.79308319091797,
+        242.4658966064453,
+        165.80503845214844
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DROMORE_BANBRIDGE/composite_B7XxRImHSn8t--_McgaHKg_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DROMORE_BANBRIDGE",
+      "original_image": "/images/DROMORE_BANBRIDGE/5AT8-B0YFgjclsLYpOpu-w_240.jpg",
+      "cropped_image": "/images/DROMORE_BANBRIDGE/5AT8-B0YFgjclsLYpOpu-w_240_box0.jpg",
+      "filename": "5AT8-B0YFgjclsLYpOpu-w_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9260272979736328,
+      "relative_size": 0.0047667449077306405,
+      "position_factor": 0.5044282674789429,
+      "box": [
+        45.89178466796875,
+        278.1753845214844,
+        70.92938995361328,
+        356.15643310546875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DROMORE_BANBRIDGE/composite_5AT8-B0YFgjclsLYpOpu-w_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DROMORE_BANBRIDGE",
+      "original_image": "/images/DROMORE_BANBRIDGE/CkuKBXmpBYDpZfxe75-Qfw_120.jpg",
+      "cropped_image": "/images/DROMORE_BANBRIDGE/CkuKBXmpBYDpZfxe75-Qfw_120_box0.jpg",
+      "filename": "CkuKBXmpBYDpZfxe75-Qfw_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9276726841926575,
+      "relative_size": 0.004510240440255302,
+      "position_factor": 0.689864182472229,
+      "box": [
+        119.00823974609375,
+        171.59222412109375,
+        153.3531951904297,
+        225.38162231445312
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DROMORE_BANBRIDGE/composite_CkuKBXmpBYDpZfxe75-Qfw_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DROMORE_BANBRIDGE",
+      "original_image": "/images/DROMORE_BANBRIDGE/PPJA0h1UaqNnBD2Myic7bw_000.jpg",
+      "cropped_image": "/images/DROMORE_BANBRIDGE/PPJA0h1UaqNnBD2Myic7bw_000_box0.jpg",
+      "filename": "PPJA0h1UaqNnBD2Myic7bw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.91441410779953,
+      "relative_size": 0.004461643940394424,
+      "position_factor": 0.6128936767578125,
+      "box": [
+        336.30224609375,
+        225.96661376953125,
+        378.25286865234375,
+        269.52947998046875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DROMORE_BANBRIDGE/composite_PPJA0h1UaqNnBD2Myic7bw_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DROMORE_BANBRIDGE",
+      "original_image": "/images/DROMORE_BANBRIDGE/KnqNZt7_eN27u65QTrmmuA_300.jpg",
+      "cropped_image": "/images/DROMORE_BANBRIDGE/KnqNZt7_eN27u65QTrmmuA_300_box0.jpg",
+      "filename": "KnqNZt7_eN27u65QTrmmuA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9273725748062134,
+      "relative_size": 0.003825391652185317,
+      "position_factor": 0.7280759572982788,
+      "box": [
+        195.7456817626953,
+        148.9132843017578,
+        226.93594360351562,
+        199.1494903564453
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DROMORE_BANBRIDGE/composite_KnqNZt7_eN27u65QTrmmuA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DROMORE_BANBRIDGE",
+      "original_image": "/images/DROMORE_BANBRIDGE/jUbYfwcW2h98KNmHwp4NBw_240.jpg",
+      "cropped_image": "/images/DROMORE_BANBRIDGE/jUbYfwcW2h98KNmHwp4NBw_240_box0.jpg",
+      "filename": "jUbYfwcW2h98KNmHwp4NBw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9312607645988464,
+      "relative_size": 0.0030935747465946407,
+      "position_factor": 0.5252429008483886,
+      "box": [
+        154.9482879638672,
+        280.285888671875,
+        181.84133911132812,
+        327.4031982421875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DROMORE_BANBRIDGE/composite_jUbYfwcW2h98KNmHwp4NBw_240_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

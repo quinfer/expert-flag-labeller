@@ -82,23 +82,51 @@
 
 ---
 
+## 🎨 **Visualization Documentation**
+
+### **Enhanced Figure Suite**
+
+11. **[VISUALIZATION_INTEGRATION_GUIDE.md](./VISUALIZATION_INTEGRATION_GUIDE.md)**
+    - **Purpose**: Complete visualization integration documentation
+    - **Contains**: All 5 figures with real data, integration instructions
+    - **Usage**: Visual evidence integration for thesis writing
+
+12. **[FIGURE_DESCRIPTIONS_FOR_RAG.md](./FIGURE_DESCRIPTIONS_FOR_RAG.md)**
+    - **Purpose**: Detailed figure descriptions optimized for AI writing assistant
+    - **Contains**: Complete descriptions, real data sources, integration quotes
+    - **Usage**: Accurate figure integration in thesis sections
+
+13. **Figure Files** (`scripts/thesis_figures/`)
+    - **figure1_attention_analysis.png/pdf**: Real flag attention analysis
+    - **figure2_performance_breakthrough.png/pdf**: 169x improvement evidence  
+    - **figure3_economic_consolidation.png/pdf**: Real class distribution analysis
+    - **figure4_hierarchical_prompting.png/pdf**: Learned architecture weights
+    - **figure5_complete_results_summary.png/pdf**: Full validation timeline
+
+---
+
 ## 🔬 **Technical Implementation**
 
 ### **Code and Reproducibility**
 
-11. **Training Scripts**:
+14. **Training Scripts**:
     - `train_rs5m_oversampling_ablation.py` - Main ablation study script
     - `train_rs5m_cross_validation.py` - Cross-validation script
     - `analyze_multi_seed_results.py` - Multi-seed analysis
 
-12. **Dataset Implementations**:
+15. **Dataset Implementations**:
     - `datasets/ni_flags_super_consolidated.py` - 7-class dataset
     - `datasets/ni_flags_consolidated.py` - 16-class dataset
 
-13. **Configuration Files**:
+16. **Configuration Files**:
     - All shell scripts for reproduction
     - Environment setup documentation
     - Parameter configurations
+
+17. **Visualization Scripts**:
+    - `scripts/create_thesis_visualizations.py` - Main visualization generator
+    - `scripts/enhanced_real_data_figures.py` - Enhanced real data figures
+    - `scripts/run_thesis_visualizations.py` - Figure generation runner
 
 ---
 

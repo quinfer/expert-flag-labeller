@@ -1,0 +1,578 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:44.949224",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 27,
+    "total_boxes": 27
+  },
+  "images": [
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/cAsW6OX4B0UKKYpFyNEDxw_300.jpg",
+      "cropped_image": "/images/DUNGANNON/cAsW6OX4B0UKKYpFyNEDxw_300_box0.jpg",
+      "filename": "cAsW6OX4B0UKKYpFyNEDxw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9085234999656677,
+      "relative_size": 0.03697940037773605,
+      "position_factor": 0.7311428189277649,
+      "box": [
+        214.18386840820312,
+        94.93571472167969,
+        312.3700256347656,
+        249.20147705078125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_cAsW6OX4B0UKKYpFyNEDxw_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/-p9rm9ET-x9h5y3bbatuzg_240.jpg",
+      "cropped_image": "/images/DUNGANNON/-p9rm9ET-x9h5y3bbatuzg_240_box0.jpg",
+      "filename": "-p9rm9ET-x9h5y3bbatuzg_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9239876866340637,
+      "relative_size": 0.02514655744294771,
+      "position_factor": 0.8431955873966217,
+      "box": [
+        290.54217529296875,
+        23.435569763183594,
+        357.4956970214844,
+        177.27407836914062
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_-p9rm9ET-x9h5y3bbatuzg_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/eZkT2A6VLMKrGjptylwUHw_300.jpg",
+      "cropped_image": "/images/DUNGANNON/eZkT2A6VLMKrGjptylwUHw_300_box0.jpg",
+      "filename": "eZkT2A6VLMKrGjptylwUHw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9147858023643494,
+      "relative_size": 0.02139306974460169,
+      "position_factor": 0.8299476981163025,
+      "box": [
+        573.7711181640625,
+        42.01878356933594,
+        639.3450317382812,
+        175.64816284179688
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_eZkT2A6VLMKrGjptylwUHw_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/pzWLFXhZ9qSsG7rFNWWYEQ_240.jpg",
+      "cropped_image": "/images/DUNGANNON/pzWLFXhZ9qSsG7rFNWWYEQ_240_box0.jpg",
+      "filename": "pzWLFXhZ9qSsG7rFNWWYEQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9351404309272766,
+      "relative_size": 0.02025447430090992,
+      "position_factor": 0.8685936272144318,
+      "box": [
+        129.75521850585938,
+        36.45148468017578,
+        216.8116455078125,
+        131.74867248535156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_pzWLFXhZ9qSsG7rFNWWYEQ_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/3kkD61N6RSoj26GKsx8nHw_060.jpg",
+      "cropped_image": "/images/DUNGANNON/3kkD61N6RSoj26GKsx8nHw_060_box0.jpg",
+      "filename": "3kkD61N6RSoj26GKsx8nHw_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9462148547172546,
+      "relative_size": 0.019195142895775917,
+      "position_factor": 0.5175875902175904,
+      "box": [
+        278.0309753417969,
+        249.50173950195312,
+        344.38848876953125,
+        367.98614501953125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_3kkD61N6RSoj26GKsx8nHw_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/DOavzrDdQUrPCa9CZqkldw_300.jpg",
+      "cropped_image": "/images/DUNGANNON/DOavzrDdQUrPCa9CZqkldw_300_box0.jpg",
+      "filename": "DOavzrDdQUrPCa9CZqkldw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9228270053863525,
+      "relative_size": 0.019039520650268288,
+      "position_factor": 0.7681455433368682,
+      "box": [
+        222.87490844726562,
+        106.21387481689453,
+        315.3344421386719,
+        190.55982971191406
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_DOavzrDdQUrPCa9CZqkldw_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/0bCtpqCEUYdnXwG5_JbpPg_180.jpg",
+      "cropped_image": "/images/DUNGANNON/0bCtpqCEUYdnXwG5_JbpPg_180_box0.jpg",
+      "filename": "0bCtpqCEUYdnXwG5_JbpPg_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9142146706581116,
+      "relative_size": 0.01895072972920332,
+      "position_factor": 0.9309054046869278,
+      "box": [
+        551.10888671875,
+        0.2773094177246094,
+        639.4298706054688,
+        88.16377258300781
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_0bCtpqCEUYdnXwG5_JbpPg_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/F8ciDl6sToGl1xvobN-kaQ_000.jpg",
+      "cropped_image": "/images/DUNGANNON/F8ciDl6sToGl1xvobN-kaQ_000_box0.jpg",
+      "filename": "F8ciDl6sToGl1xvobN-kaQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9331769943237305,
+      "relative_size": 0.015252802311683808,
+      "position_factor": 0.6933500170707703,
+      "box": [
+        292.5492248535156,
+        156.14187622070312,
+        370.4214172363281,
+        236.37010192871094
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_F8ciDl6sToGl1xvobN-kaQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/lqxqrvUKTW4FlwG5FqErQQ_000.jpg",
+      "cropped_image": "/images/DUNGANNON/lqxqrvUKTW4FlwG5FqErQQ_000_box0.jpg",
+      "filename": "lqxqrvUKTW4FlwG5FqErQQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9055991172790527,
+      "relative_size": 0.013224389178847105,
+      "position_factor": 0.490498423576355,
+      "box": [
+        332.36962890625,
+        290.96728515625,
+        409.5005798339844,
+        361.1947326660156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_lqxqrvUKTW4FlwG5FqErQQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/vmATmVvY-lj_Byut9KYnRw_180.jpg",
+      "cropped_image": "/images/DUNGANNON/vmATmVvY-lj_Byut9KYnRw_180_box0.jpg",
+      "filename": "vmATmVvY-lj_Byut9KYnRw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9405834674835205,
+      "relative_size": 0.011919684244463723,
+      "position_factor": 0.6084598302841187,
+      "box": [
+        45.8988037109375,
+        218.43292236328125,
+        121.82228088378906,
+        282.7384948730469
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_vmATmVvY-lj_Byut9KYnRw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/OSoj5fdZTXTnqb5J_2wAXQ_180.jpg",
+      "cropped_image": "/images/DUNGANNON/OSoj5fdZTXTnqb5J_2wAXQ_180_box0.jpg",
+      "filename": "OSoj5fdZTXTnqb5J_2wAXQ_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9072197079658508,
+      "relative_size": 0.012515495558318435,
+      "position_factor": 0.7423919677734375,
+      "box": [
+        232.3118896484375,
+        122.21128845214844,
+        292.398681640625,
+        207.52699279785156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_OSoj5fdZTXTnqb5J_2wAXQ_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/ESdW6qa2dBL0HwP6NyMdcg_120.jpg",
+      "cropped_image": "/images/DUNGANNON/ESdW6qa2dBL0HwP6NyMdcg_120_box0.jpg",
+      "filename": "ESdW6qa2dBL0HwP6NyMdcg_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9059405326843262,
+      "relative_size": 0.011344981736904174,
+      "position_factor": 0.7310462832450867,
+      "box": [
+        572.060546875,
+        131.93707275390625,
+        629.8674926757812,
+        212.3236846923828
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_ESdW6qa2dBL0HwP6NyMdcg_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/fDpklVM0yvdk2VT2DPOEEw_060.jpg",
+      "cropped_image": "/images/DUNGANNON/fDpklVM0yvdk2VT2DPOEEw_060_box0.jpg",
+      "filename": "fDpklVM0yvdk2VT2DPOEEw_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9306994080543518,
+      "relative_size": 0.00900009975194621,
+      "position_factor": 0.49640798568725586,
+      "box": [
+        18.31111717224121,
+        282.00457763671875,
+        64.0550537109375,
+        362.59320068359375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_fDpklVM0yvdk2VT2DPOEEw_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/axRSAHByzmqRf1c8qvUirQ_060.jpg",
+      "cropped_image": "/images/DUNGANNON/axRSAHByzmqRf1c8qvUirQ_060_box0.jpg",
+      "filename": "axRSAHByzmqRf1c8qvUirQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9500091075897217,
+      "relative_size": 0.007444877173746249,
+      "position_factor": 0.6509002804756164,
+      "box": [
+        239.9141082763672,
+        178.24583435058594,
+        273.6630859375,
+        268.601806640625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_axRSAHByzmqRf1c8qvUirQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/d0zormCU5WJrFUhl0d8wTQ_060.jpg",
+      "cropped_image": "/images/DUNGANNON/d0zormCU5WJrFUhl0d8wTQ_060_box0.jpg",
+      "filename": "d0zormCU5WJrFUhl0d8wTQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9152269959449768,
+      "relative_size": 0.00724966742426858,
+      "position_factor": 0.6693517923355102,
+      "box": [
+        60.93698501586914,
+        182.18728637695312,
+        111.39076232910156,
+        241.04241943359375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_d0zormCU5WJrFUhl0d8wTQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/BGJCRY1iDy_w4AD1uWVwUw_180.jpg",
+      "cropped_image": "/images/DUNGANNON/BGJCRY1iDy_w4AD1uWVwUw_180_box0.jpg",
+      "filename": "BGJCRY1iDy_w4AD1uWVwUw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9238544702529907,
+      "relative_size": 0.006917757159607163,
+      "position_factor": 0.6111928701400757,
+      "box": [
+        237.79100036621094,
+        195.07815551757812,
+        264.1451416015625,
+        302.594970703125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_BGJCRY1iDy_w4AD1uWVwUw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/uFGCXpftWihS4ai6E_I6FQ_000.jpg",
+      "cropped_image": "/images/DUNGANNON/uFGCXpftWihS4ai6E_I6FQ_000_box0.jpg",
+      "filename": "uFGCXpftWihS4ai6E_I6FQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9253513813018799,
+      "relative_size": 0.006753221844560358,
+      "position_factor": 0.8699729323387146,
+      "box": [
+        363.18310546875,
+        37.61686706542969,
+        393.5130615234375,
+        128.81777954101562
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_uFGCXpftWihS4ai6E_I6FQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/EK9W0dtlnWXVmt3tUiKi6Q_000.jpg",
+      "cropped_image": "/images/DUNGANNON/EK9W0dtlnWXVmt3tUiKi6Q_000_box0.jpg",
+      "filename": "EK9W0dtlnWXVmt3tUiKi6Q_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9192017912864685,
+      "relative_size": 0.006515433871757068,
+      "position_factor": 0.5247812986373901,
+      "box": [
+        82.3221435546875,
+        274.3229675292969,
+        127.07382202148438,
+        333.95697021484375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_EK9W0dtlnWXVmt3tUiKi6Q_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/uO8j-nWgJjCEWqpYBqmI7A_240.jpg",
+      "cropped_image": "/images/DUNGANNON/uO8j-nWgJjCEWqpYBqmI7A_240_box0.jpg",
+      "filename": "uO8j-nWgJjCEWqpYBqmI7A_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9022384285926819,
+      "relative_size": 0.006884342972682589,
+      "position_factor": 0.7441259622573853,
+      "box": [
+        202.9377899169922,
+        117.29133605957031,
+        233.27935791015625,
+        210.22743225097656
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_uO8j-nWgJjCEWqpYBqmI7A_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/1InlkErLl40cH4GpkCcFlQ_240.jpg",
+      "cropped_image": "/images/DUNGANNON/1InlkErLl40cH4GpkCcFlQ_240_box0.jpg",
+      "filename": "1InlkErLl40cH4GpkCcFlQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9349045753479004,
+      "relative_size": 0.006108688867936962,
+      "position_factor": 0.5816844224929809,
+      "box": [
+        350.6138916015625,
+        239.74978637695312,
+        395.3390197753906,
+        295.69415283203125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_1InlkErLl40cH4GpkCcFlQ_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/rUPLh5GUPmY8tzmLmoK6CA_120.jpg",
+      "cropped_image": "/images/DUNGANNON/rUPLh5GUPmY8tzmLmoK6CA_120_box0.jpg",
+      "filename": "rUPLh5GUPmY8tzmLmoK6CA_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9046503901481628,
+      "relative_size": 0.00666531434124181,
+      "position_factor": 0.505836033821106,
+      "box": [
+        243.36550903320312,
+        279.7198181152344,
+        280.7181396484375,
+        352.81005859375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_rUPLh5GUPmY8tzmLmoK6CA_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/VDnt8lH-RTBJWG8kKb4JJg_060.jpg",
+      "cropped_image": "/images/DUNGANNON/VDnt8lH-RTBJWG8kKb4JJg_060_box0.jpg",
+      "filename": "VDnt8lH-RTBJWG8kKb4JJg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9216205477714539,
+      "relative_size": 0.0059009026898309,
+      "position_factor": 0.5344901323318482,
+      "box": [
+        189.18228149414062,
+        268.4253234863281,
+        230.1471710205078,
+        327.42730712890625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_VDnt8lH-RTBJWG8kKb4JJg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/4eqhh_qB0m_8ify9Ik4J2A_300.jpg",
+      "cropped_image": "/images/DUNGANNON/4eqhh_qB0m_8ify9Ik4J2A_300_box0.jpg",
+      "filename": "4eqhh_qB0m_8ify9Ik4J2A_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9045257568359375,
+      "relative_size": 0.006180195583714862,
+      "position_factor": 0.5889254212379456,
+      "box": [
+        129.45797729492188,
+        237.7261505126953,
+        179.3643341064453,
+        288.4493103027344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_4eqhh_qB0m_8ify9Ik4J2A_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/A-4L-cn-e2JKs137VTzhAA_060.jpg",
+      "cropped_image": "/images/DUNGANNON/A-4L-cn-e2JKs137VTzhAA_060_box0.jpg",
+      "filename": "A-4L-cn-e2JKs137VTzhAA_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9150059223175049,
+      "relative_size": 0.005172236925291713,
+      "position_factor": 0.5750722646713257,
+      "box": [
+        73.48664093017578,
+        222.48751831054688,
+        94.90072631835938,
+        321.41998291015625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_A-4L-cn-e2JKs137VTzhAA_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/1Tlpsi_5gn3eSfaAAozT8Q_240.jpg",
+      "cropped_image": "/images/DUNGANNON/1Tlpsi_5gn3eSfaAAozT8Q_240_box0.jpg",
+      "filename": "1Tlpsi_5gn3eSfaAAozT8Q_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.909278392791748,
+      "relative_size": 0.004740490476757486,
+      "position_factor": 0.6107391595840455,
+      "box": [
+        194.69454956054688,
+        206.05572509765625,
+        217.2351837158203,
+        292.1981506347656
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_1Tlpsi_5gn3eSfaAAozT8Q_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/pw2XABM7nS2VPO7F5nR0aA_180.jpg",
+      "cropped_image": "/images/DUNGANNON/pw2XABM7nS2VPO7F5nR0aA_180_box0.jpg",
+      "filename": "pw2XABM7nS2VPO7F5nR0aA_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9149672389030457,
+      "relative_size": 0.0025968064110958268,
+      "position_factor": 0.561472725868225,
+      "box": [
+        71.94377899169922,
+        258.15960693359375,
+        95.58274841308594,
+        303.1553039550781
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_pw2XABM7nS2VPO7F5nR0aA_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DUNGANNON",
+      "original_image": "/images/DUNGANNON/j-hwcplwMhJeznzKit15iQ_060.jpg",
+      "cropped_image": "/images/DUNGANNON/j-hwcplwMhJeznzKit15iQ_060_box0.jpg",
+      "filename": "j-hwcplwMhJeznzKit15iQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9108970165252686,
+      "relative_size": 0.0012481568421208067,
+      "position_factor": 0.4400687694549561,
+      "box": [
+        459.86309814453125,
+        343.7469482421875,
+        477.36065673828125,
+        372.96502685546875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DUNGANNON/composite_j-hwcplwMhJeznzKit15iQ_060_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

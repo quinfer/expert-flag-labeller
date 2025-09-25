@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:47.895551",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 13,
+    "total_boxes": 13
+  },
+  "images": [
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/2jRbBQCB3Vyifrt0xZBgkQ_060.jpg",
+      "cropped_image": "/images/DERRY_CITY/2jRbBQCB3Vyifrt0xZBgkQ_060_box0.jpg",
+      "filename": "2jRbBQCB3Vyifrt0xZBgkQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9357357621192932,
+      "relative_size": 0.0351909494382005,
+      "position_factor": 0.8627434462308884,
+      "box": [
+        145.77325439453125,
+        22.46500015258789,
+        256.00872802734375,
+        153.223388671875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_2jRbBQCB3Vyifrt0xZBgkQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/Tr5KgOZLrspiNZCn1hSDow_120.jpg",
+      "cropped_image": "/images/DERRY_CITY/Tr5KgOZLrspiNZCn1hSDow_120_box0.jpg",
+      "filename": "Tr5KgOZLrspiNZCn1hSDow_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9226544499397278,
+      "relative_size": 0.024489368743640227,
+      "position_factor": 0.8106630951166153,
+      "box": [
+        297.1407165527344,
+        57.32978439331055,
+        375.6959228515625,
+        185.02145385742188
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_Tr5KgOZLrspiNZCn1hSDow_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/T-kumh4JRpHAk-972AEiMw_300.jpg",
+      "cropped_image": "/images/DERRY_CITY/T-kumh4JRpHAk-972AEiMw_300_box0.jpg",
+      "filename": "T-kumh4JRpHAk-972AEiMw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9326786398887634,
+      "relative_size": 0.018785705489882502,
+      "position_factor": 0.644219183921814,
+      "box": [
+        213.4145965576172,
+        176.22247314453125,
+        288.1527099609375,
+        279.1769714355469
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_T-kumh4JRpHAk-972AEiMw_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/bDD9VVGTxf30CiG6VOFTKw_060.jpg",
+      "cropped_image": "/images/DERRY_CITY/bDD9VVGTxf30CiG6VOFTKw_060_box0.jpg",
+      "filename": "bDD9VVGTxf30CiG6VOFTKw_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9019708037376404,
+      "relative_size": 0.01652909398674396,
+      "position_factor": 0.8858513623476029,
+      "box": [
+        145.81373596191406,
+        23.45510482788086,
+        214.0628662109375,
+        122.6551513671875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_bDD9VVGTxf30CiG6VOFTKw_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/jOKm5PQIWjOxJOd7Bd1G7A_180.jpg",
+      "cropped_image": "/images/DERRY_CITY/jOKm5PQIWjOxJOd7Bd1G7A_180_box0.jpg",
+      "filename": "jOKm5PQIWjOxJOd7Bd1G7A_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9280039072036743,
+      "relative_size": 0.013914076909088635,
+      "position_factor": 0.7106139302253723,
+      "box": [
+        258.31982421875,
+        127.81858825683594,
+        307.97442626953125,
+        242.5955810546875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_jOKm5PQIWjOxJOd7Bd1G7A_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/zMJstV263EfFfN_M5m2eOQ_000.jpg",
+      "cropped_image": "/images/DERRY_CITY/zMJstV263EfFfN_M5m2eOQ_000_box0.jpg",
+      "filename": "zMJstV263EfFfN_M5m2eOQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9217164516448975,
+      "relative_size": 0.013631245403540503,
+      "position_factor": 0.8738959580659866,
+      "box": [
+        456.0445861816406,
+        48.208980560302734,
+        541.94873046875,
+        113.20419311523438
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_zMJstV263EfFfN_M5m2eOQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/H_srYMFtfd_mVFATN3cYHA_240.jpg",
+      "cropped_image": "/images/DERRY_CITY/H_srYMFtfd_mVFATN3cYHA_240_box0.jpg",
+      "filename": "H_srYMFtfd_mVFATN3cYHA_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9047764539718628,
+      "relative_size": 0.012904009411522565,
+      "position_factor": 0.8603220596909523,
+      "box": [
+        316.64898681640625,
+        0.4337596893310547,
+        346.35601806640625,
+        178.35400390625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_H_srYMFtfd_mVFATN3cYHA_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/0HFjAfZTYxrNniqOLLapjg_120.jpg",
+      "cropped_image": "/images/DERRY_CITY/0HFjAfZTYxrNniqOLLapjg_120_box0.jpg",
+      "filename": "0HFjAfZTYxrNniqOLLapjg_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9332387447357178,
+      "relative_size": 0.010490188146204673,
+      "position_factor": 0.7817312359809876,
+      "box": [
+        336.1114501953125,
+        109.0230712890625,
+        406.1624755859375,
+        170.36094665527344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_0HFjAfZTYxrNniqOLLapjg_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/X_j2f0rV5gERq72h9oOcCg_060.jpg",
+      "cropped_image": "/images/DERRY_CITY/X_j2f0rV5gERq72h9oOcCg_060_box0.jpg",
+      "filename": "X_j2f0rV5gERq72h9oOcCg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9254848957061768,
+      "relative_size": 0.00911950829218597,
+      "position_factor": 0.7747389018535614,
+      "box": [
+        377.2037353515625,
+        118.99127960205078,
+        451.3890075683594,
+        169.34292602539062
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_X_j2f0rV5gERq72h9oOcCg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/y_WlXSH6iAXAcvqKsjhGKQ_000.jpg",
+      "cropped_image": "/images/DERRY_CITY/y_WlXSH6iAXAcvqKsjhGKQ_000_box0.jpg",
+      "filename": "y_WlXSH6iAXAcvqKsjhGKQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9219574928283691,
+      "relative_size": 0.00847338157287595,
+      "position_factor": 0.7573936581611633,
+      "box": [
+        302.2946472167969,
+        127.3221435546875,
+        364.3913269042969,
+        183.21397399902344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_y_WlXSH6iAXAcvqKsjhGKQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/Qw8E5tk0i8QyuaybQwmjXQ_060.jpg",
+      "cropped_image": "/images/DERRY_CITY/Qw8E5tk0i8QyuaybQwmjXQ_060_box0.jpg",
+      "filename": "Qw8E5tk0i8QyuaybQwmjXQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9173210859298706,
+      "relative_size": 0.0068827704550631095,
+      "position_factor": 0.7778492450714112,
+      "box": [
+        255.766357421875,
+        118.72955322265625,
+        315.8847351074219,
+        165.6234130859375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_Qw8E5tk0i8QyuaybQwmjXQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/vBW0Mw6lgHItWhvNtZ1SSA_180.jpg",
+      "cropped_image": "/images/DERRY_CITY/vBW0Mw6lgHItWhvNtZ1SSA_180_box0.jpg",
+      "filename": "vBW0Mw6lgHItWhvNtZ1SSA_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9063922762870789,
+      "relative_size": 0.006427743133353942,
+      "position_factor": 0.7279097437858582,
+      "box": [
+        426.8753356933594,
+        150.64492797851562,
+        482.9095153808594,
+        197.63059997558594
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_vBW0Mw6lgHItWhvNtZ1SSA_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "DERRY CITY",
+      "original_image": "/images/DERRY_CITY/elyu-2AW9z2OpkA2rz7-Vw_240.jpg",
+      "cropped_image": "/images/DERRY_CITY/elyu-2AW9z2OpkA2rz7-Vw_240_box0.jpg",
+      "filename": "elyu-2AW9z2OpkA2rz7-Vw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9106121063232422,
+      "relative_size": 0.003715851362107969,
+      "position_factor": 0.6961861848831177,
+      "box": [
+        376.4973449707031,
+        168.77871704101562,
+        406.1521911621094,
+        220.10296630859375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/DERRY_CITY/composite_elyu-2AW9z2OpkA2rz7-Vw_240_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

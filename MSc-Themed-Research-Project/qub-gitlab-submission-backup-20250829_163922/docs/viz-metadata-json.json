@@ -1,0 +1,316 @@
+{
+  "project": {
+    "title": "Economic Domain Knowledge Trumps Traditional Machine Learning",
+    "author": "Barry Quinn",
+    "institution": "Queen's University Belfast",
+    "date": "2025-08-25",
+    "version": "1.0.0"
+  },
+  "figures": [
+    {
+      "id": "figure_1",
+      "title": "Visual Attention Analysis on Real Flag Imagery",
+      "type": "attention_heatmap",
+      "placement": "methodology_section",
+      "data_source": {
+        "dataset": "ni_flags_2030",
+        "samples_shown": 4,
+        "model": "RS5M_ViT_H_14",
+        "method": "GradCAM_plus_plus"
+      },
+      "key_metrics": {
+        "attention_concentration_consolidated": 0.87,
+        "attention_concentration_baseline": 0.23,
+        "improvement_factor": 3.78
+      },
+      "visual_elements": [
+        "heatmap_overlay",
+        "original_images",
+        "attention_scores",
+        "colorbar"
+      ],
+      "production": {
+        "software": "matplotlib_3.7.1",
+        "resolution_dpi": 300,
+        "format": "pdf",
+        "colormap": "jet",
+        "size_inches": [8, 6]
+      },
+      "real_data_points": {
+        "union_jack_attention": 0.92,
+        "ulster_banner_attention": 0.88,
+        "tricolour_attention": 0.76,
+        "background_noise": 0.15
+      }
+    },
+    {
+      "id": "figure_2",
+      "title": "The 169× Performance Breakthrough",
+      "type": "bar_chart_with_ci",
+      "placement": "results_section",
+      "data_source": {
+        "validation_method": "5_fold_cross_validation",
+        "n_samples": 2030,
+        "n_folds": 5,
+        "random_seed": 42
+      },
+      "key_metrics": {
+        "baseline_accuracy": 0.0056,
+        "economic_consolidation_accuracy": 0.9478,
+        "improvement_factor": 169.3,
+        "confidence_level": 0.95
+      },
+      "visual_elements": [
+        "bars",
+        "error_bars",
+        "significance_annotations",
+        "log_scale_y_axis"
+      ],
+      "statistical_validation": {
+        "mcnemars_chi_squared": 1847.3,
+        "p_value": 0.001,
+        "confidence_intervals": {
+          "baseline": [0.0048, 0.0064],
+          "economic": [0.9444, 0.9512]
+        }
+      },
+      "production": {
+        "software": "seaborn_0.12.2",
+        "resolution_dpi": 300,
+        "format": "pdf",
+        "size_inches": [10, 6]
+      }
+    },
+    {
+      "id": "figure_3",
+      "title": "Class Distribution and Economic Impact",
+      "type": "dual_axis_bar_chart",
+      "placement": "methodology_section",
+      "data_source": {
+        "total_samples": 4204,
+        "original_classes": 70,
+        "consolidated_classes": 7,
+        "imbalance_ratio": 169
+      },
+      "economic_categories": [
+        {
+          "name": "Major_Unionist",
+          "samples": 2047,
+          "original_classes": 18,
+          "impact_score": 0.65
+        },
+        {
+          "name": "Cultural_Fraternal",
+          "samples": 892,
+          "original_classes": 12,
+          "impact_score": 0.43
+        },
+        {
+          "name": "International",
+          "samples": 485,
+          "original_classes": 8,
+          "impact_score": 0.71
+        },
+        {
+          "name": "Nationalist",
+          "samples": 354,
+          "original_classes": 6,
+          "impact_score": -0.12
+        },
+        {
+          "name": "Commemorative",
+          "samples": 233,
+          "original_classes": 11,
+          "impact_score": 0.89
+        },
+        {
+          "name": "Sport_Community",
+          "samples": 178,
+          "original_classes": 9,
+          "impact_score": 0.56
+        },
+        {
+          "name": "Paramilitary",
+          "samples": 15,
+          "original_classes": 6,
+          "impact_score": -0.94
+        }
+      ],
+      "visual_elements": [
+        "stacked_bars",
+        "color_gradient",
+        "dual_y_axes",
+        "annotations"
+      ],
+      "production": {
+        "software": "plotly_5.14.1",
+        "resolution_dpi": 300,
+        "format": "pdf",
+        "color_scheme": "RdYlGn",
+        "size_inches": [12, 6]
+      }
+    },
+    {
+      "id": "figure_4",
+      "title": "Hierarchical Prompting Architecture with Learned Fusion Weights",
+      "type": "hierarchical_architecture_diagram",
+      "placement": "methodology_section",
+      "data_source": {
+        "model": "RS5M_hierarchical",
+        "training_script": "train_rs5m_hierarchical_fixed.py",
+        "convergence_epoch": 20
+      },
+      "learned_fusion_weights": {
+        "full": {
+          "percentage": 31.8,
+          "description": "Complete descriptive prompts"
+        },
+        "context": {
+          "percentage": 23.1,
+          "description": "Physical mounting context"
+        },
+        "category": {
+          "percentage": 23.0,
+          "description": "Broad categorization"
+        },
+        "flag": {
+          "percentage": 22.2,
+          "description": "Specific flag type"
+        }
+      },
+      "hierarchy_levels": [
+        "Category Level: National, Proscribed, Sport, etc.",
+        "Flag Level: Union Jack, Ulster Banner, GAA, etc.",
+        "Context Level: Building mounted, Lamppost mounted, etc.",
+        "Full Level: Complete descriptive prompts"
+      ],
+      "attention_heatmap": {
+        "flag_symbols": 0.8,
+        "background": 0.2,
+        "mounting_context": 0.4,
+        "text_symbols": 0.3
+      },
+      "visual_elements": [
+        "4_level_hierarchy_blocks",
+        "pie_chart_fusion_weights",
+        "training_dynamics_plot",
+        "attention_pattern_heatmap"
+      ],
+      "production": {
+        "software": "matplotlib_3.7.1",
+        "resolution_dpi": 300,
+        "format": "pdf",
+        "size_inches": [12, 8]
+      }
+    },
+    {
+      "id": "figure_5",
+      "title": "Experimental Timeline and Validation Journey",
+      "type": "timeline_chart",
+      "placement": "experiments_section",
+      "data_source": {
+        "duration_weeks": 12,
+        "total_experiments": 47,
+        "validation_methods": [
+          "cross_validation",
+          "multi_seed",
+          "temporal_split"
+        ]
+      },
+      "milestones": [
+        {
+          "week": 1,
+          "event": "Initial experiments",
+          "performance": 0.7263,
+          "status": "bug_present"
+        },
+        {
+          "week": 3,
+          "event": "Bug discovery",
+          "performance": 0.0056,
+          "status": "true_baseline"
+        },
+        {
+          "week": 4,
+          "event": "Traditional methods",
+          "performance": 0.0891,
+          "status": "validated"
+        },
+        {
+          "week": 6,
+          "event": "Economic theory",
+          "performance": 0.674,
+          "status": "promising"
+        },
+        {
+          "week": 8,
+          "event": "Hierarchical implementation",
+          "performance": 0.843,
+          "status": "improving"
+        },
+        {
+          "week": 9,
+          "event": "Full consolidation",
+          "performance": 0.9478,
+          "status": "breakthrough"
+        },
+        {
+          "week": 10,
+          "event": "5-fold validation",
+          "performance": 0.9323,
+          "status": "confirmed"
+        },
+        {
+          "week": 11,
+          "event": "Multi-seed validation",
+          "performance": 0.9457,
+          "status": "robust"
+        },
+        {
+          "week": 12,
+          "event": "Ablation studies",
+          "performance": "complete",
+          "status": "published"
+        }
+      ],
+      "visual_elements": [
+        "timeline_axis",
+        "milestone_markers",
+        "performance_line",
+        "validation_badges"
+      ],
+      "production": {
+        "software": "matplotlib_3.7.1",
+        "resolution_dpi": 300,
+        "format": "pdf",
+        "size_inches": [14, 6]
+      }
+    }
+  ],
+  "global_settings": {
+    "color_blind_safe": true,
+    "wcag_compliance": "AA",
+    "font_family": "Arial",
+    "font_size_minimum": 10,
+    "export_formats": ["pdf", "svg", "png"],
+    "reproducibility": {
+      "random_seed": 42,
+      "data_available": true,
+      "code_available": true,
+      "hardware": "M1_Pro_MPS"
+    }
+  },
+  "usage_statistics": {
+    "total_real_data_points": 2030,
+    "synthetic_data_points": 0,
+    "experiments_visualized": 47,
+    "validation_folds": 5,
+    "confidence_level": 0.95
+  },
+  "citations_required": [
+    "matplotlib_hunter2007",
+    "seaborn_waskom2021",
+    "plotly_inc2015",
+    "gradcam_selvaraju2017"
+  ]
+}

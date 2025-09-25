@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:49.252478",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 9,
+    "total_boxes": 9
+  },
+  "images": [
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/-r-11fE4q9hq4cK2NrPShw_120.jpg",
+      "cropped_image": "/images/WHITEHEAD/-r-11fE4q9hq4cK2NrPShw_120_box0.jpg",
+      "filename": "-r-11fE4q9hq4cK2NrPShw_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9067558646202087,
+      "relative_size": 0.022728258392347912,
+      "position_factor": 0.6765660524368287,
+      "box": [
+        0.14271259307861328,
+        162.00405883789062,
+        103.59609985351562,
+        251.99139404296875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_-r-11fE4q9hq4cK2NrPShw_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/Z4le8AfQF49iDK-Tu0A-vg_060.jpg",
+      "cropped_image": "/images/WHITEHEAD/Z4le8AfQF49iDK-Tu0A-vg_060_box0.jpg",
+      "filename": "Z4le8AfQF49iDK-Tu0A-vg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.912331223487854,
+      "relative_size": 0.02219672447979491,
+      "position_factor": 0.8925354272127152,
+      "box": [
+        285.68963623046875,
+        0.2739524841308594,
+        352.0497131347656,
+        137.28070068359375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_Z4le8AfQF49iDK-Tu0A-vg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/bx3s1jrD82breoNzd09FlQ_000.jpg",
+      "cropped_image": "/images/WHITEHEAD/bx3s1jrD82breoNzd09FlQ_000_box0.jpg",
+      "filename": "bx3s1jrD82breoNzd09FlQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9317489266395569,
+      "relative_size": 0.015006439008035954,
+      "position_factor": 0.6631717324256897,
+      "box": [
+        195.5620574951172,
+        181.0587921142578,
+        284.6145935058594,
+        250.08139038085938
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_bx3s1jrD82breoNzd09FlQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/0pwEdBiqypljk98moyLdug_000.jpg",
+      "cropped_image": "/images/WHITEHEAD/0pwEdBiqypljk98moyLdug_000_box0.jpg",
+      "filename": "0pwEdBiqypljk98moyLdug_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9071287512779236,
+      "relative_size": 0.008880311196107016,
+      "position_factor": 0.6093961715698242,
+      "box": [
+        19.919309616088867,
+        222.14547729492188,
+        85.24345397949219,
+        277.8274230957031
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_0pwEdBiqypljk98moyLdug_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/ij9Gwf1gTPaNltTUB1IF0Q_060.jpg",
+      "cropped_image": "/images/WHITEHEAD/ij9Gwf1gTPaNltTUB1IF0Q_060_box0.jpg",
+      "filename": "ij9Gwf1gTPaNltTUB1IF0Q_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9411818385124207,
+      "relative_size": 0.007831979658399178,
+      "position_factor": 0.4681582450866699,
+      "box": [
+        504.7534484863281,
+        304.7189636230469,
+        549.7338256835938,
+        376.0384826660156
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_ij9Gwf1gTPaNltTUB1IF0Q_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/73I5UFp-To7ekpt-6NNT4A_180.jpg",
+      "cropped_image": "/images/WHITEHEAD/73I5UFp-To7ekpt-6NNT4A_180_box0.jpg",
+      "filename": "73I5UFp-To7ekpt-6NNT4A_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9321756958961487,
+      "relative_size": 0.006862250615933476,
+      "position_factor": 0.6032197117805481,
+      "box": [
+        251.6887664794922,
+        222.9602813720703,
+        297.0544738769531,
+        284.9184875488281
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_73I5UFp-To7ekpt-6NNT4A_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/Him866JR8RA0LaoXlljWwg_300.jpg",
+      "cropped_image": "/images/WHITEHEAD/Him866JR8RA0LaoXlljWwg_300_box0.jpg",
+      "filename": "Him866JR8RA0LaoXlljWwg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9176550507545471,
+      "relative_size": 0.0034131128638478004,
+      "position_factor": 0.9197288960218429,
+      "box": [
+        497.32122802734375,
+        29.340473175048828,
+        529.0465698242188,
+        73.40653991699219
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_Him866JR8RA0LaoXlljWwg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/jEz5QkbXJIKr1GdK55jyeQ_000.jpg",
+      "cropped_image": "/images/WHITEHEAD/jEz5QkbXJIKr1GdK55jyeQ_000_box0.jpg",
+      "filename": "jEz5QkbXJIKr1GdK55jyeQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9026191830635071,
+      "relative_size": 0.0016482627987625164,
+      "position_factor": 0.5756728649139404,
+      "box": [
+        254.59127807617188,
+        250.38241577148438,
+        270.52392578125,
+        292.7563171386719
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_jEz5QkbXJIKr1GdK55jyeQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "WHITEHEAD",
+      "original_image": "/images/WHITEHEAD/n22PT8gAup3jjCi6aOx2ew_060.jpg",
+      "cropped_image": "/images/WHITEHEAD/n22PT8gAup3jjCi6aOx2ew_060_box0.jpg",
+      "filename": "n22PT8gAup3jjCi6aOx2ew_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9027601480484009,
+      "relative_size": 0.0014056996068302395,
+      "position_factor": 0.5480033159255981,
+      "box": [
+        342.2528076171875,
+        274.2566833496094,
+        361.418212890625,
+        304.299072265625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WHITEHEAD/composite_n22PT8gAup3jjCi6aOx2ew_060_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

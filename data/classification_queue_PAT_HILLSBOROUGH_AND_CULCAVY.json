@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:48.643402",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 12,
+    "total_boxes": 12
+  },
+  "images": [
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/1hlyW5gy965OQqlLxun6Qg_180.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/1hlyW5gy965OQqlLxun6Qg_180_box0.jpg",
+      "filename": "1hlyW5gy965OQqlLxun6Qg_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9319055080413818,
+      "relative_size": 0.026855273308825645,
+      "position_factor": 0.705859363079071,
+      "box": [
+        156.494384765625,
+        147.6129913330078,
+        291.8379821777344,
+        228.88702392578125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_1hlyW5gy965OQqlLxun6Qg_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/_zDhzamPXL9YDaWB9Ppfug_180.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/_zDhzamPXL9YDaWB9Ppfug_180_box0.jpg",
+      "filename": "_zDhzamPXL9YDaWB9Ppfug_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9148132801055908,
+      "relative_size": 0.021331228545714395,
+      "position_factor": 0.8307378321886063,
+      "box": [
+        316.68255615234375,
+        63.2874870300293,
+        413.6764831542969,
+        153.3680877685547
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite__zDhzamPXL9YDaWB9Ppfug_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/-tjQLxmLZUl18bd12mO14A_000.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/-tjQLxmLZUl18bd12mO14A_000_box0.jpg",
+      "filename": "-tjQLxmLZUl18bd12mO14A_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9072553515434265,
+      "relative_size": 0.020556185215563686,
+      "position_factor": 0.8084905326366425,
+      "box": [
+        414.68377685546875,
+        78.46033477783203,
+        510.1341247558594,
+        166.67178344726562
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_-tjQLxmLZUl18bd12mO14A_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/9AutIwuX-CpmJ8b6zzdcWA_180.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/9AutIwuX-CpmJ8b6zzdcWA_180_box0.jpg",
+      "filename": "9AutIwuX-CpmJ8b6zzdcWA_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9024819135665894,
+      "relative_size": 0.015679311351050274,
+      "position_factor": 0.7560626029968261,
+      "box": [
+        319.8624267578125,
+        108.92160034179688,
+        387.8970947265625,
+        203.31826782226562
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_9AutIwuX-CpmJ8b6zzdcWA_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/HpT4IIhdHdDPl7KOy-uWug_120.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/HpT4IIhdHdDPl7KOy-uWug_120_box0.jpg",
+      "filename": "HpT4IIhdHdDPl7KOy-uWug_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9106808304786682,
+      "relative_size": 0.012532899834582167,
+      "position_factor": 0.7141699075698853,
+      "box": [
+        210.6485137939453,
+        145.5082244873047,
+        279.2356262207031,
+        220.3542938232422
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_HpT4IIhdHdDPl7KOy-uWug_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/H2i2E41WJyAx5fZPBNAkrQ_120.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/H2i2E41WJyAx5fZPBNAkrQ_120_box0.jpg",
+      "filename": "H2i2E41WJyAx5fZPBNAkrQ_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9260150194168091,
+      "relative_size": 0.009900831109547426,
+      "position_factor": 0.7319314777851105,
+      "box": [
+        234.5224609375,
+        126.6341781616211,
+        279.65277099609375,
+        216.4935302734375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_H2i2E41WJyAx5fZPBNAkrQ_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/4cxIlBnvLy9WNi42RJj4iQ_120.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/4cxIlBnvLy9WNi42RJj4iQ_120_box0.jpg",
+      "filename": "4cxIlBnvLy9WNi42RJj4iQ_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.928049623966217,
+      "relative_size": 0.008843924565242104,
+      "position_factor": 0.6843816637992859,
+      "box": [
+        156.45138549804688,
+        165.1223602294922,
+        205.57180786132812,
+        238.86911010742188
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_4cxIlBnvLy9WNi42RJj4iQ_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/k9nT4LHeuRFcw--S-dR7WA_300.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/k9nT4LHeuRFcw--S-dR7WA_300_box0.jpg",
+      "filename": "k9nT4LHeuRFcw--S-dR7WA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9051501154899597,
+      "relative_size": 0.00787255146745565,
+      "position_factor": 0.7123031854629517,
+      "box": [
+        398.17877197265625,
+        147.33944702148438,
+        442.0072937011719,
+        220.9124755859375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_k9nT4LHeuRFcw--S-dR7WA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/ZOEa_2NSDZbJqnjnIZjfUQ_240.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/ZOEa_2NSDZbJqnjnIZjfUQ_240_box0.jpg",
+      "filename": "ZOEa_2NSDZbJqnjnIZjfUQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9008772969245911,
+      "relative_size": 0.007166547026668013,
+      "position_factor": 0.6264598846435547,
+      "box": [
+        205.99874877929688,
+        211.25057983398438,
+        258.765380859375,
+        266.8807678222656
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_ZOEa_2NSDZbJqnjnIZjfUQ_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/UkI_0L1_h6rpv1zZC2zgMw_060.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/UkI_0L1_h6rpv1zZC2zgMw_060_box0.jpg",
+      "filename": "UkI_0L1_h6rpv1zZC2zgMw_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9080989956855774,
+      "relative_size": 0.006916986137537151,
+      "position_factor": 0.7540223896503448,
+      "box": [
+        528.09033203125,
+        125.60237884521484,
+        572.6048583984375,
+        189.24896240234375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_UkI_0L1_h6rpv1zZC2zgMw_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/9zB9Dpp9cKsNCTqcWWysBA_240.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/9zB9Dpp9cKsNCTqcWWysBA_240_box0.jpg",
+      "filename": "9zB9Dpp9cKsNCTqcWWysBA_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9015573263168335,
+      "relative_size": 0.00669006907219627,
+      "position_factor": 0.7215272665023804,
+      "box": [
+        0.0566256046295166,
+        132.42715454101562,
+        29.975051879882812,
+        224.0179443359375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_9zB9Dpp9cKsNCTqcWWysBA_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "HILLSBOROUGH AND CULCAVY",
+      "original_image": "/images/HILLSBOROUGH_AND_CULCAVY/4fbtiDzXHJmaxM7pYwOyPw_060.jpg",
+      "cropped_image": "/images/HILLSBOROUGH_AND_CULCAVY/4fbtiDzXHJmaxM7pYwOyPw_060_box0.jpg",
+      "filename": "4fbtiDzXHJmaxM7pYwOyPw_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9013813138008118,
+      "relative_size": 0.005311550488480065,
+      "position_factor": 0.959636002779007,
+      "box": [
+        264.4195251464844,
+        0.04482269287109375,
+        306.6019287109375,
+        51.62109375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/HILLSBOROUGH_AND_CULCAVY/composite_4fbtiDzXHJmaxM7pYwOyPw_060_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

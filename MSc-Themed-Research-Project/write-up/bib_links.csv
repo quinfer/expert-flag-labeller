@@ -1,0 +1,44 @@
+key,year,title,authors,journal,doi,link
+wikipedia_hhi,2025,Herfindahl–Hirschman index,Wikipedia,,,https://en.wikipedia.org/wiki/Herfindahl–Hirschman_index
+usdoj_antitrust_division,2024,Herfindahl-Hirschman Index,U.S. Department of Justice Antitrust Division,,,https://www.justice.gov/atr/herfindahl-hirschman-index
+zhang2024rs5m,2024,RS5M,"Zhang, Yiqun and Zhou, Zilun and Sheng, Huiying and others",IEEE Transactions on Geoscience and Remote Sensing,,
+li2023efficient,2023,Efficient prompt tuning of large vision-language model for fine-grained ship classification,"Li, Long and Wang, Fengxiang and Zheng, Xiangtao and Liu, Xinwang",IEEE Transactions on Geoscience and Remote Sensing,,
+liu2023grounding,2023,Grounding {DINO,"Liu, Shilong and Zeng, Zhaoyang and Ren, Tianhe and Li, Feng and Zhang, Hao and Yang, Jie and Li, Chunyuan and Yang, Jianwei and Su, Hang and Zhu, Jun and others",arXiv preprint arXiv:2303.05499,,
+zhou2022conditional,2022,Conditional prompt learning for vision-language models,"Zhou, Kaiyang and Yang, Jingkang and Loy, Chen Change and Liu, Ziwei",,,
+zhou2022learning,2022,Learning to prompt for vision-language models,"Zhou, Kaiyang and Yang, Jingkang and Loy, Chen Change and Liu, Ziwei",International Journal of Computer Vision,,
+crawford2019excavating,2021,Excavating {AI,"Crawford, Kate and Paglen, Trevor",AI \& Society,,
+radford2021learning,2021,Learning transferable visual models from natural language supervision,"Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and others",,,
+jia2021scaling,2021,Scaling up visual and vision-language representation learning with noisy text supervision,"Jia, Chao and Yang, Yinfei and Xia, Ye and Chen, Yi-Ting and Parekh, Zarana and Pham, Hieu and Le, Quoc and Sung, Yun-Hsuan and Li, Zhen and Duerig, Tom",,,
+komarova2020visual,2020,Visual symbols and communal relations in post-conflict {Belfast,"Komarova, Milena and Torney, Denis",Journal of Material Culture,,
+johnson2019survey,2019,Survey on deep learning with class imbalance,"Johnson, Justin M and Khoshgoftaar, Taghi M",Journal of Big Data,,
+lin2017focal,2017,Focal loss for dense object detection,"Lin, Tsung-Yi and Goyal, Priya and Girshick, Ross and He, Kaiming and Doll{\'a",,,
+gebru2017using,2017,Using deep learning and {Google Street View,"Gebru, Timnit and Krause, Jonathan and Wang, Yilun and Chen, Duyun and Deng, Jia and Aiden, Erez Lieberman and Fei-Fei, Li",Proceedings of the National Academy of Sciences,,
+brezina2016herfindahl,2016,Herfindahl–Hirschman index level of concentration values modification and analysis of their change,"Brezina, Ivan and Pekár, Juraj and Čičková, Zuzana and Reiff, Marián",Central European Journal of Operations Research,,
+krawczyk2016learning,2016,Learning from imbalanced data: Open challenges and future directions,"Krawczyk, Bartosz",Progress in Artificial Intelligence,,
+bryan2015parades,2015,"Parades, flags, carnivals, and riots: Public space, contestation, and transformation in {Northern Ireland","Bryan, Dominic",Peace and Conflict: Journal of Peace Psychology,,
+maji2013fine,2013,Fine-grained visual classification of aircraft,"Maji, Subhransu and Rahtu, Esa and Kannala, Juho and Blaschko, Matthew and Vedaldi, Andrea",arXiv preprint arXiv:1306.5151,,
+esteban2012empirical,2012,Ethnicity and Conflict: An Empirical Study,"Esteban, Joan and Mayoral, Laura and Ray, Debraj",American Economic Review,10.1257/aer.102.4.1310,https://doi.org/10.1257/aer.102.4.1310
+esteban2011model,2011,Linking Conflict to Inequality and Polarization,"Esteban, Joan and Ray, Debraj",American Economic Review,10.1257/aer.101.4.1345,https://doi.org/10.1257/aer.101.4.1345
+wah2011caltech,2011,The {Caltech-UCSD,"Wah, Catherine and Branson, Steve and Welinder, Peter and Perona, Pietro and Belongie, Serge",,,
+dojftc2010hmg,2010,Horizontal Merger Guidelines,U.S. Department of Justice,,,https://www.justice.gov/atr/horizontal-merger-guidelines-08192010
+bryan2010public,2010,Public displays of flags and emblems in {Northern Ireland,"Bryan, Dominic and Stevenson, Clifford and Gillespie, Gordon and Bell, John",,,
+he2009learning,2009,Learning from imbalanced data,"He, Haibo and Garcia, Edwardo A",IEEE Transactions on Knowledge and Data Engineering,,
+montalvo2005polarization,2005,"Ethnic Polarization, Potential Conflict, and Civil Wars","Montalvo, Jos{\\'e",American Economic Review,10.1257/0002828054201468,https://doi.org/10.1257/0002828054201468
+jarman2005painting,2005,Painting landscapes: The place of murals in the symbolic construction of urban space,"Jarman, Neil",,,
+abadie2003basque,2003,The Economic Costs of Conflict: A Case Study of the Basque Country,"Abadie, Alberto and Gardeazabal, Javier",American Economic Review,10.1257/000282803321455188,https://doi.org/10.1257/000282803321455188
+chawla2002smote,2002,SMOTE,"Chawla, Nitesh V and Bowyer, Kevin W and Hall, Lawrence O and Kegelmeyer, W Philip",Journal of Artificial Intelligence Research,,
+morris2002public,2002,The Social Value of Public Information,"Morris, Stephen and Shin, Hyun Song",American Economic Review,10.1257/000282802762024610,https://doi.org/10.1257/000282802762024610
+akerlof2000identity,2000,Economics and Identity,"Akerlof, George A. and Kranton, Rachel E.",Quarterly Journal of Economics,10.1162/003355300554881,https://doi.org/10.1162/003355300554881
+alesina1999publicgoods,1999,Public Goods and Ethnic Divisions,"Alesina, Alberto and Baqir, Reza and Easterly, William",Quarterly Journal of Economics,10.1162/003355399556269,https://doi.org/10.1162/003355399556269
+knack1997socialcapital,1997,Does Social Capital Have an Economic Payoff? A Cross-Country Investigation,"Knack, Stephen and Keefer, Philip",Quarterly Journal of Economics,10.1162/003355300555475,https://doi.org/10.1162/003355300555475
+bikhchandani1992cascades,1992,"A Theory of Fads, Fashion, Custom, and Cultural Change as Informational Cascades","Bikhchandani, Sushil and Hirshleifer, David and Welch, Ivo",Journal of Political Economy,10.1086/261849,https://doi.org/10.1086/261849
+cooper1988coordination,1988,Coordinating Coordination Failures in Keynesian Models,"Cooper, Russell and John, Andrew",Quarterly Journal of Economics,10.2307/1885539,https://doi.org/10.2307/1885539
+hannah1977,1977,"Concentration in Modern Industry: Theory, Measurement and the U.K. Experience",Leslie Hannah and John A. Kay,,,
+schmalensee1977,1977,Using the H-Index of Concentration with Published Data,Richard Schmalensee,The Review of Economics and Statistics,10.2307/1924909,https://doi.org/10.2307/1924909
+cowling1976,1976,Price-Cost Margins and Market Structure,Keith Cowling and Michael Waterson,Economica,10.2307/2553128,https://doi.org/10.2307/2553128
+adelman1969,1969,Comment on the ``H'' Concentration Measure as a Numbers-Equivalent,Morris A. Adelman,The Review of Economics and Statistics,10.2307/1927431,https://doi.org/10.2307/1927431
+hall1967,1967,Measures of Concentration,M. Hall and N. Tideman,Journal of the American Statistical Association,10.1080/01621459.1967.10482969,https://doi.org/10.1080/01621459.1967.10482969
+hirschman1964,1964,The Paternity of an Index,Albert O. Hirschman,American Economic Review,,
+rosenbluth1955,1955,Measures of Concentration,Gideon Rosenbluth,,,
+herfindahl1950,1950,Concentration in the U.S. Steel Industry,Orris C. Herfindahl,,,
+hirschman1945,1945,National Power and the Structure of Foreign Trade,Albert O. Hirschman,,,

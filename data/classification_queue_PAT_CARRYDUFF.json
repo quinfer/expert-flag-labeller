@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:51.695112",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 4,
+    "total_boxes": 4
+  },
+  "images": [
+    {
+      "town": "CARRYDUFF",
+      "original_image": "/images/CARRYDUFF/l7eKd1rfGVurVgfmnQfqkQ_120.jpg",
+      "cropped_image": "/images/CARRYDUFF/l7eKd1rfGVurVgfmnQfqkQ_120_box0.jpg",
+      "filename": "l7eKd1rfGVurVgfmnQfqkQ_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9015660881996155,
+      "relative_size": 0.02206068099334317,
+      "position_factor": 0.9082621663808823,
+      "box": [
+        210.25656127929688,
+        13.330554962158203,
+        309.81280517578125,
+        104.0938720703125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/CARRYDUFF/composite_l7eKd1rfGVurVgfmnQfqkQ_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "CARRYDUFF",
+      "original_image": "/images/CARRYDUFF/3-TR_OZRIF71tPe2fBRKfg_120.jpg",
+      "cropped_image": "/images/CARRYDUFF/3-TR_OZRIF71tPe2fBRKfg_120_box0.jpg",
+      "filename": "3-TR_OZRIF71tPe2fBRKfg_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.909666895866394,
+      "relative_size": 0.01955020764785445,
+      "position_factor": 0.9273380100727081,
+      "box": [
+        460.45684814453125,
+        0.1238250732421875,
+        546.784912109375,
+        92.8835220336914
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/CARRYDUFF/composite_3-TR_OZRIF71tPe2fBRKfg_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "CARRYDUFF",
+      "original_image": "/images/CARRYDUFF/8MkUqz28r6LXXLo2Llslwg_300.jpg",
+      "cropped_image": "/images/CARRYDUFF/8MkUqz28r6LXXLo2Llslwg_300_box0.jpg",
+      "filename": "8MkUqz28r6LXXLo2Llslwg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9057008624076843,
+      "relative_size": 0.003177780287370524,
+      "position_factor": 0.873336923122406,
+      "box": [
+        98.03104400634766,
+        59.02717590332031,
+        127.56336212158203,
+        103.1015625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/CARRYDUFF/composite_8MkUqz28r6LXXLo2Llslwg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "CARRYDUFF",
+      "original_image": "/images/CARRYDUFF/APgmkiAxyQSy7xn7oapZKw_000.jpg",
+      "cropped_image": "/images/CARRYDUFF/APgmkiAxyQSy7xn7oapZKw_000_box0.jpg",
+      "filename": "APgmkiAxyQSy7xn7oapZKw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9055901169776917,
+      "relative_size": 0.0017912842883873736,
+      "position_factor": 0.6363845705986023,
+      "box": [
+        217.63807678222656,
+        216.32948303222656,
+        240.02859497070312,
+        249.0982666015625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/CARRYDUFF/composite_APgmkiAxyQSy7xn7oapZKw_000_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

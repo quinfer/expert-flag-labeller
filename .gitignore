@@ -29,6 +29,7 @@
 # which are under license restrictions and should not be shared publicly
 /public/images/
 /public/static/
+/public/images-may/
 /public/FlagExamples/
 /data/true_positive_images/
 /data/true_positive_masked_images/
@@ -75,3 +76,4 @@ next-env.d.ts
 # Large false-positive data files
 src/data/false-positives-comprehensive.json
 src/data/false-positives-lookup-all.json
+/public/images-mai/

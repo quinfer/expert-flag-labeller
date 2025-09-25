@@ -1,0 +1,6 @@
+image_path,flag_type,split,weight_exposure
+public/FlagExamples/UnionJack/example1.jpg,Unionist – Union Jack,test,
+public/FlagExamples/Ulsterbanner/example1.jpg,Unionist – Ulster Banner,test,
+public/FlagExamples/Tricolour/example1.jpg,Nationalist – Tricolour,test,
+public/FlagExamples/Orange Order/example1.jpg,Cultural – Orange Order,test,
+public/FlagExamples/UVF/example1.jpg,Paramilitary (UDA/UVF/UFF/YCV),test,

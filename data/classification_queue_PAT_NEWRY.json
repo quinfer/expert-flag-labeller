@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:52.650548",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 2,
+    "total_boxes": 2
+  },
+  "images": [
+    {
+      "town": "NEWRY",
+      "original_image": "/images/NEWRY/UZMSIN6jMdZg1tTF9IDjEA_240.jpg",
+      "cropped_image": "/images/NEWRY/UZMSIN6jMdZg1tTF9IDjEA_240_box0.jpg",
+      "filename": "UZMSIN6jMdZg1tTF9IDjEA_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.933062732219696,
+      "relative_size": 0.004594246942083373,
+      "position_factor": 0.5664791107177735,
+      "box": [
+        123.90061950683594,
+        250.87384033203125,
+        159.30010986328125,
+        304.03289794921875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWRY/composite_UZMSIN6jMdZg1tTF9IDjEA_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "NEWRY",
+      "original_image": "/images/NEWRY/-am2J-C0J3RwlTE--swDsA_300.jpg",
+      "cropped_image": "/images/NEWRY/-am2J-C0J3RwlTE--swDsA_300_box0.jpg",
+      "filename": "-am2J-C0J3RwlTE--swDsA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.915880560874939,
+      "relative_size": 0.0033926296487243237,
+      "position_factor": 0.7533884048461914,
+      "box": [
+        306.9775695800781,
+        136.72528076171875,
+        339.89739990234375,
+        178.93756103515625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/NEWRY/composite_-am2J-C0J3RwlTE--swDsA_300_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

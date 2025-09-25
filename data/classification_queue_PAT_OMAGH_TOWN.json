@@ -1,0 +1,389 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:47.029179",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 18,
+    "total_boxes": 18
+  },
+  "images": [
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/aZSxa7hfl_kxJSU9IIm1Ow_120.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/aZSxa7hfl_kxJSU9IIm1Ow_120_box0.jpg",
+      "filename": "aZSxa7hfl_kxJSU9IIm1Ow_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.921871542930603,
+      "relative_size": 0.022953532689616623,
+      "position_factor": 0.6998052716255188,
+      "box": [
+        523.8363037109375,
+        138.52392578125,
+        611.5382080078125,
+        245.72532653808594
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_aZSxa7hfl_kxJSU9IIm1Ow_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/A6BaNH0GItIdkk2WuABLnw_180.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/A6BaNH0GItIdkk2WuABLnw_180_box0.jpg",
+      "filename": "A6BaNH0GItIdkk2WuABLnw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9226123094558716,
+      "relative_size": 0.02272058768724264,
+      "position_factor": 0.6563173174858093,
+      "box": [
+        374.72711181640625,
+        167.8193817138672,
+        463.9752197265625,
+        272.0944519042969
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_A6BaNH0GItIdkk2WuABLnw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/qGLr5sxrj-1glRwhsRU68Q_060.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/qGLr5sxrj-1glRwhsRU68Q_060_box0.jpg",
+      "filename": "qGLr5sxrj-1glRwhsRU68Q_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9057586789131165,
+      "relative_size": 0.022247965883557298,
+      "position_factor": 0.870063978433609,
+      "box": [
+        355.8419494628906,
+        41.03326416015625,
+        464.0033264160156,
+        125.28484344482422
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_qGLr5sxrj-1glRwhsRU68Q_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/LWAa59yHVpJbmBacumm_Mg_300.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/LWAa59yHVpJbmBacumm_Mg_300_box0.jpg",
+      "filename": "LWAa59yHVpJbmBacumm_Mg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9306057691574097,
+      "relative_size": 0.01802934175456361,
+      "position_factor": 0.8592479825019836,
+      "box": [
+        0.042023658752441406,
+        3.384246826171875,
+        42.63181686401367,
+        176.77833557128906
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_LWAa59yHVpJbmBacumm_Mg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/R6hFf2XrWfVwpVBycLROvA_000.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/R6hFf2XrWfVwpVBycLROvA_000_box0.jpg",
+      "filename": "R6hFf2XrWfVwpVBycLROvA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9007638096809387,
+      "relative_size": 0.0186057141314393,
+      "position_factor": 0.799101984500885,
+      "box": [
+        342.8657531738281,
+        89.64410400390625,
+        440.74371337890625,
+        167.50535583496094
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_R6hFf2XrWfVwpVBycLROvA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/2TFHfDPtsSngRWrRhYwZfw_060.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/2TFHfDPtsSngRWrRhYwZfw_060_box0.jpg",
+      "filename": "2TFHfDPtsSngRWrRhYwZfw_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9306930303573608,
+      "relative_size": 0.016341231558483285,
+      "position_factor": 0.45950572490692143,
+      "box": [
+        450.5357360839844,
+        299.45062255859375,
+        522.560546875,
+        392.3820495605469
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_2TFHfDPtsSngRWrRhYwZfw_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/6EduhrqRiEHr24KwWAsd2g_180.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/6EduhrqRiEHr24KwWAsd2g_180_box0.jpg",
+      "filename": "6EduhrqRiEHr24KwWAsd2g_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.908612847328186,
+      "relative_size": 0.014668135771922835,
+      "position_factor": 0.8436999261379242,
+      "box": [
+        566.6859130859375,
+        58.721839904785156,
+        639.4048461914062,
+        141.34225463867188
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_6EduhrqRiEHr24KwWAsd2g_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/1zcbKiPPKy6Nan7RKIJt5Q_060.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/1zcbKiPPKy6Nan7RKIJt5Q_060_box0.jpg",
+      "filename": "1zcbKiPPKy6Nan7RKIJt5Q_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9366515278816223,
+      "relative_size": 0.013693806220273927,
+      "position_factor": 0.5623790144920349,
+      "box": [
+        303.55224609375,
+        237.92640686035156,
+        370.08660888671875,
+        322.22845458984375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_1zcbKiPPKy6Nan7RKIJt5Q_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/4X9cX6OEGRo5BXQmsSCP3Q_180.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/4X9cX6OEGRo5BXQmsSCP3Q_180_box0.jpg",
+      "filename": "4X9cX6OEGRo5BXQmsSCP3Q_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9081702828407288,
+      "relative_size": 0.013950604299474777,
+      "position_factor": 0.820498576760292,
+      "box": [
+        593.4866943359375,
+        52.62327194213867,
+        639.3779907226562,
+        177.1385498046875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_4X9cX6OEGRo5BXQmsSCP3Q_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/BKCUQKNTkuHhJnPgOodiBw_180.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/BKCUQKNTkuHhJnPgOodiBw_180_box0.jpg",
+      "filename": "BKCUQKNTkuHhJnPgOodiBw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.900945782661438,
+      "relative_size": 0.013997537209889969,
+      "position_factor": 0.7545627415180206,
+      "box": [
+        208.92330932617188,
+        119.54695892333984,
+        285.3015441894531,
+        194.61273193359375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_BKCUQKNTkuHhJnPgOodiBw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/2RQQ3t1w3Ym_L6FHwKuFGw_180.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/2RQQ3t1w3Ym_L6FHwKuFGw_180_box0.jpg",
+      "filename": "2RQQ3t1w3Ym_L6FHwKuFGw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9140959978103638,
+      "relative_size": 0.009650031418856564,
+      "position_factor": 0.8916014134883881,
+      "box": [
+        0.026102066040039062,
+        28.04792022705078,
+        47.84757614135742,
+        110.7022705078125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_2RQQ3t1w3Ym_L6FHwKuFGw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/nR9clymANPNWZzwdZ3xEjg_060.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/nR9clymANPNWZzwdZ3xEjg_060_box0.jpg",
+      "filename": "nR9clymANPNWZzwdZ3xEjg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9177956581115723,
+      "relative_size": 0.009095414409434852,
+      "position_factor": 0.7972636699676514,
+      "box": [
+        453.50042724609375,
+        86.73982238769531,
+        496.8084716796875,
+        172.76268005371094
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_nR9clymANPNWZzwdZ3xEjg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/I0zf11fcobL3RgoTATS-hw_120.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/I0zf11fcobL3RgoTATS-hw_120_box0.jpg",
+      "filename": "I0zf11fcobL3RgoTATS-hw_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9180677533149719,
+      "relative_size": 0.006897065813780046,
+      "position_factor": 0.668233335018158,
+      "box": [
+        190.37179565429688,
+        185.20590209960938,
+        242.44668579101562,
+        239.45542907714844
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_I0zf11fcobL3RgoTATS-hw_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/hS4NooGqRSFEgMiRMHmwLw_180.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/hS4NooGqRSFEgMiRMHmwLw_180_box0.jpg",
+      "filename": "hS4NooGqRSFEgMiRMHmwLw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9382701516151428,
+      "relative_size": 0.006241305192946811,
+      "position_factor": 0.6475357174873352,
+      "box": [
+        204.5797882080078,
+        183.25376892089844,
+        234.7810516357422,
+        267.9005126953125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_hS4NooGqRSFEgMiRMHmwLw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/GvJQ4LuJZJteBiRsrrZQJw_000.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/GvJQ4LuJZJteBiRsrrZQJw_000_box0.jpg",
+      "filename": "GvJQ4LuJZJteBiRsrrZQJw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9138363003730774,
+      "relative_size": 0.005071973847838081,
+      "position_factor": 0.7104539752006531,
+      "box": [
+        353.0027770996094,
+        152.61500549316406,
+        384.77392578125,
+        218.00390625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_GvJQ4LuJZJteBiRsrrZQJw_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/1zcbKiPPKy6Nan7RKIJt5Q_000.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/1zcbKiPPKy6Nan7RKIJt5Q_000_box0.jpg",
+      "filename": "1zcbKiPPKy6Nan7RKIJt5Q_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9017588496208191,
+      "relative_size": 0.004813638015394872,
+      "position_factor": 0.6226358056068421,
+      "box": [
+        301.0325927734375,
+        211.3622283935547,
+        333.7292785644531,
+        271.6639404296875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_1zcbKiPPKy6Nan7RKIJt5Q_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/YQKMCyiqBABAR1BrVmzMmA_000.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/YQKMCyiqBABAR1BrVmzMmA_000_box0.jpg",
+      "filename": "YQKMCyiqBABAR1BrVmzMmA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9101220965385437,
+      "relative_size": 0.004522680490425728,
+      "position_factor": 0.6658503413200378,
+      "box": [
+        393.1150817871094,
+        182.8025665283203,
+        422.9427490234375,
+        244.90899658203125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_YQKMCyiqBABAR1BrVmzMmA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "OMAGH TOWN",
+      "original_image": "/images/OMAGH_TOWN/KgEb__Wbf5WgVqstWMcoQw_300.jpg",
+      "cropped_image": "/images/OMAGH_TOWN/KgEb__Wbf5WgVqstWMcoQw_300_box0.jpg",
+      "filename": "KgEb__Wbf5WgVqstWMcoQw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.913765549659729,
+      "relative_size": 0.00285820056483999,
+      "position_factor": 0.5981534242630004,
+      "box": [
+        419.0694580078125,
+        235.62344360351562,
+        446.2217712402344,
+        278.74017333984375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/OMAGH_TOWN/composite_KgEb__Wbf5WgVqstWMcoQw_300_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

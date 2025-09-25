@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:53.048328",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 1,
+    "total_boxes": 1
+  },
+  "images": [
+    {
+      "town": "WARRENPOINT",
+      "original_image": "/images/WARRENPOINT/cq7s4IJ5fYD8quVrl7PtiQ_240.jpg",
+      "cropped_image": "/images/WARRENPOINT/cq7s4IJ5fYD8quVrl7PtiQ_240_box0.jpg",
+      "filename": "cq7s4IJ5fYD8quVrl7PtiQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9094639420509338,
+      "relative_size": 0.02499467055617154,
+      "position_factor": 0.9256683222949504,
+      "box": [
+        28.723974227905273,
+        0.1384592056274414,
+        136.64083862304688,
+        95.00608825683594
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/WARRENPOINT/composite_cq7s4IJ5fYD8quVrl7PtiQ_240_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:47.494096",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 17,
+    "total_boxes": 17
+  },
+  "images": [
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/sfCWKLpfBSKpOvLm1NCeSw_240.jpg",
+      "cropped_image": "/images/BALLYMONEY/sfCWKLpfBSKpOvLm1NCeSw_240_box0.jpg",
+      "filename": "sfCWKLpfBSKpOvLm1NCeSw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9248589873313904,
+      "relative_size": 0.06578897653494209,
+      "position_factor": 0.7711220383644104,
+      "box": [
+        407.2946472167969,
+        64.78155517578125,
+        572.2092895507812,
+        228.18223571777344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_sfCWKLpfBSKpOvLm1NCeSw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/ULGPWH7hsb97w2pEKSBE0A_000.jpg",
+      "cropped_image": "/images/BALLYMONEY/ULGPWH7hsb97w2pEKSBE0A_000_box0.jpg",
+      "filename": "ULGPWH7hsb97w2pEKSBE0A_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9161595702171326,
+      "relative_size": 0.03598951279598182,
+      "position_factor": 0.46621154546737675,
+      "box": [
+        54.2805061340332,
+        217.92640686035156,
+        113.86627197265625,
+        465.32281494140625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_ULGPWH7hsb97w2pEKSBE0A_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/uh2s_CENpEWjddYOPL5IdA_000.jpg",
+      "cropped_image": "/images/BALLYMONEY/uh2s_CENpEWjddYOPL5IdA_000_box0.jpg",
+      "filename": "uh2s_CENpEWjddYOPL5IdA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9343076348304749,
+      "relative_size": 0.02306858550010844,
+      "position_factor": 0.7690296351909638,
+      "box": [
+        102.24853515625,
+        89.59000396728516,
+        183.38133239746094,
+        206.05206298828125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_uh2s_CENpEWjddYOPL5IdA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/OpJ6ESpG7q_hvVN1SyNpWg_300.jpg",
+      "cropped_image": "/images/BALLYMONEY/OpJ6ESpG7q_hvVN1SyNpWg_300_box0.jpg",
+      "filename": "OpJ6ESpG7q_hvVN1SyNpWg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9366462230682373,
+      "relative_size": 0.019491901023116043,
+      "position_factor": 0.3719180345535278,
+      "box": [
+        125.38522338867188,
+        341.23828125,
+        191.11331176757812,
+        462.7066345214844
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_OpJ6ESpG7q_hvVN1SyNpWg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/Si0-rMNVENRqiYvt1UdVRw_120.jpg",
+      "cropped_image": "/images/BALLYMONEY/Si0-rMNVENRqiYvt1UdVRw_120_box0.jpg",
+      "filename": "Si0-rMNVENRqiYvt1UdVRw_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9287189841270447,
+      "relative_size": 0.01909600438580128,
+      "position_factor": 0.6411864995956421,
+      "box": [
+        391.8595886230469,
+        189.89523315429688,
+        490.2574157714844,
+        269.38604736328125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_Si0-rMNVENRqiYvt1UdVRw_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/A0zDvkpCS7B5NN8UESTvFg_000.jpg",
+      "cropped_image": "/images/BALLYMONEY/A0zDvkpCS7B5NN8UESTvFg_000_box0.jpg",
+      "filename": "A0zDvkpCS7B5NN8UESTvFg_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9395918250083923,
+      "relative_size": 0.014871273680682862,
+      "position_factor": 0.6496637105941773,
+      "box": [
+        376.95654296875,
+        174.25405883789062,
+        437.9166259765625,
+        274.1763916015625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_A0zDvkpCS7B5NN8UESTvFg_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/MTcrAkOiYPzBPc-KEqQKEw_000.jpg",
+      "cropped_image": "/images/BALLYMONEY/MTcrAkOiYPzBPc-KEqQKEw_000_box0.jpg",
+      "filename": "MTcrAkOiYPzBPc-KEqQKEw_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9004172086715698,
+      "relative_size": 0.010889360746403582,
+      "position_factor": 0.854912468791008,
+      "box": [
+        163.09617614746094,
+        50.316349029541016,
+        215.52114868164062,
+        135.39569091796875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_MTcrAkOiYPzBPc-KEqQKEw_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/NIr17urFJ5dhirdcUFWi0g_300.jpg",
+      "cropped_image": "/images/BALLYMONEY/NIr17urFJ5dhirdcUFWi0g_300_box0.jpg",
+      "filename": "NIr17urFJ5dhirdcUFWi0g_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.927116870880127,
+      "relative_size": 0.010168193910828904,
+      "position_factor": 0.6591021656990051,
+      "box": [
+        363.80682373046875,
+        184.85609436035156,
+        426.3079833984375,
+        251.49313354492188
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_NIr17urFJ5dhirdcUFWi0g_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/Y0h58QHuP1xy4DtHgiI8EQ_060.jpg",
+      "cropped_image": "/images/BALLYMONEY/Y0h58QHuP1xy4DtHgiI8EQ_060_box0.jpg",
+      "filename": "Y0h58QHuP1xy4DtHgiI8EQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9091243147850037,
+      "relative_size": 0.009673792667454018,
+      "position_factor": 0.9717604253441096,
+      "box": [
+        0.39232730865478516,
+        -0.04922151565551758,
+        109.71429443359375,
+        36.19587707519531
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_Y0h58QHuP1xy4DtHgiI8EQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/3DSqv2qjs71IQZI9lNrxUg_300.jpg",
+      "cropped_image": "/images/BALLYMONEY/3DSqv2qjs71IQZI9lNrxUg_300_box0.jpg",
+      "filename": "3DSqv2qjs71IQZI9lNrxUg_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9246622323989868,
+      "relative_size": 0.008983113224017814,
+      "position_factor": 0.6806480288505554,
+      "box": [
+        55.496070861816406,
+        174.3983612060547,
+        116.84757995605469,
+        234.37216186523438
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_3DSqv2qjs71IQZI9lNrxUg_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/Om0VHH_4sz_vK4g94tlS0A_060.jpg",
+      "cropped_image": "/images/BALLYMONEY/Om0VHH_4sz_vK4g94tlS0A_060_box0.jpg",
+      "filename": "Om0VHH_4sz_vK4g94tlS0A_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9002131223678589,
+      "relative_size": 0.007484583989435123,
+      "position_factor": 0.6892759799957275,
+      "box": [
+        359.45501708984375,
+        142.22227478027344,
+        386.51739501953125,
+        255.5044708251953
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_Om0VHH_4sz_vK4g94tlS0A_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/PYsyr9b09HOVXyCSwwqhMw_240.jpg",
+      "cropped_image": "/images/BALLYMONEY/PYsyr9b09HOVXyCSwwqhMw_240_box0.jpg",
+      "filename": "PYsyr9b09HOVXyCSwwqhMw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9007911682128906,
+      "relative_size": 0.006850774710683254,
+      "position_factor": 0.6568397879600525,
+      "box": [
+        438.128662109375,
+        187.40042114257812,
+        481.67138671875,
+        251.8446502685547
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_PYsyr9b09HOVXyCSwwqhMw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/IYkk1XzIU8hAfEZvtUyFnA_300.jpg",
+      "cropped_image": "/images/BALLYMONEY/IYkk1XzIU8hAfEZvtUyFnA_300_box0.jpg",
+      "filename": "IYkk1XzIU8hAfEZvtUyFnA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9259979724884033,
+      "relative_size": 0.0036593215165908076,
+      "position_factor": 0.567458176612854,
+      "box": [
+        95.1842041015625,
+        255.70379638671875,
+        130.66354370117188,
+        297.9497375488281
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_IYkk1XzIU8hAfEZvtUyFnA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/p60cUb0eYRi3vmsFcWt8Jw_060.jpg",
+      "cropped_image": "/images/BALLYMONEY/p60cUb0eYRi3vmsFcWt8Jw_060_box0.jpg",
+      "filename": "p60cUb0eYRi3vmsFcWt8Jw_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9076164960861206,
+      "relative_size": 0.003863699514022301,
+      "position_factor": 0.6333981156349182,
+      "box": [
+        370.7255859375,
+        213.75120544433594,
+        408.63330078125,
+        255.49920654296875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_p60cUb0eYRi3vmsFcWt8Jw_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/9LkkJBMGuDzvhV8NoHhkrw_120.jpg",
+      "cropped_image": "/images/BALLYMONEY/9LkkJBMGuDzvhV8NoHhkrw_120_box0.jpg",
+      "filename": "9LkkJBMGuDzvhV8NoHhkrw_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9021210670471191,
+      "relative_size": 0.003876720970072256,
+      "position_factor": 0.38150210380554195,
+      "box": [
+        89.70043182373047,
+        350.00738525390625,
+        107.02381134033203,
+        441.669921875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_9LkkJBMGuDzvhV8NoHhkrw_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/-Tc13uFm-cMkeleGvUsQFw_120.jpg",
+      "cropped_image": "/images/BALLYMONEY/-Tc13uFm-cMkeleGvUsQFw_120_box0.jpg",
+      "filename": "-Tc13uFm-cMkeleGvUsQFw_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9140398502349854,
+      "relative_size": 0.002878731687267191,
+      "position_factor": 0.5164591550827027,
+      "box": [
+        300.8917541503906,
+        290.6256408691406,
+        332.18414306640625,
+        328.306640625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_-Tc13uFm-cMkeleGvUsQFw_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "BALLYMONEY",
+      "original_image": "/images/BALLYMONEY/fdGzIgFfK7hks7vXTe5wxg_120.jpg",
+      "cropped_image": "/images/BALLYMONEY/fdGzIgFfK7hks7vXTe5wxg_120_box0.jpg",
+      "filename": "fdGzIgFfK7hks7vXTe5wxg_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9156134724617004,
+      "relative_size": 0.0019582780691212065,
+      "position_factor": 0.5559653520584107,
+      "box": [
+        472.38226318359375,
+        255.25991821289062,
+        486.2489318847656,
+        313.10443115234375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/BALLYMONEY/composite_fdGzIgFfK7hks7vXTe5wxg_120_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

@@ -1,0 +1,431 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:46.052180",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 20,
+    "total_boxes": 20
+  },
+  "images": [
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/5LbN2jHTr77kjaiiiSGIeA_300.jpg",
+      "cropped_image": "/images/ENNISKILLEN/5LbN2jHTr77kjaiiiSGIeA_300_box0.jpg",
+      "filename": "5LbN2jHTr77kjaiiiSGIeA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9488369822502136,
+      "relative_size": 0.04752316179806826,
+      "position_factor": 0.8411125913262367,
+      "box": [
+        116.33355712890625,
+        13.006315231323242,
+        226.08282470703125,
+        190.36956787109375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_5LbN2jHTr77kjaiiiSGIeA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/DhKisZxDPMO_hBkX5GU-Uw_060.jpg",
+      "cropped_image": "/images/ENNISKILLEN/DhKisZxDPMO_hBkX5GU-Uw_060_box0.jpg",
+      "filename": "DhKisZxDPMO_hBkX5GU-Uw_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9391467571258545,
+      "relative_size": 0.031053297140854693,
+      "position_factor": 0.8828967191278935,
+      "box": [
+        20.861534118652344,
+        10.786547660827637,
+        119.98497009277344,
+        139.10565185546875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_DhKisZxDPMO_hBkX5GU-Uw_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/d4hpdnFPbM3jUijqBMn57g_180.jpg",
+      "cropped_image": "/images/ENNISKILLEN/d4hpdnFPbM3jUijqBMn57g_180_box0.jpg",
+      "filename": "d4hpdnFPbM3jUijqBMn57g_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9027382135391235,
+      "relative_size": 0.027696496910331946,
+      "position_factor": 0.912597981095314,
+      "box": [
+        67.36715698242188,
+        0.13715744018554688,
+        169.02000427246094,
+        111.7374267578125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_d4hpdnFPbM3jUijqBMn57g_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/oQEYY4T9MIqEOaa8ntc5GA_000.jpg",
+      "cropped_image": "/images/ENNISKILLEN/oQEYY4T9MIqEOaa8ntc5GA_000_box0.jpg",
+      "filename": "oQEYY4T9MIqEOaa8ntc5GA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9095467925071716,
+      "relative_size": 0.025399844750151744,
+      "position_factor": 0.902458730340004,
+      "box": [
+        96.0906982421875,
+        0.16149520874023438,
+        179.63514709472656,
+        124.69132995605469
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_oQEYY4T9MIqEOaa8ntc5GA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/AM0Qj807DN2Cwz1ta8gHvA_300.jpg",
+      "cropped_image": "/images/ENNISKILLEN/AM0Qj807DN2Cwz1ta8gHvA_300_box0.jpg",
+      "filename": "AM0Qj807DN2Cwz1ta8gHvA_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9381862878799438,
+      "relative_size": 0.02154908026494944,
+      "position_factor": 0.5878914594650269,
+      "box": [
+        0.04601001739501953,
+        179.37469482421875,
+        52.351356506347656,
+        348.1242370605469
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_AM0Qj807DN2Cwz1ta8gHvA_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/Hgfi2Roa-wOgjCyzRJXOVg_240.jpg",
+      "cropped_image": "/images/ENNISKILLEN/Hgfi2Roa-wOgjCyzRJXOVg_240_box0.jpg",
+      "filename": "Hgfi2Roa-wOgjCyzRJXOVg_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9219938516616821,
+      "relative_size": 0.019211854568037267,
+      "position_factor": 0.8666167080402374,
+      "box": [
+        172.2915802001953,
+        34.065101623535156,
+        248.9888916015625,
+        136.66551208496094
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_Hgfi2Roa-wOgjCyzRJXOVg_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/9jPS6A_K5iaAhwti9kgWcA_000.jpg",
+      "cropped_image": "/images/ENNISKILLEN/9jPS6A_K5iaAhwti9kgWcA_000_box0.jpg",
+      "filename": "9jPS6A_K5iaAhwti9kgWcA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9175599217414856,
+      "relative_size": 0.01817220940577954,
+      "position_factor": 0.7716530084609985,
+      "box": [
+        360.89178466796875,
+        102.37844848632812,
+        445.9320068359375,
+        189.90570068359375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_9jPS6A_K5iaAhwti9kgWcA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/gXzS2k0R_2nAIMgJ72FcNw_240.jpg",
+      "cropped_image": "/images/ENNISKILLEN/gXzS2k0R_2nAIMgJ72FcNw_240_box0.jpg",
+      "filename": "gXzS2k0R_2nAIMgJ72FcNw_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9221977591514587,
+      "relative_size": 0.016788293230481487,
+      "position_factor": 0.5563472986221314,
+      "box": [
+        357.57440185546875,
+        235.85647583007812,
+        429.0834045410156,
+        332.01898193359375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_gXzS2k0R_2nAIMgJ72FcNw_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/3N-daAk0scuUcyzKUPTriQ_300.jpg",
+      "cropped_image": "/images/ENNISKILLEN/3N-daAk0scuUcyzKUPTriQ_300_box0.jpg",
+      "filename": "3N-daAk0scuUcyzKUPTriQ_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9019225239753723,
+      "relative_size": 0.01576368852481096,
+      "position_factor": 0.7639396071434021,
+      "box": [
+        511.9218444824219,
+        79.90853881835938,
+        557.2836303710938,
+        222.24876403808594
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_3N-daAk0scuUcyzKUPTriQ_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/641LB9-GVv6hfucou7oIFA_120.jpg",
+      "cropped_image": "/images/ENNISKILLEN/641LB9-GVv6hfucou7oIFA_120_box0.jpg",
+      "filename": "641LB9-GVv6hfucou7oIFA_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9249842166900635,
+      "relative_size": 0.014688298484769291,
+      "position_factor": 0.8828026205301285,
+      "box": [
+        352.8236389160156,
+        25.495967864990234,
+        413.5819091796875,
+        124.51667785644531
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_641LB9-GVv6hfucou7oIFA_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/Fn4I28S6rYgR79KbR-g15Q_120.jpg",
+      "cropped_image": "/images/ENNISKILLEN/Fn4I28S6rYgR79KbR-g15Q_120_box0.jpg",
+      "filename": "Fn4I28S6rYgR79KbR-g15Q_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9125514030456543,
+      "relative_size": 0.014715896943457665,
+      "position_factor": 0.5681990623474121,
+      "box": [
+        71.8521957397461,
+        235.95135498046875,
+        146.4492950439453,
+        316.75384521484375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_Fn4I28S6rYgR79KbR-g15Q_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/mQplzEUyVjAEcsDyARp1mg_060.jpg",
+      "cropped_image": "/images/ENNISKILLEN/mQplzEUyVjAEcsDyARp1mg_060_box0.jpg",
+      "filename": "mQplzEUyVjAEcsDyARp1mg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9074077606201172,
+      "relative_size": 0.012683069077556865,
+      "position_factor": 0.7309596538543701,
+      "box": [
+        290.8398132324219,
+        127.20205688476562,
+        348.58270263671875,
+        217.16958618164062
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_mQplzEUyVjAEcsDyARp1mg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/AM0Qj807DN2Cwz1ta8gHvA_060.jpg",
+      "cropped_image": "/images/ENNISKILLEN/AM0Qj807DN2Cwz1ta8gHvA_060_box0.jpg",
+      "filename": "AM0Qj807DN2Cwz1ta8gHvA_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9119008779525757,
+      "relative_size": 0.012217256866833281,
+      "position_factor": 0.506374454498291,
+      "box": [
+        23.52423667907715,
+        287.7236328125,
+        112.26131439208984,
+        344.1170654296875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_AM0Qj807DN2Cwz1ta8gHvA_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/3N-daAk0scuUcyzKUPTriQ_000.jpg",
+      "cropped_image": "/images/ENNISKILLEN/3N-daAk0scuUcyzKUPTriQ_000_box0.jpg",
+      "filename": "3N-daAk0scuUcyzKUPTriQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9011679887771606,
+      "relative_size": 0.011999811720554022,
+      "position_factor": 0.6838552117347717,
+      "box": [
+        107.05877685546875,
+        151.4409637451172,
+        155.3488006591797,
+        253.224365234375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_3N-daAk0scuUcyzKUPTriQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/ZiJDauVFAOWljzxf98tZQQ_000.jpg",
+      "cropped_image": "/images/ENNISKILLEN/ZiJDauVFAOWljzxf98tZQQ_000_box0.jpg",
+      "filename": "ZiJDauVFAOWljzxf98tZQQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9086506366729736,
+      "relative_size": 0.007072609564175991,
+      "position_factor": 0.680825412273407,
+      "box": [
+        390.8533935546875,
+        162.7214813232422,
+        425.7140808105469,
+        245.82199096679688
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_ZiJDauVFAOWljzxf98tZQQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/kuC0wGxvA5zni4lKxUKOGQ_000.jpg",
+      "cropped_image": "/images/ENNISKILLEN/kuC0wGxvA5zni4lKxUKOGQ_000_box0.jpg",
+      "filename": "kuC0wGxvA5zni4lKxUKOGQ_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9078930020332336,
+      "relative_size": 0.006203648120524576,
+      "position_factor": 0.8472670912742615,
+      "box": [
+        455.0479736328125,
+        64.2733154296875,
+        493.00103759765625,
+        131.2248077392578
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_kuC0wGxvA5zni4lKxUKOGQ_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/zbxsTiZWeVF-JoVRAExucQ_060.jpg",
+      "cropped_image": "/images/ENNISKILLEN/zbxsTiZWeVF-JoVRAExucQ_060_box0.jpg",
+      "filename": "zbxsTiZWeVF-JoVRAExucQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9080857038497925,
+      "relative_size": 0.005360722275037233,
+      "position_factor": 0.8689091324806213,
+      "box": [
+        453.539306640625,
+        62.2100830078125,
+        504.1604919433594,
+        105.58622741699219
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_zbxsTiZWeVF-JoVRAExucQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/8i_dUmcaWYerdy2g1KjwvQ_060.jpg",
+      "cropped_image": "/images/ENNISKILLEN/8i_dUmcaWYerdy2g1KjwvQ_060_box0.jpg",
+      "filename": "8i_dUmcaWYerdy2g1KjwvQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.907788872718811,
+      "relative_size": 0.0044441744320238286,
+      "position_factor": 0.5749369382858276,
+      "box": [
+        303.2558898925781,
+        233.97433471679688,
+        327.1661071777344,
+        310.10638427734375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_8i_dUmcaWYerdy2g1KjwvQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/Ei7QnEMkweV8rdyhTkeKXQ_120.jpg",
+      "cropped_image": "/images/ENNISKILLEN/Ei7QnEMkweV8rdyhTkeKXQ_120_box0.jpg",
+      "filename": "Ei7QnEMkweV8rdyhTkeKXQ_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9044618010520935,
+      "relative_size": 0.003060063703026117,
+      "position_factor": 0.4779008626937866,
+      "box": [
+        351.0597229003906,
+        309.9026184082031,
+        376.912841796875,
+        358.38427734375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_Ei7QnEMkweV8rdyhTkeKXQ_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "ENNISKILLEN",
+      "original_image": "/images/ENNISKILLEN/RGmcIpu5QovRCioguOOwtQ_240.jpg",
+      "cropped_image": "/images/ENNISKILLEN/RGmcIpu5QovRCioguOOwtQ_240_box0.jpg",
+      "filename": "RGmcIpu5QovRCioguOOwtQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9021937847137451,
+      "relative_size": 0.002600353631883081,
+      "position_factor": 0.588718581199646,
+      "box": [
+        430.37774658203125,
+        244.89291381835938,
+        459.435791015625,
+        281.54730224609375
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/ENNISKILLEN/composite_RGmcIpu5QovRCioguOOwtQ_240_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

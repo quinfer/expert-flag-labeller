@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:51.515220",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 4,
+    "total_boxes": 4
+  },
+  "images": [
+    {
+      "town": "PORTRUSH",
+      "original_image": "/images/PORTRUSH/323q4QO5brUEWtwTmteKIw_300.jpg",
+      "cropped_image": "/images/PORTRUSH/323q4QO5brUEWtwTmteKIw_300_box0.jpg",
+      "filename": "323q4QO5brUEWtwTmteKIw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9026503562927246,
+      "relative_size": 0.014961708069427005,
+      "position_factor": 0.5702955722808838,
+      "box": [
+        411.3818664550781,
+        212.85455322265625,
+        460.67950439453125,
+        337.1671142578125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/PORTRUSH/composite_323q4QO5brUEWtwTmteKIw_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTRUSH",
+      "original_image": "/images/PORTRUSH/MmRQ3DT1qHzIUlkqJr-tlA_000.jpg",
+      "cropped_image": "/images/PORTRUSH/MmRQ3DT1qHzIUlkqJr-tlA_000_box0.jpg",
+      "filename": "MmRQ3DT1qHzIUlkqJr-tlA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9054765105247498,
+      "relative_size": 0.013682490863757266,
+      "position_factor": 0.5664258003234863,
+      "box": [
+        524.062255859375,
+        237.40176391601562,
+        593.966796875,
+        317.5732116699219
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/PORTRUSH/composite_MmRQ3DT1qHzIUlkqJr-tlA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTRUSH",
+      "original_image": "/images/PORTRUSH/lTOC2aUA5rPskmykWSbX8A_000.jpg",
+      "cropped_image": "/images/PORTRUSH/lTOC2aUA5rPskmykWSbX8A_000_box0.jpg",
+      "filename": "lTOC2aUA5rPskmykWSbX8A_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9130733013153076,
+      "relative_size": 0.010857131625357397,
+      "position_factor": 0.6205113410949707,
+      "box": [
+        240.59716796875,
+        199.39480590820312,
+        291.7389831542969,
+        286.3506774902344
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/PORTRUSH/composite_lTOC2aUA5rPskmykWSbX8A_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTRUSH",
+      "original_image": "/images/PORTRUSH/eT9UU4381zn_iYFhoUiJcQ_240.jpg",
+      "cropped_image": "/images/PORTRUSH/eT9UU4381zn_iYFhoUiJcQ_240_box0.jpg",
+      "filename": "eT9UU4381zn_iYFhoUiJcQ_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.911759614944458,
+      "relative_size": 0.004328567870339839,
+      "position_factor": 0.5863720059394837,
+      "box": [
+        463.3372802734375,
+        239.54039001464844,
+        498.5412902832031,
+        289.9034423828125
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/PORTRUSH/composite_eT9UU4381zn_iYFhoUiJcQ_240_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

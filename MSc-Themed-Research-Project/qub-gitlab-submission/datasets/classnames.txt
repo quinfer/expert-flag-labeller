@@ -1,0 +1,90 @@
+Bunting-Building-mounted-Union Jack Bunting
+Bunting-Bunting display-Mixed Flags Bunting
+Bunting-Bunting display-Other Colored Bunting
+Bunting-Bunting display-Union Jack Bunting
+Bunting-Triangular bunting-Orange/Purple Triangular Bunting
+Bunting-Triangular bunting-Red/White/Blue Triangular Bunting
+Bunting-Window display-Union Jack Bunting
+Fraternal-Building-mounted-Orange Order
+Fraternal-Lamppost-mounted-Orange Order
+Fraternal-Pole-mounted (in ground)-Orange Order
+Fraternal-Pole-mounted (in ground)-Royal Black Institution
+Historical-Building-mounted-Regimental Colors
+Historical-Building-mounted-WW1 Commemorative
+Historical-Lamppost-mounted-WW1 Commemorative
+International-Building-mounted-European Union
+International-Building-mounted-Other International
+International-Building-mounted-Palestinian
+International-Lamppost-mounted-European Union
+International-Lamppost-mounted-Israeli
+International-Lamppost-mounted-Other International
+International-Lamppost-mounted-Palestinian
+International-Pole-mounted (in ground)-European Union
+International-Pole-mounted (in ground)-Other International
+International-Unknown-Palestinian
+International-Window display-Other International
+International-Window display-Palestinian
+Military-Building-mounted-Parachute Regiment
+Military-Lamppost-mounted-Parachute Regiment
+Military-Pole-mounted (in ground)-Royal Irish Regiment
+National-Building-mounted-Irish Tricolor
+National-Building-mounted-Scottish Saltire
+National-Building-mounted-Ulster Banner
+National-Building-mounted-Union Jack
+National-Bunting display-Ulster Banner
+National-Bunting display-Union Jack
+National-Lamppost-mounted-Irish Tricolor
+National-Lamppost-mounted-Scottish Saltire
+National-Lamppost-mounted-Ulster Banner
+National-Lamppost-mounted-Union Jack
+National-Memorial/Commemoration-Irish Tricolor
+National-Memorial/Commemoration-Ulster Banner
+National-Memorial/Commemoration-Union Jack
+National-Parade display-Union Jack
+National-Permanent installation-Irish Tricolor
+National-Permanent installation-Ulster Banner
+National-Permanent installation-Union Jack
+National-Pole-mounted (in ground)-Irish Tricolor
+National-Pole-mounted (in ground)-Scottish Saltire
+National-Pole-mounted (in ground)-Ulster Banner
+National-Pole-mounted (in ground)-Union Jack
+National-Street decoration-Ulster Banner
+National-Street decoration-Union Jack
+National-Temporary installation-Ulster Banner
+National-Temporary installation-Union Jack
+National-Triangular bunting-Ulster Banner
+National-Unknown-Irish Tricolor
+National-Unknown-Scottish Saltire
+National-Unknown-Ulster Banner
+National-Unknown-Union Jack
+National-Vehicle-mounted-Union Jack
+National-Window display-Irish Tricolor
+National-Window display-Ulster Banner
+National-Window display-Union Jack
+Proscribed-Building-mounted-Other Proscribed
+Proscribed-Building-mounted-UFF
+Proscribed-Building-mounted-UVF
+Proscribed-Building-mounted-YCV
+Proscribed-Lamppost-mounted-Other Proscribed
+Proscribed-Lamppost-mounted-UDA
+Proscribed-Lamppost-mounted-UVF
+Proscribed-Lamppost-mounted-YCV
+Proscribed-Pole-mounted (in ground)-Other Proscribed
+Proscribed-Pole-mounted (in ground)-UVF
+Proscribed-Temporary installation-Other Proscribed
+Proscribed-Unknown-Other Proscribed
+Proscribed-Unknown-UVF
+Proscribed-Window display-UDA
+Sport-Building-mounted-GAA
+Sport-Building-mounted-Northern Ireland Football
+Sport-Building-mounted-Supporters Club
+Sport-Lamppost-mounted-GAA
+Sport-Lamppost-mounted-Local Club
+Sport-Lamppost-mounted-Northern Ireland Football
+Sport-Lamppost-mounted-Supporters Club
+Sport-Pole-mounted (in ground)-GAA
+Sport-Pole-mounted (in ground)-Local Club
+Sport-Unknown-GAA
+Sport-Unknown-Local Club
+Sport-Window display-GAA
+Sport-Window display-Local Club

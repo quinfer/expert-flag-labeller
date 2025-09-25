@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "created": "2025-08-11T12:17:51.144982",
+    "min_confidence": 0.9,
+    "min_size": 0.005,
+    "total_images": 5,
+    "total_boxes": 5
+  },
+  "images": [
+    {
+      "town": "MAGHERA",
+      "original_image": "/images/MAGHERA/ans0SwqC8nYAfuy_JcOsTg_180.jpg",
+      "cropped_image": "/images/MAGHERA/ans0SwqC8nYAfuy_JcOsTg_180_box0.jpg",
+      "filename": "ans0SwqC8nYAfuy_JcOsTg_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.903131902217865,
+      "relative_size": 0.022756017465669486,
+      "position_factor": 0.9168872974812985,
+      "box": [
+        534.1630859375,
+        8.895764350891113,
+        639.3733520507812,
+        97.48849487304688
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERA/composite_ans0SwqC8nYAfuy_JcOsTg_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERA",
+      "original_image": "/images/MAGHERA/mXzKn6b9AyKd8PiWDWrJrA_180.jpg",
+      "cropped_image": "/images/MAGHERA/mXzKn6b9AyKd8PiWDWrJrA_180_box0.jpg",
+      "filename": "mXzKn6b9AyKd8PiWDWrJrA_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.921504557132721,
+      "relative_size": 0.019696243326369257,
+      "position_factor": 0.9265815980732441,
+      "box": [
+        371.4391784667969,
+        1.4159536361694336,
+        459.9541931152344,
+        92.55960083007812
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERA/composite_mXzKn6b9AyKd8PiWDWrJrA_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERA",
+      "original_image": "/images/MAGHERA/FTDHoNGenPYbvcAX4O8jTw_180.jpg",
+      "cropped_image": "/images/MAGHERA/FTDHoNGenPYbvcAX4O8jTw_180_box0.jpg",
+      "filename": "FTDHoNGenPYbvcAX4O8jTw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9044783711433411,
+      "relative_size": 0.014074403620332134,
+      "position_factor": 0.8792979151010514,
+      "box": [
+        105.62628173828125,
+        44.30044174194336,
+        193.10836791992188,
+        110.19822692871094
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERA/composite_FTDHoNGenPYbvcAX4O8jTw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERA",
+      "original_image": "/images/MAGHERA/SR7hrawSbdz0onfxf7NXcw_180.jpg",
+      "cropped_image": "/images/MAGHERA/SR7hrawSbdz0onfxf7NXcw_180_box0.jpg",
+      "filename": "SR7hrawSbdz0onfxf7NXcw_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9121217727661133,
+      "relative_size": 0.008588007189854353,
+      "position_factor": 0.6621847152709961,
+      "box": [
+        168.28375244140625,
+        178.23609924316406,
+        214.6104278564453,
+        254.16746520996094
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERA/composite_SR7hrawSbdz0onfxf7NXcw_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "MAGHERA",
+      "original_image": "/images/MAGHERA/V5SnbfNr0_6BYht49Rg4MA_060.jpg",
+      "cropped_image": "/images/MAGHERA/V5SnbfNr0_6BYht49Rg4MA_060_box0.jpg",
+      "filename": "V5SnbfNr0_6BYht49Rg4MA_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9126212000846863,
+      "relative_size": 0.00456331600358908,
+      "position_factor": 0.4450465440750122,
+      "box": [
+        307.2723693847656,
+        324.4781494140625,
+        337.72216796875,
+        385.8622741699219
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images/MAGHERA/composite_V5SnbfNr0_6BYht49Rg4MA_060_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

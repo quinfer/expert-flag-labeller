@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "created": "2025-09-24T15:03:18.992287",
+    "min_confidence": 0.8,
+    "min_size": 0.005,
+    "total_images": 12,
+    "total_boxes": 12
+  },
+  "images": [
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/KFB3LdHxJg7Pc4IJCG5TQQ_060.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/KFB3LdHxJg7Pc4IJCG5TQQ_060_box0.jpg",
+      "filename": "KFB3LdHxJg7Pc4IJCG5TQQ_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9186605215072632,
+      "relative_size": 0.01498341945707125,
+      "position_factor": 0.3557393074035644,
+      "box": [
+        145.84173583984375,
+        321.8155517578125,
+        179.74473571777344,
+        502.838134765625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_KFB3LdHxJg7Pc4IJCG5TQQ_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/_Hc7APjh6CG5RkKrUgRF6g_240.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/_Hc7APjh6CG5RkKrUgRF6g_240_box0.jpg",
+      "filename": "_Hc7APjh6CG5RkKrUgRF6g_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9314854741096497,
+      "relative_size": 0.007352402608887587,
+      "position_factor": 0.5799148797988891,
+      "box": [
+        408.789794921875,
+        240.56521606445312,
+        462.0174865722656,
+        297.14373779296875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite__Hc7APjh6CG5RkKrUgRF6g_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/qcGWxBytk1kgk7lKrIGI7Q_180.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/qcGWxBytk1kgk7lKrIGI7Q_180_box0.jpg",
+      "filename": "qcGWxBytk1kgk7lKrIGI7Q_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.9164977669715881,
+      "relative_size": 0.006208865005451116,
+      "position_factor": 0.5942631483078002,
+      "box": [
+        497.28363037109375,
+        227.13607788085938,
+        536.3663330078125,
+        292.20709228515625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_qcGWxBytk1kgk7lKrIGI7Q_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/tierVB0fCJ7ZapsPE59u7Q_120.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/tierVB0fCJ7ZapsPE59u7Q_120_box0.jpg",
+      "filename": "tierVB0fCJ7ZapsPE59u7Q_120_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8865184187889099,
+      "relative_size": 0.00616652866692192,
+      "position_factor": 0.9073036044836045,
+      "box": [
+        295.4309387207031,
+        38.561092376708984,
+        356.25103759765625,
+        80.09029388427734
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_tierVB0fCJ7ZapsPE59u7Q_120_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/tierVB0fCJ7ZapsPE59u7Q_180.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/tierVB0fCJ7ZapsPE59u7Q_180_box0.jpg",
+      "filename": "tierVB0fCJ7ZapsPE59u7Q_180_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8407995104789734,
+      "relative_size": 0.004011725488680895,
+      "position_factor": 0.7259585380554199,
+      "box": [
+        261.9453125,
+        152.6534423828125,
+        298.0865173339844,
+        198.11962890625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_tierVB0fCJ7ZapsPE59u7Q_180_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/tierVB0fCJ7ZapsPE59u7Q_240.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/tierVB0fCJ7ZapsPE59u7Q_240_box0.jpg",
+      "filename": "tierVB0fCJ7ZapsPE59u7Q_240_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8561047911643982,
+      "relative_size": 0.0026703038248001576,
+      "position_factor": 0.76787970662117,
+      "box": [
+        394.37347412109375,
+        127.46428680419922,
+        420.30084228515625,
+        169.64968872070312
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_tierVB0fCJ7ZapsPE59u7Q_240_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/2aDtbcTpu3ophauRiaJkzg_060.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/2aDtbcTpu3ophauRiaJkzg_060_box0.jpg",
+      "filename": "2aDtbcTpu3ophauRiaJkzg_060_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8362849354743958,
+      "relative_size": 0.0024082314632323685,
+      "position_factor": 0.4723857879638672,
+      "box": [
+        406.1761779785156,
+        323.8004150390625,
+        441.7284851074219,
+        351.5457763671875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_2aDtbcTpu3ophauRiaJkzg_060_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/Zln2HKyFcmEkzaXUHrqp8Q_300.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/Zln2HKyFcmEkzaXUHrqp8Q_300_box0.jpg",
+      "filename": "Zln2HKyFcmEkzaXUHrqp8Q_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8057856559753418,
+      "relative_size": 0.0020059257764501125,
+      "position_factor": 0.6723684072494507,
+      "box": [
+        501.9441223144531,
+        196.0345458984375,
+        532.0410766601562,
+        223.33389282226562
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Small detection - possibly distant flag",
+      "composite_image": "/images-mai/PORTSTEWART/composite_Zln2HKyFcmEkzaXUHrqp8Q_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/hOrARAGxjMOVs9HEsXkqGA_000.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/hOrARAGxjMOVs9HEsXkqGA_000_box0.jpg",
+      "filename": "hOrARAGxjMOVs9HEsXkqGA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8323149681091309,
+      "relative_size": 0.0010534029055975225,
+      "position_factor": 0.5990556955337525,
+      "box": [
+        317.8602600097656,
+        242.36141967773438,
+        333.0072021484375,
+        270.8472900390625
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_hOrARAGxjMOVs9HEsXkqGA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/HBmmIKENoZx8eSFrnlhZKA_000.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/HBmmIKENoZx8eSFrnlhZKA_000_box0.jpg",
+      "filename": "HBmmIKENoZx8eSFrnlhZKA_000_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8086449503898621,
+      "relative_size": 0.0014000470436712931,
+      "position_factor": 0.6067052721977234,
+      "box": [
+        165.5224609375,
+        239.6279754638672,
+        189.257080078125,
+        263.7892761230469
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_HBmmIKENoZx8eSFrnlhZKA_000_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/JKnm0tFAmweb1_LhQAVOTw_300.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/JKnm0tFAmweb1_LhQAVOTw_300_box0.jpg",
+      "filename": "JKnm0tFAmweb1_LhQAVOTw_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8300378322601318,
+      "relative_size": 0.0007211466159503743,
+      "position_factor": 0.5438676595687866,
+      "box": [
+        190.0863800048828,
+        283.34185791015625,
+        207.2940673828125,
+        300.5075378417969
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_JKnm0tFAmweb1_LhQAVOTw_300_box0.jpg",
+      "has_composite": true
+    },
+    {
+      "town": "PORTSTEWART",
+      "original_image": "/images-mai/PORTSTEWART/vIHUUS8M06bmd5fpWorDZQ_300.jpg",
+      "cropped_image": "/images-mai/PORTSTEWART/vIHUUS8M06bmd5fpWorDZQ_300_box0.jpg",
+      "filename": "vIHUUS8M06bmd5fpWorDZQ_300_box0.jpg",
+      "box_index": 0,
+      "confidence": 0.8184855580329895,
+      "relative_size": 0.0007466573499499418,
+      "position_factor": 0.5429376363754272,
+      "box": [
+        106.17535400390625,
+        284.3124084472656,
+        124.80652618408203,
+        300.7274169921875
+      ],
+      "is_cropped": true,
+      "has_box_drawn": true,
+      "distance_hint": "Single detection",
+      "composite_image": "/images-mai/PORTSTEWART/composite_vIHUUS8M06bmd5fpWorDZQ_300_box0.jpg",
+      "has_composite": true
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+---
+title: "Hierarchical Flag Classification:"
+subtitle: "A Vision Transformer Approach for Cultural Symbol Recognition"
+author: |
+  Barry Quinn (9207589)  
+  School of EEECS, Queen's University Belfast
+date: today
+bibliography: msc_paper_bibliography.bib
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    transition: fade
+    toc: false
+    footer: "ECS8056 – Themed Research Project | Supporting Materials (30%)"
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Title
+
+Hierarchical Flag Classification through Economic Domain Knowledge
+
+Barry Quinn (9207589)  
+
+Supervisor: Dr. Shuyan Li  
+
+Second Marker: Dr. Yang Hua
+
+Module: ECS8056 — Themed Research Project
+
+
+## Submission Compliance (Video Demo)
+
+- Recorded screen‑capture video (widely playable — MP4/H.264)  
+- Demonstrates: problem framing, dataset/task, method, results, and reproducibility  
+- Provides GitLab repository link (QUB EEECS) and commit/tag  
+- Acknowledges any AI use per declaration  
+- Uploaded to Canvas with supporting materials (code + short report)
+
+
+## Problem & Contributions
+
+- Real‑world task: cultural symbol (flag) classification in NI streetscapes  
+- Dataset: 4,501 images; splits 2,030 train / 2,471 test  
+- Hierarchical taxonomy: 70 → 16 → 7 (economically meaningful)  
+- Baselines (ViT‑H‑14): 70‑class 40.8%, 16‑class 72.6%, 7‑class 94.78%  
+- Reproducible code + documentation (no redistribution of raw imagery)
+
+
+## Dataset & Task
+
+- Source: Google Street View (2022–2023), expert‑verified  
+- Licensing: redistribution prohibited — repository provides scripts/metadata only  
+- Task reframed as hierarchical classification for practical use  
+- Evaluation across semantic granularities (70 / 16 / 7 categories in paper)  
+- Images not shipped in repo — scripts and metadata provided
+
+::: {.callout-note}
+Taxonomy variants:
+- Verification bundle (NIFlagsV2): 90 fine‑grained classes; Train 3823 / Val 841 / Test 826 = 5,490 (used by verify_setup.py)
+- Experimental taxonomy (paper): curated 70 classes → consolidated 16 → 7 (synonym merges, rare/noisy removals, context‑label normalization)
+Both derive from the same source; in the demo we verify the NIFlagsV2 splits for reproducibility.
+:::
+
+
+## Flag Exemplars
+
+![Representative exemplars across categories (demo/allowlisted imagery shown).](plots/figure1b_flag_exemplars.png)
+
+Notes: examples shown are safe, non‑restricted assets for illustration.
+
+
+## Model Overview (ViT + Hierarchy)
+
+:::{.columns}
+::: {.column style="width: 40%; font-size: 0.5em;"}
+- **Backbone:** ViT‑H‑14 pre‑trained on RS5M [@zhang2024rs5m]  
+- **ViT summary:**  
+  - Image → patch embeddings + positional encodings → multi‑head self‑attention → [CLS] token head  
+- **Why ViT?**  
+  - Global attention supports symbol + context understanding in streetscapes  
+- **Prompt/hierarchy:**  
+  - Category/flag/context/full signals  
+  - Inspired by CLIP and prompt tuning [@radford2021learning; @li2023efficient]  
+- **Our use:**  
+  - Hierarchy guides features across 70→16→7 evaluation
+:::
+::: {.column width="60%"}
+![](plots/figure4_hierarchical_prompting.png)
+:::
+:::
+
+
+## Method (Hierarchy)
+
+![Hierarchical prompt tuning reduces effective concentration by injecting domain priors at multiple granularities.](plots/figure4_hierarchical_prompting.png)
+
+- Economic domain knowledge guides taxonomy design  
+- 4‑level prompting (Category, Flag, Context, Full) with learned fusion weights
+
+
+## Results (Comparative)
+
+![Performance across semantic granularities](plots/figure2_performance_breakthrough.png)
+
+- 70‑class (fine‑grained): 40.8%  
+- 16‑class (intermediate): 72.6%  
+- 7‑class (economic): 94.78%  
+- Validated with multi‑seed and cross‑validation
+- Accuracy improves as the task is framed with culturally meaningful categories.
+
+## Demo Plan (Recorded)
+
+:::{style="font-size: 0.7em;"}
+1. Open the clean submission repo (QUB EEECS GitLab mirror) at the repository root; point to README + docs/METHODOLOGY.md  
+2. Run quick verification from the repo root (preferred): `python verify_setup.py`  
+3. Show figure generation or metrics computation (non‑GPU heavy script)  
+4. Run a short evaluation or inference step using saved predictions or a tiny batch; display the resulting metrics/figure
+
+Notes: do not attempt heavy training live; focus on reproducibility.
+:::
+
+## Demo Commands (for reference)
+
+```bash
+# 1) Verify setup (from repo root)
+python verify_setup.py
+
+# 2) Quick expected metrics (stub prints targets/usage)
+python scripts/compute_metrics.py
+
+# 3) Generate simple figures from summary results JSON (fast)
+python scripts/simple_real_figures.py \
+  --results results/real_results.json \
+  --outdir figures/demo
+
+# Optional: show saved predictions exist (no need to recompute)
+ls -1 results/rs5m_ablation_consolidation_only_*/preds.parquet
+```
+
+## Annotation App (Data Collection)
+
+- Live URL (login): https://expert-flag-labeller-production.up.railway.app/login  
+- Demo credentials are provided in the supporting report on Canvas (do not share on slides/video)  
+- Licensing: demo/example images only; no restricted imagery is shown in the video  
+- Flow: login → classify one example → (optional) flag for review → data stored in `classifications`
+ - Link only; not demoed live due to time (see supporting report for demo login)
+
+
+## Reproducibility & GitLab
+
+- QUB EEECS GitLab mirror (private to assessors):  
+  Repo URL + tag/commit in supporting report  
+- `REPRODUCTION.md` / `verify_setup.py` / `test_setup.py`  
+- No raw imagery; instructions/scripts to rebuild metadata and figures  
+- Thesis slides + paper are generated via Quarto
+
+## Ethics & AI Use
+
+- Data/licensing constraints observed (no redistribution of raw images)  
+- AI usage limited to: (i) docstrings/comments for my code; and (ii) non‑substantive UI scaffolding in the annotation app (Next.js) that is part of the larger project (no AI restrictions there)  
+- All task logic, curation rules, ML experiments, and manuscript text authored and verified by me
+
+
+## Acknowledgements
+
+- Prof. Declan French (PI) and Prof. Dominic Bryan (CI)  
+- Brandon Cochrane (PhD student on the larger project)  
+- Supervisor: Dr. Shuyan Li; Second Marker: Professor Yang Hua
+
+
+## Thank You
+
+Contact: b.quinn1@ulster.ac.uk  
+Questions welcome
+
+## References
