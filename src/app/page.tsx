@@ -233,8 +233,14 @@ export default function ExpertFlagLabeler() {
         setUser(parsedUser)
         setAuthLoading(false)
 
-        // Step 2: Initialize images safely
-        const initialImages = await getImagesData(parsedUser?.username)
+        // Step 2: Initialize images safely.
+        // Allow a URL queue override (e.g. ?user=audit) while still keeping
+        // classification writes tied to the authenticated expert account.
+        const queueUserOverride = new URLSearchParams(window.location.search)
+          .get('user')
+          ?.trim()
+        const queueUser = queueUserOverride || parsedUser?.username
+        const initialImages = await getImagesData(queueUser)
         if (initialImages && initialImages.length > 0) {
           setImages(initialImages)
           setLoading(false)
