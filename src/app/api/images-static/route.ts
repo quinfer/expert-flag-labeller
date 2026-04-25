@@ -37,16 +37,50 @@ export async function GET(request: Request) {
       // Stage-2 paramilitary relabel worklist — priority order A+B+E -> Declan -> C -> D.
       // See economic-flag-classification/cascade/docs/STAGE2_RELABEL_HANDOFF.md.
       const curated = Array.isArray(auditImagesData) ? auditImagesData : [];
+      const transformed = curated.map((img: any) => {
+        const town = (img.town || '').toString();
+        const filename = (img.filename || '').toString();
+        const townPath = getTownImagePath(town, filename);
+        const pathUrl = getImageUrl(townPath);
+
+        let compositeUrl: string | null = null;
+        if (img.has_composite) {
+          try {
+            let compFilename: string | null = null;
+            if (img.composite_image && typeof img.composite_image === 'string') {
+              const parts = img.composite_image.split('/');
+              compFilename = parts[parts.length - 1] || null;
+            } else if (filename) {
+              compFilename = `composite_${filename}`;
+            }
+            if (compFilename) {
+              const compTownPath = getTownImagePath(town, compFilename);
+              compositeUrl = getImageUrl(compTownPath);
+            }
+          } catch {
+            compositeUrl = null;
+          }
+        }
+
+        return {
+          town,
+          path: pathUrl,
+          filename,
+          composite_image: compositeUrl,
+          has_composite: Boolean(compositeUrl)
+        };
+      });
+
       return NextResponse.json({
         success: true,
         metadata: {
-          source: 'static-images-audit',
-          total_images: curated.length,
-          with_composites: curated.filter((img: any) => img.has_composite).length,
+          source: 'supabase-audit',
+          total_images: transformed.length,
+          with_composites: transformed.filter((img: any) => img.has_composite).length,
           user: userParam,
           review_reason_tag: 'stage2-relabel-2026-04'
         },
-        images: curated
+        images: transformed
       });
     }
     if (userLower === 'may') {
