@@ -33,7 +33,7 @@ export async function GET(request: Request) {
         images: curated
       });
     }
-    if (userLower === 'audit') {
+    if (userLower === 'audit' || userLower === 'brandon') {
       // Stage-2 paramilitary relabel worklist — priority order A+B+E -> Declan -> C -> D.
       // See economic-flag-classification/cascade/docs/STAGE2_RELABEL_HANDOFF.md.
       const curated = Array.isArray(auditImagesData) ? auditImagesData : [];
@@ -78,6 +78,7 @@ export async function GET(request: Request) {
           total_images: transformed.length,
           with_composites: transformed.filter((img: any) => img.has_composite).length,
           user: userParam,
+          queue_lock: userLower === 'brandon' ? 'forced-audit-for-brandon' : undefined,
           review_reason_tag: 'stage2-relabel-2026-04'
         },
         images: transformed

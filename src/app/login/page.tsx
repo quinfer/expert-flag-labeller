@@ -43,8 +43,9 @@ export default function LoginPage() {
         username: user.username 
       }));
       
-      // Redirect to the main application page
-      router.push('/');
+      // Brandon is restricted to the Stage-2 audit queue.
+      const redirectPath = user.username === 'Brandon' ? '/?user=audit' : '/';
+      router.push(redirectPath);
     } else {
       setError('Invalid username or password');
       setLoading(false);

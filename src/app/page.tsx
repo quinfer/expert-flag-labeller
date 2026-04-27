@@ -234,12 +234,14 @@ export default function ExpertFlagLabeler() {
         setAuthLoading(false)
 
         // Step 2: Initialize images safely.
-        // Allow a URL queue override (e.g. ?user=audit) while still keeping
-        // classification writes tied to the authenticated expert account.
+        // Brandon is locked to the Stage-2 audit queue to avoid accidental
+        // drift into the general dataset during relabel operations.
+        // Other users can still use URL queue overrides (e.g. ?user=audit).
         const queueUserOverride = new URLSearchParams(window.location.search)
           .get('user')
           ?.trim()
-        const queueUser = queueUserOverride || parsedUser?.username
+        const isBrandon = parsedUser?.username === 'Brandon'
+        const queueUser = isBrandon ? 'audit' : (queueUserOverride || parsedUser?.username)
         const initialImages = await getImagesData(queueUser)
         if (initialImages && initialImages.length > 0) {
           setImages(initialImages)
