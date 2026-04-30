@@ -209,6 +209,8 @@ export default function ExpertFlagLabeler() {
   const [isSaving, setIsSaving] = useState(false)
   const [userClassifications, setUserClassifications] = useState<Record<string, any>>({})
   const [currentImageClassified, setCurrentImageClassified] = useState(false)
+  /** Free-text scene context (e.g. multiple flags — which one the label applies to). Stored as classifications.user_content. */
+  const [imageContext, setImageContext] = useState('')
 
   // Safe current image calculation - only access when everything is initialized
   const currentImage = isInitialized && images.length > 0 && currentIndex >= 0 && currentIndex < images.length 
@@ -423,6 +425,19 @@ export default function ExpertFlagLabeler() {
     }
   }, [isInitialized, currentImage, user?.username, userClassifications]);
 
+  // Restore saved scene context when switching images or when server history loads
+  useEffect(() => {
+    if (!currentImage?.filename) {
+      setImageContext('')
+      return
+    }
+    const filename = currentImage.filename
+    const compositeFilename = `composite_${filename}`
+    const existing = userClassifications[filename] || userClassifications[compositeFilename]
+    const saved = existing?.user_content
+    setImageContext(typeof saved === 'string' ? saved : '')
+  }, [currentImage?.filename, userClassifications])
+
   // Track current image changes for UI updates
   useEffect(() => {
     // This effect monitors image changes and prepares for display
@@ -582,6 +597,8 @@ export default function ExpertFlagLabeler() {
       const isBunting = specificFlag && flagCategories[specificFlag].primary === 'Bunting';
       
       // Construct payload using the form data or component state
+      const contextNotes = (classificationData.notes ?? imageContext).trim()
+
       const payload = {
         action: 'save',
         classification: {
@@ -593,6 +610,7 @@ export default function ExpertFlagLabeler() {
           isBunting: isBunting,
           buntingType: isBunting ? specificFlag : null, // Store bunting type explicitly
           confidence: classificationData.confidence || confidence,
+          notes: contextNotes || undefined,
           timestamp: new Date().toISOString(),
           expertId: expertId
         }
@@ -629,6 +647,7 @@ export default function ExpertFlagLabeler() {
           specific_flag: specificFlag || classificationData.specificFlag,
           display_context: classificationData.displayContext || secondaryCategory,
           confidence: classificationData.confidence || confidence,
+          user_content: contextNotes || null,
           expert_id: expertId,
           needs_review: false,
           review_reason: null
@@ -650,6 +669,7 @@ export default function ExpertFlagLabeler() {
       setSecondaryCategory('Lamppost-mounted');
       setSpecificFlag('Union Jack');
       setConfidence(5);
+      setImageContext('');
       
     } catch (error) {
       console.error("Error submitting classification:", error);
@@ -1215,7 +1235,8 @@ export default function ExpertFlagLabeler() {
                       primaryCategory: specificFlag ? flagCategories[specificFlag]?.primary : primaryCategory, 
                       specificFlag: specificFlag,
                       displayContext: secondaryCategory, 
-                      confidence: confidence 
+                      confidence: confidence,
+                      notes: imageContext
                     })}
                     disabled={!specificFlag || isSaving}
                   >
@@ -1276,6 +1297,23 @@ export default function ExpertFlagLabeler() {
                   <option key={context} value={context}>{context}</option>
                 ))}
               </select>
+            </div>
+
+            {/* Scene context: critical when composite / streetscape shows multiple flags */}
+            <div className="rounded-md border border-amber-200 bg-amber-50 p-3">
+              <Label htmlFor="image-context">Image context (optional but encouraged)</Label>
+              <p className="text-xs text-amber-900 mb-2">
+                If more than one flag appears, say which one your label refers to (e.g. left lamppost, background Union Jack, flag on the pole in the crop, etc.).
+              </p>
+              <textarea
+                id="image-context"
+                value={imageContext}
+                onChange={(e) => setImageContext(e.target.value)}
+                rows={4}
+                maxLength={2000}
+                placeholder="e.g. Paramilitary flag is the smaller banner on the right; Union Jack is also visible but is not the target."
+                className="w-full p-2 border rounded text-sm"
+              />
             </div>
 
             {/* Confidence Slider - Moved to top */}
