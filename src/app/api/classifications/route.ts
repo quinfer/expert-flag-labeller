@@ -78,8 +78,8 @@ export async function POST(request: Request) {
         confidence: body.classification.confidence,
         expert_id: body.classification.expertId || 'anonymous',
         needs_review: body.classification.needsReview || false,
-        review_reason: body.classification.reviewReason,
-        user_content: body.classification.userContent || body.classification.notes
+        review_reason: body.classification.reviewReason ?? null,
+        user_content: body.classification.userContent || body.classification.notes || null
       };
       
       console.log('Saving classification to Supabase:', classification);
@@ -96,31 +96,39 @@ export async function POST(request: Request) {
         throw new Error(`Check error: ${checkError.message}`);
       }
       
-      if (existingClassifications && existingClassifications.length > 0) {
-        console.log('User has already classified this image:', existingClassifications[0]);
-        return NextResponse.json({ 
-          success: false, 
-          error: 'You have already classified this image',
-          message: 'You have already classified this image. Use "Re-classify" if you want to update your classification.',
-          existing_classification: existingClassifications[0]
-        }, { status: 409 });
-      }
-      
       let responseData = null;
       
       try {
-        const { data, error } = await supabase
-          .from('classifications')
-          .insert([classification])
-          .select();
-          
-        if (error) {
-          console.error('Supabase insert error:', error);
-          throw new Error(error.message);
+        if (existingClassifications && existingClassifications.length > 0) {
+          const existingId = existingClassifications[0].id;
+          if (existingClassifications.length > 1) {
+            console.warn(
+              `Multiple classification rows for same expert+image (${classification.expert_id} / ${classification.image_id}); updating id=${existingId} only`
+            );
+          }
+          const { data, error } = await supabase
+            .from('classifications')
+            .update(classification)
+            .eq('id', existingId)
+            .select();
+          if (error) {
+            console.error('Supabase update error:', error);
+            throw new Error(error.message);
+          }
+          responseData = data;
+          console.log('Updated existing classification:', data);
+        } else {
+          const { data, error } = await supabase
+            .from('classifications')
+            .insert([classification])
+            .select();
+          if (error) {
+            console.error('Supabase insert error:', error);
+            throw new Error(error.message);
+          }
+          responseData = data;
+          console.log('Successfully saved classification:', data);
         }
-        
-        responseData = data;
-        console.log('Successfully saved classification:', data);
       } catch (dbError) {
         const dbErrorMessage = dbError instanceof Error ? dbError.message : 'Unknown database error';
         console.error('Database operation failed:', dbError);
